@@ -10,8 +10,10 @@ AM_INIT_AUTOMAKE([gnits -Wall -Werror])
 
 # Checks for programs.
 AC_PROG_CC
+PKG_PROG_PKG_CONFIG
 
 # Checks for libraries.
+PKG_CHECK_MODULES([LIBCONFIG], [libconfig])
 
 # Checks for header files.
 
@@ -19,7 +21,10 @@ AC_PROG_CC
 
 # Checks for library functions.
 
-CFLAGS="-Wall -Werror ${CFLAGS}"
+CFLAGS="-Wall -Werror ${CFLAGS} ${LIBCONFIG_CFLAGS}"
+LIBS="${LIBS} ${LIBCONFIG_LIBS}"
+
+AC_DEFINE([FILEPATH_SEPARATOR], ['/'], [File path separator.])
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile])
