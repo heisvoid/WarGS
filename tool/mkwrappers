@@ -15,7 +15,7 @@ class MKWrappers:
     output_file	      = None
     functions         = {}
     underscore        = False
-    prefix            = 'ac_'
+    prefix            = 'w_'
     debug             = False
     stack_align	      = 4
     prologue_args       = 0
