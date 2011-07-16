@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -62,4 +63,29 @@ dos_open (const char *path, int flags)
   free ((void *) native_path);
 
   return ret;
+}
+
+int
+dos_read (int fd, void *buf, unsigned int len)
+{
+  ASSERT (2 < fd);
+  ASSERT (NULL != buf);
+  ASSERT (0 < len);
+
+  ssize_t read_len = 0;
+  while (read_len < len)
+    {
+      const ssize_t ret = read (fd, buf + read_len, len - read_len);
+      ASSERT (0 <= ret);
+
+      if (0 == ret)
+        {
+          /* EOF */
+          break;
+        }
+
+      read_len += ret;
+    }
+
+  return read_len;
 }
