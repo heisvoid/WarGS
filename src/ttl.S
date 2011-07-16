@@ -2964,8 +2964,10 @@ GLOBAL (ttl)	/* 0x13cdc */
 		push   %edi
 		push   %ebp
 		sub    $0x28,%esp
+#if 0
 		call   func_15d14
 		call   func_15d1f
+#endif
 		mov    $data_2027b,%eax
 		mov    $data_2026e,%edx
 		mov    $0xff,%ebx
@@ -3180,7 +3182,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $0x55f0,%eax
 		call   func_1a55f
 	jump_13fd3:
+#if 0
 		call   func_15d1f
+#endif
 		call   func_162f7
 		mov    $0x1,%eax
 		mov    $0x266,%edx
