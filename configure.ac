@@ -10,6 +10,7 @@ AM_INIT_AUTOMAKE([gnits -Wall -Werror])
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_AS
 PKG_PROG_PKG_CONFIG
 
 # Checks for libraries.
