@@ -89,3 +89,14 @@ dos_read (int fd, void *buf, unsigned int len)
 
   return read_len;
 }
+
+int
+dos_close (int fd)
+{
+  ASSERT (2 < fd);
+
+  const int ret = close (fd);
+  ASSERT (0 == ret);
+
+  return 0;
+}
