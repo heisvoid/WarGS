@@ -1,13 +1,17 @@
 bin_PROGRAMS = wargs wargs-ttl
 
-wargs_SOURCES = assert.h \
-								conf.c conf.h \
-								filepath.c filepath.h \
-								log.c log.h \
-								util.c util.h \
+COMMON_SRCS = assert.h \
+					 	  conf.c conf.h \
+							filepath.c filepath.h \
+							log.c log.h \
+							util.c util.h
+
+wargs_SOURCES = $(COMMON_SRCS) \
 								wargs.c
 
-wargs_ttl_SOURCES = asm.h \
+wargs_ttl_SOURCES = $(COMMON_SRCS) \
+										asm.h \
+										dos.c \
 										ttl.S \
 										wargs-ttl.c \
 										wrappers.S
