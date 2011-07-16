@@ -691,7 +691,7 @@ func_1239e:
 		call   w_dos_read
 	jump_123d8:
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -712,7 +712,7 @@ func_123e3:
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x200
 		push   %ebx
 		call   w_dos_open
@@ -727,7 +727,7 @@ func_123e3:
 		add    $0x8,%esp
 		call   func_getch_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $0xff,%eax
 		call   func_12358
 	jump_1243a:
@@ -742,7 +742,7 @@ func_123e3:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		push   %esi
 		call   w_dos_open
@@ -757,7 +757,7 @@ func_123e3:
 		add    $0x8,%esp
 		call   func_getch_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $0xff,%eax
 		call   func_12358
 	jump_1249b:
@@ -767,7 +767,7 @@ func_123e3:
 		mov    %ebp,%ebx
 		call   func_write_
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    %edi,%eax
 		call   func__nfree_
 		pop    %ebp
@@ -3105,11 +3105,11 @@ GLOBAL (ttl)	/* 0x13cdc */
 		add    $0x8,%esp
 		cmp    $0xffffffff,%eax
 		jne    jump_13ee8
-		call   func_j___close_
+		call   w_dos_close
 		mov    %esp,%eax
 		jmp    jump_13ef2
 	jump_13ee8:
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_20345,%eax
 	jump_13ef2:
 		mov    $data_2034f,%edx
@@ -3160,11 +3160,11 @@ GLOBAL (ttl)	/* 0x13cdc */
 		add    $0x8,%esp
 		cmp    $0xffffffff,%eax
 		jne    jump_13f8e
-		call   func_j___close_
+		call   w_dos_close
 		mov    %esp,%eax
 		jmp    jump_13f98
 	jump_13f8e:
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_2036f,%eax
 	jump_13f98:
 		mov    $data_2037b,%edx
@@ -3868,7 +3868,7 @@ func_14e81:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x200
 		push   %esi
 		mov    $0x1000,%ebx
@@ -3879,7 +3879,7 @@ func_14e81:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		pop    %esi
 		pop    %ecx
 		pop    %ebx
