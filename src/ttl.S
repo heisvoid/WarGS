@@ -688,7 +688,7 @@ func_1239e:
 		mov    $data_22608,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 	jump_123d8:
 		mov    %ecx,%eax
 		call   func_j___close_
@@ -740,7 +740,7 @@ func_123e3:
 		mov    %eax,%edx
 		mov    %eax,%edi
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   func_j___close_
 		push   $0x201
@@ -3858,15 +3858,15 @@ func_14e81:
 		movswl %ax,%ecx
 		mov    $data_3ac00,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xb00,%ebx
 		mov    $data_3c000,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xe00,%ebx
 		mov    $data_3cb00,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   func_j___close_
 		push   $0x200
@@ -3877,7 +3877,7 @@ func_14e81:
 		movswl %ax,%ecx
 		mov    $data_3d900,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   func_j___close_
 		pop    %esi
