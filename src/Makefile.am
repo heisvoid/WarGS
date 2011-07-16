@@ -9,4 +9,12 @@ wargs_SOURCES = assert.h \
 
 wargs_ttl_SOURCES = asm.h \
 										ttl.S \
-										wargs-ttl.c
+										wargs-ttl.c \
+										wrappers.S
+
+MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
+
+wrappers.S: $(top_srcdir)/tool/mkwrappers.conf
+	$(MKWRAPPERS) $(MKWRAPPERS_FLAGS) -o $@ $<
+
+CLEANFILES = wrappers.S
