@@ -12,6 +12,7 @@ wargs_SOURCES = $(COMMON_SRCS) \
 wargs_ttl_SOURCES = $(COMMON_SRCS) \
 										asm.h \
 										dos.c \
+										game.c \
 										ttl.S \
 										wargs-ttl.c \
 										wrappers.S
