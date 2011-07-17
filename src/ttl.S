@@ -1965,7 +1965,7 @@ func_13038:
 		add    %eax,%eax
 		mov    $data_200a3,%edx
 		add    %ecx,%eax
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%ecx
 		test   %eax,%eax
 		jne    jump_130a2
@@ -2090,11 +2090,11 @@ func_13038:
 		call   func_123e3
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
 		call   func_unlink_
@@ -2127,11 +2127,11 @@ func_13038:
 		call   func_123e3
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
 		call   func_unlink_
@@ -2164,11 +2164,11 @@ func_13038:
 		call   func_123e3
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
 		call   func_unlink_
@@ -2201,11 +2201,11 @@ func_13038:
 		call   func_123e3
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
 		call   func_unlink_
@@ -2238,11 +2238,11 @@ func_13038:
 		call   func_123e3
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
 		call   func_unlink_
@@ -2487,11 +2487,11 @@ func_13759:
 		call   func_15d2d
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_20195,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2019b,%eax
 		call   func_unlink_
@@ -2527,7 +2527,7 @@ func_137b6:
 		add    %eax,%eax
 		add    %edx,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		test   %eax,%eax
 		jne    jump_137f0
 		xor    %cl,%cl
@@ -2612,7 +2612,7 @@ func_138a8:
 		mov    %esp,%eax
 		add    %edx,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		test   %eax,%eax
 		jne    jump_138e4
 		xor    %cl,%cl
@@ -2691,11 +2691,11 @@ func_138a8:
 		call   func_14585
 		mov    $data_201e9,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $0x1,%eax
 	jump_13a1c:
@@ -2842,7 +2842,7 @@ func_13b60:
 		push   %edx
 		mov    $data_201f9,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13b98
@@ -2858,7 +2858,7 @@ func_13b60:
 	jump_13b98:
 		mov    $data_2020a,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13bcf
@@ -2874,7 +2874,7 @@ func_13b60:
 	jump_13bcf:
 		mov    $data_2021b,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13c06
@@ -2890,7 +2890,7 @@ func_13b60:
 	jump_13c06:
 		mov    $data_2022c,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13c3d
@@ -2906,7 +2906,7 @@ func_13b60:
 	jump_13c3d:
 		mov    $data_2023d,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13c74
@@ -2922,7 +2922,7 @@ func_13b60:
 	jump_13c74:
 		mov    $data_2024e,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13ca1
@@ -2936,7 +2936,7 @@ func_13b60:
 	jump_13ca1:
 		mov    $data_2025e,%eax
 		mov    $data_200a3,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_13cd8
@@ -3271,11 +3271,11 @@ GLOBAL (ttl)	/* 0x13cdc */
 	jump_14103:
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011a,%eax
 		mov    $data_20105,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		call   func_fclose_
 		mov    $0x1,%eax
 		call   func_12358
@@ -4618,7 +4618,7 @@ func_16101:
 		sub    $0x8,%esp
 		mov    %edx,%edi
 		mov    $data_203bc,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		xor    %esi,%esi
 		mov    %eax,%ebp
 		test   %eax,%eax
@@ -5682,7 +5682,7 @@ func_1882c:
 		sub    $0x80,%esp
 		xor    %esi,%esi
 		mov    $data_20894,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%edi
 		test   %eax,%eax
 		jne    jump_1886a
@@ -8190,7 +8190,7 @@ func_1a95f:
 		ret
 	jump_1a97c:
 		mov    $data_208d0,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%esi
 		mov    %ebx,%ecx
 		shl    $0x3,%ecx
