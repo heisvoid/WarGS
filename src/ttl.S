@@ -4840,10 +4840,10 @@ func_17437:
 		xor    %eax,%eax
 		jmp    jump_175af
 	jump_174ed:
-		call   func_17d02
-		cmpl   $0x2,data_42f84
+		call   cdrom_get_mscdex_version
+		cmpl   $0x2,cdrom_mscdex_major_version
 		jge    jump_17504
-		cmpl   $0x1,data_42f88
+		cmpl   $0x1,cdrom_mscdex_minor_version
 		jl     jump_174e6
 	jump_17504:
 		call   func_17da9
@@ -5111,7 +5111,7 @@ func_17c6b:
 
 
 /*----------------------------------------------------------------*/
-func_17d02:
+cdrom_get_mscdex_version: /* 17d02 */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -5144,14 +5144,22 @@ func_17d02:
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
+#if 0
+    /* 2f 150c bx0000: get mscdex.exe version */
 		call   w_dos_int386x
+#endif
+#if 1
+    /* mscdex.exe version is forced to 2.1 */
+    mov    $0x00000201,%eax
+    mov    %eax,dpmi_real_mode_call_structure_ebx
+#endif
 		mov    dpmi_real_mode_call_structure_ebx,%eax
 		sar    $0x8,%eax
 		and    $0xff,%eax
-		mov    %eax,data_42f84
+		mov    %eax,cdrom_mscdex_major_version
 		mov    dpmi_real_mode_call_structure_ebx,%eax
 		and    $0xff,%eax
-		mov    %eax,data_42f88
+		mov    %eax,cdrom_mscdex_minor_version
 		jmp    jump_17cfb
 
 
@@ -15249,9 +15257,9 @@ data_42e94:
 		.fill   0x78
 data_42f0c:
 		.fill   0x78
-data_42f84:
+cdrom_mscdex_major_version: /* 42f84 */
 		.fill   0x4
-data_42f88:
+cdrom_mscdex_minor_version: /* 42f88 */
 		.fill   0xc
 data_42f94:
 		.fill   0x4
