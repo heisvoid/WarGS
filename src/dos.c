@@ -100,3 +100,14 @@ dos_close (int fd)
 
   return 0;
 }
+
+void *
+dos_malloc (size_t size)
+{
+  ASSERT (0 < size);
+
+  void *p = malloc (size);
+  ASSERT (NULL != p);
+
+  return p;
+}
