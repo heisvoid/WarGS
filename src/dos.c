@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>
+#include <string.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -231,4 +232,13 @@ dos_int386x (int n, const struct dos_registers *in, struct dos_registers *out,
   print_interrupt_info (n, in);
 
   abort ();
+}
+
+void *
+dos_memset (void *s, int c, size_t n)
+{
+  ASSERT (NULL != s);
+  ASSERT (0 < n);
+
+  return memset (s, c, n);
 }
