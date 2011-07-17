@@ -4793,15 +4793,15 @@ func_17437:
 		xor    %esi,%esi
 		xor    %edx,%edx
 		mov    %esi,data_42f94
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    $0x32,%ebx
 		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x1500,data_42fb4
-		mov    %esi,data_42fa8
+		movl   $0x1500,dpmi_real_mode_call_structure_eax
+		mov    %esi,dpmi_real_mode_call_structure_ebx
 		movw   $0x300,(%esp)
 		movb   $0x2f,0x4(%esp)
 		xor    %dl,%dl
@@ -4809,18 +4809,29 @@ func_17437:
 		xor    %ebx,%ebx
 		mov    %bx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_42f98,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
+#if 0
+    /* 2f 1500 bx0000: cdrom installation check */
 		call   w_dos_int386x
-		mov    data_42fa8,%dx
-		mov    %dx,data_42fca
-		mov    data_42fb0,%al
-		mov    %al,data_42fcc
+#endif
+#if 1
+    mov    $1,%dx
+#else
+		mov    dpmi_real_mode_call_structure_ebx,%dx
+#endif
+		mov    %dx,cdrom_number
+#if 1
+    mov    $0,%al
+#else
+		mov    dpmi_real_mode_call_structure_ecx,%al
+#endif
+		mov    %al,cdrom_starting_letter
 		and    $0xff,%eax
 		mov    %eax,data_20d04
 		test   %dx,%dx
@@ -4920,10 +4931,10 @@ func_178d1:
 		call   func___CHK
 		push   %ebx
 		xor    %ebx,%ebx
-		mov    data_42fcc,%bl
+		mov    cdrom_starting_letter,%bl
 		mov    %ebx,(%eax)
 		xor    %eax,%eax
-		mov    data_42fca,%ax
+		mov    cdrom_number,%ax
 		mov    %eax,(%edx)
 		pop    %ebx
 		ret
@@ -5064,7 +5075,7 @@ func_17c6b:
 		push   %edx
 		sub    $0x28,%esp
 		mov    %eax,%ecx
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
 		call   w_dos_memset
@@ -5072,20 +5083,20 @@ func_17c6b:
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x1510,data_42fb4
+		movl   $0x1510,dpmi_real_mode_call_structure_eax
 		mov    data_20d04,%eax
-		mov    %eax,data_42fb0
+		mov    %eax,dpmi_real_mode_call_structure_ecx
 		xor    %ebx,%ebx
-		mov    %ebx,data_42fa8
-		mov    %cx,data_42fba
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
+		mov    %cx,dpmi_real_mode_call_structure_es
 		movl   $0x300,(%esp)
 		mov    %ebx,0x4(%esp)
 		movb   $0x2f,0x4(%esp)
 		mov    %ebx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_42f98,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
@@ -5108,7 +5119,7 @@ func_17d02:
 		push   %ecx
 		push   %edx
 		sub    $0x28,%esp
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
 		call   w_dos_memset
@@ -5116,9 +5127,9 @@ func_17d02:
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x150c,data_42fb4
+		movl   $0x150c,dpmi_real_mode_call_structure_eax
 		xor    %ebx,%ebx
-		mov    %ebx,data_42fa8
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
 		movw   $0x300,(%esp)
 		movb   $0x2f,0x4(%esp)
 		xor    %dl,%dl
@@ -5126,19 +5137,19 @@ func_17d02:
 		xor    %ebx,%ebx
 		mov    %bx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_42f98,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_42f98,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
 		call   w_dos_int386x
-		mov    data_42fa8,%eax
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		sar    $0x8,%eax
 		and    $0xff,%eax
 		mov    %eax,data_42f84
-		mov    data_42fa8,%eax
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		and    $0xff,%eax
 		mov    %eax,data_42f88
 		jmp    jump_17cfb
@@ -15244,19 +15255,19 @@ data_42f88:
 		.fill   0xc
 data_42f94:
 		.fill   0x4
-data_42f98:
+dpmi_real_mode_call_structure: /* 42f98 */
 		.fill   0x10
-data_42fa8:
+dpmi_real_mode_call_structure_ebx: /* 42fa8 */
 		.fill   0x8
-data_42fb0:
+dpmi_real_mode_call_structure_ecx: /* 42fb0 */
 		.fill   0x4
-data_42fb4:
+dpmi_real_mode_call_structure_eax: /* 42fb4 */
 		.fill   0x6
-data_42fba:
+dpmi_real_mode_call_structure_es: /* 42fba */
 		.fill   0x10
-data_42fca:
+cdrom_number: /* 42fca */
 		.ascii  "\x00\x00"
-data_42fcc:
+cdrom_starting_letter: /* 42fcc */
 		.ascii  "\x00"
 data_42fcd:
 		.ascii  "\x00\x00"
