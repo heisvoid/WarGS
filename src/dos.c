@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -110,4 +111,19 @@ dos_malloc (size_t size)
   ASSERT (NULL != p);
 
   return p;
+}
+
+FILE *
+dos_fopen (const char *path, const char *mode)
+{
+  ASSERT (NULL != path);
+  ASSERT (NULL != mode);
+
+  const char * const native_path = filepath_transform (path);
+
+  FILE * const file = fopen (native_path, mode);
+
+  free ((void *) native_path);
+
+  return file;
 }
