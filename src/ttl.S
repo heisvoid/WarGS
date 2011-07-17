@@ -22,7 +22,7 @@ func____begtext:	/* 0x10003 */
 		nop
 		nop
 		mov    $0x2ee00,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_2092c
 		push   %ebx
 		push   %edx
@@ -736,7 +736,7 @@ func_123e3:
 		call   func_filelength_
 		mov    %eax,%ebx
 		mov    %eax,%ebp
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,%edi
 		mov    %ecx,%eax
@@ -2990,7 +2990,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 		test   %bx,%bx
 		jne    jump_13e23
 		mov    $0x493e00,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_13dac
@@ -4730,7 +4730,7 @@ func_1621e:
 func_162f7:
 /*----------------------------------------------------------------*/
 		mov    $0x1f400,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_3e98c
 		test   %eax,%eax
 		jne    jump_16323
@@ -6770,14 +6770,14 @@ func_1948b:
 		mov    $0xe2,%edx
 		call   func_outp_
 		mov    $0xfa00,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,data_2092c
 		xor    %eax,%edx
 		mov    $0xfa00,%ebx
 		call   func_memset_
 		mov    $0xfa00,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_43020
 		movl   $0x5,data_4301c
 		mov    %edi,%eax
@@ -8205,7 +8205,7 @@ func_1a95f:
 		mov    %ebx,%ecx
 		shl    $0x3,%ecx
 		mov    %eax,data_53b28(%ecx)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_53b2c(%ecx)
 		test   %eax,%eax
 		je     jump_1a973
@@ -13278,7 +13278,7 @@ func___allocfp_:	/* 0x1d8b3 */
 		testb  $0x3,0xc(%ecx)
 		jne    jump_1d8ff
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%esi
 		test   %eax,%eax
 		je     jump_1d949
@@ -13291,7 +13291,7 @@ func___allocfp_:	/* 0x1d8b3 */
 		jb     jump_1d8e2
 		mov    $0x22,%eax
 		mov    $0x4003,%edi
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ecx
 		mov    %eax,%esi
 		test   %eax,%eax
@@ -13930,7 +13930,7 @@ func___ioalloc_:	/* 0x1e054 */
 		movl   $0x1000,0x14(%edx)
 	jump_1e089:
 		mov    0x14(%edx),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%edx)
 		test   %eax,%eax
 		jne    jump_1e0b8
@@ -14230,12 +14230,12 @@ func___InitFiles_:	/* 0x1e381 */
 		jmp    jump_1e3e8
 	jump_1e3a5:
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_1e3d4
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_1e3d4
