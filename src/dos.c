@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -134,4 +136,48 @@ dos_free (void *p)
   ASSERT (NULL != p);
 
   free (p);
+}
+
+struct dos_registers
+{
+  uint32_t eax;
+  uint32_t ebx;
+  uint32_t ecx;
+  uint32_t edx;
+  uint32_t esi;
+  uint32_t edi;
+  uint32_t eflags;
+} __attribute__ ((packed));
+
+static void
+print_interrupt_info (int n, const struct dos_registers *regs)
+{
+  printf ("dos interrupt via int386/int386x ()\n"
+          "  int: 0x%02"PRIx8"\n"
+          "  eax: 0x%08"PRIx32"\n"
+          "  ebx: 0x%08"PRIx32"\n"
+          "  ecx: 0x%08"PRIx32"\n"
+          "  edx: 0x%08"PRIx32"\n"
+          "  esi: 0x%08"PRIx32"\n"
+          "  edi: 0x%08"PRIx32"\n"
+          "  eflags: 0x%08"PRIx32"\n",
+          n, regs->eax, regs->ebx, regs->ecx, regs->edx, regs->esi,
+          regs->edi, regs->eflags);
+}
+
+int __attribute__ ((noreturn))
+dos_int386 (int n, const struct dos_registers *in, struct dos_registers *out)
+{
+  print_interrupt_info (n, in);
+
+  abort ();
+}
+
+int __attribute__ ((noreturn))
+dos_int386x (int n, const struct dos_registers *in, struct dos_registers *out,
+             void *s)
+{
+  print_interrupt_info (n, in);
+
+  abort ();
 }
