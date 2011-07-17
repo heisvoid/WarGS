@@ -163,6 +163,57 @@ print_interrupt_info (int n, const struct dos_registers *regs)
           "  eflags: 0x%08"PRIx32"\n",
           n, regs->eax, regs->ebx, regs->ecx, regs->edx, regs->esi,
           regs->edi, regs->eflags);
+
+  if (0x31 == n && 0x0300 == (0xffff & regs->eax))
+    {
+      /* simulate real mode interrupt */
+
+      struct dpmi_real_mode_call_structure
+      {
+        uint32_t edi;
+        uint32_t esi;
+        uint32_t ebp;
+        uint32_t reserved;
+        uint32_t ebx;
+        uint32_t edx;
+        uint32_t ecx;
+        uint32_t eax;
+        uint16_t flags;
+        uint16_t es;
+        uint16_t ds;
+        uint16_t fs;
+        uint16_t gs;
+        uint16_t ip;
+        uint16_t cs;
+        uint16_t sp;
+        uint16_t ss;
+      } __attribute__ ((packed));
+
+      const struct dpmi_real_mode_call_structure * const s =
+          (const struct dpmi_real_mode_call_structure * const) regs->edi;
+
+      printf ("\n");
+      printf ("  dpmi real mode call structure\n"
+              "    edi: 0x%08"PRIx32"\n"
+              "    esi: 0x%08"PRIx32"\n"
+              "    ebp: 0x%08"PRIx32"\n"
+              "    ebx: 0x%08"PRIx32"\n"
+              "    edx: 0x%08"PRIx32"\n"
+              "    ecx: 0x%08"PRIx32"\n"
+              "    eax: 0x%08"PRIx32"\n"
+              "    flags: 0x%04"PRIx16"\n"
+              "    es: 0x%04"PRIx16"\n"
+              "    ds: 0x%04"PRIx16"\n"
+              "    fs: 0x%04"PRIx16"\n"
+              "    gs: 0x%04"PRIx16"\n"
+              "    ip: 0x%04"PRIx16"\n"
+              "    cs: 0x%04"PRIx16"\n"
+              "    sp: 0x%04"PRIx16"\n"
+              "    ss: 0x%04"PRIx16"\n",
+              s->edi, s->esi, s->ebp, s->ebx, s->edx, s->ecx, s->eax,
+              s->flags, s->es, s->ds, s->fs, s->gs, s->ip, s->cs, s->sp,
+              s->ss);
+    }
 }
 
 int __attribute__ ((noreturn))
