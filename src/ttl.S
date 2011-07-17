@@ -685,7 +685,7 @@ func_1239e:
 		call   func_puts_
 		jmp    jump_123d8
 	jump_123c7:
-		mov    $data_22608,%edx
+		mov    $game_cfg,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
 		call   w_dos_read
@@ -2975,9 +2975,13 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $0x4,%eax
 		mov    $0x1000,%edx
 		call   func_14f3f
+#if 1
+    call   w_game_cfg_setup
+#else
 		call   func_1239e
+#endif
 		call   func_13b60
-		mov    data_2260c,%dx
+		mov    game_cfg_soundblaster_adr,%dx
 		mov    %ax,data_22618
 		test   %dx,%dx
 		setne  %al
@@ -3053,9 +3057,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		test   %cx,%cx
 		jne    jump_13fd3
 	jump_13e39:
-		mov    data_2260e,%eax
-		mov    data_2260c,%ecx
-		mov    data_2260a,%ebx
+		mov    game_cfg_soundblaster_irq,%eax
+		mov    game_cfg_soundblaster_adr,%ecx
+		mov    game_cfg_sound,%ebx
 		mov    %ebp,%edx
 		sar    $0x10,%eax
 		sar    $0x10,%ecx
@@ -3171,9 +3175,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $0xa,%ebx
 		call   func_1948b
 		call   func_1a875
-		mov    data_2260e,%eax
-		mov    data_2260c,%ecx
-		mov    data_2260a,%ebx
+		mov    game_cfg_soundblaster_irq,%eax
+		mov    game_cfg_soundblaster_adr,%ecx
+		mov    game_cfg_sound,%ebx
 		mov    %ebp,%edx
 		sar    $0x10,%eax
 		sar    $0x10,%ecx
@@ -15038,13 +15042,13 @@ data_22600:
 		.fill   0x4
 data_22604:
 		.fill   0x4
-data_22608:
+GLOBAL (game_cfg) /* 22608 */
 		.ascii  "\x00\x00"
-data_2260a:
+game_cfg_sound: /* 2260a */
 		.ascii  "\x00\x00"
-data_2260c:
+game_cfg_soundblaster_adr: /* 2260c */
 		.ascii  "\x00\x00"
-data_2260e:
+game_cfg_soundblaster_irq: /* 2260e */
 		.fill   0xa
 data_22618:
 		.fill   0x4
