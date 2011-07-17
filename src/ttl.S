@@ -769,7 +769,7 @@ func_123e3:
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    %edi,%eax
-		call   func__nfree_
+		call   w_dos_free
 		pop    %ebp
 		pop    %edi
 		pop    %esi
@@ -3021,7 +3021,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 	jump_13dac:
 		mov    %ebx,%eax
 		mov    $0xb,%edx
-		call   func__nfree_
+		call   w_dos_free
 		call   func_17437
 		mov    $0x13,%eax
 		mov    $0x3b71,%ebx
@@ -4748,7 +4748,7 @@ func_162f7:
 func_16324:
 /*----------------------------------------------------------------*/
 		mov    data_3e98c,%eax
-		jmp    func__nfree_
+		jmp    w_dos_free
 
 
 /*----------------------------------------------------------------*/
@@ -6744,9 +6744,9 @@ func_193e7:
 		jmp    jump_193bb
 	jump_1946e:
 		mov    data_43020,%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    data_2092c,%eax
-		call   func__nfree_
+		call   w_dos_free
 		call   func_193e7
 		pop    %edi
 		pop    %esi
@@ -8198,7 +8198,7 @@ func_1a95f:
 		test   %edx,%edx
 		je     jump_1a99e
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_1a99e:
 		mov    %esi,%eax
 		call   func_1a91e
@@ -8307,7 +8307,7 @@ func_1acd0:
 		test   %ecx,%ecx
 		je     jump_1ad0d
 		mov    %ecx,%eax
-		call   func__nfree_
+		call   w_dos_free
 		xor    %esi,%esi
 		mov    %esi,data_53b2c(%ebx)
 	jump_1ad0d:
@@ -9727,7 +9727,7 @@ func___doclose_:	/* 0x1b9d6 */
 		testb  $0x8,0xc(%ecx)
 		je     jump_1ba3c
 		mov    0x8(%ecx),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movl   $0x0,0x8(%ecx)
 	jump_1ba3c:
 		testb  $0x8,0xd(%ecx)
@@ -11432,7 +11432,7 @@ func___CreateNewNHeap_:	/* 0x1c895 */
 		inc    %edi
 		lea    0x4(%ebx),%eax
 		mov    %edi,0x18(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 		jmp    jump_1c88c
 
@@ -11555,7 +11555,7 @@ func___ExpandDGROUP_:	/* 0x1c944 */
 		incl   0x18(%edx)
 		lea    0x4(%ebx),%eax
 		movl   $0xffffffff,0x14(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 	jump_1ca7f:
 		add    $0x4,%esp
@@ -13365,7 +13365,7 @@ func___purgefp_:	/* 0x1d994 */
 		je     jump_1d9b0
 		mov    %edx,%eax
 		mov    (%edx),%edx
-		call   func__nfree_
+		call   w_dos_free
 		mov    %edx,data_542cc
 		jmp    jump_1d995
 	jump_1d9b0:
