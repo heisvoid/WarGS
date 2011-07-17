@@ -3348,7 +3348,7 @@ func_141b4:
 		mov    $0x33,%eax
 		mov    %dx,(%esp)
 		mov    %esp,%edx
-		call   func_int386_
+		call   w_dos_int386
 		xor    %eax,%eax
 		mov    0x1c(%esp),%ax
 		test   %eax,%eax
@@ -3372,7 +3372,7 @@ func_141b4:
 		mov    $0x33,%eax
 		mov    %dx,0x38(%esp)
 		mov    %esp,%edx
-		call   func_int386x_
+		call   w_dos_int386x
 		xor    %edx,%edx
 		mov    data_227aa,%dl
 		mov    %edx,%eax
@@ -3637,7 +3637,7 @@ func_14521:
 		mov    $0x33,%eax
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
-		call   func_int386_
+		call   w_dos_int386
 	jump_1453d:
 		add    $0x38,%esp
 		pop    %edx
@@ -3692,7 +3692,7 @@ func_145b2:
 		mov    $0x33,%eax
 		mov    %dx,(%esp)
 		mov    %esp,%edx
-		call   func_int386_
+		call   w_dos_int386
 		mov    0x20(%esp),%ebx
 		test   %bx,%bx
 		je     jump_145e3
@@ -3726,7 +3726,7 @@ func_14600:
 		mov    $0x33,%eax
 		mov    %bx,0x1c(%esp)
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		add    $0x38,%esp
 		pop    %ebx
 		ret
@@ -4816,7 +4816,7 @@ func_17437:
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
-		call   func_int386x_
+		call   w_dos_int386x
 		mov    data_42fa8,%dx
 		mov    %dx,data_42fca
 		mov    data_42fb0,%al
@@ -4906,7 +4906,7 @@ func_175d7:
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		add    $0x1c,%esp
 		pop    %edx
 		pop    %ebx
@@ -5090,7 +5090,7 @@ func_17c6b:
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
-		call   func_int386x_
+		call   w_dos_int386x
 	jump_17cfb:
 		add    $0x28,%esp
 		pop    %edx
@@ -5133,7 +5133,7 @@ func_17d02:
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
-		call   func_int386x_
+		call   w_dos_int386x
 		mov    data_42fa8,%eax
 		sar    $0x8,%eax
 		and    $0xff,%eax
@@ -5622,7 +5622,7 @@ func_185ef:
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
-		call   func_int386x_
+		call   w_dos_int386x
 		mov    (%esp),%eax
 		mov    %ax,(%esi)
 		mov    0xc(%esp),%eax
@@ -6713,7 +6713,7 @@ func_19356:
 		mov    $0x10,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		add    $0x1c,%esp
 		pop    %edx
 		pop    %ebx
@@ -7831,7 +7831,7 @@ func_1a4ea:
 		mov    $0x31,%eax
 		lea    0x1c(%esp),%edx
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		mov    (%esp),%eax
 		mov    %ax,(%esi)
 		xor    %eax,%eax
@@ -7856,7 +7856,7 @@ func_1a52e:
 		mov    $0x31,%eax
 		lea    0x1c(%esp),%edx
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		add    $0x38,%esp
 		pop    %edx
 		pop    %ebx
@@ -7883,7 +7883,7 @@ func_1a55f:
 		mov    $0x31,%eax
 		lea    0x1c(%esp),%edx
 		mov    %esp,%ebx
-		call   func_int386_
+		call   w_dos_int386
 		xor    %eax,%eax
 		mov    0xd(%esp),%al
 		xor    %edx,%edx
@@ -10087,7 +10087,7 @@ func_int386_:	/* 0x1bdc6 */
 		call   func_segread_
 		mov    %ecx,%eax
 		mov    %esp,%ecx
-		call   func_int386x_
+		call   w_dos_int386x
 		add    $0xc,%esp
 		pop    %ecx
 		ret
