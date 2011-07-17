@@ -4153,7 +4153,7 @@ func_15134:
 		mov    $0x20,%ebx
 		mov    $data_3e928,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x130,data_3e94a
 		jle    jump_151ba
 		cmpw   $0x0,data_20ce4
@@ -4286,7 +4286,7 @@ func_15134:
 		mov    $0x10,%ebx
 		mov    $data_3e904,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x138,data_3e94a
 		jle    jump_15398
 		cmpw   $0x0,data_20ce4
@@ -4795,11 +4795,11 @@ func_17437:
 		mov    %esi,data_42f94
 		mov    $data_42f98,%eax
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1500,data_42fb4
 		mov    %esi,data_42fa8
 		movw   $0x300,(%esp)
@@ -5067,11 +5067,11 @@ func_17c6b:
 		mov    $data_42f98,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1510,data_42fb4
 		mov    data_20d04,%eax
 		mov    %eax,data_42fb0
@@ -5111,11 +5111,11 @@ func_17d02:
 		mov    $data_42f98,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x150c,data_42fb4
 		xor    %ebx,%ebx
 		mov    %ebx,data_42fa8
@@ -5614,7 +5614,7 @@ func_185ef:
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x100,(%esp)
 		movswl %cx,%eax
 		mov    %eax,0x4(%esp)
@@ -6193,7 +6193,7 @@ func_18dd8:
 		add    $0x6400,%eax
 		xor    %edx,%edx
 		mov    $0x3e800,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		call   func_1adb3
 		pop    %edx
 		pop    %ebx
@@ -6213,7 +6213,7 @@ func_18e02:
 		mov    data_2092c,%eax
 		xor    %edx,%edx
 		mov    $0xfa00,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		mov    data_2092c,%esi
 		mov    data_20d64,%edi
 		push   %es
@@ -6775,7 +6775,7 @@ func_1948b:
 		mov    %eax,data_2092c
 		xor    %eax,%edx
 		mov    $0xfa00,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0xfa00,%eax
 		call   w_dos_malloc
 		mov    %eax,data_43020
@@ -13301,7 +13301,7 @@ func___allocfp_:	/* 0x1d8b3 */
 		mov    $0x1a,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    %edi,0xc(%ecx)
 		mov    data_542d4,%eax
 		mov    %ecx,0x4(%esi)
