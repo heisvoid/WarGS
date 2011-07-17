@@ -127,3 +127,11 @@ dos_fopen (const char *path, const char *mode)
 
   return file;
 }
+
+void
+dos_free (void *p)
+{
+  ASSERT (NULL != p);
+
+  free (p);
+}
