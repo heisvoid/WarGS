@@ -3022,12 +3022,16 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    %ebx,%eax
 		mov    $0xb,%edx
 		call   w_dos_free
-		call   func_17437
+		call   cdrom_setup_audio_info
 		mov    $0x13,%eax
 		mov    $0x3b71,%ebx
+#if 1
+    jmp   jump_13e1e
+#else
 		call   func_18649
 		test   %eax,%eax
 		jne    jump_13e1e
+#endif
 		mov    $data_20286,%eax
 		mov    $0xa0000,%edx
 		call   func_16101
@@ -3065,16 +3069,18 @@ GLOBAL (ttl)	/* 0x13cdc */
 		sar    $0x10,%ecx
 		push   %eax
 		sar    $0x10,%ebx
-		mov    $0x55f0,%eax
-		call   func_1a55f
+		mov    $0x55f0,%eax /* 0x55f0 == 22000 */
+		call   func_1a55f /* setup soundblaster */
 		cmpw   $0x3,data_22618
 		je     jump_13f01
-		call   func_17437
-		lea    0x24(%esp),%eax
-		lea    0x20(%esp),%edx
+		call   cdrom_setup_audio_info
+
+		lea    0x24(%esp),%eax /* cdrom starting letter */
+		lea    0x20(%esp),%edx /* number of cdrom */
 		mov    %esp,%edi
 		mov    $data_20331,%esi
-		call   func_178d1
+		call   cdrom_get_cdrom_starting_letter_and_number
+
 		call   func_175b7
 		mov    0x24(%esp),%al
 		mov    $0x3a,%ah
@@ -3124,12 +3130,12 @@ GLOBAL (ttl)	/* 0x13cdc */
 		jne    jump_13f14
 		movw   $0x3,data_22618
 	jump_13f14:
-		call   func_17437
+		call   cdrom_setup_audio_info
 		lea    0x24(%esp),%eax
 		lea    0x20(%esp),%edx
 		mov    %esp,%edi
 		mov    $data_20359,%esi
-		call   func_178d1
+		call   cdrom_get_cdrom_starting_letter_and_number
 		call   func_175b7
 		xor    %bl,%bl
 		mov    0x24(%esp),%al
@@ -4780,8 +4786,14 @@ func_165d7:
 		ret
 
 
+/**
+ * cdrom installation check
+ * get cdrom audio disc info
+ * get cdrom audio channel info
+ * setup cdrom audio track information list
+ */
 /*----------------------------------------------------------------*/
-func_17437:
+cdrom_setup_audio_info: /* 17437 */
 /*----------------------------------------------------------------*/
 		push   $0x3c
 		call   func___CHK
@@ -4846,23 +4858,31 @@ func_17437:
 		cmpl   $0x1,cdrom_mscdex_minor_version
 		jl     jump_174e6
 	jump_17504:
-		call   func_17da9
+#if 0
+		call   cdrom_get_audio_disc_info
 		inc    %esi
 		cmpw   $0x8102,data_42fee
 		jne    jump_1751d
 		cmp    $0x1f4,%esi
 		jl     jump_17504
+#endif
 	jump_1751d:
 		cmp    $0x1f4,%esi
 		je     jump_174e6
 		cmpw   $0x8000,data_42fee
 		jae    jump_174e6
+
 		movl   $0x1,data_42f94
+
 		mov    $0x2,%eax
 		mov    $data_42ff8,%edx
 		mov    $data_42ff6,%ebx
-		call   func_185ef
+#if 0
+		call   allocate_dos_memory_block
+#endif
+
 		xor    %eax,%eax
+#if 0
 		mov    data_42ff8,%gs
 		mov    %gs,data_42ff4
 		xor    %ebx,%ebx
@@ -4874,12 +4894,17 @@ func_17437:
 		movb   $0x2,%gs:0x5(%eax)
 		lgs    data_42ff0,%eax
 		movb   $0x3,%gs:0x7(%eax)
-		call   func_18317
+		call   cdrom_get_audio_channel_info
+#endif
+
 		xor    %ecx,%ecx
 		mov    %ecx,data_20d00
 		mov    %ebx,data_20cf8
 		mov    %ebx,data_20cf4
-		call   func_17a46
+#if 0
+		call   cdrom_setup_track_information_list
+#endif
+
 		mov    $0x1,%eax
 	jump_175af:
 		add    $0x28,%esp
@@ -4894,9 +4919,12 @@ func_17437:
 /*----------------------------------------------------------------*/
 func_175b7:
 /*----------------------------------------------------------------*/
+#if 1
+    ret
+#endif
 		push   $0x4
 		call   func___CHK
-		cmpl   $0x0,data_42f94
+		cmpl   $0x0,data_42f94 /* it should be 1 */
 		je     jump_175b6
 		call   func_17b31
 		mov    data_42ff6,%eax
@@ -4904,7 +4932,7 @@ func_175b7:
 
 
 /*----------------------------------------------------------------*/
-func_175d7:
+free_dos_memory_block: /* 175d7 */
 /*----------------------------------------------------------------*/
 		push   $0x28
 		call   func___CHK
@@ -4924,8 +4952,12 @@ func_175d7:
 		ret
 
 
+/**
+ * @param eax out cdrom starting letter
+ * @param edx out number of cdrom
+ */
 /*----------------------------------------------------------------*/
-func_178d1:
+cdrom_get_cdrom_starting_letter_and_number: /* 17d81 */
 /*----------------------------------------------------------------*/
 		push   $0x8
 		call   func___CHK
@@ -4941,44 +4973,44 @@ func_178d1:
 
 
 /*----------------------------------------------------------------*/
-func_17a46:
+cdrom_setup_track_information_list: /* 17a46 */
 /*----------------------------------------------------------------*/
 		push   $0xc
 		call   func___CHK
 		push   %ebx
 		push   %edx
-		cmpl   $0x0,data_42f94
+		cmpl   $0x0,data_42f94 /* it should be 1 */
 		je     jump_17ab5
 		mov    $0x1,%edx
 		jmp    jump_17aaa
 	jump_17a62:
 		movswl %dx,%eax
-		call   func_18008
-		cmpb   $0x40,data_42fd3
-		je     jump_17aa9
+		call   cdrom_get_audio_track_info
+		cmpb   $0x40,cdrom_audio_track_info_something_related_with_track_control_information
+		je     jump_17aa9 /* jump if track is data track */
 		mov    %edx,%ebx
 		shl    $0x2,%ebx
-		mov    data_42fcf,%eax
+		mov    cdrom_audio_track_info_something_related_with_starting_point_of_the_track,%eax
 		mov    %eax,data_42e94(%ebx)
 		xor    %eax,%eax
-		mov    data_42fd5,%al
+		mov    cdrom_audio_disc_info_highest_track_number,%al
 		cmp    %eax,%edx
 		jne    jump_17a95
-		mov    data_42fd9,%eax
+		mov    cdrom_audio_disc_info_something_related_with_starting_point_of_the_lead_out_track,%eax
 		jmp    jump_17aa3
 	jump_17a95:
 		mov    %edx,%eax
 		inc    %eax
 		cwtl
-		call   func_18008
-		mov    data_42fcf,%eax
+		call   cdrom_get_audio_track_info
+		mov    cdrom_audio_track_info_something_related_with_starting_point_of_the_track,%eax
 	jump_17aa3:
 		mov    %eax,data_42f0c(%ebx)
 	jump_17aa9:
 		inc    %edx
 	jump_17aaa:
 		xor    %eax,%eax
-		mov    data_42fd5,%al
+		mov    cdrom_audio_disc_info_highest_track_number,%al
 		cmp    %eax,%edx
 		jle    jump_17a62
 	jump_17ab5:
@@ -4992,13 +5024,17 @@ func_17b0e:
 /*----------------------------------------------------------------*/
 		push   $0x4
 		call   func___CHK
-		call   func_181db
+#if 1
+    mov    $1,%eax
+#else
+		call   cdrom_get_device_status_device_parameters
 		xor    %eax,%eax
 		mov    data_42fee,%ax
 		sar    $0x8,%eax
 		cmp    $0x1,%eax
-		sete   %al
+		sete   %al /* set if audio channel manipulation is supported */
 		xor    %ah,%ah
+#endif
 		ret
 
 
@@ -5008,7 +5044,7 @@ func_17b31:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		cmpl   $0x0,data_42f94
+		cmpl   $0x0,data_42f94 /* it should be 1 */
 		je     jump_17b60
 		call   func_17b62
 		xor    %edx,%edx
@@ -5032,14 +5068,14 @@ func_17b62:
 		push   %ebx
 		push   %edx
 		sub    $0x8,%esp
-		cmpl   $0x0,data_42f94
+		cmpl   $0x0,data_42f94 /* it should be 1 */
 		je     jump_17c65
-		cmpl   $0x1,data_20d00
+		cmpl   $0x1,data_20d00 /* data_20d00 is 0 */
 		jne    jump_17c65
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0x4(%esp),%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    (%esp),%ebx
 		mov    %ebx,%gs
@@ -5048,13 +5084,13 @@ func_17b62:
 		movb   $0x85,%gs:0x2(%edx)
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_17c6b
+		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
 		mov    %ax,data_42fee
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		mov    %edx,data_20d00
 		mov    %edx,data_20cf8
 		jmp    jump_17c65
@@ -5065,8 +5101,11 @@ func_17b62:
 		ret
 
 
+/**
+ * @param eax segment to cd-rom device driver request header
+ */
 /*----------------------------------------------------------------*/
-func_17c6b:
+cdrom_send_device_driver_request: /* 17c6b */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -5084,7 +5123,7 @@ func_17c6b:
 		mov    $0xc,%ebx
 		call   w_dos_memset
 		movl   $0x1510,dpmi_real_mode_call_structure_eax
-		mov    data_20d04,%eax
+		mov    data_20d04,%eax /* data_20d04: cdrom drive starting letter */
 		mov    %eax,dpmi_real_mode_call_structure_ecx
 		xor    %ebx,%ebx
 		mov    %ebx,dpmi_real_mode_call_structure_ebx
@@ -5164,7 +5203,7 @@ cdrom_get_mscdex_version: /* 17d02 */
 
 
 /*----------------------------------------------------------------*/
-func_17da9:
+cdrom_get_audio_disc_info: /* 17da9 */
 /*----------------------------------------------------------------*/
 		push   $0x34
 		call   func___CHK
@@ -5174,21 +5213,36 @@ func_17da9:
 		push   %esi
 		push   %edi
 		sub    $0x18,%esp
-		mov    $0x2,%eax
-		lea    0x10(%esp),%edx
-		lea    0x8(%esp),%ebx
-		call   func_185ef
-		mov    $0x1,%eax
-		lea    0xc(%esp),%edx
-		mov    %esp,%ebx
-		call   func_185ef
+		mov    $0x2,%eax /* 2 paragraphs = 32 bytes */
+		lea    0x10(%esp),%edx /* %esp 0x10~0x13: first selector. high 2 bytes are useless */
+		lea    0x8(%esp),%ebx /* %esp 0x8~0x9: segment */
+		call   allocate_dos_memory_block
+		mov    $0x1,%eax /* 16 bytes */
+		lea    0xc(%esp),%edx /* %esp: 0xc~0xf: first selector. high 2 bytes are useless */
+		mov    %esp,%ebx /* %esp: 0x0~0x3: segment. high 2 bytes are useless */
+		call   allocate_dos_memory_block
 		xor    %esi,%esi
 		mov    0x10(%esp),%eax
-		mov    %eax,0x4(%esp)
+		mov    %eax,0x4(%esp) /* %esp: 0x4~0x7: first selector == %esp 0x10~0x13 */
 		xor    %edi,%edi
 		mov    0xc(%esp),%eax
-		mov    %eax,0x14(%esp)
+		mov    %eax,0x14(%esp) /* %esp: 0x14~0x17: first selector == %esp 0xc~0xf */
 		mov    0x4(%esp),%gs
+
+    /* IOCTL input
+     * first 13 bytes: request header
+     * 0xd: byte: media descriptor byte from BPB
+     * 0xe: dword: transfer address
+     * 0x12: word: number of bytes to transfer
+     * 0x14: word: starting sector number
+     * 0x16: dword: DWORD ptr to requested vol ID if error 0x0f
+     *
+     * media descriptor byte, starting sector number,
+     * and volume ID fields are all 0.
+     *
+     * reference
+     * http://makbit.com/articles/mscdex.txt
+     */
 		movb   $0x1a,%gs:(%esi)
 		movb   $0x0,%gs:0x1(%esi)
 		movb   $0x3,%gs:0x2(%esi)
@@ -5201,39 +5255,49 @@ func_17da9:
 		mov    %eax,%gs:0xe(%esi)
 		movw   $0x7,%gs:0x12(%esi)
 		mov    0x14(%esp),%gs
-		movb   $0xa,%gs:(%edi)
+		movb   $0xa,%gs:(%edi) /* 0xa: audio disc info */
 		mov    0x6(%esp),%eax
 		sar    $0x10,%eax
-		call   func_17c6b
+		call   cdrom_send_device_driver_request
+
+    /* copy 6 bytes from returned audio disc info except first 1 byte */
 		push   $0x6
 		mov    %ds,%edx
 		mov    $data_42fe4,%eax
 		mov    0x18(%esp),%ecx
 		mov    $0x1,%ebx
 		call   func__fmemcpy_
+
 		mov    0x14(%esp),%gs
 		mov    %gs:0x1(%edi),%al
-		mov    %al,data_42fd4
+		mov    %al,cdrom_audio_disc_info_lowest_track_number /* lowest track number */
 		mov    %gs:0x2(%edi),%al
-		mov    %al,data_42fd5
+		mov    %al,cdrom_audio_disc_info_highest_track_number /* highest track number */
+
+    /* cdrom_audio_disc_info_third_byte_of_starting_point_of_the_lead_out_track = (%eax & 0x00ff0000 >> 16)
+     * cdrom_audio_disc_info_second_byte_of_starting_point_of_the_lead_out_track_YA = (%eax & 0x0000ff00 >> 8)
+     * cdrom_audio_disc_info_first_byte_of_starting_point_of_the_lead_out_track_YA = %eax & 0x000000ff
+     */
 		mov    %gs:0x3(%edi),%eax
-		mov    $data_42fd6,%edx
-		mov    $data_42fd7,%ebx
-		mov    $data_42fd8,%ecx
+		mov    $cdrom_audio_disc_info_third_byte_of_starting_point_of_the_lead_out_track,%edx
+		mov    $cdrom_audio_disc_info_second_byte_of_starting_point_of_the_lead_out_track_YA,%ebx
+		mov    $cdrom_audio_disc_info_first_byte_of_starting_point_of_the_lead_out_track_YA,%ecx
 		call   func_17f2c
+
 		mov    0x14(%esp),%gs
 		mov    %gs:0x3(%edi),%eax
 		call   func_17ec3
-		mov    %eax,data_42fd9
+
+		mov    %eax,cdrom_audio_disc_info_something_related_with_starting_point_of_the_lead_out_track
 		mov    0x4(%esp),%gs
 		mov    %gs:0x3(%esi),%ax
 		mov    %ax,data_42fee
 		mov    0xe(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		add    $0x18,%esp
 	jump_17ebd:
 		pop    %edi
@@ -5253,11 +5317,17 @@ func_17ec3:
 		push   %ecx
 		push   %edx
 		sub    $0xc,%esp
+
+    /* 0x4(%esp) = (%eax & 0x00ff0000) >> 16
+     * 0x0(%esp) = (%eax & 0x0000ff00) >> 8
+     * 0x8(%esp) = %eax & 0x000000ff
+     */
 		mov    %eax,%edx
 		lea    0x4(%esp),%edx
 		mov    %esp,%ebx
 		lea    0x8(%esp),%ecx
 		call   func_17f2c
+
 		xor    %edx,%edx
 		mov    0x4(%esp),%dl
 		mov    %edx,%eax
@@ -5311,7 +5381,7 @@ func_17f2c:
 
 
 /*----------------------------------------------------------------*/
-func_18008:
+cdrom_get_audio_track_info: /* 18008 */
 /*----------------------------------------------------------------*/
 		push   $0x2c
 		call   func___CHK
@@ -5322,14 +5392,17 @@ func_18008:
 		push   %edi
 		sub    $0x14,%esp
 		mov    %eax,%ecx
+
 		mov    $0x2,%eax
 		lea    0x4(%esp),%edx
 		lea    0x10(%esp),%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
+
 		mov    $0x1,%eax
 		mov    %esp,%edx
 		lea    0xc(%esp),%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
+
 		xor    %edx,%edx
 		mov    0x4(%esp),%esi
 		xor    %ebx,%ebx
@@ -5337,7 +5410,7 @@ func_18008:
 		mov    %esi,%gs
 		movb   $0x1a,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x3,%gs:0x2(%edx)
+		movb   $0x3,%gs:0x2(%edx) /* IOCTL input */
 		movb   $0x0,%gs:0xd(%edx)
 		mov    %edx,%gs:0x16(%edx)
 		mov    %dx,%gs:0x14(%edx)
@@ -5347,37 +5420,37 @@ func_18008:
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
 		shl    $0x10,%eax
-		mov    %eax,%gs:0xe(%edx)
-		movw   $0x7,%gs:0x12(%edx)
+		mov    %eax,%gs:0xe(%edx) /* transfer address */
+		movw   $0x7,%gs:0x12(%edx) /* number of bytes to transfer */
 		mov    %edi,%gs
-		movb   $0xb,%gs:(%ebx)
-		mov    %cl,%gs:0x1(%ebx)
+		movb   $0xb,%gs:(%ebx) /* audio track info */
+		mov    %cl,%gs:0x1(%ebx) /* track number */
 		mov    0xe(%esp),%eax
 		sar    $0x10,%eax
-		call   func_17c6b
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x3(%edx),%ax
 		mov    %ax,data_42fee
 		mov    %edi,%gs
-		mov    %gs:0x2(%ebx),%eax
+		mov    %gs:0x2(%ebx),%eax /* starting point of the track */
 		call   func_17ec3
-		mov    %eax,data_42fcf
+		mov    %eax,cdrom_audio_track_info_something_related_with_starting_point_of_the_track
 		mov    %cx,data_42fcd
 		mov    %edi,%gs
-		mov    %gs:0x6(%ebx),%al
+		mov    %gs:0x6(%ebx),%al /* track control information */
 		and    $0xd0,%al
-		mov    %al,data_42fd3
+		mov    %al,cdrom_audio_track_info_something_related_with_track_control_information
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		add    $0x14,%esp
 		jmp    jump_17ebd
 	jump_18158:
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		add    $0x8,%esp
 		pop    %edx
 		pop    %ecx
@@ -5385,8 +5458,11 @@ func_18008:
 		ret
 
 
+/**
+ * data_42fee has device parameters
+ */
 /*----------------------------------------------------------------*/
-func_181db:
+cdrom_get_device_status_device_parameters: /* 181db */
 /*----------------------------------------------------------------*/
 		push   $0x24
 		call   func___CHK
@@ -5395,14 +5471,17 @@ func_181db:
 		push   %edx
 		push   %esi
 		sub    $0x10,%esp
+
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0xc(%esp),%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
+
 		mov    $0x1,%eax
 		lea    0x8(%esp),%edx
 		lea    0x4(%esp),%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
+
 		xor    %edx,%edx
 		mov    (%esp),%ecx
 		xor    %ebx,%ebx
@@ -5419,24 +5498,24 @@ func_181db:
 		sar    $0x10,%eax
 		shl    $0x10,%eax
 		mov    %eax,%gs:0xe(%edx)
-		movw   $0x5,%gs:0x12(%edx)
+		movw   $0x5,%gs:0x12(%edx) /* number of bytes to transfer */
 		mov    %esi,%gs
-		movb   $0x6,%gs:(%ebx)
+		movb   $0x6,%gs:(%ebx) /* device status */
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_17c6b
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x1(%ebx),%eax
-		mov    %eax,data_42fea
+		mov    %eax,data_42fea /* device parameters */
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
 		mov    %ax,data_42fee
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		mov    0x6(%esp),%eax
 		sar    $0x10,%eax
-		call   func_175d7
+		call   free_dos_memory_block
 		add    $0x10,%esp
 		pop    %esi
 		pop    %edx
@@ -5446,7 +5525,7 @@ func_181db:
 
 
 /*----------------------------------------------------------------*/
-func_18317:
+cdrom_get_audio_channel_info: /* 18317 */
 /*----------------------------------------------------------------*/
 		push   $0x18
 		call   func___CHK
@@ -5454,16 +5533,18 @@ func_18317:
 		push   %ecx
 		push   %edx
 		sub    $0x8,%esp
+
 		mov    $0x2,%eax
 		lea    0x4(%esp),%edx
 		mov    %esp,%ebx
-		call   func_185ef
+		call   allocate_dos_memory_block
+
 		xor    %edx,%edx
 		mov    0x4(%esp),%ecx
 		mov    %ecx,%gs
 		movb   $0x1a,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x3,%gs:0x2(%edx)
+		movb   $0x3,%gs:0x2(%edx) /* IOCTL input */
 		movb   $0x0,%gs:0xd(%edx)
 		mov    %edx,%gs:0x16(%edx)
 		mov    %dx,%gs:0x14(%edx)
@@ -5471,13 +5552,13 @@ func_18317:
 		mov    data_42ff4,%eax
 		sar    $0x10,%eax
 		shl    $0x10,%eax
-		mov    %eax,%gs:0xe(%edx)
-		movw   $0x9,%gs:0x12(%edx)
+		mov    %eax,%gs:0xe(%edx) /* transfer address */
+		movw   $0x9,%gs:0x12(%edx) /* number of bytes to transfer */
 		lgs    data_42ff0,%ebx
-		movb   $0x4,%gs:(%ebx)
+		movb   $0x4,%gs:(%ebx) /* audio channel info */
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_17c6b
+		call   cdrom_send_device_driver_request
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
 		mov    %ax,data_42fee
@@ -5618,8 +5699,17 @@ func_1859c:
 		jmp    jump_18531
 
 
+/**
+ * Allocate dos memory block
+ *
+ * @param in eax number of paragraphs to allocate
+ * @param out edx pointer to buffer which has first selector for allocated
+ *        16 bits
+ * @param out ebx pointer to buffer which has real mode segment of allocated
+ *        16 bits
+ */
 /*----------------------------------------------------------------*/
-func_185ef:
+allocate_dos_memory_block: /* 185ef */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -5660,7 +5750,7 @@ func_18649:
 		call   func___CHK
 		push   %ecx
 		xor    %ecx,%ecx
-		mov    data_42fd5,%cl
+		mov    cdrom_audio_disc_info_highest_track_number,%cl
 		cmp    %eax,%ecx
 		je     jump_18664
 	jump_18660:
@@ -5669,12 +5759,12 @@ func_18649:
 		ret
 	jump_18664:
 		movswl %dx,%eax
-		call   func_18008
-		mov    data_42fcf,%ecx
+		call   cdrom_get_audio_track_info
+		mov    cdrom_audio_track_info_something_related_with_starting_point_of_the_track,%ecx
 		inc    %edx
 		movswl %dx,%eax
-		call   func_18008
-		mov    data_42fcf,%eax
+		call   cdrom_get_audio_track_info
+		mov    cdrom_audio_track_info_something_related_with_starting_point_of_the_track,%eax
 		sub    %ecx,%eax
 		cmp    %ebx,%eax
 		jne    jump_18660
@@ -6816,6 +6906,13 @@ data_1950e:
 .text
 
 
+/**
+ * DMA related function
+ *
+ * @param eax soundblaster dma
+ * @param edx pointer to buffer
+ * @param ebx ?
+ */
 /*----------------------------------------------------------------*/
 func_1951e:
 /*----------------------------------------------------------------*/
@@ -6838,7 +6935,7 @@ func_1951e:
 		sar    $0x10,%edx
 		mov    (%esp,%ebx,4),%eax
 		call   func_outp_
-		mov    $0xc,%eax
+		mov    $0xc,%eax /* ISA DMAC Flip-Flop port: DMAC 0 (16 bit) Slave (write) */
 		xor    %edx,%edx
 		call   func_outp_
 		mov    %ebp,%edx
@@ -6879,41 +6976,41 @@ func_1951e:
 
 
 /*----------------------------------------------------------------*/
-func_195e7:
+soundblaster_reset_dsp: /* 195e7 */
 /*----------------------------------------------------------------*/
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		mov    $0x1,%edx
-		call   func_outp_
+		call   func_outp_ /* write 0x1 to port DSP_RESET(+0x6) */
 		xor    %edx,%edx
 	jump_19606:
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		call   func_inp_
 		inc    %edx
 		cmp    $0x64,%edx
 		jl     jump_19606
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		xor    %edx,%edx
-		call   func_outp_
+		call   func_outp_ /* write 0x0 to port DSP_RESET */
 		xor    %edx,%edx
 	jump_1962a:
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
-		call   func_inp_
+		call   func_inp_ /* read a byte from DSP_DATAVAIL (+0xe) */
 		test   $0x80,%al
-		je     jump_19663
+		je     jump_19663 /* jump if bit 7 in data is not set */
 		xor    %edx,%edx
 	jump_1963d:
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xa,%eax
-		call   func_inp_
+		call   func_inp_ /* read a byte from DSP_READ (+0xa) */
 		cmp    $0xaa,%eax
-		jne    jump_19658
+		jne    jump_19658 /* jump if data is not 0xaa */
 		mov    $0x1,%eax
 		pop    %edx
 		ret
@@ -6933,7 +7030,7 @@ func_195e7:
 
 
 /*----------------------------------------------------------------*/
-func_196aa:
+soundblaster_write_to_dsp: /* 196aa */
 /*----------------------------------------------------------------*/
 		push   $0xc
 		call   func___CHK
@@ -6976,16 +7073,16 @@ func_196ea:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x2,data_542a4
+		movl   $0x2,soundblaster_irq
 	jump_19715:
 		mov    $0x20,%eax
 		mov    %eax,%edx
 		call   func_outp_
-		call   func_1c334
+		call   enable_interrupts
 	jump_19726:
 		pop    %gs
 		pop    %fs
@@ -7006,11 +7103,11 @@ func_1972e:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x3,data_542a4
+		movl   $0x3,soundblaster_irq
 		jmp    jump_19715
 
 
@@ -7025,11 +7122,11 @@ func_1975b:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x5,data_542a4
+		movl   $0x5,soundblaster_irq
 		jmp    jump_19715
 
 
@@ -7044,11 +7141,11 @@ func_19788:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x7,data_542a4
+		movl   $0x7,soundblaster_irq
 		jmp    jump_19715
 
 
@@ -7063,11 +7160,11 @@ func_197b8:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0xa,data_542a4
+		movl   $0xa,soundblaster_irq
 		jmp    jump_19715
 	jump_19acc:
 		pop    %edi
@@ -7089,19 +7186,19 @@ func_19b02:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_1c332
-		mov    data_542b4,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
-		call   func_196aa
-		mov    data_542b4,%eax
+		call   soundblaster_write_to_dsp
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
-		call   func_196aa
-		mov    data_542b4,%eax
+		call   soundblaster_write_to_dsp
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
-		call   func_196aa
+		call   soundblaster_write_to_dsp
 		jmp    jump_19715
 
 
@@ -7117,9 +7214,9 @@ func_19b55:
 		sub    $0x4,%esp
 		cld
 		call   func___GETDS
-		call   func_1c332
+		call   disable_interrupts
 		out    %al,$0xc
-		mov    data_542a0,%dl
+		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
@@ -7778,7 +7875,7 @@ func_19b55:
 		mov    $0x20,%eax
 		mov    %eax,%edx
 		call   func_outp_
-		call   func_1c334
+		call   enable_interrupts
 		mov    %ebp,%esp
 		jmp    jump_19726
 
@@ -7836,7 +7933,7 @@ func_1a4a5:
 
 
 /*----------------------------------------------------------------*/
-func_1a4ea:
+allocate_dos_memory_block_YA: /* 1a4ea */
 /*----------------------------------------------------------------*/
 		push   $0x44
 		call   func___CHK
@@ -7863,7 +7960,7 @@ func_1a4ea:
 
 
 /*----------------------------------------------------------------*/
-func_1a52e:
+free_dos_memory_block_YA: /* 1a52e */
 /*----------------------------------------------------------------*/
 		push   $0x44
 		call   func___CHK
@@ -7882,6 +7979,12 @@ func_1a52e:
 		ret
 
 
+/**
+ * @param eax sample rate.
+ * @param edx 1 if sound-blaster ADR is not 0. 0 otherwise.
+ * @param ebx sound-blaster ADR
+ * @param ecx sound-blaster IRQ
+ * @param sound-blaster DMA
 /*----------------------------------------------------------------*/
 func_1a55f:
 /*----------------------------------------------------------------*/
@@ -7893,21 +7996,28 @@ func_1a55f:
 		sub    $0x38,%esp
 		mov    %eax,%edi
 		mov    $0x4268,%ebp
-		mov    %edx,data_542ac
-		mov    %ebx,data_542b4
-		mov    %ecx,data_542a4
+		mov    %edx,soundblaster_adr_is_not_zero
+		mov    %ebx,soundblaster_adr
+		mov    %ecx,soundblaster_irq
 		mov    0x48(%esp),%eax
-		mov    %eax,data_542a0
+		mov    %eax,soundblaster_dma
 		movw   $0x400,0x1c(%esp)
 		mov    $0x31,%eax
 		lea    0x1c(%esp),%edx
 		mov    %esp,%ebx
-		call   w_dos_int386
+#if 1
+    mov    $0x70,%al
+    movb   %al,0xc(%esp)
+    mov    $0x08,%al
+    movb   %al,0xd(%esp)
+#else
+		call   w_dos_int386 /* get DPMI version */
+#endif
 		xor    %eax,%eax
-		mov    0xd(%esp),%al
+		mov    0xd(%esp),%al /* current value of virtual master interrupt controller base interrupt */
 		xor    %edx,%edx
-		mov    0xc(%esp),%dl
-		mov    data_542a4,%ebx
+		mov    0xc(%esp),%dl /* current value of virtual slave interrupt controller base interrupt */
+		mov    soundblaster_irq,%ebx
 		cmp    $0x8,%ebx
 		jge    jump_1a5c3
 		add    %ebx,%eax
@@ -7915,7 +8025,7 @@ func_1a55f:
 	jump_1a5c3:
 		lea    -0x8(%ebx,%edx,1),%eax
 	jump_1a5c7:
-		mov    %eax,data_54288
+		mov    %eax,soundblaster_interrupt_number
 		xor    %ecx,%ecx
 		mov    $0xa,%ebx
 	jump_1a5d3:
@@ -8005,16 +8115,23 @@ func_1a55f:
 		inc    %ecx
 		cmp    $0xb,%ecx
 		jl     jump_1a663
+
+#if 1
+    mov    $1040,%eax /* 0x41 * 16 == 1040 */
+    call   w_dos_malloc
+    mov    %eax,data_5429c
+#else
 		mov    $0x41,%eax
 		mov    $data_54294,%edx
 		mov    $data_542c4,%ebx
-		call   func_1a4ea
+		call   allocate_dos_memory_block_YA
 		mov    data_542c2,%eax
 		sar    $0x10,%eax
 		shl    $0x4,%eax
-		mov    %eax,data_5429c
+		mov    %eax,data_5429c /* allocated segment */
 		xor    %eax,%eax
 		mov    %eax,data_54290
+#endif
 		xor    %ecx,%ecx
 	jump_1a6f7:
 		mov    data_5429c,%eax
@@ -8023,65 +8140,86 @@ func_1a55f:
 		inc    %ecx
 		cmp    $0x400,%ecx
 		jl     jump_1a6f7
-		mov    $0x21,%eax
+#if 0
+		mov    $0x21,%eax /* master pic data port */
 		call   func_inp_
-		mov    %eax,data_54298
-		cmpl   $0x1,data_542ac
+		mov    %eax,pic_saved_masks /* pic data is interrupt mask because no command is issued */
+#endif
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_1a7c8
-		call   func_195e7
-		mov    data_54288,%eax
+#if 0
+		call   soundblaster_reset_dsp
+		mov    soundblaster_interrupt_number,%eax
 		call   func__dos_getvect_
 		mov    %dx,data_542c2
 		mov    %eax,data_542be
-		mov    data_54288,%eax
+		mov    soundblaster_interrupt_number,%eax
 		mov    %cs,%ecx
 		mov    $func_19b02,%ebx
 		call   func__dos_setvect_
-		mov    data_542a4,%cl
+#endif
+		mov    soundblaster_irq,%cl
 		mov    $0xfe,%edx
 		shl    %cl,%edx
-		and    data_54298,%edx
+		and    pic_saved_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
 		mov    $0x1,%eax
-		call   func_1ad1d
-		mov    %edi,%eax
-		call   func_1a832
-		mov    data_542a0,%ebx
+		call   soundblaster_turn_on_speaker
+		mov    %edi,%eax /* sample rate */
+		call   soundblaster_set_sample_rate
+#endif
+		mov    soundblaster_dma,%ebx
 		mov    data_5429c,%eax
 		mov    $0x400,%edx
+#if 0
 		call   func_1951e
-		mov    data_542b4,%eax
+
+    /* start DAC. 8-bit sound. DMA mode. playback */
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
-		call   func_196aa
-		mov    data_542b4,%eax
+		call   soundblaster_write_to_dsp
+
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
-		call   func_196aa
-		mov    data_542b4,%eax
+		call   soundblaster_write_to_dsp
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
-		call   func_196aa
+		call   soundblaster_write_to_dsp
+#endif
 	jump_1a7c8:
 		mov    $0x8,%eax
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %dx,data_542bc
 		mov    %eax,data_542b8
 		mov    $0x8,%eax
 		mov    %cs,%ecx
 		mov    $func_19b55,%ebx
+#if 0
 		call   func__dos_setvect_
-		call   func_1c332
+#endif
+		call   disable_interrupts
 		mov    $0x43,%eax
 		mov    $0x36,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		and    $0xff,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		sar    $0x8,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
-		call   func_1c334
+#endif
+		call   enable_interrupts
 		add    $0x38,%esp
 		pop    %ebp
 		pop    %edi
@@ -8089,17 +8227,20 @@ func_1a55f:
 		ret    $0x4
 
 
+/**
+ * @param eax sample rate (ex. 22000)
+ */
 /*----------------------------------------------------------------*/
-func_1a832:
+soundblaster_set_sample_rate: /* 1a832 */
 /*----------------------------------------------------------------*/
 		push   $0xc
 		call   func___CHK
 		push   %ebx
 		push   %edx
 		mov    %eax,%ebx
-		mov    data_542b4,%eax
-		mov    $0x40,%edx
-		call   func_196aa
+		mov    soundblaster_adr,%eax
+		mov    $0x40,%edx /* set time constant. this is used to set something like sample freq. */
+		call   soundblaster_write_to_dsp
 		mov    $0xf4240,%eax
 		mov    %eax,%edx
 		sar    $0x1f,%edx
@@ -8109,8 +8250,8 @@ func_1a832:
 		mov    %edx,%eax
 		xor    %edx,%edx
 		mov    %al,%dl
-		mov    data_542b4,%eax
-		call   func_196aa
+		mov    soundblaster_adr,%eax
+		call   soundblaster_write_to_dsp
 		pop    %edx
 		pop    %ebx
 		ret
@@ -8124,25 +8265,31 @@ func_1a875:
 		push   %ebx
 		push   %ecx
 		push   %edx
-		call   func_1c332
-		mov    data_54298,%edx
+		call   disable_interrupts
+		mov    pic_saved_masks,%edx
 		mov    $0x21,%eax
 		call   func_outp_
-		cmpl   $0x1,data_542ac
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_1a8c8
-		call   func_195e7
+#if 0
+		call   soundblaster_reset_dsp
+#endif
 		xor    %eax,%eax
-		call   func_1ad1d
+		call   soundblaster_turn_on_speaker
 		call   func_1ad54
 		mov    data_542c2,%cx
 		mov    data_542be,%ebx
-		mov    data_54288,%eax
+		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_setvect_
+#endif
 	jump_1a8c8:
 		mov    data_542bc,%cx
 		mov    data_542b8,%ebx
 		mov    $0x8,%eax
+#if 0
 		call   func__dos_setvect_
+#endif
 		mov    $0x43,%eax
 		mov    $0x36,%edx
 		call   func_outp_
@@ -8152,9 +8299,14 @@ func_1a875:
 		mov    $0x40,%eax
 		xor    %edx,%edx
 		call   func_outp_
-		call   func_1c334
+		call   enable_interrupts
+#if 1
+    mov    data_5429c,%eax
+    call   w_dos_free
+#else
 		mov    data_54294,%eax
-		call   func_1a52e
+		call   free_dos_memory_block_YA
+#endif
 		call   func_1acd0
 		pop    %edx
 		pop    %ecx
@@ -8255,7 +8407,7 @@ func_1ab1b:
 		push   %esi
 		push   %ebp
 		mov    %eax,%ecx
-		mov    data_542ac,%esi
+		mov    soundblaster_adr_is_not_zero,%esi
 		cmp    $0x1,%esi
 		jne    jump_1ab80
 		cmp    $0x50,%edx
@@ -8342,24 +8494,24 @@ func_1acd0:
 
 
 /*----------------------------------------------------------------*/
-func_1ad1d:
+soundblaster_turn_on_speaker: /* 1ad1d */
 /*----------------------------------------------------------------*/
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_542ac,%edx
+		mov    soundblaster_adr_is_not_zero,%edx
 		cmp    $0x1,%edx
 		jne    jump_1ad52
 		cmp    %edx,%eax
 		jne    jump_1ad43
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd1,%edx
 		jmp    jump_1ad4d
 	jump_1ad43:
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd3,%edx
 	jump_1ad4d:
-		call   func_196aa
+		call   soundblaster_write_to_dsp
 	jump_1ad52:
 		pop    %edx
 		ret
@@ -8371,11 +8523,11 @@ func_1ad54:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		cmpl   $0x1,data_542ac
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_1ad77
-		mov    data_542b4,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd0,%edx
-		call   func_196aa
+		call   soundblaster_write_to_dsp
 	jump_1ad77:
 		pop    %edx
 		ret
@@ -10792,16 +10944,20 @@ func_inp_:	/* 0x1c32a */
 
 
 /*----------------------------------------------------------------*/
-func_1c332:
+disable_interrupts: /* 1c332 */
 /*----------------------------------------------------------------*/
+#if 0
 		cli
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
-func_1c334:
+enable_interrupts: /* 1c334 */
 /*----------------------------------------------------------------*/
+#if 0
 		sti
+#endif
 		ret
 
 
@@ -15279,21 +15435,29 @@ cdrom_starting_letter: /* 42fcc */
 		.ascii  "\x00"
 data_42fcd:
 		.ascii  "\x00\x00"
-data_42fcf:
+cdrom_audio_track_info_something_related_with_starting_point_of_the_track: /* 42fcf */
 		.fill   0x4
-data_42fd3:
+cdrom_audio_track_info_something_related_with_track_control_information: /* 42fd3 */
 		.ascii  "\x00"
-data_42fd4:
+cdrom_audio_disc_info_lowest_track_number: /* 42fd4 */
+#if 1
+    .byte   2
+#else
 		.ascii  "\x00"
-data_42fd5:
+#endif
+cdrom_audio_disc_info_highest_track_number: /* 42fd5 */
+#if 1
+    .byte   19
+#else
 		.ascii  "\x00"
-data_42fd6:
+#endif
+cdrom_audio_disc_info_third_byte_of_starting_point_of_the_lead_out_track: /* 42fd6 */
 		.ascii  "\x00"
-data_42fd7:
+cdrom_audio_disc_info_second_byte_of_starting_point_of_the_lead_out_track_YA: /* 42fd7 */
 		.ascii  "\x00"
-data_42fd8:
+cdrom_audio_disc_info_first_byte_of_starting_point_of_the_lead_out_track_YA: /* 42fd8 */
 		.ascii  "\x00"
-data_42fd9:
+cdrom_audio_disc_info_something_related_with_starting_point_of_the_lead_out_track: /* 42fd9 */
 		.fill   0x4
 data_42fdd:
 		.fill   0x7
@@ -15431,7 +15595,7 @@ data_54280:
 		.fill   0x4
 data_54284:
 		.fill   0x4
-data_54288:
+soundblaster_interrupt_number: /* 54288 */
 		.fill   0x4
 data_5428c:
 		.fill   0x4
@@ -15439,21 +15603,21 @@ data_54290:
 		.fill   0x4
 data_54294:
 		.fill   0x4
-data_54298:
+pic_saved_masks: /* 54298 */
 		.fill   0x4
 data_5429c:
 		.fill   0x4
-data_542a0:
+soundblaster_dma: /* 542a0 */
 		.fill   0x4
-data_542a4:
+ /* 542a4 */soundblaster_irq: /* 542a4 */
 		.fill   0x4
 data_542a8:
 		.fill   0x4
-data_542ac:
+soundblaster_adr_is_not_zero: /* 542ac */
 		.fill   0x4
 data_542b0:
 		.fill   0x4
-data_542b4:
+soundblaster_adr: /* 542b4 */
 		.fill   0x4
 data_542b8:
 		.fill   0x4
