@@ -11,6 +11,7 @@
 static bool initialized = false;
 static bool enable_event_handling = false;
 
+/* The followings are returned variables from mouse_get_state () */
 uint16_t mouse_state_button = 0;
 uint16_t mouse_state_x = 0;
 uint16_t mouse_state_y = 0;
