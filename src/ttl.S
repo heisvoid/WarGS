@@ -4631,7 +4631,7 @@ func_16101:
 		je     jump_16210
 		mov    $0x2,%ebx
 		mov    $0xfffffd00,%edx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %si,0x4(%esp)
 	jump_16135:
 		mov    $0x1,%ebx
@@ -4666,7 +4666,7 @@ func_16101:
 		mov    $0x80,%edx
 		mov    %ebp,%eax
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_161af:
 		mov    %ebp,%eax
 		call   func_fgetc_
@@ -8332,14 +8332,14 @@ func_1a91e:
 		mov    %ecx,%eax
 		xor    %edx,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %ecx,%eax
 		call   w_dos_ftell
 		mov    %eax,%edi
 		mov    %ecx,%eax
 		mov    %esi,%edx
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %edi,%eax
 		jmp    jump_19acc
 
@@ -8385,7 +8385,7 @@ func_1a95f:
 		mov    %esi,%eax
 		xor    %edx,%edx
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    data_53b28(%ecx),%ebx
 		mov    data_53b2c(%ecx),%eax
 		mov    $0x1,%edx
@@ -9720,7 +9720,7 @@ func___doopen_:	/* 0x1b7a4 */
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_1b860:
 		mov    %ecx,%eax
 		call   func___chktty_
