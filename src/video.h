@@ -8,4 +8,6 @@
 extern void video_init (uint8_t r);
 extern void video_quit ();
 
+extern void video_update ();
+
 #endif
