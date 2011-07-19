@@ -14,6 +14,7 @@ wargs_ttl_SOURCES = $(COMMON_SRCS) \
 										dos.c \
 										game.c \
 										ttl.S \
+										video.c video.h \
 										wargs-ttl.c \
 										wrappers.S
 
