@@ -3,6 +3,7 @@
 #include "conf.h"
 #include "filepath.h"
 #include "video.h"
+#include "keyboard.h"
 
 int
 main ()
@@ -10,10 +11,12 @@ main ()
   conf_init ();
   filepath_init (conf_get_root ());
   video_init (conf_get_ratio ());
+  keyboard_init ();
 
   int ret = 0;
   asm volatile ("call ttl" : "=a" (ret));
 
+  keyboard_quit ();
   video_quit ();
   filepath_quit ();
   conf_quit ();
