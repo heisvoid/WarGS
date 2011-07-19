@@ -1,5 +1,7 @@
 /* vim: set sw=2 ts=2 expandtab: */
 
+#include "asm.h"
+
 .text
 
 
@@ -94170,7 +94172,7 @@ func_55ebc:
 
 
 /*----------------------------------------------------------------*/
-combatii:	/* 0x55f8b */
+GLOBAL (combatii)	/* 0x55f8b */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -112017,7 +112019,11 @@ func___int386x_:	/* 0x6456a */
 func_645a2:
 /*----------------------------------------------------------------*/
 		lea    (%esi,%esi,2),%esi
+#if 1
+		lea    data_64648(%esi),%eax
+#else
 		lea    %cs:data_64648(%esi),%eax
+#endif
 		push   %eax
 		mov    (%ebx),%es
 		mov    0x6(%ebx),%bp

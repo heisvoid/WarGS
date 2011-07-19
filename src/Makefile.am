@@ -1,4 +1,4 @@
-bin_PROGRAMS = wargs wargs-ttl
+bin_PROGRAMS = wargs wargs-ttl wargs-combatii
 
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
@@ -20,6 +20,11 @@ wargs_ttl_SOURCES = $(COMMON_SRCS) \
 										video.c video.h \
 										wargs-ttl.c \
 										wrappers.S
+
+wargs_combatii_SOURCES = $(COMMON_SRCS) \
+												 asm.h \
+												 combatii.S \
+												 wargs-combatii.c
 
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 
