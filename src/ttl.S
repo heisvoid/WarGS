@@ -6874,10 +6874,12 @@ func_1948b:
 		mov    %eax,%esi
 		mov    %edx,%edi
 		mov    %ebx,%ecx
-		call   func_193cf
+#if 0
+		call   func_193cf /* set vga mode 0x13 */
 		mov    $0x3c2,%eax
 		mov    $0xe2,%edx
 		call   func_outp_
+#endif
 		mov    $0xfa00,%eax
 		call   w_dos_malloc
 		mov    %eax,%edx
