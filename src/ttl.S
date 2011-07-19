@@ -8327,14 +8327,14 @@ func_1a91e:
 		push   %esi
 		push   %edi
 		mov    %eax,%ecx
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%esi
 		mov    %ecx,%eax
 		xor    %edx,%edx
 		mov    $0x2,%ebx
 		call   func_fseek_
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edi
 		mov    %ecx,%eax
 		mov    %esi,%edx
@@ -9883,7 +9883,7 @@ func___doclose_:	/* 0x1b9d6 */
 		mov    %eax,%esi
 	jump_1ba01:
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edx
 		cmp    $0xffffffff,%eax
 		je     jump_1ba19
