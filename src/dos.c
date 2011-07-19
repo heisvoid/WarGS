@@ -242,3 +242,15 @@ dos_memset (void *s, int c, size_t n)
 
   return memset (s, c, n);
 }
+
+long int
+dos_ftell (FILE *f)
+{
+  ASSERT (NULL != f);
+
+  const long int offset = ftell (f);
+  ASSERT (-1 != offset);
+
+  return offset;
+}
+
