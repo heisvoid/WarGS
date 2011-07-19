@@ -6773,7 +6773,7 @@ func_19267:
 		mov    %di,%dx
 		mov    %esp,%eax
 		mov    %esi,%ebx
-		call   func_19356
+		call   vga_set_palette
 		add    %esi,%edi
 		inc    %ebp
 	jump_1932d:
@@ -6788,7 +6788,7 @@ func_19267:
 
 
 /*----------------------------------------------------------------*/
-func_19356: /* 19356 */
+vga_set_palette: /* 19356 */
 /*----------------------------------------------------------------*/
 		push   $0xc
 		call   func___CHK
@@ -6798,14 +6798,46 @@ func_19356: /* 19356 */
 		mov    %ebx,%esi
 		and    $0xffff,%edx
 		mov    $0x3c8,%eax
+#if 1
+    mov    %edx,color_index
+#else
 		call   func_outp_
+#endif
 		xor    %ebx,%ebx
 		jmp    jump_1938a
 	jump_1937a:
 		xor    %edx,%edx
 		mov    (%ecx,%ebx,1),%dl
 		mov    $0x3c9,%eax
+#if 1
+    movl   $0,color_r
+    mov    %dl,color_r
+
+    inc    %ebx
+
+    mov    (%ecx,%ebx,1),%dl
+    movl   $0,color_g
+    mov    %dl,color_g
+
+    inc    %ebx
+
+    mov    (%ecx,%ebx,1),%dl
+    movl   $0,color_b
+    mov    %dl,color_b
+
+    push   color_b
+    push   color_g
+    push   color_r
+    push   color_index
+    call   w_video_set_palette_color
+    add    $16,%esp
+
+    mov    color_index,%edx
+    inc    %edx
+    mov    %edx,color_index
+#else
 		call   func_outp_
+#endif
 		inc    %ebx
 	jump_1938a:
 		xor    %edx,%edx
@@ -15653,3 +15685,12 @@ data_542e8:
 		.fill   0x4
 data_542ec:
 		.fill   0x1004
+
+color_index:
+    .long 0
+color_r:
+    .long 0
+color_g:
+    .long 0
+color_b:
+    .long 0
