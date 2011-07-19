@@ -12,6 +12,7 @@ AM_INIT_AUTOMAKE([gnits -Wall -Werror])
 AC_PROG_CC
 AM_PROG_AS
 PKG_PROG_PKG_CONFIG
+AM_PATH_PYTHON
 
 # Checks for libraries.
 PKG_CHECK_MODULES([LIBCONFIG], [libconfig])
