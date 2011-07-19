@@ -2995,7 +2995,11 @@ GLOBAL (ttl)	/* 0x13cdc */
 		test   %eax,%eax
 		jne    jump_13dac
 		mov    $data_20286,%eax
+#if 1
+    mov    video_buffer,%edx
+#else
 		mov    $0xa0000,%edx
+#endif
 		call   func_16101
 		xor    %eax,%eax
 		call   func_1621e
@@ -3033,7 +3037,11 @@ GLOBAL (ttl)	/* 0x13cdc */
 		jne    jump_13e1e
 #endif
 		mov    $data_20286,%eax
+#if 1
+    mov    video_buffer,%edx
+#else
 		mov    $0xa0000,%edx
+#endif
 		call   func_16101
 		xor    %eax,%eax
 		call   func_1621e
@@ -3340,7 +3348,11 @@ func_1413a:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_15efb
+#if 1
+    mov    video_buffer,%ecx
+#else
 		mov    data_20cd7,%ecx
+#endif
 	jump_1416c:
 		mov    data_22790,%ebx
 		mov    data_20965,%edx
@@ -3361,7 +3373,11 @@ func_1418c:
 		push   %ecx
 		push   %edx
 		mov    $data_20adf,%ebx
+#if 1
+    mov    video_buffer,%ecx
+#else
 		mov    data_20cd7,%ecx
+#endif
 		mov    data_20961,%edx
 		mov    data_2095f,%eax
 		sar    $0x10,%edx
@@ -3726,7 +3742,11 @@ func_14543:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_15efb
+#if 1
+    mov    video_buffer,%ecx
+#else
 		mov    $0xa0000,%ecx
+#endif
 		jmp    jump_1416c
 
 
@@ -4654,7 +4674,11 @@ func_15f6e:
 		push   %edx
 		push   %ebx
 		push   %ecx
+#if 1
+    mov    video_buffer,%edi
+#else
 		mov    $0xa0000,%edi
+#endif
 		mov    %eax,%esi
 		mov    $0xc8,%ebx
 	jump_15f7f:
@@ -4798,7 +4822,14 @@ func_1621e:
 		je     jump_16232
 		ret
 	jump_16227:
+#if 1
+    push   %eax
+    movl   video_buffer,%eax
+    mov    %eax,data_3e954
+    pop    %eax
+#else
 		movl   $0xa0000,data_3e954
+#endif
 		ret
 	jump_16232:
 		mov    data_3e98c,%eax
@@ -8686,7 +8717,11 @@ func_1adb3:
 		mov    $0x4f05,%ax
 		mov    $0x0,%bx
 		int    $0x10
+#if 1
+    mov    video_buffer,%edi
+#else
 		mov    $0xa0000,%edi
+#endif
 		mov    $0x4000,%ecx
 		rep movsl %ds:(%esi),%es:(%edi)
 		inc    %dx
@@ -8695,7 +8730,11 @@ func_1adb3:
 		mov    $0x4f05,%ax
 		mov    $0x0,%bx
 		int    $0x10
+#if 1
+    mov    video_buffer,%edi
+#else
 		mov    $0xa0000,%edi
+#endif
 		mov    $0x2c00,%ecx
 		rep movsl %ds:(%esi),%es:(%edi)
 		pop    %edi
