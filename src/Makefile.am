@@ -13,6 +13,7 @@ wargs_ttl_SOURCES = $(COMMON_SRCS) \
 										asm.h \
 										dos.c \
 										game.c \
+										keyboard.c keyboard.h \
 										ttl.S \
 										video.c video.h \
 										wargs-ttl.c \
