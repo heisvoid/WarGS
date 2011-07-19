@@ -3124,6 +3124,16 @@ GLOBAL (ttl)	/* 0x13cdc */
 	jump_13ef2:
 		mov    $data_2034f,%edx
 		mov    $0xa,%ebx
+#if 1
+    /* set FPS for hicom.fli play */
+    push   %eax
+
+    pushl  $23
+    call   w_game_set_fps
+    add    $4,%esp
+
+    pop    %eax
+#endif
 		call   func_1948b
 	jump_13f01:
 		cmpw   $0x0,data_22618
@@ -3179,6 +3189,16 @@ GLOBAL (ttl)	/* 0x13cdc */
 	jump_13f98:
 		mov    $data_2037b,%edx
 		mov    $0xa,%ebx
+#if 1
+    /* set FPS for softmax.fli play */
+    push   %eax
+
+    pushl  $14
+    call   w_game_update
+    add    $4,%esp
+
+    pop    %eax
+#endif
 		call   func_1948b
 		call   func_1a875
 		mov    game_cfg_soundblaster_irq,%eax
@@ -5930,6 +5950,12 @@ func_189c5:
 		jge    jump_189b7
 		mov    %esi,%eax
 		call   func_18a29
+#if 1
+    /* draw a FLI frame */
+    push   %eax
+    call   w_game_update
+    pop    %eax
+#endif
 		jmp    jump_189fb
 
 vtable_18a11:
