@@ -4638,7 +4638,7 @@ func_16101:
 		mov    $0x3,%edx
 		mov    %esp,%eax
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
@@ -5805,7 +5805,7 @@ func_1882c:
 		mov    $0x80,%edx
 		mov    $0x1,%ebx
 		mov    %edi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		cmpw   $0xaf11,0x4(%esp)
 		je     jump_188a4
 		mov    %edi,%eax
@@ -5910,7 +5910,7 @@ func_189c5:
 		mov    $0x10,%edx
 		mov    $0x1,%ebx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		cmpw   $0xf1fa,0x4(%esp)
 		je     jump_189fb
 		xor    %eax,%eax
@@ -5948,7 +5948,7 @@ func_18a29:
 		mov    $0x6,%edx
 		mov    $0x1,%ebx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    0x4(%esp),%ax
 		sub    $0xb,%ax
 		cmp    $0x5,%ax
@@ -6071,7 +6071,7 @@ func_18b42:
 		mov    %eax,%ecx
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
-		call   func_fread_
+		call   w_dos_fread
 		mov    data_43020,%ebp
 		xor    %edi,%edi
 		mov    $0x6400,%ecx
@@ -6228,7 +6228,7 @@ func_18d23:
 		mov    data_20d64,%esi
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
-		call   func_fread_
+		call   w_dos_fread
 		mov    data_43020,%ebp
 		xor    %edi,%edi
 	jump_18d51:
@@ -6456,7 +6456,7 @@ func_18f58:
 		mov    %eax,%ecx
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
-		call   func_fread_
+		call   w_dos_fread
 		mov    data_43020,%eax
 		mov    %eax,(%esp)
 		mov    (%eax),%ax
@@ -6626,7 +6626,7 @@ func_19162:
 		mov    data_20d64,%esi
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
-		call   func_fread_
+		call   w_dos_fread
 		mov    data_43020,%ebp
 		mov    0x0(%ebp),%ax
 		mov    %ax,0x8(%esp)
@@ -6728,7 +6728,7 @@ func_19267:
 		mov    data_43020,%eax
 		mov    %eax,0x300(%esp)
 		mov    $0x1,%ebx
-		call   func_fread_
+		call   w_dos_fread
 		mov    data_43020,%eax
 		mov    (%eax),%dx
 		mov    %edx,0x304(%esp)
@@ -6788,7 +6788,7 @@ func_19267:
 
 
 /*----------------------------------------------------------------*/
-func_19356:
+func_19356: /* 19356 */
 /*----------------------------------------------------------------*/
 		push   $0xc
 		call   func___CHK
@@ -8390,7 +8390,7 @@ func_1a95f:
 		mov    data_53b2c(%ecx),%eax
 		mov    $0x1,%edx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    %esi,%eax
 		call   func_fclose_
 		mov    $0x1,%eax
