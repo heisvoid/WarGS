@@ -254,3 +254,13 @@ dos_ftell (FILE *f)
   return offset;
 }
 
+int
+dos_fseek (FILE *f, long int offset, int whence)
+{
+  ASSERT (NULL != f);
+
+  const int ret = fseek (f, offset, whence);
+  ASSERT (0 == ret);
+
+  return ret;
+}
