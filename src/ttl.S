@@ -5866,16 +5866,21 @@ func_1882c:
 		shl    $0x3,%eax
 		sub    %edx,%eax
 		add    %eax,%eax
+#if 0
 		call   func_1a4a5
+#endif
 		jmp    jump_18947
 	jump_18944:
 		lea    -0x5(%ebx),%esi
 	jump_18947:
 		xor    %eax,%eax
 		call   func_1a46c
+#if 0
 		call   func_1b2e9
+
 		test   %eax,%eax
 		je     jump_188c2
+#endif
 		call   func_getch_
 		cmp    $0x1b,%eax
 		jne    jump_188c2
@@ -6108,7 +6113,7 @@ func_18b42:
 		int    $0x10
 	jump_18bd8:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6125,7 +6130,7 @@ func_18b42:
 		int    $0x10
 	jump_18c11:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6160,7 +6165,7 @@ func_18b42:
 		int    $0x10
 	jump_18c80:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6177,7 +6182,7 @@ func_18b42:
 		int    $0x10
 	jump_18cb9:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6225,7 +6230,7 @@ func_18d23:
 		push   %edi
 		push   %ebp
 		mov    %eax,%ecx
-		mov    data_20d64,%esi
+		mov    video_buffer,%esi
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
 		call   w_dos_fread
@@ -6324,7 +6329,7 @@ func_18e02:
 		mov    $0xfa00,%ebx
 		call   w_dos_memset
 		mov    data_2092c,%esi
-		mov    data_20d64,%edi
+		mov    video_buffer,%edi
 		push   %es
 		mov    %ds,%eax
 		mov    %eax,%es
@@ -6367,7 +6372,7 @@ func_18e41:
 		mov    $0x0,%ebx
 		int    $0x10
 	jump_18e93:
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    0x4(%esp),%al
 		mov    %al,(%esi)
@@ -6383,7 +6388,7 @@ func_18e41:
 		mov    $0x0,%ebx
 		int    $0x10
 	jump_18ec8:
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    0x4(%esp),%al
 		mov    %al,(%esi)
@@ -6422,7 +6427,7 @@ func_18f06:
 		call   func_fgetc_
 		mov    %eax,(%esp)
 		mov    %ebx,%ecx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		inc    %ebx
 		add    %ecx,%eax
 		mov    (%esp),%cl
@@ -6519,7 +6524,7 @@ func_18f58:
 		int    $0x10
 	jump_19041:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6536,7 +6541,7 @@ func_18f58:
 		int    $0x10
 	jump_1907a:
 		mov    data_43020,%edx
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    (%edx),%al
 		mov    %al,(%esi)
@@ -6567,7 +6572,7 @@ func_18f58:
 		mov    $0x0,%ebx
 		int    $0x10
 	jump_190d5:
-		mov    data_20d64,%edx
+		mov    video_buffer,%edx
 		mov    0x18(%esp),%al
 		mov    %al,(%edx,%esi,1)
 		inc    %ecx
@@ -6582,7 +6587,7 @@ func_18f58:
 		mov    $0x0,%ebx
 		int    $0x10
 	jump_1910a:
-		mov    data_20d64,%eax
+		mov    video_buffer,%eax
 		add    %eax,%esi
 		mov    0x18(%esp),%al
 		mov    %al,(%esi)
@@ -6623,7 +6628,7 @@ func_19162:
 		push   %ebp
 		sub    $0x10,%esp
 		mov    %eax,%ecx
-		mov    data_20d64,%esi
+		mov    video_buffer,%esi
 		mov    data_43020,%eax
 		mov    $0x1,%ebx
 		call   w_dos_fread
