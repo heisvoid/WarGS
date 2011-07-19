@@ -264,3 +264,37 @@ dos_fseek (FILE *f, long int offset, int whence)
 
   return ret;
 }
+
+size_t
+dos_fread (void *buf, size_t size, size_t nmemb, FILE *f)
+{
+  ASSERT (NULL != buf);
+  ASSERT (0 < size);
+  ASSERT (0 < nmemb);
+  ASSERT (NULL != f);
+
+  size_t total_read = 0;
+  while (nmemb > total_read)
+    {
+      const size_t r = fread (buf + total_read * size, size,
+                              nmemb - total_read, f);
+      if (nmemb - total_read > r)
+        {
+          if (0 != ferror (f))
+            {
+              LOG_FATAL ("fread error");
+            }
+
+          if (0 != feof (f))
+            {
+              total_read += r;           
+
+              break;
+            }
+        }
+
+      total_read += r;
+    }
+
+  return total_read;
+}
