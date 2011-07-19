@@ -3233,10 +3233,14 @@ GLOBAL (ttl)	/* 0x13cdc */
 		call   func_1621e
 		call   func_141b4
 		mov    $0x10,%eax
+#if 0
 		call   func_145f5
+#endif
 		mov    $0x2,%eax
 		mov    $0xc2,%edx
+#if 0
 		call   func_14600
+#endif
 		cmpw   $0x3,data_22618
 		mov    $data_2011c,%ebx
 		mov    $data_200d5,%ecx
@@ -3386,11 +3390,17 @@ func_141b4:
 		mov    $0x33,%eax
 		mov    %dx,(%esp)
 		mov    %esp,%edx
-		call   w_dos_int386
+#if 0
+		call   w_dos_int386 /* mouse reset driver and read status */
+#endif
 		xor    %eax,%eax
 		mov    0x1c(%esp),%ax
 		test   %eax,%eax
+#if 1
+    jmp    jump_14203
+#else
 		jne    jump_14203
+#endif
 		push   $data_20388
 		call   func_printf_
 		add    $0x4,%esp
@@ -3398,9 +3408,9 @@ func_141b4:
 		call   func_exit_
 	jump_14203:
 		mov    $0xc,%ebx
-		mov    $0x7f,%ecx
-		mov    $func_143aa,%edx
-		mov    $func_143aa,%eax
+		mov    $0x7f,%ecx /* call mask */
+		mov    $mouse_isr,%edx /* ISR */
+		mov    $mouse_isr,%eax
 		mov    %bx,(%esp)
 		mov    %cx,0x8(%esp)
 		mov    %edx,0xc(%esp)
@@ -3410,7 +3420,9 @@ func_141b4:
 		mov    $0x33,%eax
 		mov    %dx,0x38(%esp)
 		mov    %esp,%edx
-		call   w_dos_int386x
+#if 0
+		call   w_dos_int386x /* define mouse ISR */
+#endif
 		xor    %edx,%edx
 		mov    data_227aa,%dl
 		mov    %edx,%eax
@@ -3422,6 +3434,11 @@ func_141b4:
 		mov    %ebx,data_22620(,%eax,4)
 		mov    %esi,data_22790
 		mov    %ecx,data_22624(,%eax,4)
+#if 1
+    push   %eax
+    call   w_mouse_enable_event_handling
+    pop    %eax
+#endif
 		add    $0x44,%esp
 		pop    %esi
 		pop    %edx
@@ -3541,8 +3558,16 @@ func_14300:
 		ret
 
 
+/**
+ * ax: condition mask
+ * bx: button state
+ * cx: cursor column
+ * dx: cursor row
+ * si: horizontal mouse count since last call
+ * di: vertical mouse count since last call
+ */
 /*----------------------------------------------------------------*/
-func_143aa:
+GLOBAL (mouse_isr) /* 143aa */
 /*----------------------------------------------------------------*/
 		push   %ds
 		call   func___GETDS
@@ -4674,25 +4699,43 @@ func_16101:
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
+#if 1
+    movb   %dl,palette_index
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    (%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
+#if 1
+    movb   %dl,palette_r
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    0x1(%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
 		mov    0x4(%esp),%ebx
+#if 1
+    movb   %dl,palette_g
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		inc    %ebx
 		mov    0x2(%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
 		mov    %bx,0x4(%esp)
+#if 1
+    movb   %dl,palette_b
+
+    call   w_video_set_palette
+#else
 		call   func_outp_
+#endif
 		cmp    $0x100,%bx
 		jb     jump_16135
 		mov    $0x80,%edx
@@ -6845,7 +6888,7 @@ vga_set_palette: /* 19356 */
 		and    $0xffff,%edx
 		mov    $0x3c8,%eax
 #if 1
-    mov    %edx,color_index
+    movb   %dl,palette_index
 #else
 		call   func_outp_
 #endif
@@ -6856,31 +6899,23 @@ vga_set_palette: /* 19356 */
 		mov    (%ecx,%ebx,1),%dl
 		mov    $0x3c9,%eax
 #if 1
-    movl   $0,color_r
-    mov    %dl,color_r
+    movb   %dl,palette_r
 
     inc    %ebx
 
     mov    (%ecx,%ebx,1),%dl
-    movl   $0,color_g
-    mov    %dl,color_g
+    movb   %dl,palette_g
 
     inc    %ebx
 
     mov    (%ecx,%ebx,1),%dl
-    movl   $0,color_b
-    mov    %dl,color_b
+    movb   %dl,palette_b
 
-    push   color_b
-    push   color_g
-    push   color_r
-    push   color_index
-    call   w_video_set_palette_color
-    add    $16,%esp
+    call   w_video_set_palette
 
-    mov    color_index,%edx
-    inc    %edx
-    mov    %edx,color_index
+    mov    palette_index,%dl
+    inc    %dl
+    movb   %dl,palette_index
 #else
 		call   func_outp_
 #endif
@@ -7118,6 +7153,7 @@ soundblaster_write_to_dsp: /* 196aa */
 		call   func___CHK
 		push   %ebx
 		push   %ecx
+#if 0
 		mov    %eax,%ebx
 		mov    %edx,%ecx
 		xor    %edx,%edx
@@ -7139,6 +7175,7 @@ soundblaster_write_to_dsp: /* 196aa */
 		lea    0xc(%ebx),%eax
 		call   func_outp_
 	jump_196e7:
+#endif
 		pop    %ecx
 		pop    %ebx
 		ret
@@ -8350,7 +8387,9 @@ func_1a875:
 		call   disable_interrupts
 		mov    pic_saved_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_1a8c8
 #if 0
@@ -8374,13 +8413,19 @@ func_1a875:
 #endif
 		mov    $0x43,%eax
 		mov    $0x36,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		call   enable_interrupts
 #if 1
     mov    data_5429c,%eax
@@ -15743,12 +15788,3 @@ data_542e8:
 		.fill   0x4
 data_542ec:
 		.fill   0x1004
-
-color_index:
-    .long 0
-color_r:
-    .long 0
-color_g:
-    .long 0
-color_b:
-    .long 0

@@ -5,6 +5,7 @@
 #include "conf.h"
 #include "assert.h"
 #include "video.h"
+#include "mouse.h"
 
 enum
 {
@@ -41,10 +42,32 @@ game_set_fps_default ()
   game_set_fps (DEFAULT_FPS);
 }
 
+static void
+handle_events ()
+{
+  SDL_Event event;
+
+  while (1 == SDL_PollEvent (&event))
+    {
+      switch (event.type)
+        {
+        case SDL_MOUSEBUTTONDOWN:
+        case SDL_MOUSEBUTTONUP:
+        case SDL_MOUSEMOTION:
+          mouse_handle_event (&event);
+          break;
+        default:
+          break;
+        }
+    }
+}
+
 void
 game_update ()
 {
   static uint32_t last_frame_ticks = 0;
+
+  handle_events ();
 
   if (0 < last_frame_ticks)
     {
