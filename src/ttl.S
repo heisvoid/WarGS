@@ -3135,6 +3135,12 @@ GLOBAL (ttl)	/* 0x13cdc */
     pop    %eax
 #endif
 		call   func_1948b
+#if 1
+    /* stop audio */
+    push   %eax
+    call   w_audio_stop
+    pop    %eax
+#endif
 	jump_13f01:
 		cmpw   $0x0,data_22618
 		jne    jump_13f14
@@ -3194,12 +3200,18 @@ GLOBAL (ttl)	/* 0x13cdc */
     push   %eax
 
     pushl  $14
-    call   w_game_update
+    call   w_game_set_fps
     add    $4,%esp
 
     pop    %eax
 #endif
 		call   func_1948b
+#if 1
+    /* stop audio */
+    push   %eax
+    call   w_audio_stop
+    pop    %eax
+#endif
 		call   func_1a875
 		mov    game_cfg_soundblaster_irq,%eax
 		mov    game_cfg_soundblaster_adr,%ecx
@@ -6888,7 +6900,9 @@ vga_set_palette: /* 19356 */
 		mov    $0x10,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
+#if 0
 		call   w_dos_int386
+#endif
 		add    $0x1c,%esp
 		pop    %edx
 		pop    %ebx
@@ -8493,6 +8507,16 @@ func_1ab1b:
 		mov    %ebp,data_541c0
 		mov    %ecx,data_541b4
 		mov    %esi,data_541b8
+#if 1
+    /* play sound */
+    push   %eax
+    pushl  $0
+    pushl  data_541ac
+    pushl  data_541bc
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 	jump_1ab80:
 		pop    %ebp
 		pop    %esi
