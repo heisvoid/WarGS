@@ -11,6 +11,7 @@ wargs_SOURCES = $(COMMON_SRCS) \
 
 wargs_ttl_SOURCES = $(COMMON_SRCS) \
 										asm.h \
+										audio.c audio.h \
 										dos.c \
 										game.c \
 										keyboard.c keyboard.h \

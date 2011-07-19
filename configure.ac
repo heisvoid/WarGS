@@ -19,13 +19,14 @@ PKG_CHECK_MODULES([LIBCONFIG], [libconfig])
 PKG_CHECK_MODULES([SDL], [sdl])
 
 # Checks for header files.
+AC_CHECK_HEADERS([SDL/SDL_mixer.h],, [AC_MSG_ERROR([missing SDL/SDL_mixer.h])])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
 
 CFLAGS="-Wall -Werror ${CFLAGS} ${LIBCONFIG_CFLAGS} ${SDL_CFLAGS}"
-LIBS="${LIBS} ${LIBCONFIG_LIBS} ${SDL_LIBS}"
+LIBS="${LIBS} ${LIBCONFIG_LIBS} ${SDL_LIBS} -lSDL_mixer"
 
 MKWRAPPERS_FLAGS="-g -s 4"
 AC_SUBST([MKWRAPPERS_FLAGS])
