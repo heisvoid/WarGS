@@ -318,3 +318,14 @@ dos_unlink (const char *path)
 
   return ret;
 }
+
+off_t
+dos_lseek (int fd, off_t offset, int whence)
+{
+  ASSERT (2 < fd);
+
+  const off_t ret = lseek (fd, offset, whence);
+  ASSERT ((off_t) -1 != ret);
+
+  return ret;
+}
