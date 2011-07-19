@@ -25,7 +25,6 @@ static bool initialized = false;
 static uint8_t ratio = 1;
 static SDL_Surface *surface = NULL;
 static SDL_Color palette[PALETTE_LEN];
-static uint8_t palette_index = 0;
 
 void *video_buffer = NULL;
 
@@ -59,7 +58,6 @@ video_init (uint8_t r)
     }
 
   memset (palette, 0, sizeof (SDL_Color) * PALETTE_LEN);
-  palette_index = 0;
 
   initialized = true;
 }
@@ -85,26 +83,14 @@ video_quit ()
 }
 
 void
-video_set_palette_index (uint32_t index)
+video_set_palette_color (uint32_t index, uint32_t r, uint32_t g, uint32_t b)
 {
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
     }
 
-  ASSERT (0 <= index && PALETTE_LEN > index);
-
-  palette_index = index;
-}
-
-void
-video_set_palette_color (uint32_t r, uint32_t g, uint32_t b)
-{
-  if (false == initialized)
-    {
-      LOG_FATAL ("not initialized");
-    }
-
+  ASSERT (PALETTE_LEN > index);
   ASSERT (64 > r);
   ASSERT (64 > g);
   ASSERT (64 > b);
@@ -114,17 +100,12 @@ video_set_palette_color (uint32_t r, uint32_t g, uint32_t b)
   color->g = g << 2;
   color->b = b << 2;
 
-  ASSERT (PALETTE_LEN > palette_index);
-
-  const int ret = SDL_SetPalette (surface, SDL_LOGPAL, color,
-                                  palette_index, 1);
+  const int ret = SDL_SetPalette (surface, SDL_LOGPAL, color, index, 1);
   ASSERT (1 == ret);
 
-  palette[palette_index].r = color->r;
-  palette[palette_index].g = color->g;
-  palette[palette_index].b = color->b;
-
-  palette_index++;
+  palette[index].r = color->r;
+  palette[index].g = color->g;
+  palette[index].b = color->b;
 
   free (color);
 }
