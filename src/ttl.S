@@ -5875,15 +5875,18 @@ func_1882c:
 	jump_18947:
 		xor    %eax,%eax
 		call   func_1a46c
-#if 0
+#if 1
+    call   w_keyboard_esc_is_pressed
+    test   %eax,%eax
+    je     jump_188c2
+#else
 		call   func_1b2e9
-
 		test   %eax,%eax
 		je     jump_188c2
-#endif
 		call   func_getch_
 		cmp    $0x1b,%eax
 		jne    jump_188c2
+#endif
 		jmp    jump_1881a
 	jump_189b7:
 		mov    $0x1,%eax
