@@ -42,7 +42,7 @@ audio_init (const char *music)
       LOG_FATAL ("already initialized");
     }
 
-  ASSERT (NULL != music_root);
+  ASSERT (NULL != music);
 
   int ret = SDL_InitSubSystem (SDL_INIT_AUDIO);
   ASSERT (0 == ret);
