@@ -13,6 +13,7 @@
 #include "keyboard.h"
 #include "audio.h"
 #include "util.h"
+#include "mouse.h"
 
 int
 main ()
@@ -32,9 +33,12 @@ main ()
   audio_init (music_root);
   free (music_root);
 
+  mouse_init ();
+
   int ret = 0;
   asm volatile ("call ttl" : "=a" (ret));
 
+  mouse_quit ();
   audio_quit ();
   keyboard_quit ();
   video_quit ();

@@ -2624,6 +2624,12 @@ func_138a8:
 		call   func_137b6
 		mov    $0x64,%ebp
 	jump_138fa:
+#if 1
+    /* draw main menu */
+    push   %eax
+    call   w_game_update
+    pop    %eax
+#endif
 		lea    0x3c(%esp),%esi
 		mov    $data_225fc,%edi
 		call   func_14300
@@ -3586,7 +3592,9 @@ func_14300:
 GLOBAL (mouse_isr) /* 143aa */
 /*----------------------------------------------------------------*/
 		push   %ds
+#if 0
 		call   func___GETDS
+#endif
 		push   %esi
 		push   %edi
 		push   %ebp
@@ -3702,7 +3710,11 @@ GLOBAL (mouse_isr) /* 143aa */
 		pop    %edi
 		pop    %esi
 		pop    %ds
+#if 1
+    ret
+#else
 		lret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -3775,7 +3787,17 @@ func_145b2:
 		mov    $0x33,%eax
 		mov    %dx,(%esp)
 		mov    %esp,%edx
+#if 1
+    call   w_mouse_get_state
+    movw   mouse_state_button,%bx
+    movw   %bx,0x20(%esp)
+    movw   mouse_state_x,%bx
+    movw   %bx,0x24(%esp)
+    movw   mouse_state_y,%bx
+    movw   %bx,0x28(%esp)
+#else
 		call   w_dos_int386
+#endif
 		mov    0x20(%esp),%ebx
 		test   %bx,%bx
 		je     jump_145e3

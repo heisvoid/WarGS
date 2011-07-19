@@ -11,6 +11,10 @@
 static bool initialized = false;
 static bool enable_event_handling = false;
 
+uint16_t mouse_state_button = 0;
+uint16_t mouse_state_x = 0;
+uint16_t mouse_state_y = 0;
+
 void
 mouse_init ()
 {
@@ -130,4 +134,38 @@ void
 mouse_enable_event_handling ()
 {
   enable_event_handling = true;
+}
+
+void
+mouse_get_state ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  SDL_PumpEvents ();
+
+  int x = 0;
+  int y = 0;
+  const uint8_t button_state = SDL_GetMouseState (&x, &y);
+
+  if (1 < video_get_ratio ())
+    {
+      x /= video_get_ratio ();
+      y /= video_get_ratio ();
+    }
+
+  mouse_state_x = x * 2;
+  mouse_state_y = y;
+
+  mouse_state_button = 0;
+  if (SDL_BUTTON (SDL_BUTTON_LEFT) & button_state)
+    {
+      mouse_state_button |= 1;
+    }
+  if (SDL_BUTTON (SDL_BUTTON_RIGHT) & button_state)
+    {
+      mouse_state_button |= 2;
+    }
 }
