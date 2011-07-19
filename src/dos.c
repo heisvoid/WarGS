@@ -298,3 +298,11 @@ dos_fread (void *buf, size_t size, size_t nmemb, FILE *f)
 
   return total_read;
 }
+
+int
+dos_fgetc (FILE *f)
+{
+  ASSERT (NULL != f);
+
+  return fgetc (f);
+}
