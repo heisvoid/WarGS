@@ -4701,7 +4701,7 @@ func_16101:
 		call   w_dos_fseek
 	jump_161af:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		xor    %ah,%dh
 		xor    %ah,%ah
@@ -4710,7 +4710,7 @@ func_16101:
 		cmp    $0xc0,%ax
 		jne    jump_161f0
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		xor    %dh,%dh
 		mov    %ax,0x4(%esp)
 		and    $0x3f,%dl
@@ -6400,7 +6400,7 @@ func_18e41:
 		xor    %edi,%edi
 	jump_18e61:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %al,0x4(%esp)
 		mov    %ecx,%esi
 		and    $0xffff,%esi
@@ -6465,7 +6465,7 @@ func_18f06:
 		xor    %edx,%edx
 	jump_18f1f:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,(%esp)
 		mov    %ebx,%ecx
 		mov    video_buffer,%eax
