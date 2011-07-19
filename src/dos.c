@@ -306,3 +306,15 @@ dos_fgetc (FILE *f)
 
   return fgetc (f);
 }
+
+int
+dos_unlink (const char *path)
+{
+  ASSERT (NULL != path);
+
+  const char * const native_path = filepath_transform (path);
+  const int ret = unlink (native_path);
+  free ((void *) native_path);
+
+  return ret;
+}
