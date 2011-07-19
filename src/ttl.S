@@ -15831,7 +15831,7 @@ data_5429c:
 		.fill   0x4
 soundblaster_dma: /* 542a0 */
 		.fill   0x4
- /* 542a4 */soundblaster_irq: /* 542a4 */
+soundblaster_irq: /* 542a4 */
 		.fill   0x4
 data_542a8:
 		.fill   0x4
