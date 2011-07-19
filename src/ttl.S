@@ -662,7 +662,7 @@ func_12358:
 		call   func_15d26
 	jump_12394:
 		mov    %ebx,%eax
-		call   func_exit_
+		call   w_exit
 		pop    %edx
 		pop    %ebx
 		ret
@@ -2061,6 +2061,12 @@ func_13038:
 		call   func_1232d
 		mov    $0x37,%ebp
 	jump_131c9:
+#if 1
+    /* draw load menu */
+    push   %eax
+    call   w_game_update
+    pop    %eax
+#endif
 		lea    0x12c(%esp),%esi
 		mov    $data_225fc,%edi
 		call   func_14300
@@ -2097,7 +2103,7 @@ func_13038:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $0x1,%eax
 		call   func_12358
 	jump_13280:
@@ -2134,7 +2140,7 @@ func_13038:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edi,%eax
 		call   func_12358
 	jump_13326:
@@ -2171,7 +2177,7 @@ func_13038:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %esi,%eax
 		call   func_12358
 	jump_133cf:
@@ -2208,7 +2214,7 @@ func_13038:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %ecx,%eax
 		call   func_12358
 	jump_1347b:
@@ -2245,7 +2251,7 @@ func_13038:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %ebx,%eax
 		call   func_12358
 	jump_1352a:
@@ -2494,9 +2500,9 @@ func_13759:
 		call   w_dos_fopen
 		call   func_fclose_
 		mov    $data_2019b,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $0x1,%eax
 		call   func_12358
 		pop    %edx
@@ -2724,7 +2730,7 @@ func_138a8:
 		cmp    $0x1,%edi
 		jne    jump_13a74
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		xor    %eax,%eax
 		jmp    jump_13a1c
 	jump_13a6c:
@@ -2853,9 +2859,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13b98
 		mov    $data_201f9,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x4,%eax
@@ -2869,9 +2875,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13bcf
 		mov    $data_2020a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x5,%eax
@@ -2885,9 +2891,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13c06
 		mov    $data_2021b,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x6,%eax
@@ -2901,9 +2907,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13c3d
 		mov    $data_2022c,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x7,%eax
@@ -2917,9 +2923,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13c74
 		mov    $data_2023d,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x8,%eax
@@ -2933,7 +2939,7 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13ca1
 		mov    $data_2024e,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0x3,%eax
@@ -2947,9 +2953,9 @@ func_13b60:
 		test   %eax,%eax
 		je     jump_13cd8
 		mov    $data_2025e,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_2011a,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %edx,%eax
 		call   func_fclose_
 		xor    %eax,%eax
@@ -3027,7 +3033,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 		call   func_getch_
 		call   func_15d26
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_13dac:
 		mov    %ebx,%eax
 		mov    $0xb,%edx
@@ -3065,7 +3071,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 		call   func_175b7
 		call   func_15d26
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_13e1e:
 		call   func_175b7
 	jump_13e23:
@@ -3321,9 +3327,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		call   func_123e3
 		mov    $data_2023d,%eax
 	jump_140f7:
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    %ebx,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 	jump_14103:
 		mov    $data_20108,%eax
 		mov    $data_20105,%edx
@@ -3427,7 +3433,7 @@ func_141b4:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_14203:
 		mov    $0xc,%ebx
 		mov    $0x7f,%ecx /* call mask */
@@ -3728,7 +3734,9 @@ func_14521:
 		mov    $0x33,%eax
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
+#if 0
 		call   w_dos_int386
+#endif
 	jump_1453d:
 		add    $0x38,%esp
 		pop    %edx
@@ -4482,13 +4490,16 @@ func_15d1f:
 func_15d26:
 /*----------------------------------------------------------------*/
 		mov    $0x3,%ax
+#if 0
 		int    $0x10
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
 func_15d2d:
 /*----------------------------------------------------------------*/
+#if 0
 		mov    $0x3da,%dx
 	jump_15d31:
 		in     (%dx),%al
@@ -4498,6 +4509,7 @@ func_15d2d:
 		in     (%dx),%al
 		test   $0x8,%al
 		je     jump_15d36
+#endif
 		ret
 
 
@@ -4873,7 +4885,7 @@ func_162f7:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		jmp    func_exit_
+		jmp    w_exit
 	jump_16323:
 		ret
 
@@ -4897,12 +4909,24 @@ func_165d7:
 	jump_165e1:
 		mov    $0x3c8,%edx
 		movswl %bx,%eax
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		xor    %al,%al
+#if 1
+    movb   %al,palette_r
+    movb   %al,palette_g
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+#else
 		out    %al,(%dx)
 		out    %al,(%dx)
 		out    %al,(%dx)
+#endif
 		inc    %ebx
 	jump_165f5:
 		xor    %eax,%eax
@@ -5927,7 +5951,7 @@ func_1882c:
 		call   func_printf_
 		add    $0x4,%esp
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 	jump_1886a:
 		mov    %esp,%eax
 		mov    $0x80,%edx
@@ -5942,7 +5966,7 @@ func_1882c:
 		call   func_printf_
 		add    $0x4,%esp
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 	jump_188a4:
 		xor    %edx,%edx
 		mov    %edx,data_43018
@@ -5968,7 +5992,7 @@ func_1882c:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_18904:
 		call   func_1a47c
 		mov    %eax,%edx
@@ -9233,7 +9257,7 @@ func_read_:	/* 0x1b1d1 */
 		sub    %ebp,%edx
 		mov    $0x1,%ebx
 		inc    %edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esi,%eax
 		jmp    jump_1b2dc
 	jump_1b2a1:
@@ -9431,19 +9455,19 @@ func_filelength_:	/* 0x1b3d5 */
 		mov    %eax,%ecx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%esi
 		cmp    $0xffffffff,%eax
 		je     jump_1b40c
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%edi
 		mov    %esi,%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %edi,%eax
 	jump_1b40c:
 		pop    %edi
@@ -10085,7 +10109,7 @@ func___doclose_:	/* 0x1b9d6 */
 		je     jump_1ba19
 		mov    0x10(%ecx),%eax
 		xor    %ebx,%ebx
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_1ba19:
 		test   %edi,%edi
 		je     jump_1ba27
@@ -10631,7 +10655,7 @@ func_fseek_:	/* 0x1bea6 */
 		andb   $0xeb,0xc(%ecx)
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_1bf9c
 		pop    %edi
@@ -10659,7 +10683,7 @@ func_fseek_:	/* 0x1bea6 */
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
 		sub    %edi,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_1bf9c
 		pop    %edi
@@ -10680,7 +10704,7 @@ func_fseek_:	/* 0x1bea6 */
 		je     jump_1bf9c
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_1bf9c
 		pop    %edi
@@ -10696,7 +10720,7 @@ func_fseek_:	/* 0x1bea6 */
 		mov    %dl,0xc(%ecx)
 		mov    %esi,%edx
 		movl   $0x0,0x4(%ecx)
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		je     jump_1bf9e
 	jump_1bf9c:
@@ -13838,7 +13862,7 @@ func___flush_:	/* 0x1d9ea */
 		mov    $0x1,%ebx
 		neg    %edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_1da86:
 		cmp    $0xffffffff,%eax
 		jne    jump_1da96
@@ -13861,7 +13885,7 @@ func___flush_:	/* 0x1d9ea */
 /*----------------------------------------------------------------*/
 func_j_unlink_:	/* 0x1daa9 */
 /*----------------------------------------------------------------*/
-		jmp    func_unlink_
+		jmp    w_dos_unlink
 
 
 /*----------------------------------------------------------------*/
@@ -13890,7 +13914,7 @@ func___CMain:	/* 0x1daae */
 		mov    data_542e8,%edx
 		mov    data_542e4,%eax
 		call   ttl
-		call   func_exit_
+		call   w_exit
 		mov    %ebp,%esp
 		pop    %ebp
 		pop    %edx
@@ -14274,7 +14298,7 @@ func_tell_:	/* 0x1e043 */
 		push   %edx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		pop    %edx
 		pop    %ebx
 		ret
