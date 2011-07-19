@@ -33,6 +33,15 @@ main ()
   audio_init (music_root);
   free (music_root);
 
+  if (false == conf_get_music ())
+    {
+      audio_music_mute ();
+    }
+  if (false == conf_get_sound ())
+    {
+      audio_sound_mute ();
+    }
+
   mouse_init ();
 
   int ret = 0;

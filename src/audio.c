@@ -17,6 +17,8 @@
 static bool initialized = false;
 static char *music_root = NULL;
 static Mix_Music *music = NULL;
+static bool music_is_muted = false;
+static bool sound_is_muted = false;
 
 void
 finish_channel (int channel)
@@ -129,8 +131,36 @@ audio_music_play (uint32_t track)
   music = Mix_LoadMUS (file_path);
   ASSERT (NULL != music);
 
+  Mix_VolumeMusic (music_is_muted ? 0 : MIX_MAX_VOLUME);
+
   const int ret = Mix_PlayMusic (music, -1);
   ASSERT (0 == ret);
+}
+
+void
+audio_music_mute ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  music_is_muted = true;
+
+  Mix_VolumeMusic (0);
+}
+
+void
+audio_music_unmute ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  music_is_muted = false;
+
+  Mix_VolumeMusic (MIX_MAX_VOLUME);
 }
 
 void
@@ -162,6 +192,34 @@ audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
                                                2 * 2 * len);
   ASSERT (NULL != sound);
 
+  Mix_VolumeChunk (sound, sound_is_muted ? 0 : MIX_MAX_VOLUME);
+
   const int ret = Mix_PlayChannel (-1, sound, (0 == loop) ? 0 : -1);
   ASSERT (-1 != ret);
+}
+
+void
+audio_sound_mute ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  sound_is_muted = true;
+
+  Mix_Volume (-1, 0);
+}
+
+void
+audio_sound_unmute ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  sound_is_muted = false;
+
+  Mix_Volume (-1, MIX_MAX_VOLUME);
 }
