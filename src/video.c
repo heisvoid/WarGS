@@ -28,7 +28,7 @@ static SDL_Color palette[PALETTE_LEN];
 
 void *video_buffer = NULL;
 
-/* The followings are used to set palette colors */
+/* The followings are used to get/set palette colors */
 uint8_t palette_index = 0;
 uint8_t palette_r = 0;
 uint8_t palette_g = 0;
@@ -161,4 +161,17 @@ video_get_ratio ()
     }
 
   return ratio;
+}
+
+void
+video_get_palette ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  palette_r = (palette[palette_index].r >> 2) & 0x3f;
+  palette_g = (palette[palette_index].g >> 2) & 0x3f;
+  palette_b = (palette[palette_index].b >> 2) & 0x3f;
 }
