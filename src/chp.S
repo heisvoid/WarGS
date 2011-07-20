@@ -1012,7 +1012,7 @@ func_10c6d:
 		add    %edx,%eax
 		cmpb   $0x1,data_8a872(%eax)
 		jne    jump_11114
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		mov    data_528ed(,%eax,4),%al
 		xor    %edx,%edx
@@ -8493,7 +8493,7 @@ func_170ea:
 		call   func_28c49
 		jmp    jump_16c77
 	jump_17119:
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -15817,7 +15817,7 @@ func_1da67:
 		push   %edx
 		push   %ebx
 		push   %ecx
-		mov    $0xa0000,%edi
+		mov    video_buffer,%edi
 		mov    %eax,%esi
 		mov    $0xc8,%ebx
 	jump_1da78:
@@ -15841,7 +15841,7 @@ func_1da88:
 		push   %edx
 		push   %ebx
 		push   %ecx
-		mov    $0xa0000,%edi
+		mov    video_buffer,%edi
 		mov    %eax,%esi
 		mov    $0x3da,%dx
 	jump_1da98:
@@ -16765,7 +16765,7 @@ func_1ed53:
 	jump_1ee93:
 		test   %bx,%bx
 		jne    jump_1eeb8
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 	jump_1ee9d:
 		mov    data_c5c5c,%ebx
 		mov    data_a436c,%edx
@@ -18010,7 +18010,7 @@ func_1fdc4:
 		movsw  %ds:(%esi),%es:(%edi)
 		call   func_2e4c0
 		mov    $data_5083a,%eax
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		call   func_1d26c
 		mov    $0x6c,%eax
 		mov    $0xbd,%edx
@@ -18018,7 +18018,7 @@ func_1fdc4:
 		mov    $data_5084f,%eax
 		mov    $0x3,%edx
 		mov    %esp,%ebx
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		call   func_1d26c
 		mov    $0x71,%eax
 		mov    $0xbd,%edx
@@ -18026,7 +18026,7 @@ func_1fdc4:
 		mov    $data_50863,%eax
 		mov    $0x5,%edx
 		mov    %esp,%ebx
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		call   func_1d26c
 		mov    $0x76,%eax
 		mov    $0xbd,%edx
@@ -18034,7 +18034,7 @@ func_1fdc4:
 		mov    $data_50870,%eax
 		mov    $0xa,%edx
 		mov    %esp,%ebx
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		call   func_1d26c
 		mov    $0x7b,%eax
 		mov    $0xbd,%edx
@@ -18043,7 +18043,7 @@ func_1fdc4:
 		mov    $0x80,%eax
 		mov    $0xbd,%edx
 		mov    %esp,%ebx
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		call   func_1d874
 		xor    %ebx,%ebx
 		xor    %edx,%edx
@@ -18939,7 +18939,7 @@ func_20912:
 		mov    data_c5d84,%dx
 		cmp    %edx,%esi
 		jl     jump_20b23
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -18984,7 +18984,7 @@ func_20bc8:
 		mov    $0xff,%ebx
 		xor    %edx,%edx
 		call   func_1ddc4
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -19244,7 +19244,7 @@ func_20bc8:
 		call   func_1da67
 		call   func_28c49
 		call   func_1376d
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %edx,%edx
 		push   $0xc8
@@ -19274,7 +19274,7 @@ func_20bc8:
 		call   func_1da67
 		call   func_28c49
 		call   func_1376d
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %edx,%edx
 		push   $0xc8
@@ -19284,7 +19284,7 @@ func_20bc8:
 		call   func_1716e
 	jump_21090:
 		call   func_2e6cf
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -19426,7 +19426,7 @@ func_21234:
 		call   func_1d83a
 		jmp    jump_21330
 	jump_21352:
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -19805,7 +19805,7 @@ func_21476:
 		mov    data_c5d84,%dx
 		cmp    %edx,%ebx
 		jl     jump_2184a
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -20009,7 +20009,7 @@ func_21476:
 		mov    data_ab895(%ebx,%eax,2),%al
 		cmp    $0x3,%al
 		jne    jump_21b89
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -21714,7 +21714,7 @@ func_22c8e:
 		mov    data_80301,%bh
 		cmp    $0x3,%bh
 		je     jump_23262
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		mov    data_c5c5c,%ebx
 		mov    data_a436c,%edx
 		mov    data_a4368,%eax
@@ -22140,7 +22140,7 @@ GLOBAL (chp)	/* 0x2353e */
 		call   func_28d4e
 		call   func_nullsub_1
 		mov    $data_50a7a,%eax
-		mov    $0xa0000,%edx
+		mov    video_buffer,%edx
 		call   func_2dd68
 		call   func_1fdc4
 		mov    $0xa8750,%eax
@@ -22343,7 +22343,14 @@ func_238eb:
 		je     jump_238ff
 		ret
 	jump_238f4:
+#if 1
+    push   %eax
+    mov    video_buffer,%eax
+    movl   %eax,data_c5ea4
+    pop    %eax
+#else
 		movl   $0xa0000,data_c5ea4
+#endif
 		ret
 	jump_238ff:
 		mov    data_c6098,%eax
@@ -28502,7 +28509,7 @@ func_28c49:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_1da10
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		jmp    jump_28871
 
 
@@ -35979,7 +35986,7 @@ func_2f09a:
 		mov    %esi,data_1271b8
 		mov    %esi,data_1271bc
 		call   func_1ddc4
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -37036,7 +37043,7 @@ func_2f797:
 		call   func_28c49
 		call   func_15b40
 		call   func_2e6cf
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %edx,%edx
 		push   $0xc8
@@ -39086,7 +39093,7 @@ func_31c18:
 		mov    0x24(%esp),%edx
 		call   func_1da67
 		mov    data_9f616(,%ebp,4),%ebp
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		mov    0x20(%esp),%eax
 		mov    0x8(%ebp),%ebx
 		call   func_1d874
@@ -39114,7 +39121,7 @@ func_31c18:
 		mov    %eax,0x20(%esp)
 		mov    data_8ff28,%eax
 		sub    $0x8,%eax
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		mov    %eax,0x24(%esp)
 		mov    data_c5ea4,%eax
 		mov    0x24(%esp),%edx
@@ -41555,7 +41562,7 @@ func_33c99:
 		call   func_1d83a
 		jmp    jump_34040
 	jump_3406c:
-		push   $0xa0000
+		push   video_buffer
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
