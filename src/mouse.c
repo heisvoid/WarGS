@@ -112,15 +112,10 @@ mouse_handle_event (const SDL_Event *event)
   mouse_isr_cx = x / video_get_ratio () * 2;
   mouse_isr_dx = y / video_get_ratio ();
 
-  asm volatile ("movw %0,%%ax\n"
-                "movw %1,%%bx\n"
-                "movw %2,%%cx\n"
-                "movw %3,%%dx\n"
-                "call mouse_isr"
+  asm volatile ("call mouse_isr"
                 : /* no output */
-                : "g" (mouse_isr_ax), "g" (mouse_isr_bx),
-                  "g" (mouse_isr_cx), "g" (mouse_isr_dx)
-                : "eax", "ebx", "ecx", "edx");
+                : "a" (mouse_isr_ax), "b" (mouse_isr_bx),
+                  "c" (mouse_isr_cx), "d" (mouse_isr_dx));
 }
 
 void
