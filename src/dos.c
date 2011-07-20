@@ -198,6 +198,7 @@ print_interrupt_info (int n, const struct dos_registers *regs)
               "    edi: 0x%08"PRIx32"\n"
               "    esi: 0x%08"PRIx32"\n"
               "    ebp: 0x%08"PRIx32"\n"
+              "    reserved: 0x%08"PRIx32"\n"
               "    ebx: 0x%08"PRIx32"\n"
               "    edx: 0x%08"PRIx32"\n"
               "    ecx: 0x%08"PRIx32"\n"
@@ -211,9 +212,9 @@ print_interrupt_info (int n, const struct dos_registers *regs)
               "    cs: 0x%04"PRIx16"\n"
               "    sp: 0x%04"PRIx16"\n"
               "    ss: 0x%04"PRIx16"\n",
-              s->edi, s->esi, s->ebp, s->ebx, s->edx, s->ecx, s->eax,
-              s->flags, s->es, s->ds, s->fs, s->gs, s->ip, s->cs, s->sp,
-              s->ss);
+              s->edi, s->esi, s->ebp, s->reserved, s->ebx, s->edx,
+              s->ecx, s->eax, s->flags, s->es, s->ds, s->fs, s->gs,
+              s->ip, s->cs, s->sp, s->ss);
     }
 }
 
