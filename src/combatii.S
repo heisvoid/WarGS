@@ -101161,7 +101161,7 @@ func_5bcaa:
 
 
 /*----------------------------------------------------------------*/
-func_5bced:
+GLOBAL (pit_isr) /* 5bced */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -102035,9 +102035,13 @@ func_5c665:
 		mov    %dx,data_123748
 		mov    %eax,data_123744
 		mov    %cs,%ecx
-		mov    $func_5bced,%ebx
+		mov    $pit_isr,%ebx
 		mov    $0x8,%eax
+#if 1
+    call   w_game_install_pit_isr
+#else
 		call   func__dos_setvect_
+#endif
 		call   func_62590
 		mov    $0x36,%edx
 		mov    $0x43,%eax
@@ -102111,7 +102115,11 @@ func_5c977:
 		mov    data_123748,%cx
 		mov    data_123744,%ebx
 		mov    $0x8,%eax
+#if 1
+    call   w_game_uninstall_pit_isr
+#else
 		call   func__dos_setvect_
+#endif
 		mov    $0x36,%edx
 		mov    $0x43,%eax
 		call   func_outp_
