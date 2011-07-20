@@ -3464,7 +3464,7 @@ func_141b4:
 		mov    %ecx,data_22624(,%eax,4)
 #if 1
     push   %eax
-    call   w_mouse_enable_event_handling
+    call   w_game_install_mouse_isr
     pop    %eax
 #endif
 		add    $0x44,%esp

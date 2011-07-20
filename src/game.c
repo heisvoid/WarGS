@@ -26,6 +26,7 @@ static bool initialized = false;
 static uint32_t fps = DEFAULT_FPS;
 static bool pit_isr_is_installed = false;
 static bool keyboard_isr_is_installed = false;
+static bool mouse_isr_is_installed = false;
 
 void
 game_cfg_setup ()
@@ -68,7 +69,10 @@ handle_events ()
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEMOTION:
-          mouse_handle_event (&event);
+          if (mouse_isr_is_installed)
+            {
+              mouse_handle_event (&event);
+            }
           break;
         default:
           break;
@@ -202,4 +206,15 @@ game_uninstall_keyboard_isr ()
     }
 
   keyboard_isr_is_installed = false;
+}
+
+void
+game_install_mouse_isr ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  mouse_isr_is_installed = true;
 }

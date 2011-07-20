@@ -28194,7 +28194,11 @@ func_288b9:
 		mov    $0x33,%eax
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
+#if 1
+    movw   $0xffff,(%esp)
+#else
 		call   w_dos_int386
+#endif
 		xor    %eax,%eax
 		mov    (%esp),%ax
 		test   %eax,%eax
@@ -28218,7 +28222,11 @@ func_288b9:
 		mov    $0x33,%eax
 		mov    %dx,0x38(%esp)
 		lea    0x1c(%esp),%edx
+#if 1
+    call   w_game_install_mouse_isr
+#else
 		call   w_dos_int386x
+#endif
 		xor    %edx,%edx
 		mov    data_c6067,%dl
 		mov    %edx,%eax
@@ -28555,12 +28563,15 @@ func_28cb8:
 		lea    0x1c(%esp),%edx
 		mov    %bx,0x1c(%esp)
 		mov    %esp,%ebx
+#if 0
 		call   w_dos_int386
+#endif
 		add    $0x38,%esp
 		pop    %ebx
 		ret
 
 
+/* define horizontal cursor range */
 /*----------------------------------------------------------------*/
 func_28d1d:
 /*----------------------------------------------------------------*/
@@ -28570,6 +28581,7 @@ func_28d1d:
 		jmp    jump_28cf9
 
 
+/* define vertical cursor range */
 /*----------------------------------------------------------------*/
 func_28d28:
 /*----------------------------------------------------------------*/

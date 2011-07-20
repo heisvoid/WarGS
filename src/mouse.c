@@ -9,7 +9,6 @@
 #include "video.h"
 
 static bool initialized = false;
-static bool enable_event_handling = false;
 
 /* The followings are returned variables from mouse_get_state () */
 uint16_t mouse_state_button = 0;
@@ -25,8 +24,6 @@ mouse_init ()
     }
 
   SDL_ShowCursor (SDL_DISABLE);
-
-  enable_event_handling = false;
 
   initialized = true;
 }
@@ -48,11 +45,6 @@ mouse_handle_event (const SDL_Event *event)
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
-    }
-
-  if (false == enable_event_handling)
-    {
-      return;
     }
 
   ASSERT (NULL != event);
@@ -129,12 +121,6 @@ mouse_handle_event (const SDL_Event *event)
                 : "g" (mouse_isr_ax), "g" (mouse_isr_bx),
                   "g" (mouse_isr_cx), "g" (mouse_isr_dx)
                 : "eax", "ebx", "ecx", "edx");
-}
-
-void
-mouse_enable_event_handling ()
-{
-  enable_event_handling = true;
 }
 
 void
