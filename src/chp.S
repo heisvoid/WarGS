@@ -16107,14 +16107,32 @@ func_1dc88:
 		mov    %dl,(%esp)
 		mov    $0x3c8,%edx
 		and    $0xff,%eax
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    (%esp),%al
 		mov    $0x3c9,%edx
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		mov    %bl,%al
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		mov    %cl,%al
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+#else
 		out    %al,(%dx)
+#endif
 		add    $0x4,%esp
 		ret
 
