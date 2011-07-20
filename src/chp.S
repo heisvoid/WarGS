@@ -16095,7 +16095,7 @@ func_1dc3b:
 		mov    $0x300,%edx
 		mov    $0x1,%ebx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    %esi,%eax
 		call   func_fclose_
 		pop    %esi
@@ -28384,7 +28384,9 @@ func_28a06:
 GLOBAL (mouse_isr) /* 28ab0 */
 /*----------------------------------------------------------------*/
 		push   %ds
+#if 0
 		call   func___GETDS
+#endif
 		push   %esi
 		push   %edi
 		push   %ebp
@@ -28500,7 +28502,11 @@ GLOBAL (mouse_isr) /* 28ab0 */
 		pop    %edi
 		pop    %esi
 		pop    %ds
+#if 1
+    ret
+#else
 		lret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -28569,7 +28575,18 @@ func_28cb8:
 		lea    0x1c(%esp),%ebx
 		mov    %dx,(%esp)
 		mov    %esp,%edx
+#if 1
+    call   w_mouse_get_state
+
+    movw   mouse_state_button,%ax
+    movw   %ax,0x20(%esp)
+    movw   mouse_state_x,%ax
+    movw   %ax,0x24(%esp)
+    movw   mouse_state_y,%ax
+    movw   %ax,0x28(%esp)
+#else
 		call   w_dos_int386
+#endif
 		mov    0x20(%esp),%ebx
 		test   %bx,%bx
 		je     jump_28ce9
@@ -34571,7 +34588,7 @@ func_2dc95:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    0x4(%esp),%ebx
 		inc    %ebx
 		mov    %bx,0x4(%esp)
@@ -34656,7 +34673,7 @@ func_2dd68:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
@@ -34768,7 +34785,7 @@ func_2de6f:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
@@ -34860,7 +34877,7 @@ func_2df77:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    0x4(%esp),%ebx
 		inc    %ebx
 		mov    %bx,0x4(%esp)
@@ -43146,7 +43163,7 @@ func_356b5:
 		mov    data_137d20(%ecx),%eax
 		mov    $0x1,%edx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    %esi,%eax
 		call   func_fclose_
 		mov    $0x1,%eax
