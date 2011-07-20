@@ -4930,7 +4930,7 @@ func_14700:
 		mov    $0x40,%edx
 		mov    $0x1,%ebx
 		movswl %di,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %edx,%edx
 		mov    %edx,0x4(%esp)
 		mov    $0xc8,%ebp
@@ -5217,7 +5217,7 @@ func_1492e:
 		mov    $0x1,%ebx
 		sar    $0x10,%eax
 		xor    %edi,%edi
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0xc8,%ebp
 	jump_14b0e:
 		xor    %eax,%eax
@@ -15294,7 +15294,7 @@ func_1d26c:
 		sar    $0x10,%ecx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		lea    0xc(%esp),%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
@@ -15308,7 +15308,7 @@ func_1d26c:
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
 		xor    %edi,%edi
-		call   func_lseek_
+		call   w_dos_lseek
 		jmp    jump_1d3ad
 	jump_1d300:
 		mov    0xe(%esp),%esi
@@ -17618,14 +17618,14 @@ func_1f930:
 		xor    %ebx,%ebx
 		mov    $0x80,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %eax,%eax
 		mov    0x4(%esp),%al
 		movswl %ax,%edx
 		mov    $0x1,%ebx
 		shl    $0x2,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esp,%edx
 		mov    $0x4,%ebx
 		mov    %ecx,%eax
@@ -17634,7 +17634,7 @@ func_1f930:
 		mov    %ecx,%eax
 		xor    %ebx,%ebx
 		add    $0x4,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		mov    %edi,%edx
@@ -17646,7 +17646,7 @@ func_1f930:
 		mov    $0x4,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x36b0,%ebx
 		mov    %ecx,%eax
 		mov    %esi,%edx
@@ -17690,14 +17690,14 @@ func_1fa10:
 		xor    %ebx,%ebx
 		mov    $0x80,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %eax,%eax
 		mov    0x4(%esp),%al
 		movswl %ax,%edx
 		mov    $0x1,%ebx
 		shl    $0x2,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esp,%edx
 		mov    $0x4,%ebx
 		mov    %ecx,%eax
@@ -17706,19 +17706,19 @@ func_1fa10:
 		mov    %ecx,%eax
 		xor    %ebx,%ebx
 		add    $0x4,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x4,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2710,%ebx
 		mov    %ecx,%eax
 		mov    %esi,%edx
@@ -34486,7 +34486,7 @@ func_2dc95:
 		je     jump_2dd5f
 		mov    $0xfffffd00,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %si,0x4(%esp)
 	jump_2dccb:
 		mov    %esp,%eax
@@ -34502,7 +34502,7 @@ func_2dc95:
 		mov    $0x80,%edx
 		mov    %ebp,%eax
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_2dcfd:
 		mov    %ebp,%eax
 		call   func_fgetc_
@@ -34571,7 +34571,7 @@ func_2dd68:
 		je     jump_2dd5f
 		mov    $0xfffffd00,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %si,0x4(%esp)
 	jump_2dd9a:
 		mov    %esp,%eax
@@ -34606,7 +34606,7 @@ func_2dd68:
 		mov    $0x80,%edx
 		mov    %ebp,%eax
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_2de14:
 		mov    %ebp,%eax
 		call   func_fgetc_
@@ -34664,7 +34664,7 @@ func_2de6f:
 		je     jump_2dd5f
 		mov    $0xfffffd00,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		xor    %edx,%edx
 		mov    %dx,0x4(%esp)
 	jump_2dea7:
@@ -34700,7 +34700,7 @@ func_2de6f:
 		mov    $0x80,%edx
 		mov    %ebp,%eax
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_2df21:
 		mov    %ebp,%eax
 		call   func_fgetc_
@@ -34756,7 +34756,7 @@ func_2df77:
 		je     jump_2dd5f
 		mov    $0xfffffd00,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		xor    %edx,%edx
 		mov    %dx,0x4(%esp)
 	jump_2dfaf:
@@ -34773,7 +34773,7 @@ func_2df77:
 		mov    $0x80,%edx
 		mov    %ebp,%eax
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_2dfe1:
 		mov    %ebp,%eax
 		call   func_fgetc_
@@ -34839,7 +34839,7 @@ func_2e037:
 		movswl %cx,%ecx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		movswl %di,%edx
 		mov    %edx,%eax
 		shl    $0x4,%eax
@@ -34849,7 +34849,7 @@ func_2e037:
 		add    %eax,%edx
 		mov    %ecx,%eax
 		add    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x88,%ebx
 		mov    %ecx,%eax
 		mov    %esi,%edx
@@ -35025,7 +35025,7 @@ func_2e533:
 		movswl %di,%ecx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		lea    0xc(%esp),%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
@@ -35037,7 +35037,7 @@ func_2e533:
 		mov    %edx,0xc(%esp)
 		mov    %dx,data_9e34c
 		mov    $0x3c,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %ebx,%ebx
 		mov    %bx,0x8(%esp)
 		mov    $0x4,%ebp
@@ -35095,7 +35095,7 @@ func_2e533:
 		mov    %ecx,%eax
 		add    $0x8,%edx
 		inc    %esi
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0x10,%si
 		jl     jump_2e660
 		incw   0x8(%esp)
@@ -42958,19 +42958,19 @@ func_355e1:
 		push   %esi
 		push   %edi
 		mov    %eax,%ecx
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%esi
 		mov    %ecx,%eax
 		xor    %edx,%edx
 		mov    $0x2,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edi
 		mov    %ecx,%eax
 		mov    %esi,%edx
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    %edi,%eax
 		jmp    jump_3478f
 
@@ -43022,7 +43022,7 @@ func_356b5:
 		mov    %esi,%eax
 		xor    %edx,%edx
 		xor    %ebx,%ebx
-		call   func_fseek_
+		call   w_dos_fseek
 		mov    data_137d1c(%ecx),%ebx
 		mov    data_137d20(%ecx),%eax
 		mov    $0x1,%edx
@@ -44976,7 +44976,7 @@ func___doopen_:	/* 0x39495 */
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_fseek_
+		call   w_dos_fseek
 	jump_39551:
 		mov    %ecx,%eax
 		call   func___chktty_
@@ -45139,13 +45139,13 @@ func___doclose_:	/* 0x396c7 */
 		mov    %eax,%esi
 	jump_396f2:
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edx
 		cmp    $0xffffffff,%eax
 		je     jump_3970a
 		mov    0x10(%ecx),%eax
 		xor    %ebx,%ebx
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_3970a:
 		test   %edi,%edi
 		je     jump_39718
@@ -45832,19 +45832,19 @@ func_filelength_:	/* 0x39cd0 */
 		mov    %eax,%ecx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%esi
 		cmp    $0xffffffff,%eax
 		je     jump_39d07
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%edi
 		mov    %esi,%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %edi,%eax
 	jump_39d07:
 		pop    %edi
@@ -46040,7 +46040,7 @@ func_read_:	/* 0x39df0 */
 		sub    %ebp,%edx
 		mov    $0x1,%ebx
 		inc    %edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esi,%eax
 		jmp    jump_39efb
 	jump_39ec0:
@@ -47632,7 +47632,7 @@ func_fseek_:	/* 0x3abfe */
 		andb   $0xeb,0xc(%ecx)
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_3acf4
 		pop    %edi
@@ -47660,7 +47660,7 @@ func_fseek_:	/* 0x3abfe */
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
 		sub    %edi,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_3acf4
 		pop    %edi
@@ -47681,7 +47681,7 @@ func_fseek_:	/* 0x3abfe */
 		je     jump_3acf4
 		mov    %esi,%edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		jne    jump_3acf4
 		pop    %edi
@@ -47697,7 +47697,7 @@ func_fseek_:	/* 0x3abfe */
 		mov    %dl,0xc(%ecx)
 		mov    %esi,%edx
 		movl   $0x0,0x4(%ecx)
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0xffffffff,%eax
 		je     jump_3acf6
 	jump_3acf4:
@@ -48251,7 +48251,7 @@ func___flush_:	/* 0x3b23c */
 		mov    $0x1,%ebx
 		neg    %edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_3b2d8:
 		cmp    $0xffffffff,%eax
 		jne    jump_3b2e8
@@ -52532,7 +52532,7 @@ func_tell_:	/* 0x3dca2 */
 		push   %edx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		pop    %edx
 		pop    %ebx
 		ret
