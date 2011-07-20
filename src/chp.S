@@ -22023,6 +22023,10 @@ GLOBAL (chp)	/* 0x2353e */
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
+#if 1
+    cmp    $2,%bx
+    je     jump_235b4
+#endif
 		mov    $data_80302,%edi
 		mov    0x8(%ebp),%esi
 		push   %edi
@@ -22044,6 +22048,9 @@ GLOBAL (chp)	/* 0x2353e */
 		jne    jump_23597
 	jump_235b3:
 		pop    %edi
+#if 1
+  jump_235b4:
+#endif
 		mov    $data_50a09,%esi
 		push   %edi
 		sub    %ecx,%ecx
