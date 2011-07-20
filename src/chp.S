@@ -1192,7 +1192,7 @@ func_112e0:
 		mov    %ebx,%ebp
 		mov    %edx,%eax
 		shl    $0x3,%ebp
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		je     jump_1138d
 		cmp    $0x2e,%eax
@@ -1223,7 +1223,7 @@ func_112e0:
 		push   %edx
 		add    $0x8,%ecx
 		add    $0x8,%edi
-		call   func_fscanf_
+		call   w_fscanf
 		add    $0x18,%esp
 		cmp    $0x64,%ebx
 		jl     jump_11346
@@ -1258,7 +1258,7 @@ func_112e0:
 		mov    %ebx,%ebp
 		mov    %edx,%eax
 		shl    $0x3,%ebp
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		je     jump_11467
 		cmp    $0x2e,%eax
@@ -1289,7 +1289,7 @@ func_112e0:
 		push   %edx
 		add    $0x8,%ecx
 		add    $0x8,%edi
-		call   func_fscanf_
+		call   w_fscanf
 		add    $0x18,%esp
 		cmp    $0x64,%ebx
 		jl     jump_11420
@@ -1322,7 +1322,7 @@ func_112e0:
 		mov    %ebx,%ebp
 		mov    %edx,%eax
 		shl    $0x3,%ebp
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		je     jump_11537
 		cmp    $0x2e,%eax
@@ -1353,7 +1353,7 @@ func_112e0:
 		push   %edx
 		add    $0x8,%edi
 		add    $0x8,%esi
-		call   func_fscanf_
+		call   w_fscanf
 		add    $0x18,%esp
 		cmp    $0x64,%ebx
 		jl     jump_114f0
@@ -15844,6 +15844,7 @@ func_1da88:
 		mov    video_buffer,%edi
 		mov    %eax,%esi
 		mov    $0x3da,%dx
+#if 0
 	jump_1da98:
 		inc    %ecx
 		cmp    data_c5c58,%ecx
@@ -15852,12 +15853,16 @@ func_1da88:
 		test   $0x8,%al
 		je     jump_1da98
 	jump_1daa6:
+#endif
 		mov    $0xc8,%ebx
 	jump_1daab:
 		mov    $0x50,%ecx
 		rep movsl %ds:(%esi),%es:(%edi)
 		dec    %ebx
 		jne    jump_1daab
+#if 1
+    call   w_game_update
+#endif
 		pop    %ecx
 		pop    %ebx
 		pop    %edx
@@ -30846,12 +30851,12 @@ func_2a965:
 		jmp    jump_2a9df
 	jump_2a9b4:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		jne    jump_2a9b4
 	jump_2a9c0:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		mov    0x8(%esp),%eax
@@ -30869,12 +30874,12 @@ func_2a965:
 		jl     jump_2a9b4
 	jump_2a9e4:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		jne    jump_2a9e4
 	jump_2a9f0:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		lea    (%ebx,%ebp,1),%eax
@@ -30887,7 +30892,7 @@ func_2a965:
 		jne    jump_2aa2e
 	jump_2aa12:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		cmp    $0x20,%eax
@@ -34578,7 +34583,7 @@ func_2dc95:
 		call   w_dos_fseek
 	jump_2dcfd:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -34588,7 +34593,7 @@ func_2dc95:
 		jne    jump_2dd3f
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
@@ -34700,7 +34705,7 @@ func_2dd68:
 		call   w_dos_fseek
 	jump_2de14:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -34710,7 +34715,7 @@ func_2dd68:
 		jne    jump_2de56
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
@@ -34794,7 +34799,7 @@ func_2de6f:
 		call   w_dos_fseek
 	jump_2df21:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -34804,7 +34809,7 @@ func_2de6f:
 		jne    jump_2df60
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
@@ -34867,7 +34872,7 @@ func_2df77:
 		call   w_dos_fseek
 	jump_2dfe1:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -34877,7 +34882,7 @@ func_2df77:
 		jne    jump_2e020
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
@@ -41873,7 +41878,11 @@ func_343ad:
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -41997,22 +42006,37 @@ GLOBAL (pit_isr) /* 34818 */
 		mov    %esp,%ebp
 		sub    $0x4,%esp
 		cld
+#if 1
+    xor    %eax,%eax
+#endif
+#if 0
 		call   func___GETDS
+#endif
 		call   disable_interrupts
+#if 0
 		out    %al,$0xc
+#endif
 		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 	jump_34843:
 		mov    %ax,%cx
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 		sub    %ax,%cx
 		cmp    $0x10,%cx
@@ -42653,12 +42677,16 @@ GLOBAL (pit_isr) /* 34818 */
 		jbe    jump_350ee
 		xor    %ebx,%ebx
 		mov    %ebx,data_138480
+#if 0
 		pushf
 		lcall  *data_1384ac
+#endif
 	jump_350ee:
 		mov    $0x20,%eax
 		mov    %eax,%edx
+#if 0
 		call   func_outp_
+#endif
 		call   enable_interrupts
 		mov    %ebp,%esp
 		jmp    jump_343e9
@@ -45487,7 +45515,7 @@ func_cget_file_:	/* 0x398e2 */
 		jne    jump_3990e
 	jump_39904:
 		mov    0x8(%edx),%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		jmp    jump_3991f
 	jump_3990e:
 		decl   0x4(%eax)
