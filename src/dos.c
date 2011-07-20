@@ -377,3 +377,15 @@ dos_strstr (const char *haystack, const char *needle)
 
   return strstr (haystack, needle);
 }
+
+int
+dos_vsprintf (char *buf, const char *format, va_list ap)
+{
+  ASSERT (NULL != buf);
+  ASSERT (NULL != format);
+
+  const int ret = vsprintf (buf, format, ap);
+  ASSERT (0 <= ret);
+
+  return ret;
+}
