@@ -7285,7 +7285,11 @@ func_196ea:
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -7399,7 +7403,7 @@ func_19b02:
 
 
 /*----------------------------------------------------------------*/
-func_19b55:
+GLOBAL (pit_isr) /* 19b55 */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -7409,22 +7413,40 @@ func_19b55:
 		mov    %esp,%ebp
 		sub    $0x4,%esp
 		cld
+#if 1
+    /* I do not know value of %eax in pit_isr in DOS.
+     * Just set zero to %eax
+     */
+    xor    %eax,%eax
+#endif
+#if 0
 		call   func___GETDS
+#endif
 		call   disable_interrupts
+#if 0
 		out    %al,$0xc
+#endif
 		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 	jump_19b80:
 		mov    %ax,%cx
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 		sub    %ax,%cx
 		cmp    $0x10,%cx
@@ -8065,12 +8087,16 @@ func_19b55:
 		jbe    jump_1a42b
 		xor    %ebx,%ebx
 		mov    %ebx,data_5428c
+#if 0
 		pushf
 		lcall  *data_542b8
+#endif
 	jump_1a42b:
 		mov    $0x20,%eax
 		mov    %eax,%edx
-		call   func_outp_
+#if 0
+		call   func_outp_ /* end of interrupt */
+#endif
 		call   enable_interrupts
 		mov    %ebp,%esp
 		jmp    jump_19726
@@ -8393,8 +8419,10 @@ func_1a55f:
 		mov    %eax,data_542b8
 		mov    $0x8,%eax
 		mov    %cs,%ecx
-		mov    $func_19b55,%ebx
-#if 0
+		mov    $pit_isr,%ebx
+#if 1
+    call   w_game_install_pit_isr
+#else
 		call   func__dos_setvect_
 #endif
 		call   disable_interrupts
@@ -8485,7 +8513,9 @@ func_1a875:
 		mov    data_542bc,%cx
 		mov    data_542b8,%ebx
 		mov    $0x8,%eax
-#if 0
+#if 1
+    call   w_game_uninstall_pit_isr
+#else
 		call   func__dos_setvect_
 #endif
 		mov    $0x43,%eax
