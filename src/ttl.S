@@ -765,7 +765,7 @@ func_123e3:
 		mov    %edi,%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    %edi,%eax
