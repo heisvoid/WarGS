@@ -24,6 +24,7 @@ enum
 
 static bool initialized = false;
 static uint32_t fps = DEFAULT_FPS;
+static bool pit_isr_is_installed = false;
 
 void
 game_cfg_setup ()
@@ -77,6 +78,11 @@ game_update ()
 
   static uint32_t last_frame_ticks = 0;
 
+  if (pit_isr_is_installed)
+    {
+      asm volatile ("call pit_isr");
+    }
+
   handle_events ();
 
   if (0 < last_frame_ticks)
@@ -123,6 +129,8 @@ game_init ()
 
   mouse_init ();
 
+  pit_isr_is_installed = false;
+
   initialized = true;
 }
 
@@ -142,4 +150,26 @@ game_quit ()
   conf_quit ();
 
   initialized = false;
+}
+
+void
+game_install_pit_isr ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  pit_isr_is_installed = true;
+}
+
+void
+game_uninstall_pit_isr ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  pit_isr_is_installed = false;
 }
