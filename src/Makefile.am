@@ -28,9 +28,6 @@ wargs_combatii_SOURCES = $(COMMON_SRCS) \
 												 combatii.S \
 												 wargs-combatii.c
 
-wargs_ttl_CFLAGS = -DTTL
-wargs_combatii_CFLAGS = -DCOMBATII
-
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 
 wrappers.S: $(top_srcdir)/tool/mkwrappers.conf

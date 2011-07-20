@@ -685,7 +685,7 @@ func_1239e:
 		call   func_puts_
 		jmp    jump_123d8
 	jump_123c7:
-		mov    $game_cfg,%edx
+		mov    $game_cfg_speed,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
 		call   w_dos_read
@@ -15439,14 +15439,16 @@ data_22600:
 		.fill   0x4
 data_22604:
 		.fill   0x4
-GLOBAL (game_cfg) /* 22608 */
-		.ascii  "\x00\x00"
+GLOBAL (game_cfg_speed) /* 22608 */
+		.ascii  "\x00\x01"
 game_cfg_sound: /* 2260a */
-		.ascii  "\x00\x00"
+		.ascii  "\x01\x05"
 game_cfg_soundblaster_adr: /* 2260c */
-		.ascii  "\x00\x00"
+		.ascii  "\x20\x02"
 game_cfg_soundblaster_irq: /* 2260e */
-		.fill   0xa
+    .word   0x0007
+    .word   0x0001
+		.fill   0x6
 data_22618:
 		.fill   0x4
 data_2261c:

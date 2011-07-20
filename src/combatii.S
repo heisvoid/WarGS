@@ -1812,7 +1812,7 @@ func_1124a:
 		mov    data_7001e,%si
 		mov    data_70020,%di
 		call   func_10d9a
-		cmpw   $0x0,data_fdaea
+		cmpw   $0x0,game_cfg_speed
 		jne    jump_11296
 		mov    %ecx,%eax
 		sub    $0x6,%eax
@@ -83106,14 +83106,14 @@ func_4dbde:
 		inc    %eax
 		cmp    $0x3,%ax
 		jl     jump_4dbe4
-		cmpw   $0x0,data_fdae8
+		cmpw   $0x0,game_cfg_music
 		jne    jump_4dc0b
 		movw   $0x3,data_fd8c8
 		jmp    jump_4dc14
 	jump_4dc0b:
 		movw   $0x5,data_fd8c8
 	jump_4dc14:
-		cmpw   $0x0,data_fdae6
+		cmpw   $0x0,game_cfg_sound
 		jne    jump_4dc29
 		movw   $0x4,data_fd8ca
 		jmp    jump_4dc32
@@ -83121,7 +83121,7 @@ func_4dbde:
 		movw   $0x6,data_fd8ca
 	jump_4dc32:
 		mov    $0x7,%edx
-		mov    data_fdaea,%bx
+		mov    game_cfg_speed,%bx
 		mov    %dx,data_fd8cc
 		test   %bx,%bx
 		setne  %al
@@ -83658,10 +83658,10 @@ func_4e326:
 /*----------------------------------------------------------------*/
 func_4e34d:
 /*----------------------------------------------------------------*/
-		cmpw   $0x0,data_fdae8
+		cmpw   $0x0,game_cfg_music
 		sete   %al
 		xor    %ch,%ah
-		mov    %ax,data_fdae8
+		mov    %ax,game_cfg_music
 		cmp    $0x1,%ax
 		jne    jump_4e370
 		call   func_4f369
@@ -83674,10 +83674,10 @@ func_4e34d:
 /*----------------------------------------------------------------*/
 func_4e37a:
 /*----------------------------------------------------------------*/
-		cmpw   $0x0,data_fdae6
+		cmpw   $0x0,game_cfg_sound
 		sete   %al
 		xor    %ch,%ah
-		mov    %ax,data_fdae6
+		mov    %ax,game_cfg_sound
 		cmp    $0x1,%ax
 		jne    jump_4e39a
 		call   func_4f427
@@ -83697,10 +83697,10 @@ func_4e3a1:
 /*----------------------------------------------------------------*/
 func_4e3a8:
 /*----------------------------------------------------------------*/
-		cmpw   $0x0,data_fdaea
+		cmpw   $0x0,game_cfg_speed
 		sete   %al
 		xor    %ch,%ah
-		mov    %ax,data_fdaea
+		mov    %ax,game_cfg_speed
 		test   %ax,%ax
 		je     jump_4e3cc
 		mov    $0x8,%eax
@@ -84998,7 +84998,7 @@ func_4f369:
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %edx
-		cmpw   $0x1,data_fdae8
+		cmpw   $0x1,game_cfg_music
 		jne    jump_4f3ab
 		cmpb   $0x12,data_ff0b7
 		jge    jump_4f3ab
@@ -85022,7 +85022,7 @@ func_4f369:
 /*----------------------------------------------------------------*/
 func_4f3ae:
 /*----------------------------------------------------------------*/
-		cmpw   $0x0,data_fdae8
+		cmpw   $0x0,game_cfg_music
 		jne    jump_4f3ad
 		jmp    func_5af1b
 
@@ -85085,7 +85085,7 @@ func_4f427:
 		push   %edx
 		cmpb   $0x0,data_ff0b8
 		jle    jump_4f44d
-		cmpw   $0x1,data_fdae6
+		cmpw   $0x1,game_cfg_sound
 		jne    jump_4f44d
 		mov    $0x3e7,%ebx
 		mov    $0xa,%eax
@@ -85167,7 +85167,7 @@ func_4f4cd:
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %edx
-		cmpw   $0x1,data_fdae6
+		cmpw   $0x1,game_cfg_sound
 		jne    jump_4f4ec
 		mov    $0x1,%ebx
 		movswl %ax,%edx
@@ -85913,12 +85913,19 @@ func_4fe74:
 		mov    $0x200,%edx
 		mov    $data_77fa0,%eax
 		mov    $0x1,%ebx
+#if 0
 		call   func_4976f
-		mov    $data_fdaea,%edx
+#endif
+#if 1
+    call   w_game_cfg_setup
+#endif
+		mov    $game_cfg_speed,%edx
 		mov    %eax,%esi
 		cwtl
-		call   func_read_
-		cmpw   $0x0,data_fdaea
+#if 0
+		call   func_read_ /* read speed in game.cfg */
+#endif
+		cmpw   $0x0,game_cfg_speed
 		jne    jump_4fead
 		mov    $0x4,%eax
 		jmp    jump_4feb2
@@ -85928,18 +85935,26 @@ func_4fe74:
 		call   func_10d9a
 		mov    $0x1,%ebx
 		movswl %si,%ecx
-		mov    $data_fdae8,%edx
+		mov    $game_cfg_music,%edx
 		mov    %ecx,%eax
-		call   func_read_
+#if 0
+		call   func_read_ /* read music in game.cfg */
+#endif
 		mov    $0x1,%ebx
-		mov    $data_fdae6,%edx
+		mov    $game_cfg_sound,%edx
 		mov    %ecx,%eax
-		call   func_read_
+#if 0
+		call   func_read_ /* read sound in game.cfg */
+#endif
 		mov    $0x1,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
+#if 1
+    mov    $5,%ebx /* read the unknown in game.cfg but 5 is forced */
+#else
 		call   func_read_
 		mov    (%esp),%ebx
+#endif
 		cmp    $0x2,%bx
 		jl     jump_4fef9
 		cmp    $0x1e,%bx
@@ -85954,17 +85969,41 @@ func_4fe74:
 		movswl %si,%ecx
 		call   func_1a116
 		mov    %ecx,%eax
+#if 1
+    /* force sound-blaster ADR 220 */
+    push   %eax
+    mov    $220,%eax
+    mov    %eax,0x4(%esp)
+    pop    %eax
+#else
 		call   func_read_
+#endif
 		cmpw   $0x0,0x4(%esp)
 		je     jump_4ff66
 		mov    $0x2,%ebx
 		lea    0xc(%esp),%edx
 		mov    %ecx,%eax
+#if 1
+    /* force sound-blaster IRQ 7 */
+    push   %eax
+    mov    $7,%eax
+    mov    %eax,0xc(%esp)
+    pop    %eax
+#else
 		call   func_read_
+#endif
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
 		mov    %ecx,%eax
+#if 1
+    /* force sound-blaster DMA 1 */
+    push   %eax
+    mov    $1,%eax
+    mov    %eax,0x8(%esp)
+    pop    %eax
+#else
 		call   func_read_
+#endif
 		mov    0x6(%esp),%eax
 		mov    0xa(%esp),%ecx
 		mov    0x2(%esp),%ebx
@@ -85984,7 +86023,9 @@ func_4fe74:
 	jump_4ff79:
 		call   func_5c665
 		movswl %si,%eax
+#if 0
 		call   func_j___close_
+#endif
 		add    $0x10,%esp
 		pop    %esi
 		pop    %edx
@@ -86005,15 +86046,15 @@ func_4ff8e:
 		mov    $0x1,%ebx
 		call   func_4976f
 		movswl %ax,%ecx
-		mov    $data_fdaea,%edx
+		mov    $game_cfg_speed,%edx
 		mov    %ecx,%eax
 		call   func_write_
 		mov    $0x1,%ebx
-		mov    $data_fdae8,%edx
+		mov    $game_cfg_music,%edx
 		mov    %ecx,%eax
 		call   func_write_
 		mov    $0x1,%ebx
-		mov    $data_fdae6,%edx
+		mov    $game_cfg_sound,%edx
 		mov    %ecx,%eax
 		call   func_write_
 		call   func_1a11c
@@ -127530,11 +127571,11 @@ data_fda12:
 		.fill   0x6a
 data_fda7c:
 		.fill   0x6a
-data_fdae6:
-		.ascii  "\x00\x00"
-data_fdae8:
-		.ascii  "\x00\x00"
-data_fdaea:
+game_cfg_sound: /* fdae6 */
+		.ascii  "\x01\x00"
+game_cfg_music: /* fdae8 */
+		.ascii  "\x01\x00"
+GLOBAL (game_cfg_speed) /* fdaea */
 		.ascii  "\x00\x00"
 data_fdaec:
 		.ascii  "\x00\x00"
