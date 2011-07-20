@@ -74,7 +74,6 @@ dos_read (int fd, void *buf, unsigned int len)
 {
   ASSERT (2 < fd);
   ASSERT (NULL != buf);
-  ASSERT (0 < len);
 
   ssize_t read_len = 0;
   while (read_len < len)
