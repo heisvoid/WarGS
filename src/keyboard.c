@@ -2,8 +2,6 @@
 
 #include "keyboard.h"
 
-#include <SDL.h>
-
 #include "assert.h"
 
 static bool initialized = false;
@@ -44,4 +42,31 @@ keyboard_esc_is_pressed ()
   ASSERT (NULL != key_state);
 
   return key_state[SDLK_ESCAPE];
+}
+
+static uint8_t
+get_scan_code (SDLKey sym)
+{
+  return 0x00;
+}
+
+void
+keyboard_handle_event (const SDL_KeyboardEvent *event)
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  ASSERT (NULL != event);
+
+  uint8_t scan_code = get_scan_code (event->keysym.sym);
+  if (SDL_KEYUP == event->type)
+    {
+      scan_code += 0x80;
+    }
+
+#ifdef CHP
+  asm volatile ("call keyboard_isr" : : "a" (scan_code));
+#endif
 }

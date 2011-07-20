@@ -33,6 +33,8 @@ wargs_chp_SOURCES = $(COMMON_SRCS) \
 										chp.S \
 										wargs-chp.c
 
+wargs_chp_CFLAGS = -DCHP
+
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 
 wrappers.S: $(top_srcdir)/tool/mkwrappers.conf

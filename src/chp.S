@@ -4243,7 +4243,7 @@ func_13c31:
 		call   func_filelength_
 		mov    %eax,%ebx
 		mov    %eax,%ebp
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,%edi
 		mov    %ecx,%eax
@@ -14130,8 +14130,14 @@ func_1c433:
 		jmp    jump_18380
 
 
+/* reference
+ * http://www.computer-engineering.org/ps2keyboard/
+ * http://www.philipstorr.id.au/pcbook/book3/keyboard.htm
+ * http://www.philipstorr.id.au/pcbook/book2/lowmem.htm
+ * http://forum.osdev.org/viewtopic.php?f=1&t=8293
+ */
 /*----------------------------------------------------------------*/
-func_1c509:
+GLOBAL (keyboard_isr) /* 1c509 */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -14140,10 +14146,12 @@ func_1c509:
 		push   %gs
 		mov    %esp,%ebp
 		cld
+#if 0
 		call   func___GETDS
 		mov    $0x60,%edx
 		sub    %eax,%eax
-		in     (%dx),%al
+		in     (%dx),%al /* read keyboard input buffer */
+#endif
 		mov    %al,data_9c71e
 		cmp    $0x7f,%al
 		jb     jump_1c539
@@ -14156,12 +14164,14 @@ func_1c509:
 		movl   $0x1,data_9c518(,%eax,4)
 	jump_1c549:
 		cli
+#if 0
 		mov    data_5ae20,%eax
 		mov    data_5ae24,%edx
 		mov    (%eax),%ax
 		mov    %ax,(%edx)
 		pushf
 		lcall  *data_9c718
+#endif
 		sti
 		cld
 		pop    %gs
@@ -14169,7 +14179,11 @@ func_1c509:
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -14178,16 +14192,26 @@ func_1c56c:
 		push   %ebx
 		push   %ecx
 		push   %edx
+#if 0
 		cli
+#endif
 		mov    $0x9,%eax
-		mov    $func_1c509,%ebx
+		mov    $keyboard_isr,%ebx
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %cs,%ecx
 		mov    %eax,data_9c718
 		mov    $0x9,%eax
 		mov    %dx,data_9c71c
+#if 1
+    call   w_game_install_keyboard_isr
+#else
 		call   func__dos_setvect_
+#endif
+#if 0
 		sti
+#endif
 		cld
 		pop    %edx
 		pop    %ecx
@@ -14200,12 +14224,20 @@ func_1c59d:
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
+#if 0
 		cli
+#endif
 		mov    $0x9,%eax
 		mov    data_9c71c,%cx
 		mov    data_9c718,%ebx
+#if 1
+    call   w_game_uninstall_keyboard_isr
+#else
 		call   func__dos_setvect_
+#endif
+#if 0
 		sti
+#endif
 		cld
 		pop    %ecx
 		pop    %ebx
@@ -15317,7 +15349,7 @@ func_1d26c:
 		mov    $0xc,%eax
 		mov    0x6(%esp),%ecx
 		mov    $0x4,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		sar    $0x10,%ecx
 		mov    %eax,data_9c722(%esi,%edx,4)
 		mov    %esp,%edx
@@ -15327,7 +15359,7 @@ func_1d26c:
 		mov    (%esp),%eax
 		lea    0x4(%esp),%edx
 		mov    $0x2,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esi)
 		mov    %ecx,%eax
 		call   func_read_
@@ -15474,16 +15506,20 @@ func_1d7c9:
 /*----------------------------------------------------------------*/
 func_1d82c:
 /*----------------------------------------------------------------*/
+#if 0
 		mov    $0x13,%ax
 		int    $0x10
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
 func_1d833:
 /*----------------------------------------------------------------*/
+#if 0
 		mov    $0x3,%ax
 		int    $0x10
+#endif
 		ret
 
 
@@ -22108,7 +22144,7 @@ GLOBAL (chp)	/* 0x2353e */
 		call   func_2dd68
 		call   func_1fdc4
 		mov    $0xa8750,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_c5c5c
 		mov    $0x1,%eax
 		call   func_238eb
@@ -28540,7 +28576,7 @@ func_28d28:
 func_28d4e:
 /*----------------------------------------------------------------*/
 		mov    $0x1f400,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_c6098
 		test   %eax,%eax
 		jne    jump_28d7a
@@ -35045,7 +35081,7 @@ func_2e533:
 	jump_2e5c3:
 		mov    $0xc,%eax
 		mov    %esp,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		movswl %di,%ecx
 		mov    %ebp,%ebx
 		mov    %eax,data_9e34e(,%esi,4)
@@ -35055,7 +35091,7 @@ func_2e533:
 		mov    (%esp),%eax
 		lea    0x4(%esp),%edx
 		mov    $0x2,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esi)
 		mov    %ecx,%eax
 		call   func_read_
@@ -43015,7 +43051,7 @@ func_356b5:
 		call   func_355e1
 		shl    $0x3,%ecx
 		mov    %eax,data_137d1c(%ecx)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_137d20(%ecx)
 		test   %eax,%eax
 		je     jump_356c9
@@ -44645,7 +44681,7 @@ func_3903c:
 /*----------------------------------------------------------------*/
 		cwtl
 		shl    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_13952c
 		mov    %eax,data_139528
 		ret
@@ -48064,7 +48100,7 @@ func___allocfp_:	/* 0x3b105 */
 		testb  $0x3,0xc(%ecx)
 		jne    jump_3b151
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%esi
 		test   %eax,%eax
 		je     jump_3b19b
@@ -48077,7 +48113,7 @@ func___allocfp_:	/* 0x3b105 */
 		jb     jump_3b134
 		mov    $0x22,%eax
 		mov    $0x4003,%edi
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ecx
 		mov    %eax,%esi
 		test   %eax,%eax
@@ -48329,7 +48365,7 @@ func___ioalloc_:	/* 0x3b332 */
 		movl   $0x1000,0x14(%edx)
 	jump_3b367:
 		mov    0x14(%edx),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%edx)
 		test   %eax,%eax
 		jne    jump_3b396
@@ -52568,12 +52604,12 @@ func___InitFiles_:	/* 0x3dcbf */
 		jmp    jump_3dd26
 	jump_3dce3:
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_3dd12
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_3dd12

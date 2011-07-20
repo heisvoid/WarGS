@@ -25,6 +25,7 @@ enum
 static bool initialized = false;
 static uint32_t fps = DEFAULT_FPS;
 static bool pit_isr_is_installed = false;
+static bool keyboard_isr_is_installed = false;
 
 void
 game_cfg_setup ()
@@ -57,6 +58,13 @@ handle_events ()
     {
       switch (event.type)
         {
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+          if (keyboard_isr_is_installed)
+            {
+              keyboard_handle_event (&event.key);
+            }
+          break;
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP:
         case SDL_MOUSEMOTION:
@@ -172,4 +180,26 @@ game_uninstall_pit_isr ()
     }
 
   pit_isr_is_installed = false;
+}
+
+void
+game_install_keyboard_isr ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  keyboard_isr_is_installed = true;
+}
+
+void
+game_uninstall_keyboard_isr ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  keyboard_isr_is_installed = false;
 }
