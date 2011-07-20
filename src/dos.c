@@ -329,3 +329,18 @@ dos_lseek (int fd, off_t offset, int whence)
 
   return ret;
 }
+
+int
+dos_creat (const char *path, int mode)
+{
+  ASSERT (NULL != path);
+
+  const char * const native_path = filepath_transform (path);
+
+  const int fd = creat (native_path, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+  ASSERT (-1 != fd);
+
+  free ((void *) native_path);
+
+  return fd;
+}
