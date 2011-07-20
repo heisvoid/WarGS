@@ -22230,7 +22230,7 @@ GLOBAL (chp)	/* 0x2353e */
 		call   w_dos_close
 		mov    $data_50a9e,%eax
 		mov    $data_509fd,%esi
-		call   func_unlink_
+		call   w_dos_unlink
 		call   func_15db7
 		xor    %eax,%eax
 		mov    %esp,%edx
@@ -22326,7 +22326,7 @@ GLOBAL (chp)	/* 0x2353e */
 		call   func_2233e
 	jump_2388a:
 		mov    $data_50aa7,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    0x8(%esp),%eax
 		call   func_fclose_
 		mov    $0x1,%eax
@@ -48394,7 +48394,7 @@ func___close_:	/* 0x3b2fb */
 /*----------------------------------------------------------------*/
 func_j_unlink_:	/* 0x3b32d */
 /*----------------------------------------------------------------*/
-		jmp    func_unlink_
+		jmp    w_dos_unlink
 
 
 /*----------------------------------------------------------------*/
