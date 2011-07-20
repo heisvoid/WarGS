@@ -75088,7 +75088,7 @@ func_48132:
 		push   $data_77d44
 		mov    $0x42,%edx
 		xor    %ebx,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %ax,0x14(%esp)
@@ -76732,7 +76732,7 @@ func_4976f:
 		mov    %eax,%ebx
 		push   %edx
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%ecx
 		cwtl
 		add    $0x8,%esp
@@ -76890,7 +76890,7 @@ func_4981d:
 		pop    %edi
 		push   %ebx
 		push   %edi
-		call   func_open_
+		call   w_dos_open
 		movswl %ax,%ecx
 		add    $0x8,%esp
 		cmp    $0xffffffff,%ecx
@@ -85205,7 +85205,7 @@ func_4f4ef:
 		push   %eax
 		mov    $0x10,%ebx
 		mov    $data_fdf68,%edx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %eax,%edi
 		cwtl
@@ -85444,7 +85444,7 @@ func_4f85c:
 		push   $0x200
 		push   $data_77f75
 		mov    $0x10,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    $data_fdf68,%edx
 		mov    %ax,0x1c(%esp)
@@ -85756,7 +85756,7 @@ func_4fcd9:
 		push   $0x200
 		push   $data_77f75
 		mov    $0x10,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %esp,%edx
@@ -85851,7 +85851,7 @@ func_4fdd1:
 		call   func_j___close_
 		push   $0x101
 		push   $data_77f8e
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %esi,%edi
 		mov    %eax,%edx
@@ -85886,7 +85886,7 @@ func_4fe28:
 		push   $0x101
 		push   $data_77f90
 		mov    $0x2,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %esp,%edx
@@ -94224,7 +94224,7 @@ GLOBAL (combatii)	/* 0x55f8b */
 		jne    jump_55ffb
 		push   $0x200
 		push   $data_78420
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%edx
 		cwtl
 		add    $0x8,%esp
@@ -102150,7 +102150,7 @@ func_5ca62:
 	jump_5ca7d:
 		push   $0x200
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %eax,%esi
 		mov    %edx,%ecx
@@ -103223,7 +103223,7 @@ func_5daa8:
 		push   $0x200
 		push   %eax
 		mov    $0x1400,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    $data_1238f8,%edx
@@ -103242,7 +103242,7 @@ func_5daa8:
 		push   $0x200
 		push   %esi
 		mov    $0x1000,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    $data_1265f8,%edx
@@ -105343,7 +105343,7 @@ func_5f874:
 		call   func_5e940
 		push   $0x200
 		push   $data_78804
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %eax,%esi
 		cmp    $0xffffffff,%eax
@@ -106185,7 +106185,7 @@ func_6053b:
 		push   %ecx
 		push   $0x200
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    $0x300,%ebx
@@ -108501,7 +108501,7 @@ func_creat_:	/* 0x62221 */
 		push   %edx
 		push   $0x62
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0xc,%esp
 		ret
 
