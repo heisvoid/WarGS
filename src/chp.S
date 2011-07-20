@@ -34618,25 +34618,43 @@ func_2dd68:
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
+#if 1
+    movb   %dl,palette_index
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    (%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
+#if 1
+    movb   %dl,palette_r
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    0x1(%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
 		mov    0x4(%esp),%ebx
+#if 1
+    movb   %dl,palette_g
+#else
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		inc    %ebx
 		mov    0x2(%esp),%dl
 		mov    $0x3c9,%eax
 		sar    $0x2,%edx
 		mov    %bx,0x4(%esp)
+#if 1
+    movb   %dl,palette_b
+
+    call   w_video_set_palette
+#else
 		call   func_outp_
+#endif
 		cmp    $0x100,%bx
 		jb     jump_2dd9a
 		mov    $0x80,%edx
