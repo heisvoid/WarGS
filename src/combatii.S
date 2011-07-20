@@ -2590,7 +2590,7 @@ func_119b6:
 		call   func_getch_
 		call   func_55ebc
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 	jump_11ab8:
 		movswl %dx,%eax
 		mov    data_e4fc8(%eax),%cl
@@ -76670,7 +76670,7 @@ func_496e0:
 		mov    $0x7,%eax
 		call   func_putch_
 		mov    $0x1,%eax
-		jmp    func_exit_
+		jmp    w_exit
 
 
 /*----------------------------------------------------------------*/
@@ -77038,7 +77038,7 @@ func_49916:
 		mov    %ebp,%eax
 		call   func_496e0
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 	jump_499b6:
 		mov    %ecx,%eax
 		pop    %ebp
@@ -83720,7 +83720,7 @@ func_4e3d3:
 		xor    %edx,%edx
 		call   func_4fd6b
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 		jmp    jump_4e3ff
 
 
@@ -86757,7 +86757,7 @@ func_506f3:
 		call   func_4fdd1
 		call   func_55ebc
 		mov    $0x1,%eax
-		jmp    func_exit_
+		jmp    w_exit
 
 
 /*----------------------------------------------------------------*/
@@ -86790,7 +86790,7 @@ func_50751:
 		call   func_55ebc
 		mov    $0xff,%eax
 	jump_507ae:
-		call   func_exit_
+		call   w_exit
 	jump_507b3:
 		movswl %bx,%eax
 		cmp    $0xffffffff,%eax
@@ -90111,7 +90111,7 @@ func_52d33:
 		mov    $data_10018c,%eax
 		call   func_4fd6b
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 		pop    %edx
 		pop    %ebx
 		ret
@@ -94233,7 +94233,7 @@ GLOBAL (combatii)	/* 0x55f8b */
 		mov    $data_7842c,%eax
 		call   func_4fdd1
 		mov    $0xff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_55fc6:
 		mov    $0xf,%ebx
 		movswl %dx,%ecx
@@ -94253,7 +94253,7 @@ GLOBAL (combatii)	/* 0x55f8b */
 		cmp    $0x2,%ax
 		je     jump_5600b
 		mov    $0xff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_5600b:
 		mov    $data_1120ec,%edi
 		mov    0x4(%edx),%esi
@@ -94299,7 +94299,7 @@ GLOBAL (combatii)	/* 0x55f8b */
 		call   func_5580f
 		call   func_55ebc
 		mov    $0xff,%eax
-		call   func_exit_
+		call   w_exit
 		add    $0x4,%esp
 		pop    %edi
 		pop    %esi
@@ -109291,7 +109291,7 @@ func___CMain:	/* 0x62d75 */
 		mov    data_12858c,%edx
 		mov    data_128588,%eax
 		call   combatii
-		call   func_exit_
+		call   w_exit
 		mov    %ebp,%esp
 		pop    %ebp
 		pop    %edx
