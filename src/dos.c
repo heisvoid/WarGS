@@ -344,3 +344,26 @@ dos_creat (const char *path, int mode)
 
   return fd;
 }
+
+int
+dos_write (int fd, const void *buf, unsigned int len)
+{
+  ASSERT (2 < fd);
+  ASSERT (NULL != buf);
+  ASSERT (0 < len);
+
+  int total_written = 0;
+  while (total_written < len)
+    {
+      const ssize_t written = write (fd, ((int8_t *) buf) + total_written,
+                                     len - total_written);
+      if (0 > written)
+        {
+          LOG_FATAL ("failed to write");
+        }
+
+      total_written += written;
+    }
+
+  return total_written;
+}
