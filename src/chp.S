@@ -43576,7 +43576,16 @@ func_360e2:
 		movswl %ax,%ecx
 		mov    data_138534(,%ecx,4),%edx
 		mov    data_1384bc(,%ecx,4),%eax
+#if 1
+    push   %ecx
+    dec    %ecx
+    push   %ecx
+    call   w_audio_music_play
+    add    $4,%esp
+    pop    %ecx
+#else
 		call   func_36791
+#endif
 		mov    %ebx,data_7bcac
 		mov    %ebx,data_7bcb0
 		movl   $0x1,data_7bcb4
@@ -43994,6 +44003,10 @@ func_36632:
 		ret
 
 
+/**
+ * @param eax starting sector number
+ * @param edx end sector number (exclusive)
+ */
 /*----------------------------------------------------------------*/
 func_36791:
 /*----------------------------------------------------------------*/
@@ -44008,26 +44021,34 @@ func_36791:
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0x4(%esp),%ebx
+#if 0
 		call   allocate_dos_memory_block
+#endif
 		xor    %edx,%edx
 		mov    (%esp),%ebx
 		mov    %ebx,%gs
 		movb   $0x16,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x84,%gs:0x2(%edx)
+		movb   $0x84,%gs:0x2(%edx) /* play audio */
 		movb   $0x0,%gs:0xd(%edx)
-		mov    %ecx,%gs:0xe(%edx)
+		mov    %ecx,%gs:0xe(%edx) /* starting sector number */
 		sub    %ecx,%esi
-		mov    %esi,%gs:0x12(%edx)
+		mov    %esi,%gs:0x12(%edx) /* number of sectors to play */
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
 		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
+#if 1
+    movw   $0x0100,cdrom_status_filled_in_by_device_driver
+#else
 		mov    %ax,cdrom_status_filled_in_by_device_driver
+#endif
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
+#if 0
 		call   free_dos_memory_block
+#endif
 		add    $0x8,%esp
 		pop    %esi
 		pop    %ecx
