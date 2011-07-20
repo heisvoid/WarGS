@@ -710,7 +710,7 @@ func_123e3:
 		mov    %edx,%esi
 		mov    %edx,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x200
