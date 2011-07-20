@@ -93956,7 +93956,7 @@ func_55b59:
 		mov    %cs,%ecx
 		call   func_5d3bf
 		mov    $0x2,%eax
-		mov    $func_5d615,%ebx
+		mov    $mouse_isr,%ebx
 		call   func_5d388
 		mov    $0x7f,%eax
 		call   func_5d15a
@@ -102834,7 +102834,7 @@ func_5d5ed:
 
 
 /*----------------------------------------------------------------*/
-func_5d615:
+GLOBAL (mouse_isr) /* 5d615 */
 /*----------------------------------------------------------------*/
 		push   %ds
 		call   func___GETDS

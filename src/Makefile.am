@@ -6,25 +6,30 @@ COMMON_SRCS = assert.h \
 							log.c log.h \
 							util.c util.h
 
+GAME_SRCS = asm.h \
+						audio.c audio.h \
+						dos.c \
+						game.c game.h \
+						keyboard.c keyboard.h \
+						mouse.c mouse.h \
+						video.c video.h \
+						wrappers.S
+
 wargs_SOURCES = $(COMMON_SRCS) \
 								wargs.c
 
 wargs_ttl_SOURCES = $(COMMON_SRCS) \
-										asm.h \
-										audio.c audio.h \
-										dos.c \
-										game.c game.h \
-										keyboard.c keyboard.h \
-										mouse.c mouse.h \
+										$(GAME_SRCS) \
 										ttl.S \
-										video.c video.h \
-										wargs-ttl.c \
-										wrappers.S
+										wargs-ttl.c
 
 wargs_combatii_SOURCES = $(COMMON_SRCS) \
-												 asm.h \
+												 $(GAME_SRCS) \
 												 combatii.S \
 												 wargs-combatii.c
+
+wargs_ttl_CFLAGS = -DTTL
+wargs_combatii_CFLAGS = -DCOMBATII
 
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 

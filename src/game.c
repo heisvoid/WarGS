@@ -28,6 +28,7 @@ static uint32_t fps = DEFAULT_FPS;
 void
 game_cfg_setup ()
 {
+#ifdef TTL
   extern int8_t game_cfg;
 
   (&game_cfg)[0] = (true == conf_get_fast () ? 1 : 0);
@@ -37,6 +38,8 @@ game_cfg_setup ()
   ((int16_t *) (&game_cfg))[2] = 220; /* force sound-blaster ADR 220 */
   ((int16_t *) (&game_cfg))[3] = 7;   /* force sound-blaster IRQ 7 */
   ((int16_t *) (&game_cfg))[4] = 1;   /* force sound-blaster DMA 1 */
+#elif defined(COMBATII)
+#endif
 }
 
 void
