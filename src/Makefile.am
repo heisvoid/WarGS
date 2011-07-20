@@ -1,4 +1,4 @@
-bin_PROGRAMS = wargs wargs-ttl wargs-combatii
+bin_PROGRAMS = wargs wargs-ttl wargs-combatii wargs-chp
 
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
@@ -27,6 +27,11 @@ wargs_combatii_SOURCES = $(COMMON_SRCS) \
 												 $(GAME_SRCS) \
 												 combatii.S \
 												 wargs-combatii.c
+
+wargs_chp_SOURCES = $(COMMON_SRCS) \
+										$(GAME_SRCS) \
+										chp.S \
+										wargs-chp.c
 
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 

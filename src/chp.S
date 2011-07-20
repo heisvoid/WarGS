@@ -1,5 +1,7 @@
 /* vim: set sw=2 ts=2 expandtab: */
 
+#include "asm.h"
+
 .text
 
 
@@ -5092,7 +5094,7 @@ func_1492e:
 		mov    $data_500fe,%edx
 		mov    %ah,0x14(%esp)
 		mov    %ebp,%eax
-		call   func_strstr_
+		call   w_dos_strstr
 		test   %eax,%eax
 		jne    jump_14955
 		xor    %dl,%dl
@@ -9023,7 +9025,7 @@ func_17728:
 		call   func_puts_
 		jmp    jump_17762
 	jump_17751:
-		mov    $data_c5cde,%edx
+		mov    $game_cfg_speed,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
 		call   func_read_
@@ -9058,7 +9060,7 @@ func_1776d:
 		call   func_puts_
 		jmp    jump_17762
 	jump_177ab:
-		mov    $data_c5cde,%edx
+		mov    $game_cfg_speed,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
 		call   func_write_
@@ -18954,7 +18956,7 @@ func_20bc8:
 		mov    $data_508f0,%eax
 		mov    data_c5ea4,%edx
 		call   func_2dd68
-		mov    data_c5cde,%al
+		mov    game_cfg_speed,%al
 		test   %al,%al
 		jbe    jump_20c20
 		cmp    $0x1,%al
@@ -19029,7 +19031,7 @@ func_20bc8:
 		jg     jump_20d29
 		xor    %al,%al
 		mov    $0x895440,%ebx
-		mov    %al,data_c5cde
+		mov    %al,game_cfg_speed
 		mov    %ebx,data_c5c58
 		jmp    jump_20c01
 	jump_20d29:
@@ -19045,7 +19047,7 @@ func_20bc8:
 		jg     jump_20d5e
 		mov    $0x1,%ch
 		xor    %edx,%edx
-		mov    %ch,data_c5cde
+		mov    %ch,game_cfg_speed
 		mov    %edx,data_c5c58
 		jmp    jump_20c01
 	jump_20d5e:
@@ -21988,7 +21990,7 @@ func_2350e:
 
 
 /*----------------------------------------------------------------*/
-chp:	/* 0x2353e */
+GLOBAL (chp)	/* 0x2353e */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -22127,7 +22129,7 @@ chp:	/* 0x2353e */
 		cmp    $0x14,%dx
 		jl     jump_236d4
 		call   func_22bcb
-		mov    data_c5cde,%al
+		mov    game_cfg_speed,%al
 		test   %al,%al
 		jbe    jump_236f8
 		cmp    %bh,%al
@@ -28151,8 +28153,8 @@ func_288b9:
 	jump_28908:
 		mov    $0xc,%ebx
 		mov    $0x7f,%ecx
-		mov    $func_28ab0,%edx
-		mov    $func_28ab0,%eax
+		mov    $mouse_isr,%edx
+		mov    $mouse_isr,%eax
 		mov    %bx,0x1c(%esp)
 		mov    %cx,0x24(%esp)
 		mov    %edx,0x28(%esp)
@@ -28294,7 +28296,7 @@ func_28a06:
 
 
 /*----------------------------------------------------------------*/
-func_28ab0:
+GLOBAL (mouse_isr) /* 28ab0 */
 /*----------------------------------------------------------------*/
 		push   %ds
 		call   func___GETDS
@@ -46377,6 +46379,7 @@ func_lseek_:	/* 0x3a27a */
 		ret
 
 
+#if 0
 /*----------------------------------------------------------------*/
 func_strstr_:	/* 0x3a2bb */
 /*----------------------------------------------------------------*/
@@ -46489,6 +46492,7 @@ func_strstr_:	/* 0x3a2bb */
 		pop    %ecx
 		pop    %ebx
 		ret
+#endif
 .data
 data_3a37d:
 		.string "0123456789abcdefghijklmnopqrstuvwxyz"
@@ -51114,7 +51118,11 @@ func___int386x_:	/* 0x3cd02 */
 func_3cd3a:
 /*----------------------------------------------------------------*/
 		lea    (%esi,%esi,2),%esi
+#if 1
+		lea    data_3cde0(%esi),%eax
+#else
 		lea    %cs:data_3cde0(%esi),%eax
+#endif
 		push   %eax
 		mov    (%ebx),%es
 		mov    0x6(%ebx),%bp
@@ -88069,7 +88077,7 @@ data_c5cd8:
 		.fill   0x4
 data_c5cdc:
 		.ascii  "\x00\x00"
-data_c5cde:
+GLOBAL (game_cfg_speed) /* c5cde */
 		.ascii  "\x00"
 data_c5cdf:
 		.ascii  "\x00"

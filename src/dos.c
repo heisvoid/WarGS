@@ -367,3 +367,12 @@ dos_write (int fd, const void *buf, unsigned int len)
 
   return total_written;
 }
+
+char *
+dos_strstr (const char *haystack, const char *needle)
+{
+  ASSERT (NULL != haystack);
+  ASSERT (NULL != needle);
+
+  return strstr (haystack, needle);
+}

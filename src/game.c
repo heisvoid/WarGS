@@ -28,7 +28,7 @@ static uint32_t fps = DEFAULT_FPS;
 void
 game_cfg_setup ()
 {
-  extern int16_t game_cfg_speed;
+  extern int8_t game_cfg_speed;
 
   game_cfg_speed = (true == conf_get_fast () ? 1 : 0);
 }
