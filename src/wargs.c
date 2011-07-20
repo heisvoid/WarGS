@@ -169,7 +169,7 @@ main ()
     {
       SPAWN (SPAWN_TTL);
 
-      if (does_file_exist (dollar_file_path))
+      if (false == does_file_exist (dollar_file_path))
         {
           break;
         }
