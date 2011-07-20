@@ -77028,7 +77028,7 @@ func_49916:
 	jump_4998b:
 		pop    %edi
 		mov    %edi,%eax
-		call   func_creat_
+		call   w_dos_creat
 		mov    %eax,%ecx
 		cwtl
 		cmp    $0xffffffff,%eax
@@ -85197,7 +85197,7 @@ func_4f4ef:
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -85846,7 +85846,7 @@ func_4fdd1:
 		mov    %eax,%esi
 		mov    $0x180,%edx
 		mov    $data_77f8e,%eax
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x101
@@ -85880,7 +85880,7 @@ func_4fe28:
 		sub    $0x4,%esp
 		mov    $0x180,%edx
 		mov    $data_77f90,%eax
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x101
