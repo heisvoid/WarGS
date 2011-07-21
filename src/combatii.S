@@ -8985,7 +8985,7 @@ func_16357:
 		mov    (%esp),%eax
 		sub    $0xa,%eax
 		cwtl
-		call   func_5d044
+		call   mouse_set_horizontal_range
 		mov    %esi,%eax
 		add    $0x1a,%eax
 		movswl %ax,%edx
@@ -8993,7 +8993,7 @@ func_16357:
 		sub    $0xa,%eax
 		cwtl
 		mov    $0x1,%ecx
-		call   func_5d073
+		call   mouse_set_vertical_range
 		mov    (%esp),%eax
 		add    $0x8,%esi
 		add    $0xc,%eax
@@ -22083,7 +22083,7 @@ func_1f19c:
 		xor    %ebx,%ebx
 		mov    %esp,%esi
 		call   func_49e4e
-		call   func_5cee3
+		call   mouse_get_state
 		mov    (%esp),%eax
 		sar    $0x10,%eax
 		call   func_109a3
@@ -76262,11 +76262,11 @@ func_48e90:
 		call   func_5d3c5
 		mov    $0x124,%edx
 		mov    $0x1c,%eax
-		call   func_5d044
+		call   mouse_set_horizontal_range
 		mov    $0xb8,%edx
 		mov    $0x10,%eax
 		mov    %esp,%esi
-		call   func_5d073
+		call   mouse_set_vertical_range
 		call   func_5d41e
 		call   func_5e9e8
 		call   func_5d22e
@@ -77347,7 +77347,7 @@ func_49c05:
 		sub    $0x8,%esp
 		mov    %eax,%edx
 		mov    %esp,%esi
-		call   func_5cee3
+		call   mouse_get_state
 		test   %dx,%dx
 		je     jump_49c38
 		cmpw   $0x118,0x2(%esp)
@@ -77377,14 +77377,14 @@ func_49c05:
 		mov    data_75014(,%esi,4),%ax
 		add    $0x10,%eax
 		cwtl
-		call   func_5d044
+		call   mouse_set_horizontal_range
 		mov    data_75016(,%esi,4),%ax
 		add    $0xb5,%eax
 		movswl %ax,%edx
 		mov    data_75016(,%esi,4),%ax
 		add    $0x4,%eax
 		cwtl
-		call   func_5d073
+		call   mouse_set_vertical_range
 	jump_49ca9:
 		add    $0x8,%esp
 		pop    %esi
@@ -77953,7 +77953,7 @@ func_4a32c:
 		inc    %ecx
 	jump_4a39e:
 		mov    %esp,%esi
-		call   func_5cee3
+		call   mouse_get_state
 		cmp    $0x4b00,%dx
 		jb     jump_4a3c0
 		jbe    jump_4a3dc
@@ -78067,7 +78067,7 @@ func_4a483:
 		lea    0x8(%esp),%esi
 		call   func_454b3
 		call   func_5e9e8
-		call   func_5cee3
+		call   mouse_get_state
 		mov    0x8(%esp),%eax
 		sar    $0x10,%eax
 		call   func_109a3
@@ -81850,7 +81850,7 @@ func_4ce1f:
 		xor    %ebx,%ebx
 		mov    %esp,%esi
 		call   func_49e4e
-		call   func_5cee3
+		call   mouse_get_state
 		mov    (%esp),%eax
 		sar    $0x10,%eax
 		call   func_109a3
@@ -93727,7 +93727,7 @@ func_5580f:
 		sub    $0x10,%esp
 		mov    %esp,%esi
 		mov    $0x1,%edx
-		call   func_5cee3
+		call   mouse_get_state
 		mov    %edx,0x8(%esp)
 	jump_55828:
 		cmpw   $0x0,0x8(%esp)
@@ -93792,7 +93792,7 @@ func_5580f:
 		cmp    $0x3,%ax
 		jne    jump_5592d
 		mov    %esp,%esi
-		call   func_5cee3
+		call   mouse_get_state
 		mov    (%esp),%eax
 		sar    $0x10,%eax
 		call   func_109a3
@@ -102526,7 +102526,7 @@ func_5cea3:
 
 
 /*----------------------------------------------------------------*/
-func_5cee3:
+mouse_get_state: /* 5cce3 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -102610,7 +102610,7 @@ func_5cf3e:
 
 
 /*----------------------------------------------------------------*/
-func_5d044:
+mouse_set_horizontal_range: /* 5d044 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		mov    $0x7,%ebx
@@ -102626,7 +102626,7 @@ func_5d044:
 
 
 /*----------------------------------------------------------------*/
-func_5d073:
+mouse_set_vertical_range: /* 5d073 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		mov    $0x8,%ebx
@@ -102637,7 +102637,9 @@ func_5d073:
 		mov    %bx,data_123810
 		mov    $data_123830,%ebx
 	jump_5d09c:
+#if 0
 		call   w_dos_int386
+#endif
 		pop    %ebx
 		ret
 
@@ -102652,7 +102654,9 @@ func_5d15a:
 		mov    %ecx,%edx
 		mov    %esp,%eax
 		mov    $0xc,%ecx
+#if 0
 		call   func_segread_
+#endif
 		mov    %cx,data_123810
 		mov    %si,data_123818
 		mov    %ebx,%eax
@@ -102662,7 +102666,11 @@ func_5d15a:
 		mov    $0x33,%eax
 		mov    %dx,(%esp)
 		mov    $data_123810,%edx
+#if 1
+    call   w_game_install_mouse_isr
+#else
 		call   w_dos_int386x
+#endif
 		add    $0xc,%esp
 		pop    %esi
 		pop    %edx
@@ -102791,11 +102799,11 @@ func_5d351:
 		mov    data_12384c,%eax
 		sar    $0x10,%eax
 		mov    %eax,%edx
-		call   func_5d044
+		call   mouse_set_horizontal_range
 		mov    data_12384e,%eax
 		sar    $0x10,%eax
 		mov    %eax,%edx
-		call   func_5d073
+		call   mouse_set_vertical_range
 		pop    %edx
 		ret
 
@@ -102810,7 +102818,7 @@ func_5d388:
 		mov    %si,data_123856
 		mov    %esp,%esi
 		call   func_5d2f5
-		call   func_5cee3
+		call   mouse_get_state
 		mov    0x2(%esp),%eax
 		mov    %ax,data_12385a
 		mov    0x4(%esp),%eax
