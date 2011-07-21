@@ -85772,6 +85772,10 @@ func_4fcd9:
 		push   $data_77f75
 		mov    $0x10,%ebx
 		call   w_dos_open
+#if 1
+    cmp    $-1,%eax
+    je     jump_func_4fcd9_1
+#endif
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %esp,%edx
@@ -85780,6 +85784,9 @@ func_4fcd9:
 		mov    %ecx,%eax
 		mov    %esp,%edx
 		call   w_dos_close
+#if 1
+  jump_func_4fcd9_1:
+#endif
 		mov    $data_fdf68,%eax
 		call   func_strcmp_
 		test   %eax,%eax
