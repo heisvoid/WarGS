@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <string.h>
+#include <time.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -386,4 +387,15 @@ dos_vsprintf (char *buf, const char *format, va_list ap)
   ASSERT (0 <= ret);
 
   return ret;
+}
+
+time_t
+dos_mktime (struct tm *tm)
+{
+  ASSERT (NULL != tm);
+
+  const time_t t = mktime (tm);
+  ASSERT ((time_t) -1 != t);
+
+  return t;
 }
