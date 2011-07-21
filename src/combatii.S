@@ -303,7 +303,7 @@ func_10194:
 
 
 /*----------------------------------------------------------------*/
-func_101f4:
+GLOBAL (pit_isr_0) /* 101f4 */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -374,7 +374,7 @@ func_102b5:
 		push   %ecx
 		push   %edx
 		mov    $0x8,%eax
-		mov    $func_101f4,%ebx
+		mov    $pit_isr_0,%ebx
 #if 0
 		call   func__dos_getvect_
 #endif
@@ -383,7 +383,7 @@ func_102b5:
 		mov    $0x8,%eax
 		mov    %dx,data_7899c
 #if 1
-    call   w_game_install_pit_isr
+    call   w_game_install_pit_isr_0
 #else
 		call   func__dos_setvect_
 #endif
@@ -401,7 +401,11 @@ func_102e3:
 		mov    $0x8,%eax
 		mov    data_7899c,%cx
 		mov    data_78998,%ebx
+#if 1
+    call   w_game_uninstall_pit_isr_0
+#else
 		call   func__dos_setvect_
+#endif
 		pop    %ecx
 		pop    %ebx
 		ret
@@ -547,7 +551,7 @@ func_10420:
 		add    $0x8,%edx
 		inc    %edi
 	jump_10478:
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    %si,%di
 		jl     jump_10452
 		xor    %edi,%edi
@@ -562,13 +566,13 @@ func_10420:
 		mov    $0x8,%edx
 		mov    %ecx,%eax
 		movswl %di,%esi
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    -0x2(%esp),%edx
 		shl    $0x2,%esi
 		sar    $0x10,%edx
 		mov    0x4(%esp),%eax
 		shl    $0x3,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		add    %edx,%esi
 		mov    0x4(%esp),%ebx
 		mov    %eax,%edx
@@ -611,12 +615,12 @@ func_10500:
 		movswl %ax,%esi
 		xor    %ebx,%ebx
 		mov    %esi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esi,%eax
 		call   func_filelength_
 		lea    -0x33c(%eax),%ebx
 		mov    %ebx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,%ebp
 		mov    %esi,%eax
@@ -693,7 +697,7 @@ func_105ad:
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %edx,%edx
 		mov    data_ba842,%dx
 		mov    %edx,%eax
@@ -702,7 +706,7 @@ func_105ad:
 		shl    $0x7,%eax
 		xor    %ecx,%ecx
 		mov    %eax,0x24(%esp)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_ba1f4
 		jmp    jump_1062e
 	jump_10612:
@@ -736,14 +740,14 @@ func_105ad:
 		mov    $0x2,%edx
 		mov    %ecx,%eax
 		lea    (%esi,%esi,4),%esi
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $data_ba1f8,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		add    %esi,%edx
 		call   func_read_
 		mov    0x24(%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    0x24(%esp),%ebx
 		mov    %eax,%edx
 		mov    %eax,data_ba1f9(%esi)
@@ -795,7 +799,7 @@ func_105ad:
 		mov    $0x1,%ebx
 		mov    $0x138,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1c8,%ebx
 		mov    $data_128384,%edx
 		mov    %ecx,%eax
@@ -2210,7 +2214,7 @@ func_11575:
 		movswl %ax,%ecx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x10(%esp),%edx
 		mov    %ecx,%eax
@@ -2218,7 +2222,7 @@ func_11575:
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    -0x2(%esp),%edx
 		sar    $0x10,%edx
 		mov    %edx,%eax
@@ -2333,7 +2337,7 @@ func_11575:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -2345,7 +2349,7 @@ func_11575:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -2357,7 +2361,7 @@ func_11575:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -2369,7 +2373,7 @@ func_11575:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		cmpw   $0x2,0x18(%esp)
 		jge    jump_118e5
 		mov    0x12(%esp),%eax
@@ -2429,7 +2433,7 @@ func_11575:
 		sar    $0x10,%ecx
 		imul   $0x23c,%ecx,%ecx
 		mov    0x4(%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xd,%edx,%edx
@@ -5402,7 +5406,7 @@ func_13909:
 		mov    $0x80,%edx
 		mov    %ax,0xc(%esp)
 		cwtl
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %edx,%edx
 		mov    %dx,0x8(%esp)
 		mov    %dx,0x4(%esp)
@@ -5422,7 +5426,7 @@ func_13909:
 		shl    $0x2,%edi
 		mov    (%esp),%eax
 		mov    $data_e5a30,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %ebp,%ebx
 		add    %edi,%edx
 		mov    %eax,data_e5a90(%esi)
@@ -5443,7 +5447,7 @@ func_13909:
 		mov    $0x4,%edx
 		mov    %ax,data_e5a12(%edi)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_e5a90(%esi),%edx
@@ -5459,7 +5463,7 @@ func_13909:
 		inc    %edi
 		mov    $data_e5a30,%edx
 		mov    %di,0x8(%esp)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    0x6(%esp),%edi
 		mov    %ebp,%ebx
 		sar    $0x10,%edi
@@ -5483,7 +5487,7 @@ func_13909:
 		mov    $0x4,%edx
 		mov    %ax,data_e5a12(%edi)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_e5a94(%esi),%edx
@@ -13730,7 +13734,7 @@ func_196d0:
 		cmpb   $0x1,0xe(%eax)
 		jne    jump_19716
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		movl   $0x0,0x4(%eax)
 		mov    %edx,(%eax)
 		cmpl   $0x0,data_f041c
@@ -23019,7 +23023,7 @@ func_1fea4:
 		movswl %ax,%ecx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
@@ -23030,7 +23034,7 @@ func_1fea4:
 		mov    %edx,0x4(%esp)
 		mov    %ecx,%eax
 		mov    $0x3c,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    data_f0da8,%di
 		jmp    jump_1ffa5
 	jump_1ff0f:
@@ -23054,7 +23058,7 @@ func_1fea4:
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x4(%esi),%edx
 		mov    %ecx,%eax
@@ -23066,9 +23070,9 @@ func_1fea4:
 		mov    $0x1,%ebx
 		mov    $0x10,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esi)
 		mov    %eax,%edx
 		mov    (%esp),%ebx
@@ -39775,7 +39779,7 @@ func_2cc3a:
 		jmp    jump_2d47e
 	jump_2cc85:
 		mov    $0xbb8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		xor    %edx,%edx
 		mov    %eax,0x58(%esp)
 		jmp    jump_2cca7
@@ -45568,7 +45572,7 @@ func_30f98:
 		mov    data_755cc,%eax
 		xor    %edx,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 		pop    %edx
 		pop    %ebx
 		ret
@@ -45689,10 +45693,10 @@ func_310de:
 		sub    $0xc,%esp
 		mov    $0xfa00,%eax
 		mov    $0xfa00,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		xor    %edx,%edx
 		mov    %eax,(%esp)
-		call   func_memset_
+		call   w_dos_memset
 		xor    %edx,%edx
 	jump_31102:
 		movswl %dx,%eax
@@ -45732,7 +45736,7 @@ func_310de:
 		mov    data_755cc,%eax
 		xor    %edx,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 		mov    0x4(%esp),%ebx
 		jmp    jump_311d9
 	jump_31182:
@@ -46870,7 +46874,7 @@ func_31283:
 		mov    data_755cc,%eax
 		mov    $0x1,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 	jump_32360:
 		movswl %di,%eax
 		imul   $0xc,%eax,%eax
@@ -46899,7 +46903,7 @@ func_31283:
 		sar    $0x18,%edx
 		add    $0xbb80,%eax
 		xor    %esi,%esi
-		call   func_memset_
+		call   w_dos_memset
 		mov    %si,0x2cc(%esp)
 		jmp    jump_32426
 	jump_323e2:
@@ -47336,7 +47340,7 @@ func_32589:
 		mov    data_755cc,%eax
 		mov    $0x1,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 		call   func_5e9e8
 		call   func_499e4
 		incw   0x8(%esp)
@@ -47536,11 +47540,11 @@ func_32bcb:
 	jump_32c6e:
 		mov    $0x64,%eax
 		movswl %bx,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x2d0(%esp,%edx,4)
 		mov    $0x64,%eax
 		inc    %ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x1e0(%esp,%edx,4)
 		cmp    $0x3c,%bx
 		jl     jump_32c6e
@@ -47624,7 +47628,7 @@ func_32bcb:
 		mov    data_755cc,%eax
 		mov    $0x1,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 	jump_32dd8:
 		movswl %cx,%edi
 		imul   $0xc,%edi,%edi
@@ -55949,13 +55953,13 @@ func_39a49:
 		xor    %ebx,%ebx
 	jump_39c56:
 		mov    $0x64,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		movswl %bx,%edi
 		xor    %cl,%cl
 		mov    %eax,0x258(%esp,%edi,4)
 		mov    $0x64,%eax
 		inc    %ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x190(%esp,%edi,4)
 		mov    %cl,0x868(%esp,%edi,1)
 		cmp    $0x32,%bx
@@ -57244,25 +57248,25 @@ func_3aee8:
 	jump_3af5c:
 		mov    $0x46,%eax
 		movswl %cx,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,(%esp,%edx,4)
 		mov    $0x46,%eax
 		inc    %ecx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x140(%esp,%edx,4)
 		cmp    $0x50,%cx
 		jl     jump_3af5c
 		mov    $0x140,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x420(%esp)
 		mov    $0x140,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x414(%esp)
 		mov    $0xa0,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x418(%esp)
 		mov    $0xa0,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x41c(%esp)
 		mov    $data_77b0c,%eax
 		mov    %esi,%ebx
@@ -74003,7 +74007,7 @@ func_47372:
 		mov    %ax,0x14(%esp)
 		mov    $0x2710,%eax
 		mov    %ebx,0x1c(%esp)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esp)
 		movsbw 0x1(%esi),%ax
 		mov    %ebx,0x18(%esp)
@@ -74285,7 +74289,7 @@ func_47712:
 		mov    data_fa8b4,%ax
 		mov    %ax,0xc(%esp)
 		mov    $0x2710,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esp)
 		movsbw 0x1(%edi),%ax
 		mov    %ax,0x30(%esp)
@@ -74555,7 +74559,7 @@ func_47a96:
 		xor    %edx,%edx
 	jump_47ab6:
 		mov    $0x3e8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		movswl %dx,%eax
 		inc    %edx
@@ -75099,7 +75103,7 @@ func_48132:
 		movswl %ax,%ecx
 		mov    %ax,0x14(%esp)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
@@ -75113,7 +75117,7 @@ func_48132:
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x16(%esp),%eax
 		sar    $0x10,%eax
 		shl    $0x2,%eax
@@ -75121,7 +75125,7 @@ func_48132:
 		mov    %eax,(%esp)
 		mov    %eax,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x4,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
@@ -75129,7 +75133,7 @@ func_48132:
 		mov    (%esp),%edx
 		mov    %ecx,%eax
 		xor    %ebx,%ebx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x4,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
@@ -75145,7 +75149,7 @@ func_48132:
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%ebx
 		mov    $data_f42b8,%edx
 		mov    %ecx,%eax
@@ -76689,9 +76693,11 @@ func_49703:
 		sub    $0x8,%esp
 		mov    $0xfa,%edx
 		mov    $data_fb2d1,%eax
-		mov    $data_77d9d,%esi
+		mov    $data_77d9d,%esi /* "\\" */
 		mov    $data_fb2d1,%edi
+#if 0
 		call   func_getcwd_
+#endif
 		push   %edi
 		sub    %ecx,%ecx
 		dec    %ecx
@@ -76711,17 +76717,20 @@ func_49703:
 		jne    jump_4972c
 	jump_49744:
 		pop    %edi
-		lea    0x4(%esp),%edx
+		lea    0x4(%esp),%edx /* 0x4(%esp): cdrom number */
 		mov    %esp,%eax
 		mov    $data_fb1d2,%edi
 		mov    $data_77d9f,%esi
-		call   func_5acf3
-		mov    (%esp),%al
+		call   cdrom_get_cdrom_starting_letter_and_number
+		mov    (%esp),%al /* starting letter */
+
+    /* strcpy (&data_fb1d2, &data_77d9f); */
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsb  %ds:(%esi),%es:(%edi)
-		add    %al,data_fb1d2
+
+		add    %al,data_fb1d2 /* data_fb1d2: X:\GENESIS2 X: cdrom drive char. */
 		add    $0x8,%esp
 		pop    %edi
 		pop    %esi
@@ -76901,7 +76910,7 @@ func_4981d:
 		add    $0x8,%esp
 		cmp    $0xffffffff,%ecx
 		jne    jump_49911
-		mov    $data_fb1d2,%esi
+		mov    $data_fb1d2,%esi /* data_fb1d2: "X:\\GENESIS2" */
 		push   %edi
 	jump_498a7:
 		mov    (%esi),%al
@@ -77272,7 +77281,7 @@ func_49b16:
 		mov    %ax,0x4(%esp)
 		cwtl
 		xor    %edi,%edi
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_49b3c:
 		mov    0x2(%esp),%ecx
 		mov    $0x4,%ebx
@@ -77284,10 +77293,10 @@ func_49b16:
 		mov    (%esp),%eax
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_fb080(,%esi,4)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_fb080(,%esi,4),%edx
@@ -77309,10 +77318,10 @@ func_49b16:
 		mov    (%esp),%eax
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_fb070(,%esi,4)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_fb070(,%esi,4),%edx
@@ -78467,7 +78476,7 @@ func_4a945:
 		add    %edx,%eax
 		shl    $0x2,%eax
 		add    %edx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,(%ebx)
 		mov    %ebx,%eax
 		movb   $0xff,0x5(%ebx)
@@ -79033,7 +79042,7 @@ func_4af61:
 		movswl %ax,%ecx
 		mov    %ax,0x10(%esp)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
 		mov    %ecx,%eax
@@ -79041,7 +79050,7 @@ func_4af61:
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x6(%esp),%edx
 		sar    $0x10,%edx
 		mov    %edx,%eax
@@ -79078,7 +79087,7 @@ func_4af61:
 		mov    %ecx,%eax
 		call   func_read_
 		mov    (%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    (%esp),%ebx
 		mov    %eax,%esi
 		mov    %eax,%edx
@@ -83819,7 +83828,7 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		xor    %ebx,%ebx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fdf82,%edx
@@ -83837,7 +83846,7 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $0x190,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0xc8,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fdf87,%edx
@@ -83847,7 +83856,7 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $0x49d4,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1f4,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fe04f,%edx
@@ -83862,7 +83871,7 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $0x4158,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    data_fdf7a,%eax
 		sar    $0x10,%eax
 		call   func_filelength_
@@ -83872,7 +83881,7 @@ func_4e4dd:
 		call   func_tell_
 		sub    %eax,%ebx
 		mov    %ebx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_fdf7a,%ecx
 		mov    %eax,data_fdf78
 		sar    $0x10,%ecx
@@ -83913,7 +83922,7 @@ func_4e622:
 		mov    data_fdf7a,%eax
 		xor    %ebx,%ebx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x384,%ebx
 		xor    %edx,%edx
 		call   func_19d47
@@ -83965,7 +83974,7 @@ func_4e622:
 		mov    data_fdf7a,%eax
 		mov    $0x190,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0xc8,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fdf87,%edx
@@ -83975,7 +83984,7 @@ func_4e622:
 		mov    data_fdf7a,%eax
 		mov    $0x49d4,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1f4,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fe04f,%edx
@@ -83985,13 +83994,13 @@ func_4e622:
 		mov    data_fdf7a,%eax
 		mov    $0x2,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    $0x4158,%edx
 		sar    $0x10,%eax
 		xor    %edi,%edi
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    data_fdf78,%ecx
 	jump_4e772:
 		movswl %di,%eax
@@ -84065,7 +84074,7 @@ func_4e81f:
 		mov    data_fdf7a,%eax
 		xor    %ebx,%ebx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0xf(%ebp),%al
 		dec    %al
 		mov    %al,0x30(%esp)
@@ -84107,7 +84116,7 @@ func_4e81f:
 		mov    $0x88,%edx
 		sar    $0x10,%eax
 		inc    %ecx
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_4e8d1:
 		movsbw 0x30(%esp),%ax
 		cmp    %ax,%cx
@@ -84243,13 +84252,13 @@ func_4ea22:
 		xor    %ebx,%ebx
 		sar    $0x10,%eax
 		xor    %esi,%esi
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_4ea5d:
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    $0x87,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    %esp,%edx
@@ -84262,7 +84271,7 @@ func_4ea22:
 		mov    data_fdf7a,%eax
 		mov    %ebp,%edx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		call   func_112fd
 		mov    $0x88,%ebx
 		mov    %eax,%ecx
@@ -84301,7 +84310,7 @@ func_4eaf3:
 		mov    data_fdf7a,%eax
 		xor    %ebx,%ebx
 		sar    $0x10,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0xf(%ecx),%al
 		dec    %al
 		xor    %esi,%esi
@@ -84313,7 +84322,7 @@ func_4eaf3:
 		mov    $0x88,%edx
 		sar    $0x10,%eax
 		inc    %esi
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_4eb35:
 		movsbw (%esp),%ax
 		cmp    %ax,%si
@@ -84593,7 +84602,7 @@ func_4ed18:
 		movswl %ax,%ecx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		mov    $data_f0ba0,%edx
 		mov    %ecx,%eax
@@ -84621,7 +84630,7 @@ func_4ed18:
 		mov    $0x1,%ebx
 		mov    $0xb,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x1c(%esp),%edx
 		mov    %ecx,%eax
@@ -84924,7 +84933,7 @@ func_4f25f:
 		movswl %ax,%ecx
 		mov    %ax,0x8(%esp)
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0xc(%esp),%edx
 		mov    %ecx,%eax
@@ -84947,7 +84956,7 @@ func_4f25f:
 		add    $0x8,%edx
 		inc    %edi
 	jump_4f2d0:
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    %si,%di
 		jl     jump_4f2ad
 		xor    %edi,%edi
@@ -84979,7 +84988,7 @@ func_4f25f:
 		mov    %ecx,%eax
 		call   func_read_
 		mov    (%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%esi)
 		mov    %eax,%edx
 		mov    (%esp),%ebx
@@ -85269,7 +85278,7 @@ func_4f4ef:
 		mov    %ebp,%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x14(%esp),%edx
 		mov    %ecx,%eax
@@ -85277,7 +85286,7 @@ func_4f4ef:
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x18(%esp),%ebx
 		inc    %ebx
 		mov    %bx,0x18(%esp)
@@ -85346,7 +85355,7 @@ func_4f4ef:
 		mov    %ebp,%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		lea    0x14(%esp),%edx
 		mov    %ecx,%eax
@@ -85354,7 +85363,7 @@ func_4f4ef:
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x2,%ebx
 		mov    $data_f0ba0,%edx
 		mov    %ecx,%eax
@@ -85472,7 +85481,7 @@ func_4f85c:
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0xd,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
@@ -85480,19 +85489,19 @@ func_4f85c:
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		mov    $0xc8,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		mov    $0xa8,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		mov    $0xd,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %ecx,%eax
 		xor    %edx,%edx
 		call   w_dos_close
@@ -90543,7 +90552,7 @@ func_5306a:
 		mov    $0x2,%ebx
 		mov    $0xffffff38,%edx
 		mov    %edi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		jmp    jump_50a9d
 
 
@@ -90657,7 +90666,7 @@ func_530f1:
 		movswl %ax,%esi
 		mov    $0x3ee,%edx
 		mov    %esi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0xd(%esp),%edx
 		sar    $0x18,%edx
 		mov    %edx,%eax
@@ -90667,7 +90676,7 @@ func_530f1:
 		lea    -0x1(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %esi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1,%ebx
 		lea    0x14(%esp),%edx
 		mov    %esi,%eax
@@ -92070,7 +92079,7 @@ func_54111:
 		movswl %ax,%ecx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		lea    0x130(%esp),%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
@@ -92082,7 +92091,7 @@ func_54111:
 		mov    $0x1,%ebx
 		mov    $0x28,%edx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_5420c:
 		movswl %di,%ecx
 		xor    %esi,%esi
@@ -92096,7 +92105,7 @@ func_54111:
 		mov    %ecx,%eax
 		add    $0xa,%edx
 		inc    %esi
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0x2,%si
 		jl     jump_54211
 		xor    %eax,%eax
@@ -92124,7 +92133,7 @@ func_54111:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92136,7 +92145,7 @@ func_54111:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92148,7 +92157,7 @@ func_54111:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92160,7 +92169,7 @@ func_54111:
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92186,7 +92195,7 @@ func_54111:
 		mov    %al,data_110a80(%edx,%ebp,1)
 		mov    0x12c(%esp),%eax
 		mov    %bh,data_110a86(%edx,%ebp,1)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    0x12e(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xd,%edx,%edx
@@ -92214,7 +92223,7 @@ func_54111:
 		mov    %ecx,%eax
 		add    $0xa,%edx
 		inc    %esi
-		call   func_lseek_
+		call   w_dos_lseek
 		cmp    $0x6,%si
 		jl     jump_543e7
 	jump_54417:
@@ -94369,7 +94378,7 @@ func_56129:
 		xor    %ecx,%ecx
 	jump_5612e:
 		mov    $0x1a,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		movswl %cx,%eax
 		mov    $0x1a,%ebx
@@ -94377,7 +94386,7 @@ func_56129:
 		mov    %edx,%eax
 		xor    %edx,%edx
 		inc    %ecx
-		call   func_memset_
+		call   w_dos_memset
 		cmp    $0x64,%cx
 		jl     jump_5612e
 		pop    %edx
@@ -97584,7 +97593,7 @@ func_58619:
 		mov    data_755cc,%eax
 		xor    %edx,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 		mov    0x46(%esp),%edx
 		mov    0x3e(%esp),%eax
 		mov    data_f0db2,%ebx
@@ -97765,7 +97774,7 @@ func_58619:
 		mov    data_755cc,%eax
 		xor    %edx,%edx
 		add    $0xbb80,%eax
-		call   func_memset_
+		call   w_dos_memset
 		mov    data_ba83c,%edx
 		mov    data_ba83a,%eax
 		sar    $0x10,%edx
@@ -99984,12 +99993,12 @@ func_5a8c3: /* 5a8c3 */
 		xor    %esi,%esi
 		xor    %edx,%edx
 		mov    %esi,data_112444
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		lea    0x1c(%esp),%ecx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0x1500,%ebx
 		mov    $0x300,%edx
 		mov    $0x2f,%ah
@@ -100037,8 +100046,8 @@ func_5a8c3: /* 5a8c3 */
 		cmpl   $0x1,data_8b3d8
 		jl     jump_5a96f
 	jump_5a98d:
-		call   func_5b169
-		mov    data_ba7fe,%cx
+		call   cdrom_get_audio_disc_info
+		mov    cdrom_device_driver_request_return_status,%cx
 		inc    %esi
 		cmp    $0x8102,%cx
 		jne    jump_5a9a9
@@ -100047,14 +100056,15 @@ func_5a8c3: /* 5a8c3 */
 	jump_5a9a9:
 		cmp    $0x1f4,%esi
 		je     jump_5a96f
-		cmpw   $0x8000,data_ba7fe
+		cmpw   $0x8000,cdrom_device_driver_request_return_status
 		jae    jump_5a96f
 		mov    $0x1,%edx
 		mov    $data_1124a6,%ebx
 		mov    $0x2,%eax
 		mov    %edx,data_112444
 		mov    $data_1124a8,%edx
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
 		mov    data_1124a8,%gs
 		xor    %eax,%eax
 		mov    %gs,data_ba7d8
@@ -100065,14 +100075,19 @@ func_5a8c3: /* 5a8c3 */
 		lgs    data_ba7d4,%eax
 		movb   $0x2,%gs:0x5(%eax)
 		lgs    data_ba7d4,%eax
+#endif
 		xor    %ecx,%ecx
 		xor    %ebx,%ebx
+#if 0
 		movb   $0x3,%gs:0x7(%eax)
-		call   func_5b66a
+		call   cdrom_get_audio_channel_info
+#endif
 		mov    %ecx,data_70014
 		mov    %ebx,data_7000c
 		mov    %ebx,data_70008
-		call   func_5ae4a
+#if 0
+		call   cdrom_setup_track_related_arrays
+#endif
 		mov    $0x1,%eax
 	jump_5aa3c:
 		add    $0x28,%esp
@@ -100097,8 +100112,9 @@ func_5aa45:
 
 
 /*----------------------------------------------------------------*/
-func_5aa5b:
+free_dos_memory_block: /* 5aa5b */
 /*----------------------------------------------------------------*/
+#if 0
 		push   %ebx
 		push   %edx
 		sub    $0x1c,%esp
@@ -100113,6 +100129,7 @@ func_5aa5b:
 		add    $0x1c,%esp
 		pop    %edx
 		pop    %ebx
+#endif
 		ret
 
 
@@ -100125,7 +100142,7 @@ func_5aa81:
 		push   %edi
 		cmpl   $0x0,data_112444
 		je     jump_5ab07
-		call   func_5b537
+		call   cdrom_get_device_status
 		mov    data_75578,%ebx
 		cmp    $0x1,%ebx
 		jne    jump_5aaed
@@ -100136,7 +100153,7 @@ func_5aa81:
 		jne    jump_5aac6
 		mov    data_70006,%eax
 		sar    $0x10,%eax
-		call   func_5b3a7
+		call   cdrom_get_audio_track_info
 		pop    %edi
 		pop    %edx
 		pop    %ecx
@@ -100173,7 +100190,7 @@ func_5aa81:
 
 
 /*----------------------------------------------------------------*/
-func_5acf3:
+cdrom_get_cdrom_starting_letter_and_number: /* 5acf3 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		xor    %ebx,%ebx
@@ -100187,7 +100204,7 @@ func_5acf3:
 
 
 /*----------------------------------------------------------------*/
-func_5ae4a:
+cdrom_setup_track_related_arrays: /* 5ae4a */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %edx
@@ -100198,31 +100215,31 @@ func_5ae4a:
 		jmp    jump_5aea7
 	jump_5ae61:
 		movswl %bx,%eax
-		call   func_5b3a7
-		cmpb   $0x40,data_ba7e3
-		je     jump_5aea3
-		mov    data_ba7df,%eax
-		mov    %eax,data_112344(%edx)
+		call   cdrom_get_audio_track_info
+		cmpb   $0x40,cdrom_track_control_info
+		je     jump_5aea3 /* jump if it is data track */
+		mov    cdrom_track_number_related,%eax
+		mov    %eax,cdrom_track_related_array_1(%edx)
 		xor    %eax,%eax
-		mov    data_ba7e5,%al
+		mov    cdrom_highest_track_number,%al
 		cmp    %eax,%ebx
 		jne    jump_5ae8f
-		mov    data_ba7e9,%eax
+		mov    cdrom_audio_disc_info_starting_point_of_the_lead_out_track_realted,%eax
 		jmp    jump_5ae9d
 	jump_5ae8f:
 		mov    %ebx,%eax
 		inc    %eax
 		cwtl
-		call   func_5b3a7
-		mov    data_ba7df,%eax
+		call   cdrom_get_audio_track_info
+		mov    cdrom_track_number_related,%eax
 	jump_5ae9d:
-		mov    %eax,data_1123bc(%edx)
+		mov    %eax,cdrom_track_related_array_2(%edx)
 	jump_5aea3:
 		add    $0x4,%edx
 		inc    %ebx
 	jump_5aea7:
 		xor    %eax,%eax
-		mov    data_ba7e5,%al
+		mov    cdrom_highest_track_number,%al
 		cmp    %eax,%ebx
 		jle    jump_5ae61
 	jump_5aeb2:
@@ -100245,8 +100262,8 @@ func_5aeb5:
 		ret
 	jump_5aec7:
 		movswl %ax,%ecx
-		mov    data_1123bc(,%ecx,4),%edx
-		mov    data_112344(,%ecx,4),%eax
+		mov    cdrom_track_related_array_2(,%ecx,4),%edx
+		mov    cdrom_track_related_array_1(,%ecx,4),%eax
 		call   func_5b4cd
 		mov    $0x1,%eax
 		mov    %ebx,data_7000c
@@ -100262,9 +100279,9 @@ func_5aeb5:
 /*----------------------------------------------------------------*/
 func_5af02:
 /*----------------------------------------------------------------*/
-		call   func_5b537
+		call   cdrom_get_device_status
 		xor    %eax,%eax
-		mov    data_ba7fe,%ax
+		mov    cdrom_device_driver_request_return_status,%ax
 		sar    $0x8,%eax
 		cmp    $0x1,%eax
 		sete   %al
@@ -100305,7 +100322,7 @@ func_5af42:
 		lea    0x4(%esp),%ebx
 		mov    %esp,%edx
 		mov    $0x2,%eax
-		call   func_5b909
+		call   allocate_dos_memory_block
 		mov    (%esp),%ebx
 		xor    %edx,%edx
 		mov    %ebx,%gs
@@ -100314,13 +100331,13 @@ func_5af42:
 		movb   $0x85,%gs:0x2(%edx)
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5b031
+		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_ba7fe
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		mov    %edx,data_70014
 		mov    %edx,data_7000c
 	jump_5afaf:
@@ -100331,8 +100348,9 @@ func_5af42:
 
 
 /*----------------------------------------------------------------*/
-func_5b031:
+cdrom_send_device_driver_request: /* 5b031 */
 /*----------------------------------------------------------------*/
+#if 0
 		push   %ebx
 		push   %ecx
 		push   %edx
@@ -100342,12 +100360,12 @@ func_5b031:
 		mov    $0x32,%ebx
 		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $dpmi_real_mode_call_structure,%ebp
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0x1510,%edx
 		mov    data_70018,%eax
 		mov    %cx,dpmi_real_mode_call_structure_es
@@ -100375,6 +100393,7 @@ func_5b031:
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
+#endif
 		ret
 
 
@@ -100388,12 +100407,12 @@ func_5b0c4:
 		mov    $0x32,%ebx
 		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $dpmi_real_mode_call_structure,%ecx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0x150c,%edx
 		mov    $0x2f,%ah
 		xor    %ebx,%ebx
@@ -100435,7 +100454,7 @@ func_5b0c4:
 
 
 /*----------------------------------------------------------------*/
-func_5b169:
+cdrom_get_audio_disc_info: /* 5b169 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -100447,14 +100466,21 @@ func_5b169:
 		lea    0xc(%esp),%ebx
 		lea    0x14(%esp),%edx
 		mov    $0x2,%eax
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
+#endif
 		lea    0x4(%esp),%ebx
 		mov    %esp,%edx
 		mov    $0x1,%eax
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
+#endif
 		mov    0x14(%esp),%eax
 		mov    %eax,0x10(%esp)
 		xor    %ebp,%ebp
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
 		mov    0x10(%esp),%gs
 		mov    (%esp),%eax
 		movb   $0x1a,%gs:0x0(%ebp)
@@ -100471,13 +100497,13 @@ func_5b169:
 		mov    %eax,%gs:0xe(%ebp)
 		mov    0x8(%esp),%gs
 		mov    $0x1,%esi
-		movb   $0xa,%gs:0x0(%ebp)
-		mov    $data_ba7f4,%edi
+		movb   $0xa,%gs:0x0(%ebp) /* audio disc info */
+		mov    $data_ba7f4,%edi /* audio disc info except the first one byte */
 		mov    0xa(%esp),%eax
 		mov    %ds,%edx
 		sar    $0x10,%eax
 		mov    0x8(%esp),%ecx
-		call   func_5b031
+		call   cdrom_send_device_driver_request
 		mov    $0x6,%eax
 		push   %ds
 		push   %es
@@ -100496,27 +100522,28 @@ func_5b169:
 		pop    %ds
 		mov    0x8(%esp),%gs
 		mov    %gs:0x1(%ebp),%al
-		mov    %al,data_ba7e4
+		mov    %al,data_ba7e4 /* lowest track number */
 		mov    $data_ba7e7,%ebx
 		mov    %gs:0x2(%ebp),%al
 		mov    $data_ba7e8,%ecx
-		mov    %al,data_ba7e5
+		mov    %al,cdrom_highest_track_number /* highest track number */
 		mov    $data_ba7e6,%edx
-		mov    %gs:0x3(%ebp),%eax
+		mov    %gs:0x3(%ebp),%eax /* starting point of the lead-out track */
 		call   func_5b2eb
 		mov    0x8(%esp),%gs
 		mov    %gs:0x3(%ebp),%eax
 		call   func_5b290
-		mov    %eax,data_ba7e9
+		mov    %eax,cdrom_audio_disc_info_starting_point_of_the_lead_out_track_realted
 		mov    0x10(%esp),%gs
 		mov    %gs:0x3(%ebp),%ax
-		mov    %ax,data_ba7fe
+		mov    %ax,cdrom_device_driver_request_return_status
+#endif
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		add    $0x18,%esp
 		pop    %ebp
 		jmp    jump_5aa3f
@@ -100564,6 +100591,12 @@ func_5b290:
 		ret
 
 
+/**
+ * @param eax
+ * @param edx pointer to buffer which will have the 3rd one byte of eax
+ * @param ebx pointer to buffer which will have the 2nd one byte of eax
+ * @param ecx pointer to buffer which will have the 1st one byte of eax
+ */
 /*----------------------------------------------------------------*/
 func_5b2eb:
 /*----------------------------------------------------------------*/
@@ -100582,24 +100615,30 @@ func_5b2eb:
 		ret
 
 
+/**
+ * @param eax track number
+ */
 /*----------------------------------------------------------------*/
-func_5b3a7:
+cdrom_get_audio_track_info: /* 5b3a7 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
 		push   %edx
 		push   %esi
 		push   %edi
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
 		sub    $0x14,%esp
 		mov    %eax,%ecx
 		lea    0x10(%esp),%ebx
 		lea    0x4(%esp),%edx
 		mov    $0x2,%eax
-		call   func_5b909
+		call   allocate_dos_memory_block
 		lea    0xc(%esp),%ebx
 		mov    %esp,%edx
 		mov    $0x1,%eax
-		call   func_5b909
+		call   allocate_dos_memory_block
 		mov    0x4(%esp),%esi
 		xor    %edx,%edx
 		mov    %esi,%gs
@@ -100620,30 +100659,31 @@ func_5b3a7:
 		xor    %ebx,%ebx
 		mov    %eax,%gs:0xe(%edx)
 		mov    %edi,%gs
-		movb   $0xb,%gs:(%ebx)
-		mov    %cl,%gs:0x1(%ebx)
+		movb   $0xb,%gs:(%ebx) /* audio track info */
+		mov    %cl,%gs:0x1(%ebx) /* track number */
 		mov    0xe(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5b031
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_ba7fe
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    %edi,%gs
-		mov    %gs:0x2(%ebx),%eax
+		mov    %gs:0x2(%ebx),%eax /* starting point of the track */
 		call   func_5b290
-		mov    %eax,data_ba7df
+		mov    %eax,cdrom_track_number_related
 		mov    %cx,data_ba7dd
 		mov    %edi,%gs
-		mov    %gs:0x6(%ebx),%dl
+		mov    %gs:0x6(%ebx),%dl /* track control information */
 		mov    0x2(%esp),%eax
 		and    $0xd0,%dl
 		sar    $0x10,%eax
-		mov    %dl,data_ba7e3
-		call   func_5aa5b
+		mov    %dl,cdrom_track_control_info
+		call   free_dos_memory_block
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		add    $0x14,%esp
+#endif
 		jmp    jump_5aa3f
 
 
@@ -100659,7 +100699,7 @@ func_5b4cd:
 		lea    0x4(%esp),%ebx
 		mov    %esp,%edx
 		mov    $0x2,%eax
-		call   func_5b909
+		call   allocate_dos_memory_block
 		mov    (%esp),%ebx
 		xor    %edx,%edx
 		mov    %ebx,%gs
@@ -100672,13 +100712,13 @@ func_5b4cd:
 		mov    %esi,%gs:0x12(%edx)
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5b031
+		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_ba7fe
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		add    $0x8,%esp
 		pop    %esi
 		pop    %ecx
@@ -100687,7 +100727,7 @@ func_5b4cd:
 
 
 /*----------------------------------------------------------------*/
-func_5b537:
+cdrom_get_device_status: /* 5b537 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -100697,13 +100737,20 @@ func_5b537:
 		lea    0xc(%esp),%ebx
 		mov    %esp,%edx
 		mov    $0x2,%eax
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
+#endif
 		lea    0x4(%esp),%ebx
 		lea    0x8(%esp),%edx
 		mov    $0x1,%eax
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
+#endif
 		mov    (%esp),%ecx
 		xor    %edx,%edx
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
 		mov    %ecx,%gs
 		mov    0x8(%esp),%esi
 		movb   $0x6,%gs:(%edx)
@@ -100720,22 +100767,23 @@ func_5b537:
 		xor    %ebx,%ebx
 		mov    %eax,%gs:0xe(%edx)
 		mov    %esi,%gs
-		movb   $0x6,%gs:(%ebx)
+		movb   $0x6,%gs:(%ebx) /* device status */
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5b031
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x1(%ebx),%eax
 		mov    %eax,data_ba7fa
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_ba7fe
+		mov    %ax,cdrom_device_driver_request_return_status
+#endif
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		mov    0x6(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		add    $0x10,%esp
 		pop    %esi
 		pop    %edx
@@ -100745,13 +100793,19 @@ func_5b537:
 	jump_5b63e:
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5b031
+#if 0
+		call   cdrom_send_device_driver_request
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_ba7fe
+#endif
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
+		mov    %ax,cdrom_device_driver_request_return_status
+#endif
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_5aa5b
+		call   free_dos_memory_block
 		add    $0x8,%esp
 		pop    %edx
 		pop    %ecx
@@ -100760,7 +100814,7 @@ func_5b537:
 
 
 /*----------------------------------------------------------------*/
-func_5b66a:
+cdrom_get_audio_channel_info: /* 5b66a */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -100769,7 +100823,8 @@ func_5b66a:
 		mov    %esp,%ebx
 		lea    0x4(%esp),%edx
 		mov    $0x2,%eax
-		call   func_5b909
+#if 0
+		call   allocate_dos_memory_block
 		mov    0x4(%esp),%ecx
 		xor    %edx,%edx
 		mov    %ecx,%gs
@@ -100786,7 +100841,8 @@ func_5b66a:
 		shl    $0x10,%eax
 		mov    %eax,%gs:0xe(%edx)
 		lgs    data_ba7d4,%ebx
-		movb   $0x4,%gs:(%ebx)
+		movb   $0x4,%gs:(%ebx) /* audio channel info */
+#endif
 		jmp    jump_5b63e
 
 vtable_5b7cb:
@@ -100924,7 +100980,7 @@ func_5b8b6:
 
 
 /*----------------------------------------------------------------*/
-func_5b909:
+allocate_dos_memory_block: /* 5b909 */
 /*----------------------------------------------------------------*/
 		push   %ecx
 		push   %esi
@@ -100936,7 +100992,7 @@ func_5b909:
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $0x100,%edx
 		mov    %esp,%ebx
 		movswl %cx,%eax
@@ -101025,37 +101081,37 @@ func_5b9a7:
 
 
 /*----------------------------------------------------------------*/
-func_5ba70:
+func_5ba70: /* 5ba70 */
 /*----------------------------------------------------------------*/
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		mov    $0x1,%edx
 		call   func_outp_
 		xor    %edx,%edx
 	jump_5ba8f:
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		call   func_inp_
 		inc    %edx
 		cmp    $0x64,%edx
 		jl     jump_5ba8f
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		xor    %edx,%edx
 		call   func_outp_
 		xor    %edx,%edx
 	jump_5bab3:
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
 		test   $0x80,%al
 		je     jump_5baec
 		xor    %edx,%edx
 	jump_5bac6:
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xa,%eax
 		call   func_inp_
 		cmp    $0xaa,%eax
@@ -101081,6 +101137,7 @@ func_5ba70:
 /*----------------------------------------------------------------*/
 func_5bb33:
 /*----------------------------------------------------------------*/
+#if 0
 		push   $0xc
 		call   func___CHK
 		push   %ebx
@@ -101108,6 +101165,7 @@ func_5bb33:
 	jump_5bb70:
 		pop    %ecx
 		pop    %ebx
+#endif
 		ret
 
 
@@ -101122,24 +101180,24 @@ func_5bc43:
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_62590
-		mov    data_123714,%eax
+		call   disable_interrupts
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
 		call   func_5bb33
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_5bb33
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_5bb33
 	jump_5bc91:
 		mov    $0x20,%edx
 		mov    %edx,%eax
 		call   func_outp_
-		call   func_62592
+		call   enable_interrupts
 		pop    %gs
 		pop    %fs
 		pop    %es
@@ -101192,7 +101250,7 @@ GLOBAL (pit_isr) /* 5bced */
 		mov    %esp,%ebp
 		cld
 		call   func___GETDS
-		call   func_62590
+		call   disable_interrupts
 		mov    data_12371c,%edx
 		inc    %edx
 		mov    %edx,data_12371c
@@ -101202,7 +101260,7 @@ GLOBAL (pit_isr) /* 5bced */
 		xor    %esi,%esi
 		mov    %esi,data_12371c
 		out    %al,$0xc
-		mov    data_123728,%dl
+		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
@@ -101878,7 +101936,7 @@ func_5c634:
 
 
 /*----------------------------------------------------------------*/
-func_5c665:
+func_5c665: /* 5c665 */
 /*----------------------------------------------------------------*/
 		push   $0x4c
 		call   func___CHK
@@ -101888,21 +101946,32 @@ func_5c665:
 		sub    $0x3c,%esp
 		mov    %eax,%ebp
 		movl   $0x6a4,0x38(%esp)
-		mov    %edx,data_123738
-		mov    %ebx,data_123714
-		mov    %ecx,data_12370c
+		mov    %edx,soundblaster_adr_is_not_zero
+		mov    %ebx,soundblaster_adr
+		mov    %ecx,soundblaster_irq
 		mov    0x4c(%esp),%eax
-		mov    %eax,data_123728
+		mov    %eax,soundblaster_dma
 		movw   $0x400,0x1c(%esp)
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%edx
 		mov    $0x31,%eax
+#if 1
+    movb   $0x08,0xd(%esp)
+    movb   $0x70,0xc(%esp)
+#else
 		call   w_dos_int386
+#endif
 		xor    %edx,%edx
+    
+    /* curr value of virtual master interrupt controller base interrupt */
 		mov    0xd(%esp),%dl
+
 		xor    %eax,%eax
+
+    /* curr value of virtual slave interrupt controller base interrupt */
 		mov    0xc(%esp),%al
-		mov    data_12370c,%edi
+
+		mov    soundblaster_irq,%edi
 		cmp    $0x8,%edi
 		jge    jump_5c6cd
 		lea    (%edi,%edx,1),%eax
@@ -101911,7 +101980,7 @@ func_5c665:
 		add    %edi,%eax
 		sub    $0x8,%eax
 	jump_5c6d2:
-		mov    %eax,data_123720
+		mov    %eax,soundblaster_interrupt_number
 		xor    %ecx,%ecx
 		mov    $0xa,%edi
 	jump_5c6de:
@@ -101995,10 +102064,12 @@ func_5c665:
 		inc    %ecx
 		cmp    $0xb,%ecx
 		jl     jump_5c768
-		mov    $data_123750,%ebx
-		mov    $data_123718,%edx
-		mov    $0x41,%eax
+		mov    $data_123750,%ebx /* real mode segment of allocated block */
+		mov    $data_123718,%edx /* first selector for allocated block */
+		mov    $0x41,%eax /* number of paragraphs to allocate */
+#if 0
 		call   func_5c5f0
+#endif
 		mov    data_12374e,%eax
 		sar    $0x10,%eax
 		shl    $0x4,%eax
@@ -102008,51 +102079,67 @@ func_5c665:
 		xor    %ecx,%ecx
 	jump_5c7f5:
 		mov    data_123734,%eax
+#if 0
 		movb   $0x7f,(%ecx,%eax,1)
+#endif
 		movb   $0x7f,data_11330c(%ecx)
 		inc    %ecx
 		cmp    $0x400,%ecx
 		jl     jump_5c7f5
 		mov    $0x21,%eax
+#if 0
 		call   func_inp_
-		mov    %eax,data_12372c
-		cmpl   $0x1,data_123738
+#endif
+		mov    %eax,pic_masks
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_5c8c6
-		call   func_5ba70
-		mov    data_123720,%eax
+#if 0
+		call   func_5ba70 /* reset dsp */
+#endif
+		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %dx,data_12374e
 		mov    %eax,data_12374a
-		mov    data_123720,%eax
+		mov    soundblaster_interrupt_number,%eax
 		mov    %cs,%ecx
 		mov    $func_5bc43,%ebx
+#if 0
 		call   func__dos_setvect_
-		mov    data_12370c,%cl
+#endif
+		mov    soundblaster_irq,%cl
 		mov    $0xfe,%edx
 		shl    %cl,%edx
-		and    data_12372c,%edx
+		and    pic_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x1,%eax
 		call   func_5ce22
 		mov    %ebp,%eax
 		call   func_5c934
-		mov    data_123728,%ebx
+		mov    soundblaster_dma,%ebx
 		mov    data_123734,%eax
 		mov    $0x400,%edx
+#if 0
 		call   func_5b9a7
-		mov    data_123714,%eax
+#endif
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
 		call   func_5bb33
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_5bb33
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_5bb33
 	jump_5c8c6:
 		mov    $0x8,%eax
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %dx,data_123748
 		mov    %eax,data_123744
 		mov    %cs,%ecx
@@ -102063,19 +102150,25 @@ func_5c665:
 #else
 		call   func__dos_setvect_
 #endif
-		call   func_62590
+		call   disable_interrupts
 		mov    $0x36,%edx
 		mov    $0x43,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    0x38(%esp),%edx
 		and    $0xff,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    0x38(%esp),%edx
 		sar    $0x8,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
-		call   func_62592
+#endif
+		call   enable_interrupts
 		add    $0x3c,%esp
 		pop    %ebp
 		pop    %edi
@@ -102091,7 +102184,7 @@ func_5c934:
 		push   %ebx
 		push   %edx
 		mov    %eax,%ebx
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x40,%edx
 		call   func_5bb33
 		mov    $0xf4240,%eax
@@ -102103,7 +102196,7 @@ func_5c934:
 		mov    %edx,%eax
 		xor    %edx,%edx
 		mov    %al,%dl
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		call   func_5bb33
 		pop    %edx
 		pop    %ebx
@@ -102118,19 +102211,21 @@ func_5c977:
 		push   %ebx
 		push   %ecx
 		push   %edx
-		call   func_62590
-		mov    data_12372c,%edx
+		call   disable_interrupts
+		mov    pic_masks,%edx
 		mov    $0x21,%eax
 		call   func_outp_
-		cmpl   $0x1,data_123738
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_5c9ca
-		call   func_5ba70
+#if 0
+		call   func_5ba70 /* reset dsp */
+#endif
 		xor    %eax,%eax
 		call   func_5ce22
 		call   func_5ce59
 		mov    data_12374e,%cx
 		mov    data_12374a,%ebx
-		mov    data_123720,%eax
+		mov    soundblaster_interrupt_number,%eax
 		call   func__dos_setvect_
 	jump_5c9ca:
 		mov    data_123748,%cx
@@ -102150,9 +102245,11 @@ func_5c977:
 		xor    %edx,%edx
 		mov    $0x40,%eax
 		call   func_outp_
-		call   func_62592
+		call   enable_interrupts
 		mov    data_123718,%eax
-		call   func_5c634
+#if 0
+		call   func_5c634 /* free dos memory block */
+#endif
 		call   func_5cdd5
 		pop    %edx
 		pop    %ecx
@@ -102196,14 +102293,14 @@ func_5ca62:
 		shl    $0x3,%ecx
 		sub    $0x40,%eax
 		mov    %eax,data_1124ac(%ecx)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_1124b0(%ecx)
 		test   %eax,%eax
 		je     jump_5ca74
 		xor    %ebx,%ebx
 		mov    $0x40,%edx
 		mov    %esi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    data_1124ac(%ecx),%ebx
 		mov    data_1124b0(%ecx),%edx
 		mov    %esi,%eax
@@ -102228,7 +102325,7 @@ func_5cb97:
 		mov    %eax,%esi
 		mov    %edx,%ecx
 		mov    %ebx,%edi
-		cmpl   $0x1,data_123738
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_5cc1c
 		cmp    $0x50,%ecx
 		jge    jump_5cc1c
@@ -102274,7 +102371,7 @@ func_5cc20:
 		push   %esi
 		push   %ebp
 		mov    %eax,%ecx
-		mov    data_123738,%esi
+		mov    soundblaster_adr_is_not_zero,%esi
 		cmp    $0x1,%esi
 		jne    jump_5cc85
 		cmp    $0x50,%edx
@@ -102366,16 +102463,16 @@ func_5ce22:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_123738,%edx
+		mov    soundblaster_adr_is_not_zero,%edx
 		cmp    $0x1,%edx
 		jne    jump_5ce57
 		cmp    %edx,%eax
 		jne    jump_5ce48
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd1,%edx
 		jmp    jump_5ce52
 	jump_5ce48:
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd3,%edx
 	jump_5ce52:
 		call   func_5bb33
@@ -102390,9 +102487,9 @@ func_5ce59:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		cmpl   $0x1,data_123738
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_5ce7c
-		mov    data_123714,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd0,%edx
 		call   func_5bb33
 	jump_5ce7c:
@@ -102735,7 +102832,7 @@ func_5d3c5:
 		dec    %dl
 		add    $0x10,%eax
 		dec    %bl
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_12380c
 		mov    %dl,data_12385d
 		mov    %bl,data_12385c
@@ -103021,7 +103118,7 @@ GLOBAL (mouse_isr) /* 5d615 */
 
 
 /*----------------------------------------------------------------*/
-func_5d76b:
+keyboard_isr: /* 5d76b */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -103074,13 +103171,19 @@ func_5d7dd:
 		push   %ecx
 		push   %edx
 		mov    $0x9,%eax
-		mov    $func_5d76b,%ebx
+		mov    $keyboard_isr,%ebx
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %cs,%ecx
 		mov    %eax,data_123868
 		mov    $0x9,%eax
 		mov    %dx,data_12386c
+#if 1
+    call   w_game_install_keyboard_isr
+#else
 		call   func__dos_setvect_
+#endif
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -103548,7 +103651,7 @@ func_5dd5b:
 		mov    $0x20,%ebx
 		mov    $data_127620,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x130,data_127646
 		jle    jump_5dde1
 		cmpw   $0x0,data_755c8
@@ -103681,7 +103784,7 @@ func_5dd5b:
 		mov    $0x10,%ebx
 		mov    $data_12760c,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x138,data_127646
 		jle    jump_5dfbf
 		cmpw   $0x0,data_755c8
@@ -103754,7 +103857,9 @@ func_5e048:
 /*----------------------------------------------------------------*/
 func_5e940:
 /*----------------------------------------------------------------*/
+#if 0
 		int    $0x10
+#endif
 		ret
 
 
@@ -105307,7 +105412,7 @@ func_5f728:
 func_5f7f5:
 /*----------------------------------------------------------------*/
 		mov    $0x2ee00,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_755cc
 
 
@@ -105379,16 +105484,16 @@ func_5f874:
 		je     jump_5f914
 		mov    $0x80,%edx
 		xor    %ebx,%ebx
-		call   func_lseek_
+		call   w_dos_lseek
 		xor    %ecx,%ecx
 	jump_5f8a9:
 		mov    $0x20,%eax
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_127d4c(%ecx)
 		mov    %esi,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    $0x1d,%ebx
 		mov    %esi,%eax
 		mov    data_127d4c(%ecx),%edx
@@ -106944,7 +107049,7 @@ func_6102c:
 /*----------------------------------------------------------------*/
 		cwtl
 		shl    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_128554
 		mov    %eax,data_128550
 		ret
@@ -107072,7 +107177,7 @@ func_61147:
 		test   %edx,%edx
 		jne    jump_61179
 		mov    $0x100,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_12764c(%ebx)
 	jump_61179:
 		movswl %si,%eax
@@ -107119,7 +107224,7 @@ func_611aa:
 		jne    jump_611f5
 		mov    $0x100,%eax
 		movswl %si,%ecx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_12764c(,%ecx,4)
 	jump_611f5:
 		movswl %si,%eax
@@ -107584,7 +107689,7 @@ func_read_:	/* 0x619e2 */
 		sub    %ebp,%edx
 		mov    $0x1,%ebx
 		inc    %edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %esi,%eax
 		jmp    jump_61aed
 	jump_61ab2:
@@ -107774,19 +107879,19 @@ func_filelength_:	/* 0x61c1e */
 		mov    %eax,%ecx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%esi
 		cmp    $0xffffffff,%eax
 		je     jump_61c55
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %eax,%edi
 		mov    %esi,%edx
 		xor    %ebx,%ebx
 		mov    %ecx,%eax
-		call   func_lseek_
+		call   w_dos_lseek
 		mov    %edi,%eax
 	jump_61c55:
 		pop    %edi
@@ -108501,7 +108606,7 @@ func_getcwd_:	/* 0x62197 */
 		test   %ebx,%ebx
 		jne    jump_6220a
 		mov    %edx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_62208
@@ -108542,7 +108647,7 @@ func_tell_:	/* 0x6222e */
 		push   %edx
 		mov    $0x1,%ebx
 		xor    %edx,%edx
-		call   func_lseek_
+		call   w_dos_lseek
 		pop    %edx
 		pop    %ebx
 		ret
@@ -108963,16 +109068,20 @@ func_inp_:	/* 0x62588 */
 
 
 /*----------------------------------------------------------------*/
-func_62590:
+disable_interrupts: /* 62590 */
 /*----------------------------------------------------------------*/
+#if 0
 		cli
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
-func_62592:
+enable_interrupts: /* 62592 */
 /*----------------------------------------------------------------*/
+#if 0
 		sti
+#endif
 		ret
 
 
@@ -109262,7 +109371,7 @@ func___doclose_:	/* 0x62cec */
 		je     jump_62d2f
 		mov    0x10(%ecx),%eax
 		xor    %ebx,%ebx
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_62d2f:
 		test   %edi,%edi
 		je     jump_62d3d
@@ -112453,7 +112562,7 @@ func___Init_Argv_:	/* 0x64b5f */
 		mov    %eax,0x4(%esp)
 		add    $0x4,%eax
 		add    %ecx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_64bf8
@@ -112702,7 +112811,7 @@ func___flush_:	/* 0x64d27 */
 		mov    $0x1,%ebx
 		neg    %edx
 		mov    0x10(%ecx),%eax
-		call   func_lseek_
+		call   w_dos_lseek
 	jump_64dc3:
 		cmp    $0xffffffff,%eax
 		jne    jump_64dd3
@@ -112859,7 +112968,7 @@ func___ioalloc_:	/* 0x64f8e */
 		movl   $0x1000,0x14(%edx)
 	jump_64fc3:
 		mov    0x14(%edx),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%edx)
 		test   %eax,%eax
 		jne    jump_64ff2
@@ -119312,12 +119421,12 @@ func___InitFiles_:	/* 0x68f4c */
 		jmp    jump_68fb3
 	jump_68f70:
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_68f9f
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_68f9f
@@ -119597,7 +119706,7 @@ func_AdjField_:	/* 0x69137 */
 	jump_6918e:
 		mov    $0x20,%edx
 		mov    %edi,%eax
-		call   func_memset_
+		call   w_dos_memset
 	jump_6919a:
 		lea    -0xc(%ebp),%esp
 		pop    %edi
@@ -119713,7 +119822,7 @@ func__FtoS_:	/* 0x691a2 */
 		mov    -0x14(%ebp),%eax
 		mov    $0x2a,%edx
 		mov    %edi,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		jmp    jump_693bd
 	jump_69293:
 		mov    0x18(%ebp),%al
@@ -120987,7 +121096,7 @@ func___setenvp_:	/* 0x69d6b */
 		jne    jump_69db7
 		mov    $0x1,%eax
 	jump_69db7:
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,%ebx
 		test   %eax,%eax
@@ -120996,7 +121105,7 @@ func___setenvp_:	/* 0x69d6b */
 		shl    $0x2,%eax
 		add    $0x4,%eax
 		add    %ecx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		test   %eax,%eax
 		je     jump_69e2f
 		mov    %eax,data_75a84
@@ -121029,7 +121138,7 @@ func___setenvp_:	/* 0x69d6b */
 		mov    %edx,data_75a88
 		mov    %edx,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		jmp    jump_69e36
 	jump_69e2f:
 		mov    %edx,%eax
@@ -125908,7 +126017,7 @@ data_77d84:
 data_77d8d:
 		.string "ERROR: \"%s\" %s\n"
 data_77d9d:
-		.ascii  "\x5c\x00"
+		.ascii  "\x5c\x00" /* "\\" */
 data_77d9f:
 		.string "A:\\GENESIS2\\"
 data_77dac:
@@ -126472,21 +126581,21 @@ cdrom_starting_letter: /* ba7dc */
 		.ascii  "\x00"
 data_ba7dd:
 		.ascii  "\x00\x00"
-data_ba7df:
+cdrom_track_number_related: /* ba7df */
 		.fill   0x4
-data_ba7e3:
+cdrom_track_control_info: /* ba7e3 */
 		.ascii  "\x00"
 data_ba7e4:
 		.ascii  "\x00"
-data_ba7e5:
-		.ascii  "\x00"
+cdrom_highest_track_number: /* ba7e5 */
+		.ascii  "\x13"
 data_ba7e6:
 		.ascii  "\x00"
 data_ba7e7:
 		.ascii  "\x00"
 data_ba7e8:
 		.ascii  "\x00"
-data_ba7e9:
+cdrom_audio_disc_info_starting_point_of_the_lead_out_track_realted: /* ba7e9 */
 		.fill   0x4
 data_ba7ed:
 		.fill   0x7
@@ -126494,7 +126603,7 @@ data_ba7f4:
 		.fill   0x6
 data_ba7fa:
 		.fill   0x4
-data_ba7fe:
+cdrom_device_driver_request_return_status:
 		.ascii  "\x00"
 data_ba7ff:
 		.fill   0x33
@@ -127814,9 +127923,9 @@ data_11233a:
 		.ascii  "\x00\x00"
 data_11233c:
 		.fill   0x8
-data_112344:
+cdrom_track_related_array_1: /* 112344 */
 		.fill   0x78
-data_1123bc:
+cdrom_track_related_array_2: /* 1123bc */
 		.fill   0x88
 data_112444:
 		.fill   0x4
@@ -127948,27 +128057,27 @@ data_11350c:
 		.fill   0x200
 data_11370c:
 		.fill   0x10000
-data_12370c:
+soundblaster_irq: /* 12370c */
 		.fill   0x4
 data_123710:
 		.fill   0x4
-data_123714:
+soundblaster_adr: /* 123714 */
 		.fill   0x4
 data_123718:
 		.fill   0x4
 data_12371c:
 		.fill   0x4
-data_123720:
+soundblaster_interrupt_number: /* 123720 */
 		.fill   0x4
 data_123724:
 		.fill   0x4
-data_123728:
+soundblaster_dma: /* 123728 */
 		.fill   0x4
-data_12372c:
+pic_masks: /* 12372c */
 		.fill   0x8
 data_123734:
 		.fill   0x4
-data_123738:
+soundblaster_adr_is_not_zero: /* 123738 */
 		.fill   0xc
 data_123744:
 		.fill   0x4
