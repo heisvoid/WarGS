@@ -42851,7 +42851,7 @@ func_351f1:
 
 
 /**
- * @param eax 22000
+ * @param eax 22000 sample rate
  * @param edx 1 if soundblaster ADR is not 0. 0 otherwise
  * @param ebx soundblaster ADR
  * @param ecx soundblaster IRQ
@@ -43316,6 +43316,15 @@ func_35755:
 		mov    %edx,data_1383b4(%eax)
 		mov    %esi,data_1383a8(%eax)
 		movl   $0x1,data_1383ac(%eax)
+#if 1
+    push   %eax
+    pushl  $0
+    push   data_1383a0(%eax)
+    push   data_1383b0(%eax)
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 		pop    %edi
 		pop    %esi
 		pop    %ecx
