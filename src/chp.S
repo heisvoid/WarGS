@@ -1179,7 +1179,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   func_fclose_
 		mov    $0xffffffff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_11323:
 		mov    $0x2,%edi
 		mov    $0x4,%ecx
@@ -1245,7 +1245,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   func_fclose_
 		mov    $0xffffffff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_113fd:
 		mov    $0x2,%edi
 		mov    $0x4,%ecx
@@ -1309,7 +1309,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   func_fclose_
 		mov    $0xffffffff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_114cd:
 		mov    $0x2,%esi
 		mov    $0x4,%edi
@@ -4217,7 +4217,7 @@ func_13c31:
 		mov    %edx,%esi
 		mov    %edx,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x200
@@ -4272,11 +4272,11 @@ func_13c31:
 		mov    %edi,%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    %edi,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_13d05:
 		pop    %ebp
 		pop    %edi
@@ -4925,7 +4925,7 @@ func_14700:
 		call   w_dos_close
 		call   func_getch_
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_14744:
 		mov    $0x40,%edx
 		mov    $0x1,%ebx
@@ -5194,7 +5194,7 @@ func_1492e:
 		call   func_28c8b
 		mov    $0x180,%edx
 		mov    %ebp,%eax
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -5210,7 +5210,7 @@ func_1492e:
 		call   func_printf_
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_14af1:
 		mov    0xe(%esp),%eax
 		mov    $0x40,%edx
@@ -5229,7 +5229,7 @@ func_1492e:
 		mov    $0x946,%ebx
 		sar    $0x10,%eax
 		xor    %esi,%esi
-		call   func_write_
+		call   w_dos_write
 	jump_14b33:
 		xor    %eax,%eax
 		mov    %di,%ax
@@ -5250,7 +5250,7 @@ func_1492e:
 		mov    %ebp,%ebx
 		mov    %ecx,%eax
 		inc    %esi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xf,%si
 		jb     jump_14b33
 		inc    %edi
@@ -5259,34 +5259,34 @@ func_1492e:
 		mov    $data_c5dd2,%edx
 		mov    $0xcd,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		cmpb   $0x1,0x14(%esp)
 		jne    jump_14c5c
 		mov    $data_c5e9f,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea2,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5d8a,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea3,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea0,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea1,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		xor    %esi,%esi
-		call   func_write_
+		call   w_dos_write
 	jump_14bfe:
 		xor    %edx,%edx
 		mov    %si,%dx
@@ -5301,7 +5301,7 @@ func_1492e:
 		mov    $0xd,%ebx
 		sar    $0x10,%eax
 		inc    %esi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xa,%si
 		jb     jump_14bfe
 		xor    %ecx,%ecx
@@ -5315,7 +5315,7 @@ func_1492e:
 		mov    $0x2,%ebx
 		sar    $0x10,%eax
 		inc    %ecx
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xa,%cx
 		jae    jump_14d88
 		jmp    jump_14c30
@@ -5327,27 +5327,27 @@ func_1492e:
 		mov    $0x1,%ebx
 		mov    %al,data_c5ea3
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5dd9,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5dd2,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5dd4,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea0,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5ea1,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		xor    %ebx,%ebx
 	jump_14cda:
 		xor    %ecx,%ecx
@@ -5395,7 +5395,7 @@ func_1492e:
 		mov    $0xd,%ebx
 		sar    $0x10,%eax
 		inc    %ecx
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xa,%cx
 		jb     jump_14d30
 		xor    %ecx,%ecx
@@ -5409,7 +5409,7 @@ func_1492e:
 		mov    $0x2,%ebx
 		sar    $0x10,%eax
 		inc    %ecx
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xa,%cx
 		jb     jump_14d62
 	jump_14d88:
@@ -5429,7 +5429,7 @@ func_1492e:
 		sar    $0x10,%ecx
 		add    %eax,%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    %esi,%eax
 		shl    $0x5,%eax
 		sub    %esi,%eax
@@ -5441,7 +5441,7 @@ func_1492e:
 		add    %eax,%edx
 		mov    %ecx,%eax
 		inc    %edi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0x14,%di
 		jb     jump_14d8a
 		mov    %ecx,%eax
@@ -6525,7 +6525,7 @@ func_15bd9:
 		mov    %edx,data_125030(,%eax,4)
 		mov    $data_5013e,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		call   w_dos_close
 		push   $0x201
 		push   $data_5013e
@@ -6542,7 +6542,7 @@ func_15bd9:
 	jump_15c3c:
 		mov    $data_c5d99,%edx
 		mov    $0x1,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    data_c5d8a,%ax
 		sub    $0x4b7,%eax
 		imul   $0xdc,%eax,%eax
@@ -6553,27 +6553,27 @@ func_15bd9:
 		mov    $data_c5d9b,%edx
 		mov    %ax,data_c5d9b
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_c5d9d,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_8a7a0,%edx
 		mov    $0x4e20,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_1271e6,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		mov    $data_8ff5c,%ecx
-		call   func_write_
+		call   w_dos_write
 		lea    0x4158(%ecx),%edi
 	jump_15cbc:
 		mov    $0x88,%ebx
 		mov    %esi,%eax
 		mov    %ecx,%edx
 		add    $0x88,%ecx
-		call   func_write_
+		call   w_dos_write
 		cmp    %edi,%ecx
 		jne    jump_15cbc
 		xor    %edi,%edi
@@ -6607,20 +6607,20 @@ func_15bd9:
 		mov    0x4(%esp),%edx
 		mov    $0x4,%ebx
 		mov    %esi,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $0x2,%ebx
 		lea    (%edi,%edi,1),%eax
 		mov    %ebp,%edx
 		mov    %eax,(%esp)
 		mov    %esi,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    (%esp),%eax
 		xor    %ebx,%ebx
 		mov    %ecx,%edx
 		mov    data_124f68(%eax),%bx
 		mov    %esi,%eax
 		add    $0x2,%ebp
-		call   func_write_
+		call   w_dos_write
 		mov    0x4(%esp),%edx
 		inc    %edi
 		add    $0x4,%edx
@@ -8670,7 +8670,7 @@ func_1716e:
 		push   $data_502a6
 		push   %eax
 		mov    %eax,%ebx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0x8,%esp
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -8700,7 +8700,7 @@ func_1716e:
 		push   $data_502ba
 		push   %eax
 		mov    %eax,%ebx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0x8,%esp
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -8730,7 +8730,7 @@ func_1716e:
 		push   $data_502ce
 		push   %eax
 		mov    %eax,%ebx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0x8,%esp
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -8760,7 +8760,7 @@ func_1716e:
 		push   $data_502e2
 		push   %eax
 		mov    %eax,%ebx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0x8,%esp
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -8790,7 +8790,7 @@ func_1716e:
 		push   $data_502f6
 		push   %eax
 		mov    %eax,%ebx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0x8,%esp
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -9050,7 +9050,7 @@ func_1776d:
 		push   %edx
 		mov    $data_502f9,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -9067,7 +9067,7 @@ func_1776d:
 		mov    $game_cfg_speed,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		jmp    jump_17762
 
 
@@ -15319,7 +15319,7 @@ func_1d26c:
 		call   func_printf_
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_1d2a8:
 		mov    0x6(%esp),%ecx
 		mov    $0x42,%edx
@@ -15480,14 +15480,14 @@ func_1d7c9:
 		test   %edx,%edx
 		je     jump_1d7f2
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_1d7f2:
 		movswl %si,%edx
 		imul   %ebp,%edx
 		movswl %bx,%eax
 		mov    data_9c722(%edx,%eax,4),%eax
 		inc    %ebx
-		call   func__nfree_
+		call   w_dos_free
 	jump_1d808:
 		movswl %si,%eax
 		imul   %ebp,%eax
@@ -16054,12 +16054,30 @@ func_1dc11:
 	jump_1dc1b:
 		mov    $0x3c8,%edx
 		movswl %bx,%eax
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		xor    %al,%al
+#if 1
+    movb   %al,palette_r
+    movb   %al,palette_g
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    push   %eax
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+    pop    %eax
+#else
 		out    %al,(%dx)
 		out    %al,(%dx)
 		out    %al,(%dx)
+#endif
 		inc    %ebx
 	jump_1dc2f:
 		xor    %eax,%eax
@@ -16089,7 +16107,7 @@ func_1dc3b:
 		call   func_printf_
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_1dc66:
 		mov    $data_a3d4c,%eax
 		mov    $0x300,%edx
@@ -16154,7 +16172,11 @@ func_1dd0d:
 		mov    %dl,%al
 		mov    $0x3c8,%edx
 		xor    %ecx,%ecx
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		jmp    jump_1dd4e
 	jump_1dd2c:
@@ -16167,12 +16189,32 @@ func_1dd0d:
 		mov    (%esp),%bl
 		add    %eax,%ebx
 		mov    (%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x1(%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x2(%esi,%ebx,1),%al
 		inc    %ecx
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    push   %eax
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+    pop    %eax
+#else
 		out    %al,(%dx)
+#endif
 	jump_1dd4e:
 		xor    %eax,%eax
 		mov    0x4(%esp),%al
@@ -18014,7 +18056,7 @@ func_1fd09:
 		mov    $0x180,%edx
 		mov    %ax,(%esp)
 		mov    $data_50821,%eax
-		call   func_creat_
+		call   w_dos_creat
 		mov    %ax,(%esp)
 		cwtl
 		call   w_dos_close
@@ -18026,7 +18068,7 @@ func_1fd09:
 		mov    %esp,%edx
 		mov    %ax,(%esp)
 		cwtl
-		call   func_write_
+		call   w_dos_write
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
 		call   w_dos_close
@@ -18741,7 +18783,7 @@ func_204a7:
 		call   func_1c59d
 		mov    data_c5c5c,%eax
 		mov    $data_508ad,%edx
-		call   func__nfree_
+		call   w_dos_free
 		call   func_28d7b
 		mov    $data_508b0,%eax
 		call   w_dos_fopen
@@ -18749,7 +18791,7 @@ func_204a7:
 		push   $data_508b2
 		push   %eax
 		mov    %eax,%edx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0xc,%esp
 		mov    %edx,%eax
 		call   func_fclose_
@@ -18760,7 +18802,7 @@ func_204a7:
 		call   func_1dc11
 	jump_206cf:
 		mov    $0x1,%eax
-		call   func_exit_
+		call   w_exit
 		add    $0x8,%esp
 		jmp    jump_21bbf
 
@@ -19254,7 +19296,7 @@ func_20bc8:
 		jne    jump_20c01
 		mov    $data_50905,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		mov    %eax,0xc(%esp)
 		call   w_dos_close
 		push   $0x201
@@ -19264,7 +19306,7 @@ func_20bc8:
 		add    $0x8,%esp
 		lea    0xc(%esp),%edx
 		mov    %eax,0xc(%esp)
-		call   func_write_
+		call   w_dos_write
 		mov    0xc(%esp),%eax
 		call   w_dos_close
 		mov    $data_50835,%eax
@@ -22092,7 +22134,7 @@ GLOBAL (chp)	/* 0x2353e */
 		cmp    $0x2,%ax
 		je     jump_2355d
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_2355d:
 		cmp    $0x3,%bx
 		jne    jump_23579
@@ -22103,7 +22145,7 @@ GLOBAL (chp)	/* 0x2353e */
 		cmp    $0x53,%dl
 		je     jump_23579
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_23579:
 		mov    $data_80302,%edi
 		mov    $data_509fd,%esi
@@ -28260,7 +28302,7 @@ func_288b9:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_28908:
 		mov    $0xc,%ebx
 		mov    $0x7f,%ecx
@@ -28550,7 +28592,9 @@ func_28c27:
 		mov    %esp,%ebx
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
+#if 0
 		call   w_dos_int386
+#endif
 	jump_28c43:
 		add    $0x38,%esp
 		pop    %edx
@@ -28674,7 +28718,7 @@ func_28d4e:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		jmp    func_exit_
+		jmp    w_exit
 	jump_28d7a:
 		ret
 
@@ -28683,7 +28727,7 @@ func_28d4e:
 func_28d7b:
 /*----------------------------------------------------------------*/
 		mov    data_c6098,%eax
-		jmp    func__nfree_
+		jmp    w_dos_free
 
 
 /*----------------------------------------------------------------*/
@@ -30892,7 +30936,7 @@ func_2a965:
 		mov    %edx,%eax
 		call   func_fclose_
 		mov    $0xffffffff,%eax
-		call   func_exit_
+		call   w_exit
 	jump_2a9b0:
 		xor    %edx,%edx
 		jmp    jump_2a9df
@@ -35182,7 +35226,7 @@ func_2e533:
 		call   func_printf_
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   func_exit_
+		call   w_exit
 	jump_2e56a:
 		mov    $0x42,%edx
 		movswl %di,%ecx
@@ -43094,17 +43138,25 @@ func_35538:
 		call   disable_interrupts
 		mov    data_13848c,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_3558b
+#if 0
 		call   soundblaster_reset_dsp
+#endif
 		xor    %eax,%eax
+#if 0
 		call   soundblaster_turn_on_speaker
+#endif
 		call   func_35a17
 		mov    data_1384b6,%cx
 		mov    data_1384b2,%ebx
 		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_setvect_
+#endif
 	jump_3558b:
 		mov    data_1384b0,%cx
 		mov    data_1384ac,%ebx
@@ -43116,16 +43168,24 @@ func_35538:
 #endif
 		mov    $0x43,%eax
 		mov    $0x36,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		call   enable_interrupts
 		mov    data_138488,%eax
+#if 0
 		call   func_351f1
+#endif
 		call   func_35993
 		pop    %edx
 		pop    %ecx
@@ -43195,7 +43255,7 @@ func_356b5:
 		test   %edx,%edx
 		je     jump_35703
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_35703:
 		mov    %esi,%eax
 		call   func_355e1
@@ -43317,7 +43377,7 @@ func_35993:
 		test   %ecx,%ecx
 		je     jump_359d0
 		mov    %ecx,%eax
-		call   func__nfree_
+		call   w_dos_free
 		xor    %esi,%esi
 		mov    %esi,data_137d20(%ebx)
 	jump_359d0:
@@ -45388,7 +45448,7 @@ func___doclose_:	/* 0x396c7 */
 		testb  $0x8,0xc(%ecx)
 		je     jump_3972d
 		mov    0x8(%ecx),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movl   $0x0,0x8(%ecx)
 	jump_3972d:
 		testb  $0x8,0xd(%ecx)
@@ -48383,7 +48443,7 @@ func___purgefp_:	/* 0x3b1e6 */
 		je     jump_3b202
 		mov    %edx,%eax
 		mov    (%edx),%edx
-		call   func__nfree_
+		call   w_dos_free
 		mov    %edx,data_139550
 		jmp    jump_3b1e7
 	jump_3b202:
@@ -51038,7 +51098,7 @@ func___CreateNewNHeap_:	/* 0x3c925 */
 		inc    %edi
 		lea    0x4(%ebx),%eax
 		mov    %edi,0x18(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 		jmp    jump_3c91c
 
@@ -51161,7 +51221,7 @@ func___ExpandDGROUP_:	/* 0x3c9d4 */
 		incl   0x18(%edx)
 		lea    0x4(%ebx),%eax
 		movl   $0xffffffff,0x14(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 	jump_3cb0f:
 		add    $0x4,%esp
@@ -51288,7 +51348,7 @@ func___CMain:	/* 0x3cbaf */
 		mov    data_1395f0,%edx
 		mov    data_1395ec,%eax
 		call   chp
-		call   func_exit_
+		call   w_exit
 		mov    %ebp,%esp
 		pop    %ebp
 		pop    %edx
