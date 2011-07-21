@@ -312,8 +312,13 @@ GLOBAL (pit_isr_0) /* 101f4 */
 		push   %gs
 		mov    %esp,%ebp
 		cld
+#if 1
+    xor    %eax,%eax
+#endif
+#if 0
 		call   func___GETDS
 		cli
+#endif
 		mov    data_7899e,%dx
 		inc    %edx
 		mov    %dx,data_7899e
@@ -355,16 +360,22 @@ GLOBAL (pit_isr_0) /* 101f4 */
 		mov    %cx,data_789a4
 	jump_1029f:
 		call   func_19f5d
+#if 0
 		pushf
 		lcall  *data_78998
 		sti
+#endif
 		cld
 		pop    %gs
 		pop    %fs
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -75039,7 +75050,7 @@ func_48083:
 		mov    %ebx,(%esp)
 		mov    %esp,%ebx
 		mov    $0x78,%ecx
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		call   func_5f839
 		xor    %eax,%eax
 		mov    $0x13f,%ebx
@@ -75545,7 +75556,7 @@ func_4868a:
 		sar    $0x10,%edi
 		mov    $data_fa784,%eax
 		sar    $0x10,%esi
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		push   $0x6
 		mov    $data_fa784,%ebx
 		xor    %edx,%edx
@@ -77093,6 +77104,9 @@ func_499da:
 /*----------------------------------------------------------------*/
 func_499e4:
 /*----------------------------------------------------------------*/
+#if 1
+    call   w_game_update
+#endif
 		call   func_10364
 		test   %ax,%ax
 		je     func_499e4
@@ -101203,14 +101217,20 @@ func_5bc43:
 	jump_5bc91:
 		mov    $0x20,%edx
 		mov    %edx,%eax
+#if 0
 		call   func_outp_
+#endif
 		call   enable_interrupts
 		pop    %gs
 		pop    %fs
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -101256,7 +101276,12 @@ GLOBAL (pit_isr) /* 5bced */
 		push   %gs
 		mov    %esp,%ebp
 		cld
+#if 1
+    xor    %eax,%eax
+#endif
+#if 0
 		call   func___GETDS
+#endif
 		call   disable_interrupts
 		mov    data_12371c,%edx
 		inc    %edx
@@ -101266,20 +101291,30 @@ GLOBAL (pit_isr) /* 5bced */
 		jne    jump_5c586
 		xor    %esi,%esi
 		mov    %esi,data_12371c
+#if 0
 		out    %al,$0xc
+#endif
 		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 	jump_5bd39:
 		mov    %ax,%cx
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 		sub    %ax,%cx
 		cmp    $0x10,%cx
@@ -101890,8 +101925,10 @@ GLOBAL (pit_isr) /* 5bced */
 		jne    jump_5bc91
 		xor    %edi,%edi
 		mov    %edi,data_123724
+#if 0
 		pushf
 		lcall  *data_123744
+#endif
 		jmp    jump_5bc91
 
 
@@ -102080,6 +102117,10 @@ func_5c665: /* 5c665 */
 		mov    data_12374e,%eax
 		sar    $0x10,%eax
 		shl    $0x4,%eax
+#if 1
+    movl   $1040,%eax
+    call   w_dos_malloc
+#endif
 		mov    %eax,data_123734
 		xor    %eax,%eax
 		mov    %eax,data_123710
@@ -102254,7 +102295,10 @@ func_5c977:
 		call   func_outp_
 		call   enable_interrupts
 		mov    data_123718,%eax
-#if 0
+#if 1
+    mov    data_123734,%eax
+    call   w_dos_free
+#else
 		call   func_5c634 /* free dos memory block */
 #endif
 		call   func_5cdd5
@@ -103034,12 +103078,16 @@ func_5d5ed:
 GLOBAL (mouse_isr) /* 5d615 */
 /*----------------------------------------------------------------*/
 		push   %ds
+#if 0
 		call   func___GETDS
+#endif
 		push   %esi
 		push   %edi
 		push   %ebp
 		push   %eax
+#if 0
 		cli
+#endif
 		cmpb   $0x0,data_755c1
 		je     jump_5d633
 		mov    data_12385e,%al
@@ -103075,7 +103123,9 @@ GLOBAL (mouse_isr) /* 5d615 */
 	jump_5d68a:
 		mov    data_755bd,%eax
 		mov    data_123863,%esi
+#if 0
 		mov    (%eax),%eax
+#endif
 		sub    %esi,%eax
 		cmp    $0x7,%eax
 		jae    jump_5d6c4
@@ -103092,7 +103142,9 @@ GLOBAL (mouse_isr) /* 5d615 */
 		jmp    jump_5d6f0
 	jump_5d6c4:
 		mov    data_755bd,%eax
+#if 0
 		mov    (%eax),%eax
+#endif
 		mov    %eax,data_123863
 		cmp    $0x2,%bx
 		jle    jump_5d6db
@@ -103137,14 +103189,20 @@ GLOBAL (mouse_isr) /* 5d615 */
 		push   %ebx
 		call   func_5d1b0
 	jump_5d761:
+#if 0
 		sti
+#endif
 		cld
 		add    $0x4,%esp
 		pop    %ebp
 		pop    %edi
 		pop    %esi
 		pop    %ds
+#if 1
+    ret
+#else
 		lret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -103157,10 +103215,12 @@ keyboard_isr: /* 5d76b */
 		push   %gs
 		mov    %esp,%ebp
 		cld
+#if 0
 		call   func___GETDS
 		mov    $0x60,%eax
 		cli
 		call   func_inp_
+#endif
 		cmp    $0xe0,%al
 		je     jump_5d7b5
 		test   $0x80,%al
@@ -103176,6 +103236,7 @@ keyboard_isr: /* 5d76b */
 		mov    %dl,data_1237ee(%eax)
 		decb   data_1238ed
 	jump_5d7b5:
+#if 0
 		mov    $0x40,%edx
 		mov    $0x1a,%eax
 		mov    %edx,%gs
@@ -103185,13 +103246,18 @@ keyboard_isr: /* 5d76b */
 		pushf
 		lcall  *data_123868
 		sti
+#endif
 		cld
 		pop    %gs
 		pop    %fs
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -103242,21 +103308,32 @@ func_5d827:
 		ret
 
 
+/**
+ * Check whether keyboard input has been read or not.
+ * I change this semantics that mouse has been pressed or not.
+ */
 /*----------------------------------------------------------------*/
 func_5d839:
 /*----------------------------------------------------------------*/
+#if 1
+    call   w_mouse_get_state
+    movw   mouse_state_button,%ax
+    test   %ax,%ax
+    setne  %al
+#else
 		push   %ecx
 		push   %edx
 		mov    $0x40,%ecx
 		mov    $0x1c,%eax
 		mov    %ecx,%gs
 		mov    $0x1a,%edx
-		mov    %gs:(%eax),%al
-		cmp    %gs:(%edx),%al
+		mov    %gs:(%eax),%al /* 0x41c: end address of kbd buffer */
+		cmp    %gs:(%edx),%al /* 0x40a: start address of kbd buffer */
 		setne  %al
 		xor    %ah,%ah
 		pop    %edx
 		pop    %ecx
+#endif
 		ret
 .data
 data_5d85a:
@@ -103869,7 +103946,7 @@ func_5e048:
 		mov    0x400(%esp),%edx
 		mov    %eax,0x3e8(%esp)
 		mov    %esp,%eax
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		mov    0x3fa(%esp),%edx
 		mov    0x3f6(%esp),%eax
 		mov    %esp,%ebx
@@ -106643,7 +106720,7 @@ func_60944:
 		mov    %eax,0x54(%esp)
 		mov    %esp,%eax
 		mov    0x6e(%esp),%ecx
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		xor    %eax,%eax
 		sar    $0x10,%ecx
 		mov    0x74(%esp),%al
