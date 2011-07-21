@@ -16249,7 +16249,9 @@ func_1ddc4:
 		mov    $0x3c9,%edx
 		sub    %eax,%eax
 #if 1
-    movb   %al,palette_r
+    call   w_video_get_palette
+
+    movb   palette_r,%al
 #else
 		in     (%dx),%al
 #endif
@@ -16267,16 +16269,14 @@ func_1ddc4:
 		inc    %ecx
 		sub    %eax,%eax
 #if 1
-    movb   %al,palette_g
+    movb   palette_g,%al
 #else
 		in     (%dx),%al
 #endif
 		mov    %al,0x1(%esi,%ebx,1)
 		sub    %eax,%eax
 #if 1
-    movb   %al,palette_b
-
-    call   w_video_set_palette
+    movb   palette_b,%al
 
     push   %eax
     movb   palette_index,%al
