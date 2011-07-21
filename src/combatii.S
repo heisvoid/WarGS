@@ -105614,19 +105614,41 @@ func_5f9ae:
 		call   func_5e943
 		mov    $0x3c8,%edx
 		mov    %cl,%al
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		jmp    jump_5f9e0
 	jump_5f9cb:
 		movswl %cx,%ebx
 		lea    (%ebx,%ebx,2),%ebx
 		mov    (%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x1(%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x2(%esi,%ebx,1),%al
 		inc    %ecx
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 	jump_5f9e0:
 		cmp    %di,%cx
 		jl     jump_5f9cb
