@@ -658,7 +658,7 @@ func_10500:
 		sar    $0x10,%eax
 		call   w_dos_close
 		mov    %ebp,%eax
-		call   func__nfree_
+		call   w_dos_free
 		add    $0x4,%esp
 	jump_1059e:
 		pop    %ebp
@@ -2618,7 +2618,7 @@ func_119b6:
 		je     jump_11af5
 		mov    %esi,%eax
 		xor    %edi,%edi
-		call   func__nfree_
+		call   w_dos_free
 		mov    %edi,data_d66b1(%ebx)
 	jump_11af5:
 		inc    %ecx
@@ -2825,7 +2825,7 @@ func_11ca9:
 		je     jump_11d1d
 		mov    %edi,%eax
 		xor    %ebp,%ebp
-		call   func__nfree_
+		call   w_dos_free
 		mov    %ebp,data_d66b1(%edx)
 	jump_11d1d:
 		inc    %ebx
@@ -13693,7 +13693,7 @@ func_19652:
 		mov    %edx,%eax
 		mov    0x4(%edx),%edx
 		mov    %edx,data_f041c
-		call   func__nfree_
+		call   w_dos_free
 		jmp    jump_19658
 	jump_19674:
 		mov    $0xffffffff,%edi
@@ -13795,7 +13795,7 @@ func_19718:
 	jump_19765:
 		mov    %esi,0x4(%edx)
 	jump_19768:
-		call   func__nfree_
+		call   w_dos_free
 		decw   data_f0426
 	jump_19774:
 		pop    %esi
@@ -23102,7 +23102,7 @@ func_1ffcd:
 		imul   $0xc,%eax,%eax
 		mov    data_f0db2(%eax),%eax
 		inc    %edx
-		call   func__nfree_
+		call   w_dos_free
 	jump_1ffe2:
 		xor    %ebx,%ebx
 		movswl %dx,%eax
@@ -40397,7 +40397,7 @@ func_2d221:
 		call   func_12124
 		mov    0x58(%esp),%eax
 		mov    $0x1,%edx
-		call   func__nfree_
+		call   w_dos_free
 	jump_2d47e:
 		mov    %edx,%eax
 		add    $0x90,%esp
@@ -45824,7 +45824,7 @@ func_310de:
 		cmp    $0x32,%bx
 		jl     jump_31145
 		mov    (%esp),%eax
-		call   func__nfree_
+		call   w_dos_free
 		add    $0xc,%esp
 		jmp    jump_30f5a
 
@@ -48365,10 +48365,10 @@ func_32bcb:
 	jump_339f4:
 		movswl %bx,%edx
 		mov    0x2d0(%esp,%edx,4),%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x1e0(%esp,%edx,4),%eax
 		inc    %ebx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x3c,%bx
 		jl     jump_339f4
 		call   func_103a0
@@ -56723,10 +56723,10 @@ func_39a49:
 	jump_3a8ff:
 		movswl %bx,%edx
 		mov    0x258(%esp,%edx,4),%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x190(%esp,%edx,4),%eax
 		inc    %ebx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x32,%bx
 		jl     jump_3a8ff
 		call   func_1ffcd
@@ -57614,22 +57614,22 @@ func_3aee8:
 	jump_3b4ee:
 		movswl %bx,%edx
 		mov    (%esp,%edx,4),%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x140(%esp,%edx,4),%eax
 		inc    %ebx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x50,%bx
 		jl     jump_3b4ee
 		mov    0x420(%esp),%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x414(%esp),%eax
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x418(%esp),%eax
 		mov    $data_12824c,%ebx
-		call   func__nfree_
+		call   w_dos_free
 		mov    0x41c(%esp),%eax
 		mov    $0x100,%edx
-		call   func__nfree_
+		call   w_dos_free
 		xor    %eax,%eax
 		call   func_5f9ae
 		xor    %eax,%eax
@@ -74264,7 +74264,7 @@ func_474d1:
 		cmp    $0x6,%di
 		jl     jump_47665
 		mov    0x8(%esp),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movb   $0x0,0x64(%esi)
 		call   func_45559
 		call   func_103a0
@@ -74445,7 +74445,7 @@ func_47712:
 		cmp    $0x6,%si
 		jl     jump_478de
 		mov    0x8(%esp),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movb   $0x0,0x64(%edi)
 		call   func_45559
 		call   func_103a0
@@ -74844,7 +74844,7 @@ func_47c06:
 		movswl %dx,%eax
 		mov    (%esp,%eax,4),%eax
 		inc    %edx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x3,%dx
 		jl     jump_47e55
 		call   func_45559
@@ -92273,7 +92273,7 @@ func_5447c:
 		imul   $0xd,%ebx,%ebx
 		mov    data_110a89(%ebx,%eax,1),%eax
 		inc    %edx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x4,%dx
 		jl     jump_54485
 		inc    %ecx
@@ -94404,7 +94404,7 @@ func_5615d:
 		movswl %dx,%eax
 		mov    data_112160(,%eax,4),%eax
 		inc    %edx
-		call   func__nfree_
+		call   w_dos_free
 		cmp    $0x64,%dx
 		jl     jump_56160
 		pop    %edx
@@ -102285,7 +102285,7 @@ func_5ca62:
 		test   %ebx,%ebx
 		je     jump_5caa3
 		mov    %ebx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_5caa3:
 		mov    %esi,%eax
 		call   func_filelength_
@@ -102442,7 +102442,7 @@ func_5cdd5:
 		test   %ecx,%ecx
 		je     jump_5ce12
 		mov    %ecx,%eax
-		call   func__nfree_
+		call   w_dos_free
 		xor    %esi,%esi
 		mov    %esi,data_1124b0(%ebx)
 	jump_5ce12:
@@ -102846,7 +102846,7 @@ func_5d3c5:
 		test   %esi,%esi
 		je     jump_5d3e4
 		mov    %esi,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_5d3e4:
 		xor    %eax,%eax
 		movzbl %dl,%esi
@@ -103014,7 +103014,7 @@ func_5d5ed:
 		test   %edx,%edx
 		je     jump_5d60c
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_5d60c:
 		call   func_5cea3
 		pop    %edx
@@ -107217,7 +107217,7 @@ func_61115:
 		je     jump_6113a
 		mov    %ecx,%eax
 		xor    %esi,%esi
-		call   func__nfree_
+		call   w_dos_free
 		mov    %esi,data_12764c(%edx)
 	jump_6113a:
 		inc    %ebx
@@ -109451,7 +109451,7 @@ func___doclose_:	/* 0x62cec */
 		testb  $0x8,0xc(%ecx)
 		je     jump_62d52
 		mov    0x8(%ecx),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movl   $0x0,0x8(%ecx)
 	jump_62d52:
 		testb  $0x8,0xd(%ecx)
@@ -110303,7 +110303,7 @@ func___CreateNewNHeap_:	/* 0x63446 */
 		inc    %edi
 		lea    0x4(%ebx),%eax
 		mov    %edi,0x18(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 		jmp    jump_6343d
 
@@ -110426,7 +110426,7 @@ func___ExpandDGROUP_:	/* 0x634f5 */
 		incl   0x18(%edx)
 		lea    0x4(%ebx),%eax
 		movl   $0xffffffff,0x14(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 	jump_63630:
 		add    $0x4,%esp
@@ -112978,7 +112978,7 @@ func___purgefp_:	/* 0x64f3f */
 		je     jump_64f5b
 		mov    %edx,%eax
 		mov    (%edx),%edx
-		call   func__nfree_
+		call   w_dos_free
 		mov    %edx,data_12857c
 		jmp    jump_64f40
 	jump_64f5b:
@@ -121211,7 +121211,7 @@ func___setenvp_:	/* 0x69d6b */
 		jmp    jump_69e36
 	jump_69e2f:
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_69e36:
 		pop    %fs
 		pop    %es
