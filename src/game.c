@@ -25,6 +25,7 @@ enum
 static bool initialized = false;
 static uint32_t fps = DEFAULT_FPS;
 static bool pit_isr_is_installed = false;
+static bool pit_isr_0_is_installed = false;
 static bool keyboard_isr_is_installed = false;
 static bool mouse_isr_is_installed = false;
 
@@ -93,6 +94,11 @@ game_update ()
   if (pit_isr_is_installed)
     {
       asm volatile ("call pit_isr");
+    }
+
+  if (pit_isr_0_is_installed)
+    {
+      asm volatile ("call pit_isr_0");
     }
 
   handle_events ();
@@ -184,6 +190,32 @@ game_uninstall_pit_isr ()
     }
 
   pit_isr_is_installed = false;
+}
+
+void
+game_install_pit_isr_0 ()
+{
+#ifdef COMBATII
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  pit_isr_0_is_installed = true;
+#endif
+}
+
+void
+game_uninstall_pit_isr_0 ()
+{
+#ifdef COMBATII
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  pit_isr_0_is_installed = false;
+#endif
 }
 
 void
