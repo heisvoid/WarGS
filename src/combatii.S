@@ -99970,7 +99970,7 @@ func_5a566:
 
 
 /*----------------------------------------------------------------*/
-func_5a8c3:
+func_5a8c3: /* 5a8c3 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -99979,8 +99979,8 @@ func_5a8c3:
 		push   %edi
 		sub    $0x28,%esp
 		mov    $0x32,%ebx
-		mov    $data_112448,%eax
-		mov    $data_112448,%edi
+		mov    $dpmi_real_mode_call_structure,%eax
+		mov    $dpmi_real_mode_call_structure,%edi
 		xor    %esi,%esi
 		xor    %edx,%edx
 		mov    %esi,data_112444
@@ -99993,11 +99993,11 @@ func_5a8c3:
 		mov    $0x1500,%ebx
 		mov    $0x300,%edx
 		mov    $0x2f,%ah
-		mov    %esi,data_112458
-		mov    %ebx,data_112464
+		mov    %esi,dpmi_real_mode_call_structure_ebx
+		mov    %ebx,dpmi_real_mode_call_structure_eax
 		mov    %dx,(%esp)
 		mov    %ah,0x4(%esp)
-		mov    $data_112448,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %dl,%dl
 		xor    %ebx,%ebx
 		mov    %dl,0x5(%esp)
@@ -100008,11 +100008,21 @@ func_5a8c3:
 		mov    %dx,0x1c(%esp)
 		mov    %esp,%edx
 		mov    %edi,0x14(%esp)
-		call   w_dos_int386x
-		mov    data_112458,%dx
-		mov    data_112460,%al
-		mov    %dx,data_ba7da
-		mov    %al,data_ba7dc
+#if 1
+    /* force number of cdrom drive letters used 1 */
+    mov   $1,%eax
+    mov   %eax,dpmi_real_mode_call_structure_ebx
+
+    /* force starting driver letter 0 */
+    mov   $0,%eax
+    mov   %eax,dpmi_real_mode_call_structure_ecx
+#else
+		call   w_dos_int386x /* cdrom installation check */
+#endif
+		mov    dpmi_real_mode_call_structure_ebx,%dx
+		mov    dpmi_real_mode_call_structure_ecx,%al
+		mov    %dx,cdrom_number
+		mov    %al,cdrom_starting_letter
 		and    $0xff,%eax
 		mov    %eax,data_70018
 		test   %dx,%dx
@@ -100167,10 +100177,10 @@ func_5acf3:
 /*----------------------------------------------------------------*/
 		push   %ebx
 		xor    %ebx,%ebx
-		mov    data_ba7dc,%bl
+		mov    cdrom_starting_letter,%bl
 		mov    %ebx,(%eax)
 		xor    %eax,%eax
-		mov    data_ba7da,%ax
+		mov    cdrom_number,%ax
 		mov    %eax,(%edx)
 		pop    %ebx
 		ret
@@ -100330,22 +100340,22 @@ func_5b031:
 		sub    $0x28,%esp
 		mov    %eax,%ecx
 		mov    $0x32,%ebx
-		mov    $data_112448,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		call   func_memset_
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
-		mov    $data_112448,%ebp
+		mov    $dpmi_real_mode_call_structure,%ebp
 		call   func_memset_
 		mov    $0x1510,%edx
 		mov    data_70018,%eax
-		mov    %cx,data_11246a
+		mov    %cx,dpmi_real_mode_call_structure_es
 		xor    %ebx,%ebx
 		mov    $0x300,%ecx
-		mov    %edx,data_112464
-		mov    %eax,data_112460
-		mov    %ebx,data_112458
+		mov    %edx,dpmi_real_mode_call_structure_eax
+		mov    %eax,dpmi_real_mode_call_structure_ecx
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
 		mov    %ebx,0x4(%esp)
 		mov    %ebx,0x8(%esp)
 		mov    $0x2f,%ah
@@ -100353,7 +100363,7 @@ func_5b031:
 		mov    %ecx,(%esp)
 		mov    %ds,%edx
 		mov    %ah,0x4(%esp)
-		mov    $data_112448,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		lea    0x1c(%esp),%ecx
 		mov    $0x31,%eax
 		mov    %dx,0x1c(%esp)
@@ -100376,22 +100386,22 @@ func_5b0c4:
 		push   %edx
 		sub    $0x28,%esp
 		mov    $0x32,%ebx
-		mov    $data_112448,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		call   func_memset_
 		mov    $0xc,%ebx
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
-		mov    $data_112448,%ecx
+		mov    $dpmi_real_mode_call_structure,%ecx
 		call   func_memset_
 		mov    $0x150c,%edx
 		mov    $0x2f,%ah
 		xor    %ebx,%ebx
-		mov    %edx,data_112464
-		mov    %ebx,data_112458
+		mov    %edx,dpmi_real_mode_call_structure_eax
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
 		mov    %ah,0x4(%esp)
 		mov    $0x300,%edx
-		mov    $data_112448,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %ebx,%ebx
 		mov    %dx,(%esp)
 		xor    %dl,%dl
@@ -100404,12 +100414,17 @@ func_5b0c4:
 		mov    %ecx,0x14(%esp)
 		lea    0x1c(%esp),%ecx
 		mov    %esp,%edx
+#if 1
+    /* force mscdex.exe version 2.1 */
+    movw   $0x0201,dpmi_real_mode_call_structure_ebx
+#else
 		call   w_dos_int386x
-		mov    data_112458,%eax
+#endif
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		sar    $0x8,%eax
 		and    $0xff,%eax
 		mov    %eax,data_8b3d4
-		mov    data_112458,%eax
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		and    $0xff,%eax
 		mov    %eax,data_8b3d8
 		add    $0x28,%esp
@@ -126451,9 +126466,9 @@ data_ba7d4:
 		.fill   0x4
 data_ba7d8:
 		.ascii  "\x00\x00"
-data_ba7da:
+cdrom_number: /* ba7da */
 		.ascii  "\x00\x00"
-data_ba7dc:
+cdrom_starting_letter: /* ba7dc */
 		.ascii  "\x00"
 data_ba7dd:
 		.ascii  "\x00\x00"
@@ -127805,15 +127820,15 @@ data_1123bc:
 		.fill   0x88
 data_112444:
 		.fill   0x4
-data_112448:
+dpmi_real_mode_call_structure: /* 112448 */
 		.fill   0x10
-data_112458:
+dpmi_real_mode_call_structure_ebx: /* 112458 */
 		.fill   0x8
-data_112460:
+dpmi_real_mode_call_structure_ecx: /* 112460 */
 		.fill   0x4
-data_112464:
+dpmi_real_mode_call_structure_eax: /* 112464 */
 		.fill   0x6
-data_11246a:
+dpmi_real_mode_call_structure_es: /* 11246a */
 		.fill   0x3a
 data_1124a4:
 		.ascii  "\x00\x00"
