@@ -102508,7 +102508,12 @@ func_5cea3:
 		mov    $0x33,%eax
 		mov    %dx,data_123810
 		mov    $data_123810,%edx
+#if 1
+    movl   $0x0000ffff,data_123830
+    movl   $0x00000002,data_123834
+#else
 		call   w_dos_int386
+#endif
 		mov    data_123830,%ax
 		mov    %ax,(%esp)
 		mov    data_123834,%ax
@@ -102534,7 +102539,17 @@ func_5cee3:
 		mov    $0x33,%eax
 		mov    %dx,data_123810
 		mov    $data_123810,%edx
+#if 1
+    call   w_mouse_get_state
+    mov    mouse_state_button,%ax
+    mov    %ax,data_123834
+    mov    mouse_state_x,%ax
+    mov    %ax,data_123838
+    mov    mouse_state_y,%ax
+    mov    %ax,data_12383c
+#else
 		call   w_dos_int386
+#endif
 		mov    data_123834,%ax
 		mov    %ax,(%esp)
 		xor    %eax,%eax
