@@ -103938,7 +103938,7 @@ func_5e9e8:
 		push   %edi
 		mov    data_755cc,%esi
 		add    $0xbb80,%esi
-		mov    $0xa0000,%edi
+		mov    video_buffer,%edi
 		mov    $0x1e0,%eax
 		sub    $0x140,%eax
 		mov    $0xc8,%bx
@@ -105465,7 +105465,7 @@ func_5f839:
 		push   %edx
 		mov    $0x140,%ebx
 		xor    %edx,%edx
-		mov    $0xa0000,%ecx
+		mov    video_buffer,%ecx
 		mov    %edx,data_755d6
 		mov    %ebx,data_755da
 		mov    %ecx,data_755d0
