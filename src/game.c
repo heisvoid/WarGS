@@ -81,6 +81,20 @@ handle_events ()
     }
 }
 
+static void
+update_pit_isr ()
+{
+  if (pit_isr_is_installed)
+    {
+      asm volatile ("call pit_isr");
+    }
+
+  if (pit_isr_0_is_installed)
+    {
+      asm volatile ("call pit_isr_0");
+    }
+}
+
 void
 game_update ()
 {
@@ -91,24 +105,21 @@ game_update ()
 
   static uint32_t last_frame_ticks = 0;
 
-  if (pit_isr_is_installed)
-    {
-      asm volatile ("call pit_isr");
-    }
-
-  if (pit_isr_0_is_installed)
-    {
-      asm volatile ("call pit_isr_0");
-    }
-
+  update_pit_isr ();
   handle_events ();
 
   if (0 < last_frame_ticks)
     {
-      const int32_t delay = 1000 / fps - (SDL_GetTicks () - last_frame_ticks);
-      if (0 < delay)
+      int32_t delay = 1000 / fps - (SDL_GetTicks () - last_frame_ticks);
+      while (0 < delay)
         {
-          SDL_Delay (delay);
+          const uint32_t t = SDL_GetTicks ();
+
+          update_pit_isr ();
+
+          SDL_Delay (10);
+
+          delay -= (SDL_GetTicks () - t);
         }
     }
 
