@@ -16197,12 +16197,20 @@ func_1ddc4:
 		mov    %dl,%al
 		mov    $0x3c7,%edx
 		xor    %ecx,%ecx
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		jmp    jump_1de12
 	jump_1ddde:
 		mov    $0x3c9,%edx
 		sub    %eax,%eax
+#if 1
+    movb   %al,palette_r
+#else
 		in     (%dx),%al
+#endif
 		mov    %eax,%edx
 		movswl %cx,%eax
 		mov    %eax,%ebx
@@ -16216,10 +16224,26 @@ func_1ddc4:
 		mov    $0x3c9,%edx
 		inc    %ecx
 		sub    %eax,%eax
+#if 1
+    movb   %al,palette_g
+#else
 		in     (%dx),%al
+#endif
 		mov    %al,0x1(%esi,%ebx,1)
 		sub    %eax,%eax
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    push   %eax
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+    pop    %eax
+#else
 		in     (%dx),%al
+#endif
 		mov    %al,0x2(%esi,%ebx,1)
 	jump_1de12:
 		xor    %eax,%eax
