@@ -18771,7 +18771,9 @@ func_204a7:
 		cmp    $0x3,%dl
 		je     jump_2066c
 		call   func_15bd9
-		call   func_1776d
+#if 0
+		call   func_1776d /* write game.cfg */
+#endif
 		mov    $data_50895,%eax
 		call   func_1492e
 	jump_2066c:
