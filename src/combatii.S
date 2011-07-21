@@ -93968,7 +93968,7 @@ func_55b59:
 		push   %esi
 		mov    %eax,%esi
 		xor    %eax,%eax
-		call   func_time_
+		call   w_time
 		mov    %eax,data_1120e8
 		call   func_srand_
 		call   func_103a8
@@ -94194,7 +94194,7 @@ func_55ebc:
 		call   func_5d5ed
 		call   func_4ff8e
 		xor    %eax,%eax
-		call   func_time_
+		call   w_time
 		mov    data_1120e8,%edx
 		mov    $0xa0,%ecx
 		sub    %edx,%eax
@@ -94204,7 +94204,7 @@ func_55ebc:
 		add    %eax,%ebx
 		mov    $data_1120e8,%eax
 		mov    %ebx,data_1120e8
-		call   func_time_
+		call   w_time
 		add    $0x4,%esp
 		pop    %edx
 		pop    %ecx
