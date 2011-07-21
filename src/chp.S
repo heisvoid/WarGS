@@ -28054,6 +28054,12 @@ func_284ac:
 		push   %eax
 		push   %edx
 	jump_284b4:
+#if 1
+    /* draw world map */
+    push   %eax
+    call   w_game_update
+    pop    %eax
+#endif
 		lea    0x8(%esp),%esi
 		mov    $data_8ff20,%edi
 		call   func_28a06
