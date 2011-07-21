@@ -544,7 +544,7 @@ func_10420:
 		sar    $0x10,%ecx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x4(%esp),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
@@ -561,7 +561,7 @@ func_10420:
 		sar    $0x10,%ecx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
 		mov    %ecx,%eax
@@ -578,7 +578,7 @@ func_10420:
 		mov    %eax,%edx
 		mov    %eax,data_789ac(%esi)
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_789ac(%esi),%eax
 		inc    %edi
 		call   func_10031
@@ -624,7 +624,7 @@ func_10500:
 		mov    %eax,%edx
 		mov    %eax,%ebp
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %ebx,%ebx
 		xor    %esi,%esi
 	jump_10553:
@@ -693,7 +693,7 @@ func_105ad:
 		movswl %ax,%ecx
 		mov    %eax,%edi
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
@@ -716,7 +716,7 @@ func_105ad:
 		add    %eax,%edx
 		movswl %di,%eax
 		inc    %ecx
-		call   func_read_
+		call   w_dos_read
 	jump_1062e:
 		xor    %edx,%edx
 		movswl %cx,%eax
@@ -726,7 +726,7 @@ func_105ad:
 		mov    $0x2,%ebx
 		mov    $data_ba846,%edx
 		movswl %di,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %edx,%edx
 		movswl %di,%ecx
 		mov    %dx,0x28(%esp)
@@ -735,7 +735,7 @@ func_105ad:
 		mov    $0x4,%ebx
 		lea    0x24(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x2,%edx
 		mov    %ecx,%eax
@@ -745,14 +745,14 @@ func_105ad:
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		add    %esi,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x24(%esp),%eax
 		call   w_dos_malloc
 		mov    0x24(%esp),%ebx
 		mov    %eax,%edx
 		mov    %eax,data_ba1f9(%esi)
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x28(%esp),%ebx
 		mov    data_ba1f9(%esi),%eax
 		inc    %ebx
@@ -769,11 +769,11 @@ func_105ad:
 		movswl %di,%ecx
 		mov    $data_ba844,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_ba840,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_ba842,%eax
 		mov    data_ba83e,%edx
 		sar    $0x10,%eax
@@ -784,18 +784,18 @@ func_105ad:
 		mov    %eax,0x24(%esp)
 		mov    %eax,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x24(%esp),%ebx
 		mov    $data_83db4,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x24(%esp),%edx
 		shr    %edx
 		mov    %ecx,%eax
 		mov    %edx,0x24(%esp)
 		mov    %edx,%ebx
 		mov    $data_88bd4,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x138,%edx
 		mov    %ecx,%eax
@@ -803,7 +803,7 @@ func_105ad:
 		mov    $0x1c8,%ebx
 		mov    $data_128384,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $data_12824c,%ebx
 		mov    $0x100,%edx
 		xor    %eax,%eax
@@ -814,7 +814,7 @@ func_105ad:
 		mov    $0x14,%ebx
 		mov    %esp,%edx
 		movswl %di,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %eax,%eax
 	jump_10794:
 		mov    -0x2(%esp),%ebx
@@ -844,7 +844,7 @@ func_105ad:
 		mov    $0x14,%ebx
 		mov    %esp,%edx
 		movswl %di,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %eax,%eax
 	jump_107e7:
 		mov    -0x2(%esp),%ebx
@@ -874,15 +874,15 @@ func_105ad:
 		mov    $0x1,%ebx
 		lea    0x30(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x2c(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x34(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		cmpb   $0x0,0x30(%esp)
 		je     jump_1088f
 		cmpb   $0x0,0x34(%esp)
@@ -909,7 +909,7 @@ func_105ad:
 		mov    $0x1,%ebx
 		lea    0x30(%esp),%edx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %edx,%edx
 		movswl %cx,%eax
 		mov    0x30(%esp),%dl
@@ -924,7 +924,7 @@ func_105ad:
 		mov    $0x10,%ebx
 		lea    0x14(%esp),%edx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %eax,%eax
 	jump_108de:
 		movswl %ax,%edx
@@ -944,7 +944,7 @@ func_105ad:
 		call   func_10500
 		mov    $data_ba836,%edx
 		movswl %di,%eax
-		call   func_read_
+		call   w_dos_read
 		jmp    jump_1092b
 	jump_10922:
 		movw   $0xffff,data_ba836
@@ -2218,7 +2218,7 @@ func_11575:
 		mov    $0x2,%ebx
 		lea    0x10(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
@@ -2237,7 +2237,7 @@ func_11575:
 		lea    0x14(%esp),%edx
 		mov    %ecx,%eax
 		mov    %di,0x14(%esp)
-		call   func_read_
+		call   w_dos_read
 		cmpw   $0x0,0x14(%esp)
 		je     jump_1174b
 		mov    %di,0x14(%esp)
@@ -2264,7 +2264,7 @@ func_11575:
 		add    %edi,%edx
 		mov    %ecx,%eax
 		add    %esi,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xa,%edx,%edx
@@ -2273,7 +2273,7 @@ func_11575:
 		add    %esi,%edx
 		mov    %ecx,%eax
 		inc    %edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xa,%edx,%edx
@@ -2282,7 +2282,7 @@ func_11575:
 		add    %esi,%edx
 		mov    %ecx,%eax
 		add    $0x2,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xa,%edx,%edx
@@ -2291,7 +2291,7 @@ func_11575:
 		add    %esi,%edx
 		mov    %ecx,%eax
 		add    $0x3,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xa,%edx,%edx
@@ -2302,7 +2302,7 @@ func_11575:
 		mov    0x8(%esp),%edi
 		add    $0x4,%edx
 		inc    %edi
-		call   func_read_
+		call   w_dos_read
 		mov    %di,0x8(%esp)
 		cmp    $0x2,%di
 		jl     jump_11686
@@ -2323,7 +2323,7 @@ func_11575:
 		sar    $0x10,%ecx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -2333,7 +2333,7 @@ func_11575:
 		lea    0x2(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -2345,7 +2345,7 @@ func_11575:
 		lea    0x3(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -2357,7 +2357,7 @@ func_11575:
 		lea    0x4(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -2369,7 +2369,7 @@ func_11575:
 		mov    $0x1,%ebx
 		add    $0x5,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -2383,7 +2383,7 @@ func_11575:
 		lea    0x7(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xd,%edx,%edx
@@ -2391,7 +2391,7 @@ func_11575:
 		add    %esi,%edx
 		mov    %ecx,%eax
 		add    $0x8,%edx
-		call   func_read_
+		call   w_dos_read
 		cmpw   $0x0,0x18(%esp)
 		jne    jump_11896
 		mov    0x12(%esp),%eax
@@ -2412,14 +2412,14 @@ func_11575:
 		lea    0x6(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
 		mov    $0x1,%ebx
 		lea    (%esi,%eax,1),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -2427,7 +2427,7 @@ func_11575:
 		lea    0x1(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 	jump_118e5:
 		mov    -0x2(%esp),%ecx
 		sar    $0x10,%ecx
@@ -2442,7 +2442,7 @@ func_11575:
 		mov    0xa(%esp),%eax
 		mov    0x4(%esp),%ebx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -5421,7 +5421,7 @@ func_13909:
 		sar    $0x10,%esi
 		mov    %ecx,%eax
 		sar    $0x10,%edi
-		call   func_read_
+		call   w_dos_read
 		shl    $0x3,%esi
 		shl    $0x2,%edi
 		mov    (%esp),%eax
@@ -5431,7 +5431,7 @@ func_13909:
 		add    %edi,%edx
 		mov    %eax,data_e5a90(%esi)
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $data_e5a10,%edx
 		mov    %ebp,%ebx
 		mov    data_e5a2e(%edi),%eax
@@ -5440,7 +5440,7 @@ func_13909:
 		add    $0x2,%edx
 		mov    %ax,data_e5a30(%edi)
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_e5a10(%edi),%eax
 		mov    $0x1,%ebx
 		sar    $0x11,%eax
@@ -5451,14 +5451,14 @@ func_13909:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_e5a90(%esi),%edx
-		call   func_read_
+		call   w_dos_read
 		mov    data_e5a90(%esi),%eax
 		call   func_10031
 		mov    $0x4,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
 		mov    0x8(%esp),%edi
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%eax
 		inc    %edi
 		mov    $data_e5a30,%edx
@@ -5471,7 +5471,7 @@ func_13909:
 		shl    $0x2,%edi
 		mov    %ecx,%eax
 		add    %edi,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    $data_e5a10,%edx
 		mov    %ebp,%ebx
 		mov    data_e5a2e(%edi),%eax
@@ -5480,7 +5480,7 @@ func_13909:
 		add    $0x2,%edx
 		mov    %ax,data_e5a30(%edi)
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_e5a10(%edi),%eax
 		mov    $0x1,%ebx
 		sar    $0x11,%eax
@@ -5491,7 +5491,7 @@ func_13909:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_e5a94(%esi),%edx
-		call   func_read_
+		call   w_dos_read
 		mov    data_e5a94(%esi),%eax
 		mov    0x4(%esp),%edx
 		call   func_10031
@@ -11772,7 +11772,7 @@ func_18115:
 		movswl %ax,%ecx
 		mov    $data_edd88,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		mov    $data_efdb0,%edx
 		call   w_dos_close
@@ -23027,7 +23027,7 @@ func_1fea4:
 		mov    $0x2,%ebx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x4(%esp),%edx
 		add    data_f0da8,%dx
 		mov    $0x1,%ebx
@@ -23045,16 +23045,16 @@ func_1fea4:
 		sar    $0x10,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		add    $data_f0daa,%esi
 		mov    %ecx,%eax
 		mov    %esi,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x2(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
@@ -23062,11 +23062,11 @@ func_1fea4:
 		mov    $0x2,%ebx
 		lea    0x4(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x6(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x10,%edx
 		mov    %ecx,%eax
@@ -23078,7 +23078,7 @@ func_1fea4:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		inc    %edi
-		call   func_read_
+		call   w_dos_read
 	jump_1ffa5:
 		mov    0x4(%esp),%ebx
 		cmp    %bx,%di
@@ -23154,11 +23154,11 @@ func_20021:
 		movswl %ax,%ecx
 		mov    %eax,%esi
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0xc(%esp),%eax
 		movswl %si,%ecx
 		mov    %ax,0x4(%esp)
@@ -23167,15 +23167,15 @@ func_20021:
 		mov    $0x1,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x1(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x2(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%edx
 		mov    0x4(%esp),%ebx
 		xor    %eax,%eax
@@ -75107,7 +75107,7 @@ func_48132:
 		mov    $0x2,%ebx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x4(%esp),%eax
 		cmp    0x18(%esp),%ax
 		jg     jump_4818e
@@ -75129,7 +75129,7 @@ func_48132:
 		mov    $0x4,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%edx
 		mov    %ecx,%eax
 		xor    %ebx,%ebx
@@ -75137,15 +75137,15 @@ func_48132:
 		mov    $0x4,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0xc(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
@@ -75153,7 +75153,7 @@ func_48132:
 		mov    (%esp),%ebx
 		mov    $data_f42b8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $data_f42b8,%eax
 		mov    0x10(%esp),%ebx
 		call   func_10031
@@ -77289,7 +77289,7 @@ func_49b16:
 		mov    %esp,%edx
 		mov    %ecx,%eax
 		movswl %di,%esi
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%eax
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
@@ -77300,7 +77300,7 @@ func_49b16:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_fb080(,%esi,4),%edx
-		call   func_read_
+		call   w_dos_read
 		mov    data_fb080(,%esi,4),%eax
 		inc    %edi
 		call   func_10031
@@ -77314,7 +77314,7 @@ func_49b16:
 		mov    %esp,%edx
 		mov    %ecx,%eax
 		movswl %di,%esi
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%eax
 		mov    $0x1,%ebx
 		mov    $0x8,%edx
@@ -77325,7 +77325,7 @@ func_49b16:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		mov    data_fb070(,%esi,4),%edx
-		call   func_read_
+		call   w_dos_read
 		mov    data_fb070(,%esi,4),%eax
 		inc    %edi
 		call   func_10031
@@ -79046,7 +79046,7 @@ func_4af61:
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
@@ -79069,30 +79069,30 @@ func_4af61:
 		sar    $0x10,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x18(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x14(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x4(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0xc(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%eax
 		call   w_dos_malloc
 		mov    (%esp),%ebx
 		mov    %eax,%esi
 		mov    %eax,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x4,%ebx
 		mov    %esi,%eax
 		movswl %di,%ecx
@@ -83833,12 +83833,12 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $data_fdf82,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fdf84,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_fdf84,%ah
 		add    %ah,%ah
 		mov    $0x1,%ebx
@@ -83851,7 +83851,7 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $data_fdf87,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    $0x49d4,%edx
@@ -83861,12 +83861,12 @@ func_4e4dd:
 		mov    data_fdf7a,%eax
 		mov    $data_fe04f,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    data_fdf7a,%eax
 		mov    $data_fdf85,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    data_fdf7a,%eax
 		mov    $0x4158,%edx
@@ -83887,7 +83887,7 @@ func_4e4dd:
 		sar    $0x10,%ecx
 		mov    %eax,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_fdf78,%eax
 		xor    %edx,%edx
 	jump_4e5fd:
@@ -84125,7 +84125,7 @@ func_4e81f:
 		mov    data_fdf7a,%eax
 		mov    %ebp,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x87(%ebp),%ah
 		test   %ah,%ah
 		je     jump_4e8ff
@@ -84263,7 +84263,7 @@ func_4ea22:
 		mov    data_fdf7a,%eax
 		mov    %esp,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		movsbw (%esp),%ax
 		cmp    %di,%ax
 		jne    jump_4ead8
@@ -84278,7 +84278,7 @@ func_4ea22:
 		mov    data_fdf7a,%eax
 		mov    %ecx,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		movb   $0xff,(%ecx)
 		mov    $data_cc990,%eax
 		movb   $0xff,0x56(%ecx)
@@ -84541,11 +84541,11 @@ func_4ed18:
 		movswl %ax,%ecx
 		mov    $data_fdf80,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_fdf7e,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_fdf80,%ax
 		mov    $0x1,%ebx
 		mov    %ax,data_ba83c
@@ -84553,23 +84553,23 @@ func_4ed18:
 		mov    $data_ba84d,%edx
 		mov    %ax,data_ba83e
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x28(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ba84e,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_1120a0,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xd,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    %esp,%eax
@@ -84606,27 +84606,27 @@ func_4ed18:
 		mov    $0x2,%ebx
 		mov    $data_f0ba0,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_f0ba2,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xc8,%ebx
 		mov    $data_fdaf8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xa8,%ebx
 		mov    $data_fdbc0,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ff0b7,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ff0b8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0xb,%edx
 		mov    %ecx,%eax
@@ -84634,11 +84634,11 @@ func_4ed18:
 		mov    $0x2,%ebx
 		lea    0x1c(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x20(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x1c(%esp),%eax
 		mov    0x20(%esp),%edx
 		add    %eax,%eax
@@ -84649,7 +84649,7 @@ func_4ed18:
 		mov    $data_e8f48,%edx
 		sar    $0x10,%ebx
 		xor    %edi,%edi
-		call   func_read_
+		call   w_dos_read
 		mov    0x20(%esp),%esi
 		mov    $0x1,%ebx
 		sar    %si
@@ -84695,7 +84695,7 @@ func_4ed18:
 		mov    $0x2,%ebx
 		lea    0x18(%esp),%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %eax,%eax
 		mov    %ax,0x20(%esp)
 		jmp    jump_4f127
@@ -84710,7 +84710,7 @@ func_4ed18:
 		sar    $0x10,%esi
 		mov    %edi,%ebx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		cmpl   $0x0,0x77(%ecx)
 		je     jump_4f00e
 		call   func_112fd
@@ -84718,7 +84718,7 @@ func_4ed18:
 		mov    %edi,%ebx
 		mov    %eax,%edx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x10(%esp),%eax
 		mov    %eax,0x77(%ecx)
 	jump_4f00e:
@@ -84867,7 +84867,7 @@ func_4ed18:
 		mov    $0x2,%ebx
 		lea    0x1c(%esp),%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %edx,%edx
 		mov    %dx,0x20(%esp)
 		jmp    jump_4f22b
@@ -84879,7 +84879,7 @@ func_4ed18:
 		mov    $0xc,%ebx
 		sar    $0x10,%eax
 		add    $data_f0380,%edx
-		call   func_read_
+		call   w_dos_read
 		mov    0x1e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xc,%eax,%eax
@@ -84937,7 +84937,7 @@ func_4f25f:
 		mov    $0x2,%ebx
 		lea    0xc(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x3c,%edx
 		mov    %ecx,%eax
@@ -84949,7 +84949,7 @@ func_4f25f:
 		sar    $0x10,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
@@ -84967,26 +84967,26 @@ func_4f25f:
 		sar    $0x10,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		movswl %di,%eax
 		imul   $0xc,%eax,%eax
 		lea    (%eax,%ebp,1),%esi
 		mov    $0x2,%ebx
 		mov    %esi,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x2(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x4(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x6(%esi),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%eax
 		call   w_dos_malloc
 		mov    %eax,0x8(%esi)
@@ -84994,7 +84994,7 @@ func_4f25f:
 		mov    (%esp),%ebx
 		mov    %ecx,%eax
 		inc    %edi
-		call   func_read_
+		call   w_dos_read
 	jump_4f34f:
 		cmp    0x4(%esp),%di
 		jl     jump_4f2de
@@ -85464,7 +85464,7 @@ func_4f85c:
 		mov    $data_fdf68,%edx
 		mov    %ax,0x1c(%esp)
 		cwtl
-		call   func_read_
+		call   w_dos_read
 		mov    $0x200,%ebx
 		mov    $data_fdf68,%edx
 		mov    $data_77f6b,%eax
@@ -85473,11 +85473,11 @@ func_4f85c:
 		movswl %ax,%ecx
 		mov    $data_fdf80,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_fdf7e,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
@@ -85485,7 +85485,7 @@ func_4f85c:
 		mov    $0xd,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $0x4,%edx
 		mov    %ecx,%eax
@@ -85529,7 +85529,7 @@ func_4f85c:
 		mov    $0x2,%ebx
 		lea    0x18(%esp),%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		jmp    jump_4fa64
 	jump_4f984:
 		call   func_112fd
@@ -85539,7 +85539,7 @@ func_4f85c:
 		mov    0x1a(%esp),%eax
 		mov    %esi,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %esi,%edx
 		mov    %edi,%eax
 		mov    0x20(%esp),%ebx
@@ -85590,7 +85590,7 @@ func_4f85c:
 		mov    0x1a(%esp),%eax
 		mov    %esi,%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		mov    %esi,0x77(%ecx)
 		call   func_11b77
@@ -85611,24 +85611,24 @@ func_4f85c:
 		sar    $0x10,%ecx
 		lea    0x10(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x10(%esp),%eax
 		mov    $0x2,%ebx
 		lea    0x10(%esp),%edx
 		call   func_19d4d
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0xe(%esp),%eax
 		mov    $0x1,%ebx
 		sar    $0x10,%eax
 		lea    0x24(%esp),%edx
 		call   func_19f9d
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		lea    0x28(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		xor    %edx,%edx
 		mov    0x21(%esp),%eax
 		mov    0x28(%esp),%dl
@@ -85638,27 +85638,27 @@ func_4f85c:
 		mov    $data_f0424,%edx
 		mov    %eax,data_f0410
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_f0422,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_f0420,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		lea    0x18(%esp),%edx
 		mov    %ecx,%eax
 		xor    %edi,%edi
-		call   func_read_
+		call   w_dos_read
 		jmp    jump_4fb77
 	jump_4fb3e:
 		mov    0x1a(%esp),%eax
 		mov    $0x1,%ebx
 		lea    0x28(%esp),%edx
 		sar    $0x10,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    data_cc968,%eax
 	jump_4fb58:
 		test   %eax,%eax
@@ -85682,79 +85682,79 @@ func_4f85c:
 		sar    $0x10,%ecx
 		mov    $data_f0ba0,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_f0ba2,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_11044c,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_1102bc,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_110384,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_110514,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_110320,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_1103e8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_110254,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x64,%ebx
 		mov    $data_1104b0,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xfa00,%ebx
 		mov    $data_10084c,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x78,%ebx
 		mov    $data_f0380,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_ba83c,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x2,%ebx
 		mov    $data_ba83e,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1135,%ebx
 		mov    $data_fdf82,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ba84d,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ff0b7,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    $data_ff0b8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x3,%ebx
 		mov    $data_fd8bc,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		call   func_4f3bd
 		mov    %ecx,%eax
 		call   w_dos_close
@@ -85776,7 +85776,7 @@ func_4fcd9:
 		movswl %ax,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		mov    %esp,%edx
 		call   w_dos_close
@@ -85938,7 +85938,7 @@ func_4fe74:
 		mov    %eax,%esi
 		cwtl
 #if 0
-		call   func_read_ /* read speed in game.cfg */
+		call   w_dos_read /* read speed in game.cfg */
 #endif
 		cmpw   $0x0,game_cfg_speed
 		jne    jump_4fead
@@ -85953,13 +85953,13 @@ func_4fe74:
 		mov    $game_cfg_music,%edx
 		mov    %ecx,%eax
 #if 0
-		call   func_read_ /* read music in game.cfg */
+		call   w_dos_read /* read music in game.cfg */
 #endif
 		mov    $0x1,%ebx
 		mov    $game_cfg_sound,%edx
 		mov    %ecx,%eax
 #if 0
-		call   func_read_ /* read sound in game.cfg */
+		call   w_dos_read /* read sound in game.cfg */
 #endif
 		mov    $0x1,%ebx
 		mov    %esp,%edx
@@ -85967,7 +85967,7 @@ func_4fe74:
 #if 1
     mov    $5,%ebx /* read the unknown in game.cfg but 5 is forced */
 #else
-		call   func_read_
+		call   w_dos_read
 		mov    (%esp),%ebx
 #endif
 		cmp    $0x2,%bx
@@ -85991,7 +85991,7 @@ func_4fe74:
     mov    %eax,0x4(%esp)
     pop    %eax
 #else
-		call   func_read_
+		call   w_dos_read
 #endif
 		cmpw   $0x0,0x4(%esp)
 		je     jump_4ff66
@@ -86005,7 +86005,7 @@ func_4fe74:
     mov    %eax,0xc(%esp)
     pop    %eax
 #else
-		call   func_read_
+		call   w_dos_read
 #endif
 		mov    $0x2,%ebx
 		lea    0x8(%esp),%edx
@@ -86017,7 +86017,7 @@ func_4fe74:
     mov    %eax,0x8(%esp)
     pop    %eax
 #else
-		call   func_read_
+		call   w_dos_read
 #endif
 		mov    0x6(%esp),%eax
 		mov    0xa(%esp),%ecx
@@ -90520,7 +90520,7 @@ func_5306a:
 		add    $data_10081c,%edx
 		mov    %esi,%eax
 		inc    %ecx
-		call   func_read_
+		call   w_dos_read
 		cmp    $0xc,%cx
 		jl     jump_53073
 		mov    %esi,%eax
@@ -90545,7 +90545,7 @@ func_5306a:
 		sar    $0x10,%edi
 		add    %ebp,%edx
 		mov    %edi,%eax
-		call   func_read_
+		call   w_dos_read
 		add    %esi,%ebp
 		test   %ecx,%ecx
 		jg     jump_530ad
@@ -90680,7 +90680,7 @@ func_530f1:
 		mov    $0x1,%ebx
 		lea    0x14(%esp),%edx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %esi,%eax
 		call   w_dos_close
 		cmpb   $0x0,0x14(%esp)
@@ -92085,7 +92085,7 @@ func_54111:
 		mov    %ecx,%eax
 		mov    %bx,0x130(%esp)
 		mov    $0x1,%ebx
-		call   func_read_
+		call   w_dos_read
 		cmpw   $0x0,0x130(%esp)
 		je     jump_5420c
 		mov    $0x1,%ebx
@@ -92099,7 +92099,7 @@ func_54111:
 		mov    $0x4,%ebx
 		lea    0x12c(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12c(%esp),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
@@ -92119,7 +92119,7 @@ func_54111:
 		movswl %di,%ecx
 		lea    0x12c(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92129,7 +92129,7 @@ func_54111:
 		lea    0x2(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -92141,7 +92141,7 @@ func_54111:
 		mov    $0x1,%ebx
 		add    $0x3,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -92153,7 +92153,7 @@ func_54111:
 		mov    $0x1,%ebx
 		add    $0x4,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -92165,7 +92165,7 @@ func_54111:
 		lea    0x5(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
 		mov    %ebx,%edx
@@ -92177,7 +92177,7 @@ func_54111:
 		lea    0x7(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92185,7 +92185,7 @@ func_54111:
 		lea    0x8(%eax),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12e(%esp),%edx
 		sar    $0x10,%edx
 		imul   $0xd,%edx,%edx
@@ -92203,7 +92203,7 @@ func_54111:
 		mov    %eax,data_110a89(%edx,%ebp,1)
 		mov    %eax,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12e(%esp),%eax
 		sar    $0x10,%eax
 		imul   $0xd,%eax,%eax
@@ -92217,7 +92217,7 @@ func_54111:
 		mov    $0x4,%ebx
 		lea    0x12c(%esp),%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    0x12c(%esp),%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
@@ -94181,7 +94181,7 @@ func_55ebc:
 		movswl %ax,%ecx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		call   func_5aa45
@@ -94254,11 +94254,11 @@ GLOBAL (combatii)	/* 0x55f8b */
 		movswl %dx,%ecx
 		mov    $data_1120ec,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0x1,%ebx
 		mov    %esp,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    $data_78420,%eax
@@ -102304,7 +102304,7 @@ func_5ca62:
 		mov    data_1124ac(%ecx),%ebx
 		mov    data_1124b0(%ecx),%edx
 		mov    %esi,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %esi,%eax
 		call   w_dos_close
 		mov    $0x1,%eax
@@ -103360,15 +103360,15 @@ func_5daa8:
 		movswl %ax,%ecx
 		mov    $data_1238f8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xb00,%ebx
 		mov    $data_124cf8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    $0xe00,%ebx
 		mov    $data_1257f8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		push   $0x200
@@ -103379,7 +103379,7 @@ func_5daa8:
 		movswl %ax,%ecx
 		mov    $data_1265f8,%edx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		pop    %esi
@@ -105498,7 +105498,7 @@ func_5f874:
 		mov    %esi,%eax
 		mov    data_127d4c(%ecx),%edx
 		add    $0x4,%ecx
-		call   func_read_
+		call   w_dos_read
 		cmp    $0x190,%ecx
 		jne    jump_5f8a9
 		mov    %esi,%eax
@@ -106324,7 +106324,7 @@ func_6053b:
 		movswl %ax,%ecx
 		mov    $0x300,%ebx
 		mov    %ecx,%eax
-		call   func_read_
+		call   w_dos_read
 		mov    %ecx,%eax
 		call   w_dos_close
 		pop    %ecx
