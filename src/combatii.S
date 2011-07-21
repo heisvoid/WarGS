@@ -108846,7 +108846,7 @@ func_time_:	/* 0x624e9 */
 		incl   (%esp)
 	jump_62501:
 		mov    %esp,%eax
-		call   func_mktime_
+		call   w_dos_mktime
 		mov    %eax,%ebx
 		test   %edx,%edx
 		je     jump_62510
@@ -118386,7 +118386,7 @@ func_calc_yday_:	/* 0x686ba */
 		mov    %edx,0x14(%esp)
 		mov    %esp,%eax
 		mov    %edi,0x20(%esp)
-		call   func_mktime_
+		call   w_dos_mktime
 		mov    0x18(%esp),%ebp
 		mov    0x18(%ebx),%edx
 		sub    %ebp,%edx
