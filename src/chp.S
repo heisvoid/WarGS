@@ -28167,7 +28167,7 @@ func_2883f:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_1da10
-		mov    data_8099f,%ecx
+		mov    video_buffer,%ecx
 	jump_28871:
 		mov    data_c605c,%ebx
 		mov    data_8062d,%edx
@@ -28188,7 +28188,7 @@ func_28891:
 		push   %ecx
 		push   %edx
 		mov    $data_807a7,%ebx
-		mov    data_8099f,%ecx
+		mov    video_buffer,%ecx
 		mov    data_80629,%edx
 		mov    data_80627,%eax
 		sar    $0x10,%edx
@@ -44347,7 +44347,7 @@ func_36d87:
 		mov    data_8a366,%edx
 		mul    %edx
 		add    %ecx,%eax
-		add    data_8a35c,%eax
+		add    video_buffer,%eax
 		pop    %edx
 		pop    %ecx
 		ret
