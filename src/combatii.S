@@ -375,12 +375,18 @@ func_102b5:
 		push   %edx
 		mov    $0x8,%eax
 		mov    $func_101f4,%ebx
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %cs,%ecx
 		mov    %eax,data_78998
 		mov    $0x8,%eax
 		mov    %dx,data_7899c
+#if 1
+    call   w_game_install_pit_isr
+#else
 		call   func__dos_setvect_
+#endif
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
