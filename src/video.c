@@ -96,10 +96,6 @@ video_set_palette ()
       LOG_FATAL ("not initialized");
     }
 
-  ASSERT (64 > palette_r);
-  ASSERT (64 > palette_g);
-  ASSERT (64 > palette_b);
-
   SDL_Color *color = xmalloc (sizeof (SDL_Color));
   color->r = palette_r << 2;
   color->g = palette_g << 2;
