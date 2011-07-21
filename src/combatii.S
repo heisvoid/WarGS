@@ -105830,7 +105830,11 @@ func_5fd1c:
 		push   %ecx
 		mov    0xc(%esp),%al
 		mov    $0x3c8,%edx
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		cmpw   $0x64,0x24(%esp)
 		jle    jump_5fd3f
 		movw   $0x64,0x24(%esp)
@@ -105856,7 +105860,11 @@ func_5fd1c:
 		movzbl (%ebx),%ebp
 		mov    $0x3c9,%edx
 		add    %ebp,%eax
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		movsbl 0x1(%ecx),%edx
 		imul   %edi,%edx
 		movl   $0x64,0x10(%esp)
@@ -105866,7 +105874,11 @@ func_5fd1c:
 		movzbl 0x1(%ebx),%ebp
 		mov    $0x3c9,%edx
 		add    %ebp,%eax
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x2(%ebx),%bl
 		movsbl 0x2(%ecx),%edx
 		imul   %edi,%edx
@@ -105878,7 +105890,19 @@ func_5fd1c:
 		mov    $0x3c9,%edx
 		add    %ebx,%eax
 		inc    %esi
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    push   %eax
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+    pop    %eax
+#else
 		out    %al,(%dx)
+#endif
 	jump_5fdd0:
 		cmp    0x8(%esp),%si
 		jl     jump_5fd4d
