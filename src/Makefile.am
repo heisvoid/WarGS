@@ -34,6 +34,7 @@ wargs_chp_SOURCES = $(COMMON_SRCS) \
 										wargs-chp.c
 
 wargs_chp_CFLAGS = -DCHP
+wargs_combatii_CFLAGS = -DCOMBATII
 
 MKWRAPPERS = $(PYTHON) $(top_srcdir)/tool/mkwrappers
 
