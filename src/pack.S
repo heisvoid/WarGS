@@ -31118,7 +31118,7 @@ func_2c3a4:
 		mov    $0x10,%ebx
 		add    %eax,%edx
 		mov    $data_1a4050,%eax
-		call   func_memmove_
+		call   w_dos_memmove
 		mov    $data_1a404c,%ebx
 		mov    data_1a4088,%edx
 		mov    data_1a4086,%eax
