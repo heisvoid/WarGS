@@ -14964,6 +14964,10 @@ func_1a25f:
 		movswl %dx,%edx
 		cwtl
 		call   func_11db2
+#if 1
+    test   %eax,%eax
+    je     jump_1a2d3
+#endif
 		mov    0x14(%eax),%dl
 		mov    %eax,%ebx
 		test   $0x1,%dl
@@ -61727,9 +61731,17 @@ func_3e5ab:
 		lea    0x10(%esp),%ecx
 		push   %eax
 		lea    0x10(%esp),%eax
+#if 1
+    xor    %ebx,%ebx
+#else
 		movsbl 0x1(%edi),%ebx
+#endif
 		push   %eax
+#if 1
+    xor    %edx,%edx
+#else
 		movsbl (%edi),%edx
+#endif
 		mov    %esi,%eax
 		call   func_3ca3c
 		test   %ax,%ax
@@ -100337,10 +100349,12 @@ func_5aeb5:
 		mov    cdrom_track_related_array_2(,%ecx,4),%edx
 		mov    cdrom_track_related_array_1(,%ecx,4),%eax
 #if 1
+    push   %ecx
     dec    %ecx
     push   %ecx
     call   w_audio_music_play
     add    $4,%esp
+    pop    %ecx
 #else
 		call   cdrom_play_audio
 #endif
