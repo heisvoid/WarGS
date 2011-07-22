@@ -22362,7 +22362,12 @@ GLOBAL (chp)	/* 0x2353e */
 		mov    $data_50895,%eax
 		call   func_14700
 		mov    %edx,%eax
+#if 0
+    /* Bug
+     * file discriptor is always -1
+     */
 		call   w_dos_close
+#endif
 		call   func_15db7
 		call   func_22b12
 		xor    %eax,%eax
