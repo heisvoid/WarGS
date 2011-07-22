@@ -621,7 +621,7 @@ func_11c64:
 		call   func_19ba9
 		mov    %esp,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -20194,7 +20194,7 @@ func_23147:
 		mov    %edx,data_15fb7c(,%eax,4)
 		mov    $data_514b4,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		call   w_dos_close
 		push   $0x201
 		push   $data_514b4
@@ -20506,7 +20506,7 @@ func_235ec:
 		push   %edx
 		mov    $data_51534,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -20842,7 +20842,7 @@ func_23997:
 		pop    %edi
 		mov    %esp,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -28073,7 +28073,7 @@ func_2976f:
 		call   func_19ba9
 		lea    0x20(%esp),%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -28518,7 +28518,7 @@ func_29d65:
 		call   func_19ba9
 		mov    %esp,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		cwtl
 		call   w_dos_close
 		push   $0x201
@@ -40950,7 +40950,7 @@ func_34b92:
 		jne    jump_34bcb
 		mov    $data_52154,%eax
 		mov    $0x180,%edx
-		call   func_creat_
+		call   w_dos_creat
 		mov    %eax,0xc(%esp)
 		call   w_dos_close
 		push   $0x201
