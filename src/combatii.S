@@ -103308,17 +103308,12 @@ func_5d827:
 		ret
 
 
-/**
- * Check whether keyboard input has been read or not.
- * I change this semantics that mouse has been pressed or not.
- */
 /*----------------------------------------------------------------*/
 func_5d839:
 /*----------------------------------------------------------------*/
 #if 1
-    call   w_mouse_get_state
-    movw   mouse_state_button,%ax
-    test   %ax,%ax
+    call   w_keyboard_getchar
+    test   %eax,%eax
     setne  %al
 #else
 		push   %ecx
