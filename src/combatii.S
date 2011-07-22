@@ -86831,7 +86831,7 @@ func_506f3:
 		mov    $0x1,%eax
 		call   func_4ec9a
 		mov    $data_77fb6,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		mov    $data_77fc2,%eax
 		call   func_4fdd1
 		call   func_55ebc
@@ -94334,7 +94334,7 @@ GLOBAL (combatii)	/* 0x55f8b */
 		mov    %ecx,%eax
 		call   w_dos_close
 		mov    $data_78420,%eax
-		call   func_unlink_
+		call   w_dos_unlink
 		jmp    jump_56032
 	jump_55ffb:
 		cmp    $0x2,%ax
@@ -113307,7 +113307,7 @@ func_65005:
 /*----------------------------------------------------------------*/
 func_j_unlink_:	/* 0x6500b */
 /*----------------------------------------------------------------*/
-		jmp    func_unlink_
+		jmp    w_dos_unlink
 
 
 /*----------------------------------------------------------------*/
