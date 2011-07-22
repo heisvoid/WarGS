@@ -100285,7 +100285,14 @@ func_5aeb5:
 		movswl %ax,%ecx
 		mov    cdrom_track_related_array_2(,%ecx,4),%edx
 		mov    cdrom_track_related_array_1(,%ecx,4),%eax
-		call   func_5b4cd
+#if 1
+    dec    %ecx
+    push   %ecx
+    call   w_audio_music_play
+    add    $4,%esp
+#else
+		call   cdrom_play_audio
+#endif
 		mov    $0x1,%eax
 		mov    %ebx,data_7000c
 		mov    %ebx,data_70010
@@ -100708,12 +100715,19 @@ cdrom_get_audio_track_info: /* 5b3a7 */
 		jmp    jump_5aa3f
 
 
+/**
+ * @param eax starting sector number
+ * @param edx ending sector number (exclusive)
+ */
 /*----------------------------------------------------------------*/
-func_5b4cd:
+cdrom_play_audio: /* 5b4cd */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
 		push   %esi
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
 		sub    $0x8,%esp
 		mov    %eax,%ecx
 		mov    %edx,%esi
@@ -100726,11 +100740,11 @@ func_5b4cd:
 		mov    %ebx,%gs
 		movb   $0x16,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x84,%gs:0x2(%edx)
+		movb   $0x84,%gs:0x2(%edx) /* play audio */
 		movb   $0x0,%gs:0xd(%edx)
 		sub    %ecx,%esi
-		mov    %ecx,%gs:0xe(%edx)
-		mov    %esi,%gs:0x12(%edx)
+		mov    %ecx,%gs:0xe(%edx) /* starting sector number */
+		mov    %esi,%gs:0x12(%edx) /* number of sectors to play */
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
 		call   cdrom_send_device_driver_request
@@ -100741,6 +100755,7 @@ func_5b4cd:
 		sar    $0x10,%eax
 		call   free_dos_memory_block
 		add    $0x8,%esp
+#endif
 		pop    %esi
 		pop    %ecx
 		pop    %ebx
