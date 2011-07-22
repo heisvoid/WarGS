@@ -9999,7 +9999,11 @@ func_197d7:
 		mov    $0x33,%eax
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
-		call   w_dos_int386
+#if 1
+    movw   $0xffff,(%esp)
+#else
+		call   w_dos_int386 /* reset mouse driver and read status */
+#endif
 		xor    %eax,%eax
 		mov    (%esp),%ax
 		test   %eax,%eax
@@ -10023,7 +10027,11 @@ func_197d7:
 		mov    $0x33,%eax
 		mov    %dx,0x38(%esp)
 		lea    0x1c(%esp),%edx
+#if 1
+    call   w_game_install_mouse_isr
+#else
 		call   w_dos_int386x
+#endif
 		xor    %edx,%edx
 		mov    data_82933,%dl
 		mov    %edx,%eax
@@ -10375,8 +10383,11 @@ func_19c0e:
 
 
 /*----------------------------------------------------------------*/
-func_19c3b:
+func_19c3b: /* define mouse horizontal range */
 /*----------------------------------------------------------------*/
+#if 1
+    ret
+#endif
 		push   %ebx
 		sub    $0x38,%esp
 		mov    $0x7,%ebx
@@ -10384,8 +10395,11 @@ func_19c3b:
 
 
 /*----------------------------------------------------------------*/
-func_19c46:
+func_19c46: /* define mouse vertical range */
 /*----------------------------------------------------------------*/
+#if 1
+    ret
+#endif
 		push   %ebx
 		sub    $0x38,%esp
 		mov    $0x8,%ebx
