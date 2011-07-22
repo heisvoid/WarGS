@@ -7187,12 +7187,12 @@ func_17635:
 		je     jump_17788
 		mov    %esp,%eax
 		mov    $0x76,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_1767a
 		mov    %esp,%eax
 		mov    $0x56,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_176a7
 	jump_1767a:
@@ -24233,7 +24233,7 @@ func_25f21:
 		jl     jump_26661
 		lea    0x4(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_26691
 		movb   $0x1,0xc4(%esp)
@@ -24361,7 +24361,7 @@ func_25f21:
 		jl     jump_2682c
 		lea    0x4(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2685c
 		movb   $0x1,0xc4(%esp)
@@ -24489,7 +24489,7 @@ func_25f21:
 		jl     jump_269ec
 		lea    0x4(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_26a1c
 		movb   $0x1,0xc4(%esp)
@@ -24617,7 +24617,7 @@ func_25f21:
 		jl     jump_26bb2
 		lea    0x4(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_26be2
 		movb   $0x1,0xc4(%esp)
@@ -25196,7 +25196,7 @@ func_2708b:
 		jl     jump_273e8
 		lea    0x8(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_27418
 		movb   $0x1,0xa0(%esp)
@@ -25314,7 +25314,7 @@ func_2708b:
 		jl     jump_27584
 		lea    0x8(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_275b4
 		movb   $0x1,0xa0(%esp)
@@ -25432,7 +25432,7 @@ func_2708b:
 		jl     jump_2771c
 		lea    0x8(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2774c
 		movb   $0x1,0xa0(%esp)
@@ -25550,7 +25550,7 @@ func_2708b:
 		jl     jump_278b4
 		lea    0x8(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_278e4
 		movb   $0x1,0xa0(%esp)
@@ -27869,12 +27869,12 @@ func_2976f:
 		je     jump_29d5d
 		lea    0x20(%esp),%eax
 		mov    $0x77,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_2989f
 		lea    0x20(%esp),%eax
 		mov    $0x57,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_2989f
 		lea    0x20(%esp),%edi
@@ -28314,12 +28314,12 @@ func_29d65:
 		je     jump_2a190
 		mov    %esp,%eax
 		mov    $0x65,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_29e79
 		mov    %esp,%eax
 		mov    $0x45,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_29e79
 		mov    %esp,%edi
