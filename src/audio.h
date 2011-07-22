@@ -10,6 +10,7 @@ extern void audio_quit ();
 extern void audio_stop ();
 
 extern void audio_music_play (uint32_t track);
+extern void audio_music_stop ();
 extern void audio_music_mute ();
 extern void audio_music_unmute ();
 

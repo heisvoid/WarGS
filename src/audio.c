@@ -80,17 +80,6 @@ audio_quit ()
   initialized = false;
 }
 
-static void
-stop_music ()
-{
-  Mix_HaltMusic ();
-
-  if (NULL != music)
-    {
-      Mix_FreeMusic (music);
-    }
-}
-
 void
 audio_stop ()
 {
@@ -99,7 +88,7 @@ audio_stop ()
       LOG_FATAL ("not initialized");
     }
 
-  stop_music ();
+  audio_music_stop ();
 
   Mix_HaltChannel (-1);
 }
@@ -114,7 +103,7 @@ audio_music_play (uint32_t track)
 
   ASSERT (0 < track && 19 > track);
 
-  stop_music ();
+  audio_music_stop ();
 
   /* 1: FILEPATH_SEPARATOR
    * 5: "music"
@@ -135,6 +124,22 @@ audio_music_play (uint32_t track)
 
   const int ret = Mix_PlayMusic (music, -1);
   ASSERT (0 == ret);
+}
+
+void
+audio_music_stop ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  Mix_HaltMusic ();
+
+  if (NULL != music)
+    {
+      Mix_FreeMusic (music);
+    }
 }
 
 void
