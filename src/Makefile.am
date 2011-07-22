@@ -1,4 +1,4 @@
-bin_PROGRAMS = wargs wargs-ttl wargs-combatii wargs-chp
+bin_PROGRAMS = wargs wargs-ttl wargs-combatii wargs-chp wargs-pack
 
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
@@ -33,6 +33,11 @@ wargs_chp_SOURCES = $(COMMON_SRCS) \
 										$(GAME_SRCS) \
 										chp.S \
 										wargs-chp.c
+
+wargs_pack_SOURCES = $(COMMON_SRCS) \
+ 										 $(GAME_SRCS) \
+										 pack.S \
+										 wargs-pack.c
 
 wargs_chp_CFLAGS = -DCHP
 wargs_combatii_CFLAGS = -DCOMBATII

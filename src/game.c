@@ -91,7 +91,9 @@ update_pit_isr ()
 
   if (pit_isr_0_is_installed)
     {
+#ifdef COMBATII
       asm volatile ("call pit_isr_0");
+#endif
     }
 }
 
