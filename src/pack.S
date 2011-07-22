@@ -17570,7 +17570,11 @@ func_20118:
 		mov    %dl,%al
 		mov    $0x3c8,%edx
 		xor    %ecx,%ecx
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		jmp    jump_20159
 	jump_20137:
@@ -17583,12 +17587,29 @@ func_20118:
 		mov    (%esp),%bl
 		add    %eax,%ebx
 		mov    (%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x1(%esi,%ebx,1),%al
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		mov    0x2(%esi,%ebx,1),%al
 		inc    %ecx
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 	jump_20159:
 		xor    %eax,%eax
 		mov    0x4(%esp),%al
@@ -17613,12 +17634,25 @@ func_201cf:
 		mov    %dl,%al
 		mov    $0x3c7,%edx
 		xor    %ecx,%ecx
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		jmp    jump_2021d
 	jump_201e9:
 		mov    $0x3c9,%edx
 		sub    %eax,%eax
+#if 1
+    call   w_video_get_palette
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+
+    movb   palette_r,%al
+#else
 		in     (%dx),%al
+#endif
 		mov    %eax,%edx
 		movswl %cx,%eax
 		mov    %eax,%ebx
@@ -17632,10 +17666,18 @@ func_201cf:
 		mov    $0x3c9,%edx
 		inc    %ecx
 		sub    %eax,%eax
+#if 1
+    movb   palette_g,%al
+#else
 		in     (%dx),%al
+#endif
 		mov    %al,0x1(%esi,%ebx,1)
 		sub    %eax,%eax
+#if 1
+    movb   palette_b,%al
+#else
 		in     (%dx),%al
+#endif
 		mov    %al,0x2(%esi,%ebx,1)
 	jump_2021d:
 		xor    %eax,%eax
@@ -18121,7 +18163,11 @@ func_213a6:
 		call   func_2b206
 		jmp    jump_213cb
 	jump_213f2:
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		xor    %edx,%edx
@@ -18793,7 +18839,11 @@ func_213a6:
 		mov    %si,data_15ba16
 		mov    %ax,data_15ba18
 	jump_21d00:
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		xor    %ecx,%ecx
 		xor    %eax,%eax
 		xor    %edx,%edx
@@ -29774,6 +29824,7 @@ func_2b1ff:
 /*----------------------------------------------------------------*/
 func_2b206:
 /*----------------------------------------------------------------*/
+#if 0
 		push   %eax
 		push   %edx
 		push   %ebx
@@ -29791,6 +29842,7 @@ func_2b206:
 		pop    %ebx
 		pop    %edx
 		pop    %eax
+#endif
 		ret
 
 
@@ -30087,7 +30139,11 @@ func_2b44f:
 		push   %edx
 		push   %ebx
 		push   %ecx
+#if 1
+    movl   video_buffer,%edi
+#else
 		mov    $0xa0000,%edi
+#endif
 		mov    %eax,%esi
 		mov    $0xc8,%ebx
 	jump_2b460:
@@ -30095,6 +30151,9 @@ func_2b44f:
 		rep movsl %ds:(%esi),%es:(%edi)
 		dec    %ebx
 		jne    jump_2b460
+#if 1
+    call   w_game_update
+#endif
 		pop    %ecx
 		pop    %ebx
 		pop    %edx
@@ -30111,7 +30170,11 @@ func_2b470:
 		push   %edx
 		push   %ebx
 		push   %ecx
+#if 1
+    movl   video_buffer,%edi
+#else
 		mov    $0xa0000,%edi
+#endif
 		mov    %eax,%esi
 		mov    $0x0,%ecx
 		mov    $0x3da,%dx
@@ -30129,6 +30192,9 @@ func_2b470:
 		rep movsl %ds:(%esi),%es:(%edi)
 		dec    %ebx
 		jne    jump_2b498
+#if 1
+    call   w_game_update
+#endif
 		pop    %ecx
 		pop    %ebx
 		pop    %edx
@@ -38117,7 +38183,11 @@ func_32315:
 		mov    %esi,data_1a4f10
 		mov    %esi,data_1a4f14
 		call   func_201cf
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -39157,7 +39227,11 @@ func_329f7:
 		call   func_19b67
 		call   func_230ae
 		call   func_3197d
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		mov    $0x140,%ecx
 		xor    %edx,%edx
 		push   $0xc8
@@ -40783,7 +40857,11 @@ func_34b92:
 		mov    $0xff,%ebx
 		xor    %edx,%edx
 		call   func_201cf
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		mov    $0x140,%ecx
 		xor    %eax,%eax
 		push   $0xc8
@@ -41033,7 +41111,11 @@ func_34b92:
 		call   func_19b67
 		call   func_3197d
 		mov    $0x1,%ah
+#if 1
+    pushl  video_buffer
+#else
 		push   $0xa0000
+#endif
 		mov    $0x140,%ecx
 		xor    %edx,%edx
 		xor    %ebx,%ebx
@@ -44762,32 +44844,32 @@ func_38026:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		mov    $0x1,%edx
 		call   func_outp_
 		xor    %edx,%edx
 	jump_38045:
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		call   func_inp_
 		inc    %edx
 		cmp    $0x64,%edx
 		jl     jump_38045
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0x6,%eax
 		xor    %edx,%edx
 		call   func_outp_
 		xor    %edx,%edx
 	jump_38069:
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
 		test   $0x80,%al
 		je     jump_380a2
 		xor    %edx,%edx
 	jump_3807c:
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xa,%eax
 		call   func_inp_
 		cmp    $0xaa,%eax
@@ -44855,10 +44937,10 @@ func_38129:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x2,data_1b61cc
+		movl   $0x2,soundblaster_irq
 	jump_38154:
 		mov    $0x20,%eax
 		mov    %eax,%edx
@@ -44885,10 +44967,10 @@ func_3816d:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x3,data_1b61cc
+		movl   $0x3,soundblaster_irq
 		jmp    jump_38154
 
 
@@ -44904,10 +44986,10 @@ func_3819a:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x5,data_1b61cc
+		movl   $0x5,soundblaster_irq
 		jmp    jump_38154
 
 
@@ -44923,10 +45005,10 @@ func_381c7:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0x7,data_1b61cc
+		movl   $0x7,soundblaster_irq
 		jmp    jump_38154
 
 
@@ -44942,10 +45024,10 @@ func_381f7:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		movl   $0xa,data_1b61cc
+		movl   $0xa,soundblaster_irq
 		jmp    jump_38154
 	jump_3850b:
 		pop    %edi
@@ -44957,7 +45039,7 @@ func_381f7:
 
 
 /*----------------------------------------------------------------*/
-func_38541:
+func_38541: /* soundblaster ISR */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -44968,16 +45050,16 @@ func_38541:
 		cld
 		call   func___GETDS
 		call   func_3c251
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		add    $0xe,%eax
 		call   func_inp_
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
 		call   func_380e9
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_380e9
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_380e9
 		jmp    jump_38154
@@ -44997,7 +45079,7 @@ GLOBAL (pit_isr) /* 38594 */
 		call   func___GETDS
 		call   func_3c251
 		out    %al,$0xc
-		mov    data_1b61c8,%dl
+		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
@@ -45719,21 +45801,28 @@ func_38f9e:
 		sub    $0x38,%esp
 		mov    %eax,%edi
 		mov    $0x4268,%ebp
-		mov    %edx,data_1b61d4
-		mov    %ebx,data_1b61dc
-		mov    %ecx,data_1b61cc
+		mov    %edx,soundblaster_adr_is_not_zero
+		mov    %ebx,soundblaster_adr
+		mov    %ecx,soundblaster_irq
 		mov    0x48(%esp),%eax
-		mov    %eax,data_1b61c8
+		mov    %eax,soundblaster_dma
 		movw   $0x400,0x1c(%esp)
 		mov    $0x31,%eax
 		lea    0x1c(%esp),%edx
 		mov    %esp,%ebx
-		call   w_dos_int386
+#if 1
+    movb   $0x08,0xd(%esp)
+    movb   $0x70,0xc(%esp)
+#else
+		call   w_dos_int386 /* get DPMI version */
+#endif
 		xor    %eax,%eax
+    /* curr value of virtual master interrupt controller base interrupt */
 		mov    0xd(%esp),%al
 		xor    %edx,%edx
+    /* curr value of virtual slave interrupt controller base interrupt */
 		mov    0xc(%esp),%dl
-		mov    data_1b61cc,%ebx
+		mov    soundblaster_irq,%ebx
 		cmp    $0x8,%ebx
 		jge    jump_39002
 		add    %ebx,%eax
@@ -45741,7 +45830,7 @@ func_38f9e:
 	jump_39002:
 		lea    -0x8(%ebx,%edx,1),%eax
 	jump_39006:
-		mov    %eax,data_1b61b0
+		mov    %eax,soundblaster_interrupt_number
 		xor    %ecx,%ecx
 		mov    $0xa,%ebx
 	jump_39012:
@@ -45834,10 +45923,16 @@ func_38f9e:
 		mov    $0x41,%eax
 		mov    $data_1b61bc,%edx
 		mov    $data_1b61ec,%ebx
-		call   func_38f29
+#if 0
+		call   func_38f29 /* allocate dos memory block */
+#endif
 		mov    data_1b61ea,%eax
 		sar    $0x10,%eax
 		shl    $0x4,%eax
+#if 1
+    movl   $1040,%eax
+    call   w_dos_malloc
+#endif
 		mov    %eax,data_1b61c4
 		xor    %eax,%eax
 		mov    %eax,data_1b61b8
@@ -45850,63 +45945,83 @@ func_38f9e:
 		cmp    $0x400,%ecx
 		jl     jump_39136
 		mov    $0x21,%eax
-		call   func_inp_
-		mov    %eax,data_1b61c0
-		cmpl   $0x1,data_1b61d4
+#if 0
+		call   func_inp_ /* read PIC masks */
+#endif
+		mov    %eax,pic_masks
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_39207
 		call   func_38026
-		mov    data_1b61b0,%eax
+		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %dx,data_1b61ea
 		mov    %eax,data_1b61e6
-		mov    data_1b61b0,%eax
+		mov    soundblaster_interrupt_number,%eax
 		mov    %cs,%ecx
 		mov    $func_38541,%ebx
+#if 0
 		call   func__dos_setvect_
-		mov    data_1b61cc,%cl
+#endif
+		mov    soundblaster_irq,%cl
 		mov    $0xfe,%edx
 		shl    %cl,%edx
-		and    data_1b61c0,%edx
+		and    pic_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x1,%eax
 		call   func_3975c
 		mov    %edi,%eax
 		call   func_39271
-		mov    data_1b61c8,%ebx
+		mov    soundblaster_dma,%ebx
 		mov    data_1b61c4,%eax
 		mov    $0x400,%edx
 		call   func_37f5d
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x14,%edx
 		call   func_380e9
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_380e9
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xff,%edx
 		call   func_380e9
 	jump_39207:
 		mov    $0x8,%eax
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %dx,data_1b61e4
 		mov    %eax,data_1b61e0
 		mov    $0x8,%eax
 		mov    %cs,%ecx
 		mov    $pit_isr,%ebx
+#if 1
+    call   w_game_install_pit_isr
+#else
 		call   func__dos_setvect_
+#endif
 		call   func_3c251
 		mov    $0x43,%eax
 		mov    $0x36,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		and    $0xff,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		sar    $0x8,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		call   func_3c253
 		add    $0x38,%esp
 		pop    %ebp
@@ -45923,7 +46038,7 @@ func_39271:
 		push   %ebx
 		push   %edx
 		mov    %eax,%ebx
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0x40,%edx
 		call   func_380e9
 		mov    $0xf4240,%eax
@@ -45935,7 +46050,7 @@ func_39271:
 		mov    %edx,%eax
 		xor    %edx,%edx
 		mov    %al,%dl
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		call   func_380e9
 		pop    %edx
 		pop    %ebx
@@ -45951,10 +46066,10 @@ func_392b4:
 		push   %ecx
 		push   %edx
 		call   func_3c251
-		mov    data_1b61c0,%edx
+		mov    pic_masks,%edx
 		mov    $0x21,%eax
 		call   func_outp_
-		cmpl   $0x1,data_1b61d4
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_39307
 		call   func_38026
 		xor    %eax,%eax
@@ -45962,7 +46077,7 @@ func_392b4:
 		call   func_39793
 		mov    data_1b61ea,%cx
 		mov    data_1b61e6,%ebx
-		mov    data_1b61b0,%eax
+		mov    soundblaster_interrupt_number,%eax
 		call   func__dos_setvect_
 	jump_39307:
 		mov    data_1b61e4,%cx
@@ -45980,7 +46095,12 @@ func_392b4:
 		call   func_outp_
 		call   func_3c253
 		mov    data_1b61bc,%eax
+#if 1
+    movl   data_1b61c4,%eax
+    call   w_dos_free
+#else
 		call   func_38f6d
+#endif
 		call   func_3970f
 		pop    %edx
 		pop    %ecx
@@ -46089,7 +46209,7 @@ func_394d1:
 		mov    %eax,%esi
 		mov    %edx,%ecx
 		mov    %ebx,%edi
-		cmpl   $0x1,data_1b61d4
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_39556
 		cmp    $0x50,%ecx
 		jge    jump_39556
@@ -46193,16 +46313,16 @@ func_3975c:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		mov    data_1b61d4,%edx
+		mov    soundblaster_adr_is_not_zero,%edx
 		cmp    $0x1,%edx
 		jne    jump_39791
 		cmp    %edx,%eax
 		jne    jump_39782
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd1,%edx
 		jmp    jump_3978c
 	jump_39782:
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd3,%edx
 	jump_3978c:
 		call   func_380e9
@@ -46217,9 +46337,9 @@ func_39793:
 		push   $0x8
 		call   func___CHK
 		push   %edx
-		cmpl   $0x1,data_1b61d4
+		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_397b6
-		mov    data_1b61dc,%eax
+		mov    soundblaster_adr,%eax
 		mov    $0xd0,%edx
 		call   func_380e9
 	jump_397b6:
@@ -50001,14 +50121,18 @@ func_inp_:	/* 0x3c249 */
 /*----------------------------------------------------------------*/
 func_3c251:
 /*----------------------------------------------------------------*/
+#if 0
 		cli
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
 func_3c253:
 /*----------------------------------------------------------------*/
+#if 0
 		sti
+#endif
 		ret
 
 
@@ -74861,7 +74985,7 @@ data_1b61a8:
 		.fill   0x4
 data_1b61ac:
 		.fill   0x4
-data_1b61b0:
+soundblaster_interrupt_number: /* 1b61b0 */
 		.fill   0x4
 data_1b61b4:
 		.fill   0x4
@@ -74869,21 +74993,21 @@ data_1b61b8:
 		.fill   0x4
 data_1b61bc:
 		.fill   0x4
-data_1b61c0:
+pic_masks: /* 1b61c0 */
 		.fill   0x4
 data_1b61c4:
 		.fill   0x4
-data_1b61c8:
+soundblaster_dma: /* 1b61c8 */
 		.fill   0x4
-data_1b61cc:
+soundblaster_irq: /* 1b61cc */
 		.fill   0x4
 data_1b61d0:
 		.fill   0x4
-data_1b61d4:
+soundblaster_adr_is_not_zero: /* 1b61d4 */
 		.fill   0x4
 data_1b61d8:
 		.fill   0x4
-data_1b61dc:
+soundblaster_adr: /* 1b61dc */
 		.fill   0x4
 data_1b61e0:
 		.fill   0x4
