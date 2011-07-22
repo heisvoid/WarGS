@@ -13,6 +13,7 @@
 
 #include "assert.h"
 #include "filepath.h"
+#include "keyboard.h"
 
 int
 dos_open (const char *path, int flags)
@@ -398,4 +399,10 @@ dos_mktime (struct tm *tm)
   ASSERT ((time_t) -1 != t);
 
   return t;
+}
+
+int
+dos_getch ()
+{
+  return keyboard_getchar ();
 }

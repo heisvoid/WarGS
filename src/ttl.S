@@ -725,7 +725,7 @@ func_123e3:
 		push   $data_2002e
 		call   func_printf_
 		add    $0x8,%esp
-		call   func_getch_
+		call   w_dos_getch
 		mov    %edx,%eax
 		call   w_dos_close
 		mov    $0xff,%eax
@@ -755,7 +755,7 @@ func_123e3:
 		push   $data_2003e
 		call   func_printf_
 		add    $0x8,%esp
-		call   func_getch_
+		call   w_dos_getch
 		mov    %edx,%eax
 		call   w_dos_close
 		mov    $0xff,%eax
@@ -3030,7 +3030,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 		push   $0x14
 		call   func_15421
 		add    $0xc,%esp
-		call   func_getch_
+		call   w_dos_getch
 		call   func_15d26
 		xor    %eax,%eax
 		call   w_exit
@@ -3067,7 +3067,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 		push   $0x32
 		call   func_15421
 		add    $0xc,%esp
-		call   func_getch_
+		call   w_dos_getch
 		call   func_175b7
 		call   func_15d26
 		xor    %eax,%eax
@@ -6027,18 +6027,12 @@ func_1882c:
 	jump_18947:
 		xor    %eax,%eax
 		call   func_1a46c
-#if 1
-    call   w_keyboard_esc_is_pressed
-    test   %eax,%eax
-    je     jump_188c2
-#else
 		call   func_1b2e9
 		test   %eax,%eax
 		je     jump_188c2
-		call   func_getch_
+		call   w_dos_getch
 		cmp    $0x1b,%eax
 		jne    jump_188c2
-#endif
 		jmp    jump_1881a
 	jump_189b7:
 		mov    $0x1,%eax
