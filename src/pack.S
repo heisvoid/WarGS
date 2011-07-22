@@ -8877,7 +8877,7 @@ func_18a20:
 		mov    %edx,(%esp)
 		xor    %edx,%edx
 		lea    0x1c(%esp),%ecx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $data_826d8,%eax
 		mov    %ds,%edx
 		mov    $data_826d8,%ebx
@@ -30946,7 +30946,7 @@ func_2c3a4:
 		mov    $data_1a4064,%eax
 		mov    $0x20,%ebx
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x130,data_1a4088
 		jle    jump_2c42a
 		cmpw   $0x0,data_5ecc0
@@ -31099,7 +31099,7 @@ func_2c3a4:
 		mov    $data_1a4050,%eax
 		mov    $0x10,%ebx
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x138,data_1a4088
 		jle    jump_2c626
 		cmpw   $0x0,data_5ecc0
@@ -46187,11 +46187,11 @@ func_397dd:
 		mov    %esi,data_1b62f0
 		mov    $data_1b62f4,%eax
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1500,data_1b6310
 		mov    %esi,data_1b6304
 		movw   $0x300,(%esp)
@@ -46528,11 +46528,11 @@ func_3a011:
 		mov    $data_1b62f4,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1510,data_1b6310
 		mov    data_5403c,%eax
 		mov    %eax,data_1b630c
@@ -46572,11 +46572,11 @@ func_3a0a8:
 		mov    $data_1b62f4,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x150c,data_1b6310
 		xor    %ebx,%ebx
 		mov    %ebx,data_1b6304
@@ -47116,7 +47116,7 @@ func_3a995:
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x100,(%esp)
 		movswl %cx,%eax
 		mov    %eax,0x4(%esp)
@@ -51252,7 +51252,7 @@ func___allocfp_:	/* 0x3cfde */
 		mov    $0x1a,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    %edi,0xc(%ecx)
 		mov    data_1b6360,%eax
 		mov    %ecx,0x4(%esi)
