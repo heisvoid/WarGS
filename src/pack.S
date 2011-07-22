@@ -9370,7 +9370,7 @@ func_18fd0:
 		call   func_2b6a3
 		mov    $data_510af,%eax
 		mov    $data_510ac,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		push   %ebx
 		push   $data_510b1
 		push   %eax
@@ -23596,7 +23596,7 @@ func_25dd3:
 		mov    $data_51984,%eax
 		mov    $data_51981,%edx
 		xor    %ebx,%ebx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %ebx,0x8(%esp)
 		mov    %eax,%edx
 		mov    %eax,%esi
@@ -33418,7 +33418,7 @@ func_2e392:
 		sub    $0x8,%esp
 		mov    %edx,%edi
 		mov    $data_52050,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		xor    %esi,%esi
 		mov    %eax,%edx
 		mov    %eax,%ebp
@@ -33506,7 +33506,7 @@ func_2e46b:
 		sub    $0x8,%esp
 		mov    %edx,%edi
 		mov    $data_52050,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		xor    %esi,%esi
 		mov    %eax,%edx
 		mov    %eax,%ebp
@@ -45980,7 +45980,7 @@ func_39431:
 		ret
 	jump_3944e:
 		mov    $data_52204,%edx
-		call   func_fopen_
+		call   w_dos_fopen
 		mov    %eax,%esi
 		xor    %edx,%edx
 	jump_3945c:
