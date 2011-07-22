@@ -420,3 +420,12 @@ dos_tell (int fd)
 
   return offset;
 }
+
+int
+dos_strcmp (const char *s1, const char *s2)
+{
+  ASSERT (NULL != s1);
+  ASSERT (NULL != s2);
+
+  return strcmp (s1, s2);
+}
