@@ -7182,7 +7182,7 @@ func_17635:
 		call   func_30bad
 		mov    %esp,%eax
 		mov    $data_50417,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_17788
 		mov    %esp,%eax
@@ -9054,7 +9054,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18c6b
 		xor    %dh,%dh
@@ -9066,7 +9066,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18c8e
 		xor    %al,%al
@@ -9078,7 +9078,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18cb1
 		xor    %ah,%ah
@@ -9090,7 +9090,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18cd4
 		xor    %dl,%dl
@@ -9102,7 +9102,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18cf7
 		xor    %dh,%dh
@@ -9114,7 +9114,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18d1a
 		xor    %al,%al
@@ -9126,7 +9126,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18d3d
 		xor    %ah,%ah
@@ -9138,7 +9138,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18d60
 		xor    %dl,%dl
@@ -9159,7 +9159,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18d9c
 		xor    %dl,%dl
@@ -9171,7 +9171,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18dbf
 		xor    %dh,%dh
@@ -9183,7 +9183,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18de2
 		xor    %al,%al
@@ -9195,7 +9195,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18e05
 		xor    %ah,%ah
@@ -9207,7 +9207,7 @@ func_18be6:
 		lea    (%ecx,%eax,1),%esi
 		mov    %ebx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18e28
 		xor    %dl,%dl
@@ -9230,7 +9230,7 @@ func_18be6:
 		lea    (%ebx,%eax,1),%esi
 		mov    %ecx,%eax
 		shl    $0x3,%esi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18e6d
 		xor    %dh,%dh
@@ -9251,7 +9251,7 @@ func_18be6:
 		lea    (%esi,%eax,1),%ebx
 		mov    %ecx,%eax
 		shl    $0x3,%ebx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_18ea9
 		xor    %al,%al
@@ -9262,7 +9262,7 @@ func_18be6:
 		shl    $0x2,%ebx
 		mov    %ecx,%eax
 		add    %esi,%ebx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		shl    $0x3,%ebx
 		test   %eax,%eax
 		jne    jump_18ecb
@@ -9284,7 +9284,7 @@ func_18be6:
 		shl    $0x2,%ebx
 		mov    %ecx,%eax
 		add    %esi,%ebx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		shl    $0x3,%ebx
 		test   %eax,%eax
 		jne    jump_18f08
@@ -9351,7 +9351,7 @@ func_18fd0:
 		mov    $data_510a7,%edx
 		call   func_20f7a
 		mov    %ebx,%eax
-		call   func_strcmp_
+		call   w_dos_strcmp
 		call   func_18f19
 		call   func_23147
 		call   func_235ec
@@ -9826,14 +9826,14 @@ GLOBAL (pack)	/* 0x195cf */
 		mov    %edx,%ebx
 		mov    0x4(%edx),%eax
 		mov    $data_510b4,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %ax,%ax
 		jg     jump_195e7
 		jge    jump_19605
 	jump_195e7:
 		mov    $data_510b7,%edx
 		mov    0x4(%ebx),%eax
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %ax,%ax
 		jg     jump_195fb
 		jge    jump_19605
@@ -20691,7 +20691,7 @@ func_23997:
 		call   func_30bad
 		mov    %esp,%eax
 		mov    $data_518b5,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_23a23
 		call   func_19079
@@ -23806,7 +23806,7 @@ func_25f21:
 		jl     jump_25fd7
 		lea    0x3c(%esp),%eax
 		mov    $data_519a2,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_260df
 		lea    0x4c(%esp),%eax
@@ -23868,7 +23868,7 @@ func_25f21:
 		mov    $data_519a8,%edx
 		mov    %esi,%eax
 		lea    0x2(%ecx),%edi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_261c4
 		mov    data_15b9cc,%ebx
@@ -23925,7 +23925,7 @@ func_25f21:
 	jump_261c4:
 		mov    $data_519c8,%edx
 		mov    %esi,%eax
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_26200
 		mov    data_19e15b(%ebx),%eax
@@ -23979,7 +23979,7 @@ func_25f21:
 		jl     jump_2624e
 		lea    0x3c(%esp),%eax
 		mov    $data_519d1,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_26335
 		cmpb   $0x64,data_19e14d(%ebx)
@@ -27589,12 +27589,12 @@ func_292ae:
 		call   func_2c775
 		mov    %esp,%eax
 		mov    $data_51ac7,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_293dd
 		mov    %esp,%eax
 		mov    $data_51acd,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_293e2
 	jump_293dd:
@@ -27603,12 +27603,12 @@ func_292ae:
 	jump_293e2:
 		mov    %esp,%eax
 		mov    $data_51ad3,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_29402
 		mov    %esp,%eax
 		mov    $data_51ad8,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_29407
 	jump_29402:
@@ -27864,7 +27864,7 @@ func_2976f:
 		call   func_30bad
 		lea    0x20(%esp),%eax
 		mov    $data_51b47,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_29d5d
 		lea    0x20(%esp),%eax
@@ -28309,7 +28309,7 @@ func_29d65:
 		call   func_30bad
 		mov    %esp,%eax
 		mov    $data_51b47,%edx
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_2a190
 		mov    %esp,%eax
