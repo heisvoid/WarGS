@@ -15530,6 +15530,7 @@ func_1d83a:
 		push   %edx
 		push   %ebx
 		push   %ecx
+#if 0
 		mov    $0x3da,%dx
 	jump_1d842:
 		in     (%dx),%al
@@ -15539,6 +15540,7 @@ func_1d83a:
 		in     (%dx),%al
 		test   $0x8,%al
 		je     jump_1d847
+#endif
 		pop    %ecx
 		pop    %ebx
 		pop    %edx
