@@ -33436,7 +33436,7 @@ func_2e392:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    0x4(%esp),%ebx
 		inc    %ebx
 		mov    %bx,0x4(%esp)
@@ -33524,7 +33524,7 @@ func_2e46b:
 		mov    $0x3,%edx
 		mov    $0x1,%ebx
 		mov    %ebp,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		xor    %edx,%edx
 		mov    $0x3c8,%eax
 		mov    0x4(%esp),%dl
@@ -46013,7 +46013,7 @@ func_39431:
 		mov    data_1b5a54(%ecx),%eax
 		mov    $0x1,%edx
 		mov    %esi,%ecx
-		call   func_fread_
+		call   w_dos_fread
 		mov    %esi,%eax
 		call   w_dos_fclose
 		mov    $0x1,%eax
