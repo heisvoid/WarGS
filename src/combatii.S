@@ -102404,6 +102404,15 @@ func_5cb97:
 		jge    jump_5cc1c
 		mov    $0x2,%edx
 	jump_5cbbd:
+#if 1
+    push   %eax
+    pushl  $0
+    pushl  data_1124ac(,%ecx,8)
+    pushl  data_1124b0(,%ecx,8)
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 		mov    %edx,%eax
 		shl    $0x3,%eax
 		sub    %edx,%eax
@@ -102462,6 +102471,15 @@ func_5cc20:
 		mov    %ebp,data_112744
 		mov    %ecx,data_112738
 		mov    %esi,data_11273c
+#if 1
+    push   %eax
+    pushl  $1
+    pushl  data_112730
+    pushl  data_112740
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 	jump_5cc85:
 		pop    %ebp
 		pop    %esi
