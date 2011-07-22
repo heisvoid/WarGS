@@ -302,6 +302,46 @@ func_10194:
 		ret
 
 
+/**
+data_7899e++;
+if (0xf == data_7899e)
+  {
+    if (0x0 != data_70006)
+      {
+        func_450f9 ();
+      }
+
+    data_789a8 = 1;
+  }
+
+if (0x1e == data_789a8)
+  {
+    if (0 != data_70006)
+      {
+        func_10a30 ();
+        func_12065 ();
+        func_450f9 ();
+      }
+
+    data_789a8 = 1;
+    data_789a6 = 1;
+    data_7899e = 0;
+  }
+
+data_789a2++;
+
+if (data_70004 == data_789a2)
+  {
+    data_789a7 = 1;
+  }
+
+if (0 != data_789a4)
+  {
+    data_789a4++;
+  }
+
+func_19f5d ();
+*/
 /*----------------------------------------------------------------*/
 GLOBAL (pit_isr_0) /* 101f4 */
 /*----------------------------------------------------------------*/
@@ -102284,7 +102324,9 @@ func_5c977:
 		call   disable_interrupts
 		mov    pic_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_5c9ca
 #if 0
@@ -102296,7 +102338,9 @@ func_5c977:
 		mov    data_12374e,%cx
 		mov    data_12374a,%ebx
 		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_setvect_
+#endif
 	jump_5c9ca:
 		mov    data_123748,%cx
 		mov    data_123744,%ebx
@@ -102308,13 +102352,19 @@ func_5c977:
 #endif
 		mov    $0x36,%edx
 		mov    $0x43,%eax
+#if 0
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		xor    %edx,%edx
 		mov    $0x40,%eax
+#if 0
 		call   func_outp_
+#endif
 		call   enable_interrupts
 		mov    data_123718,%eax
 #if 1
@@ -103334,7 +103384,11 @@ func_5d80b:
 		mov    $0x9,%eax
 		mov    data_12386c,%cx
 		mov    data_123868,%ebx
+#if 1
+    call   w_game_uninstall_keyboard_isr
+#else
 		call   func__dos_setvect_
+#endif
 		pop    %ecx
 		pop    %ebx
 		ret
