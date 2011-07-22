@@ -125,3 +125,14 @@ keyboard_handle_event (const SDL_KeyboardEvent *event)
   asm volatile ("call keyboard_isr" : : "a" (scan_code));
 #endif
 }
+
+int
+keyboard_buffer_is_empty ()
+{
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  return list_empty (&keyboard_buffer);
+}

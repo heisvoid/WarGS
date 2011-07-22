@@ -2607,8 +2607,8 @@ func_119b6:
 		cmp    $0x48,%bx
 		jl     jump_11a70
 	jump_11a9f:
-		call   func_getch_
-		call   func_getch_
+		call   w_dos_getch
+		call   w_dos_getch
 		call   func_55ebc
 		mov    $0x1,%eax
 		call   w_exit
@@ -2880,7 +2880,7 @@ func_11ca9:
 		push   $data_76e41
 		call   func_printf_
 		add    $0x8,%esp
-		call   func_getch_
+		call   w_dos_getch
 	jump_11d8f:
 		inc    %edx
 		cmp    $0x1f4,%dx
@@ -8263,7 +8263,7 @@ func_1595e:
 		jl     jump_15b3d
 	jump_15be4:
 		call   func_5f804
-		call   func_getch_
+		call   w_dos_getch
 		mov    $0x1,%eax
 		add    $0x34,%esp
 		jmp    jump_15957
@@ -12619,11 +12619,11 @@ func_1888d:
 		call   func_61e7e
 		test   %eax,%eax
 		je     jump_18a52
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,0x8(%esp)
 		test   %ax,%ax
 		jne    jump_18a52
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,0x8(%esp)
 	jump_18a52:
@@ -22138,11 +22138,11 @@ func_1f19c:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_1f278
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_1f278
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_1f278:
@@ -22385,11 +22385,11 @@ func_1f4d0:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_1f539
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_1f539
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_1f539:
@@ -34593,7 +34593,7 @@ func_2914a:
 		call   func_60944
 		add    $0x18,%esp
 		call   func_5e9e8
-		call   func_getch_
+		call   w_dos_getch
 	jump_29205:
 		mov    data_f0648,%eax
 		andb   $0xf8,0x15(%eax)
@@ -76219,7 +76219,7 @@ func_48e90:
 		call   func_61e7e
 		test   %eax,%eax
 		je     jump_48ef9
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 	jump_48ef9:
 		cmpw   $0x0,(%esp)
@@ -77129,10 +77129,10 @@ func_499ef:
 		call   func_5d839
 		cmp    $0x1,%ax
 		jne    jump_49a27
-		call   func_getch_
+		call   w_dos_getch
 		test   %ax,%ax
 		jne    jump_49a38
-		call   func_getch_
+		call   w_dos_getch
 		jmp    jump_49a38
 	jump_49a27:
 		cmpw   $0x2,(%esp)
@@ -78111,11 +78111,11 @@ func_4a483:
 		call   func_5d839
 		cmp    $0x1,%ax
 		jne    jump_4a53c
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,0x8(%esp)
 		test   %ax,%ax
 		jne    jump_4a53c
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,0x8(%esp)
 	jump_4a53c:
@@ -78378,11 +78378,11 @@ func_4a815:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_4a890
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_4a890
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_4a890:
@@ -80004,11 +80004,11 @@ func_4ba7f:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_4baea
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_4baea
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_4baea:
@@ -81899,11 +81899,11 @@ func_4ce1f:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_4cece
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_4cece
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_4cece:
@@ -83355,11 +83355,11 @@ func_4de0a:
 		call   func_61e7e
 		test   %eax,%eax
 		je     jump_4df28
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_4df28
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_4df28:
@@ -83563,11 +83563,11 @@ func_4e0ee:
 		call   func_61e7e
 		test   %eax,%eax
 		je     jump_4e1cf
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,0x4(%esp)
 		test   %ax,%ax
 		jne    jump_4e1cf
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,0x4(%esp)
 	jump_4e1cf:
@@ -93011,11 +93011,11 @@ func_54c2c:
 		call   func_61e7e
 		test   %eax,%eax
 		je     jump_54cc6
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_54cc6
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_54cc6:
@@ -93780,11 +93780,11 @@ func_5580f:
 		call   func_5d839
 		test   %ax,%ax
 		je     jump_5589f
-		call   func_getch_
+		call   w_dos_getch
 		mov    %ax,(%esp)
 		test   %ax,%ax
 		jne    jump_5589f
-		call   func_getch_
+		call   w_dos_getch
 		shl    $0x8,%eax
 		mov    %ax,(%esp)
 	jump_5589f:
@@ -103312,9 +103312,11 @@ func_5d827:
 func_5d839:
 /*----------------------------------------------------------------*/
 #if 1
-    call   w_keyboard_getchar
+    call   w_game_update
+
+    call   w_keyboard_buffer_is_empty
     test   %eax,%eax
-    setne  %al
+    sete   %al
 #else
 		push   %ecx
 		push   %edx
