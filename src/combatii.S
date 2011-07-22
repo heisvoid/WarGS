@@ -14965,6 +14965,7 @@ func_1a25f:
 		cwtl
 		call   func_11db2
 #if 1
+    /* workaround for %eax is 0 */
     test   %eax,%eax
     je     jump_1a2d3
 #endif
@@ -61732,12 +61733,14 @@ func_3e5ab:
 		push   %eax
 		lea    0x10(%esp),%eax
 #if 1
+    /* workaround for invalid %edi */
     xor    %ebx,%ebx
 #else
 		movsbl 0x1(%edi),%ebx
 #endif
 		push   %eax
 #if 1
+    /* workaround for invalid %edi */
     xor    %edx,%edx
 #else
 		movsbl (%edi),%edx
