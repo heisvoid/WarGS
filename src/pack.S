@@ -23614,12 +23614,12 @@ func_25dd3:
 		jmp    jump_25e4d
 	jump_25e22:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		jne    jump_25e22
 	jump_25e2e:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		mov    0x8(%esp),%eax
@@ -23637,12 +23637,12 @@ func_25dd3:
 		jl     jump_25e22
 	jump_25e52:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		cmp    $0x7b,%eax
 		jne    jump_25e52
 	jump_25e5e:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		lea    (%ebx,%ebp,1),%eax
@@ -23655,7 +23655,7 @@ func_25dd3:
 		jne    jump_25e9c
 	jump_25e80:
 		mov    %esi,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edi
 		mov    %eax,%ecx
 		cmp    $0x20,%eax
@@ -33448,7 +33448,7 @@ func_2e392:
 		call   func_fseek_
 	jump_2e400:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -33458,7 +33458,7 @@ func_2e392:
 		jne    jump_2e442
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
@@ -33555,7 +33555,7 @@ func_2e46b:
 		call   func_fseek_
 	jump_2e51e:
 		mov    %ebp,%eax
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %eax,%edx
 		and    $0xc0,%al
 		xor    %ah,%dh
@@ -33565,7 +33565,7 @@ func_2e46b:
 		jne    jump_2e560
 		mov    %ebp,%eax
 		and    $0x3f,%dl
-		call   func_fgetc_
+		call   w_dos_fgetc
 		mov    %ax,0x4(%esp)
 		xor    %dh,%dh
 		mov    0x4(%esp),%bl
