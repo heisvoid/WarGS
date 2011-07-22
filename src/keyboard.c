@@ -90,7 +90,11 @@ keyboard_get_ascii ()
 static uint8_t
 sym_to_scan_code (SDLKey sym)
 {
-  return 0x00;
+  switch (sym)
+    {
+    case SDLK_ESCAPE: return 0x01;
+    default: return 0x00;
+    }
 }
 
 void
@@ -121,7 +125,7 @@ keyboard_handle_event (const SDL_KeyboardEvent *event)
       scan_code += 0x80;
     }
 
-#if defined CHP && defined COMBATII
+#if defined CHP || defined COMBATII
   asm volatile ("call keyboard_isr" : : "a" (scan_code));
 #endif
 }
