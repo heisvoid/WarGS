@@ -645,7 +645,7 @@ func_11c64:
 		mov    $data_7d7b8,%edx
 		mov    $0x2,%ebx
 		sar    $0x10,%eax
-		call   func_write_
+		call   w_dos_write
 		xor    %edx,%edx
 		mov    %dx,0x30(%esp)
 	jump_11e99:
@@ -664,12 +664,12 @@ func_11c64:
 		add    %ecx,%edx
 		mov    %esi,%eax
 		add    $0x6,%edx
-		call   func_write_
+		call   w_dos_write
 		mov    $0x2,%ebx
 		lea    (%edi,%edi,1),%edx
 		mov    %esi,%eax
 		add    $data_7cfba,%edx
-		call   func_write_
+		call   w_dos_write
 		mov    data_7d028(%ecx),%eax
 		test   %eax,%eax
 		je     jump_11f09
@@ -680,7 +680,7 @@ func_11c64:
 		sar    $0x10,%ebx
 		mov    %esi,%eax
 		add    %ebx,%ebx
-		call   func_write_
+		call   w_dos_write
 	jump_11f09:
 		mov    0x30(%esp),%ecx
 		inc    %ecx
@@ -20211,31 +20211,31 @@ func_23147:
 	jump_231aa:
 		mov    $data_52698,%edx
 		mov    $0x1,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    $data_1a00c4,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_1a00db,%edx
 		mov    $0x1,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_7d88c,%edx
 		mov    $0x4e20,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_1a00cc,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		mov    $data_15ba24,%ecx
-		call   func_write_
+		call   w_dos_write
 		lea    0x4158(%ecx),%edi
 	jump_23208:
 		mov    $0x88,%ebx
 		mov    %esi,%eax
 		mov    %ecx,%edx
 		add    $0x88,%ecx
-		call   func_write_
+		call   w_dos_write
 		cmp    %edi,%ecx
 		jne    jump_23208
 		xor    %edi,%edi
@@ -20269,20 +20269,20 @@ func_23147:
 		mov    $0x4,%ebx
 		mov    %esi,%eax
 		mov    %ecx,%edx
-		call   func_write_
+		call   w_dos_write
 		mov    $0x2,%ebx
 		lea    (%edi,%edi,1),%eax
 		mov    %ebp,%edx
 		mov    %eax,(%esp)
 		mov    %esi,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    (%esp),%eax
 		xor    %ebx,%ebx
 		mov    0x4(%esp),%edx
 		mov    data_19763c(%eax),%bx
 		mov    %esi,%eax
 		add    $0x4,%ecx
-		call   func_write_
+		call   w_dos_write
 		mov    0x4(%esp),%edx
 		add    $0x2,%ebp
 		add    $0x258,%edx
@@ -20523,7 +20523,7 @@ func_235ec:
 		mov    $game_cfg_speed,%edx
 		mov    $0xa,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		jmp    jump_235e1
 
 
@@ -20868,15 +20868,15 @@ func_23997:
 		sar    $0x10,%ecx
 		mov    $0xd,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		cmpb   $0x0,0x34(%esp)
 		jne    jump_23c6e
 		mov    data_15ba1e,%eax
@@ -20928,15 +20928,15 @@ func_23997:
 		sar    $0x10,%ecx
 		mov    %esi,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    data_15ba20,%ax
 		imul   data_15ba1e,%ax
 		mov    0x34(%esp),%dh
@@ -20980,15 +20980,15 @@ func_23997:
 		sar    $0x10,%ecx
 		sar    $0x10,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		cmpb   $0x0,0x34(%esp)
 		jne    jump_23dd2
 		mov    data_15ba1e,%edx
@@ -21020,15 +21020,15 @@ func_23997:
 		sar    $0x10,%ecx
 		mov    data_15b9bc,%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		cmpb   $0x0,0x34(%esp)
 		jne    jump_23e5e
 		mov    data_15ba1e,%edx
@@ -21060,7 +21060,7 @@ func_23997:
 		mov    data_15b9b8,%edx
 		sar    $0x10,%eax
 		xor    %edi,%edi
-		call   func_write_
+		call   w_dos_write
 		mov    $0x2,%ebp
 	jump_23ea6:
 		movswl %di,%edx
@@ -21091,56 +21091,56 @@ func_23997:
 		sar    $0x10,%ecx
 		mov    %esi,%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		lea    0x1(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x3(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    $0x14,%ebx
 		lea    0x5(%esi),%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		lea    0x19(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x1b(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x1d(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x1f(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x21(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		lea    0x23(%esi),%edx
 		mov    %ecx,%eax
 		mov    %ebp,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    $0x1,%ebx
 		lea    0x25(%esi),%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $0x1,%ebx
 		lea    0x26(%esi),%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $0x1,%ebx
 		lea    0x27(%esi),%edx
 		mov    %ecx,%eax
 		inc    %edi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0xaa,%di
 		jl     jump_23ea6
 		xor    %esi,%esi
@@ -21159,7 +21159,7 @@ func_23997:
 		add    %eax,%edx
 		mov    %ecx,%eax
 		inc    %esi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0x28,%si
 		jl     jump_23fd5
 		mov    %ecx,%eax
@@ -28098,15 +28098,15 @@ func_2976f:
 		movswl %si,%ecx
 		mov    $0xd,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    data_15ba1e,%eax
 		mov    data_15ba1c,%ebx
 		sar    $0x10,%eax
@@ -28114,17 +28114,17 @@ func_2976f:
 		imul   %eax,%ebx
 		mov    data_15b9c4,%edx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		mov    $0x1,%ebp
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
 		xor    %edi,%edi
-		call   func_write_
+		call   w_dos_write
 		jmp    jump_29c30
 	jump_29bfb:
 		xor    %ecx,%ecx
@@ -28141,7 +28141,7 @@ func_2976f:
 		add    %eax,%edx
 		movswl %si,%eax
 		inc    %ecx
-		call   func_write_
+		call   w_dos_write
 	jump_29c26:
 		cmp    data_15ba20,%cx
 		jl     jump_29bff
@@ -28153,11 +28153,11 @@ func_2976f:
 		movswl %si,%ecx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    data_15ba1e,%edx
 		mov    data_15ba1c,%ebx
 		sar    $0x10,%edx
@@ -28166,15 +28166,15 @@ func_2976f:
 		mov    %ecx,%eax
 		mov    data_15b9bc,%edx
 		add    %ebx,%ebx
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba20,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    $data_15ba1e,%edx
 		mov    $0x2,%ebx
 		mov    %ecx,%eax
-		call   func_write_
+		call   w_dos_write
 		mov    data_15ba1e,%edx
 		mov    data_15ba1c,%ebx
 		sar    $0x10,%edx
@@ -28184,7 +28184,7 @@ func_2976f:
 		mov    data_15b9b8,%edx
 		add    %ebx,%ebx
 		xor    %ecx,%ecx
-		call   func_write_
+		call   w_dos_write
 	jump_29cca:
 		movswl %cx,%edx
 		mov    %edx,%eax
@@ -28210,7 +28210,7 @@ func_2976f:
 		mov    $0x28,%ebx
 	jump_29d0c:
 		movswl %si,%eax
-		call   func_write_
+		call   w_dos_write
 		inc    %ecx
 		cmp    $0xaa,%cx
 		jl     jump_29cca
@@ -28229,7 +28229,7 @@ func_2976f:
 		add    %eax,%edx
 		mov    %ecx,%eax
 		inc    %edi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0x28,%di
 		jl     jump_29d1e
 		mov    %ecx,%eax
@@ -28554,7 +28554,7 @@ func_29d65:
 		add    %eax,%edx
 		mov    %ecx,%eax
 		inc    %esi
-		call   func_write_
+		call   w_dos_write
 		cmp    $0x28,%si
 		jl     jump_2a151
 		mov    %ecx,%eax
@@ -40960,7 +40960,7 @@ func_34b92:
 		add    $0x8,%esp
 		lea    0xc(%esp),%edx
 		mov    %eax,0xc(%esp)
-		call   func_write_
+		call   w_dos_write
 		mov    0xc(%esp),%eax
 		call   w_dos_close
 		mov    $data_520ee,%eax
