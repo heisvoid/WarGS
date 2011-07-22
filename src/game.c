@@ -110,14 +110,19 @@ game_update ()
 
   if (0 < last_frame_ticks)
     {
+      enum
+      {
+        DELAY_GRANULARITY = 10
+      };
+
       int32_t delay = 1000 / fps - (SDL_GetTicks () - last_frame_ticks);
-      while (0 < delay)
+      while (DELAY_GRANULARITY < delay)
         {
           const uint32_t t = SDL_GetTicks ();
 
           update_pit_isr ();
 
-          SDL_Delay (10);
+          SDL_Delay (DELAY_GRANULARITY);
 
           delay -= (SDL_GetTicks () - t);
         }
