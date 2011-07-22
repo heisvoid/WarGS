@@ -45944,14 +45944,14 @@ func_3935d:
 		push   %esi
 		push   %edi
 		mov    %eax,%ecx
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%esi
 		mov    %ecx,%eax
 		xor    %edx,%edx
 		mov    $0x2,%ebx
 		call   w_dos_fseek
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edi
 		mov    %ecx,%eax
 		mov    %esi,%edx
@@ -48528,7 +48528,7 @@ func___doclose_:	/* 0x3b658 */
 		mov    %eax,%esi
 	jump_3b683:
 		mov    %ecx,%eax
-		call   func_ftell_
+		call   w_dos_ftell
 		mov    %eax,%edx
 		cmp    $0xffffffff,%eax
 		je     jump_3b69b
