@@ -19092,7 +19092,11 @@ func_20bc8:
 		mov    $data_508f0,%eax
 		mov    data_c5ea4,%edx
 		call   func_2dd68
+#if 1
+    call   w_conf_get_fast
+#else
 		mov    game_cfg_speed,%al
+#endif
 		test   %al,%al
 		jbe    jump_20c20
 		cmp    $0x1,%al
@@ -19112,8 +19116,14 @@ func_20bc8:
 	jump_20c49:
 		call   func_1d874
 	jump_20c4e:
+#if 1
+    call   w_conf_get_music
+    test   %eax,%eax
+    je     jump_20c6b
+#else
 		cmpb   $0x1,game_cfg_music
 		jne    jump_20c6b
+#endif
 		mov    $0x51,%edx
 		mov    $data_7ce50,%ebx
 		mov    data_c5ea4,%ecx
@@ -19126,8 +19136,14 @@ func_20bc8:
 		mov    data_c5ea4,%ecx
 	jump_20c80:
 		call   func_1d874
+#if 1
+    call   w_conf_get_sound
+    test   %eax,%eax
+    je     jump_20ca2
+#else
 		cmpb   $0x1,game_cfg_sound
 		jne    jump_20ca2
+#endif
 		mov    $0x71,%edx
 		mov    $data_7da08,%ebx
 		mov    data_c5ea4,%ecx
@@ -19165,9 +19181,19 @@ func_20bc8:
 		jl     jump_20d29
 		cmp    $0x4e,%esi
 		jg     jump_20d29
+
+    /* speed slow */
 		xor    %al,%al
 		mov    $0x895440,%ebx
 		mov    %al,game_cfg_speed
+#if 1
+    push   %eax
+    pushl  $0
+    call   w_conf_set_fast
+    add    $4,%esp
+    call   w_conf_save
+    pop    %eax
+#endif
 		mov    %ebx,data_c5c58
 		jmp    jump_20c01
 	jump_20d29:
@@ -19181,9 +19207,19 @@ func_20bc8:
 		jl     jump_20d5e
 		cmp    $0x4e,%ebx
 		jg     jump_20d5e
+
+    /* speed fast */
 		mov    $0x1,%ch
 		xor    %edx,%edx
 		mov    %ch,game_cfg_speed
+#if 1
+    push   %eax
+    pushl  $1
+    call   w_conf_set_fast
+    add    $4,%esp
+    call   w_conf_save
+    pop    %eax
+#endif
 		mov    %edx,data_c5c58
 		jmp    jump_20c01
 	jump_20d5e:
@@ -19197,9 +19233,21 @@ func_20bc8:
 		jl     jump_20d92
 		cmp    $0x6c,%eax
 		jg     jump_20d92
+
+    /* music off */
 		xor    %cl,%cl
 		mov    %cl,game_cfg_music
+#if 1
+    push   %eax
+    pushl  $0
+    call   w_conf_set_music
+    add    $4,%esp
+    call   w_conf_save
+    call   w_audio_music_mute
+    pop    %eax
+#else
 		call   func_3615b
+#endif
 		jmp    jump_20c01
 	jump_20d92:
 		mov    data_8ff24,%ebx
@@ -19212,12 +19260,24 @@ func_20bc8:
 		jl     jump_20dd5
 		cmp    $0x6c,%esi
 		jg     jump_20dd5
+
+    /* music on */
 		mov    $0x1,%bh
 		mov    $0x1,%edx
 		mov    %bh,game_cfg_music
+#if 1
+    push   %eax
+    pushl  $1
+    call   w_conf_set_music
+    add    $4,%esp
+    call   w_conf_save
+    call   w_audio_music_unmute
+    pop    %eax
+#else
 		call   cdrom_setup_audio_info
 		mov    $0xb,%eax
 		call   func_360e2
+#endif
 		jmp    jump_20c01
 	jump_20dd5:
 		mov    data_8ff24,%eax
@@ -19230,8 +19290,19 @@ func_20bc8:
 		jl     jump_20e06
 		cmp    $0x8e,%ebx
 		jg     jump_20e06
+
+    /* sound off */
 		xor    %bl,%bl
 		mov    %bl,game_cfg_sound
+#if 1
+    push   %eax
+    pushl  $0
+    call   w_conf_set_sound
+    add    $4,%esp
+    call   w_conf_save
+    call   w_audio_sound_mute
+    pop    %eax
+#endif
 		jmp    jump_20c01
 	jump_20e06:
 		mov    data_8ff24,%esi
@@ -19244,7 +19315,18 @@ func_20bc8:
 		jl     jump_20e35
 		cmp    $0x8e,%eax
 		jg     jump_20e35
+
+    /* sound on */
 		movb   $0x1,game_cfg_sound
+#if 1
+    push   %eax
+    pushl  $1
+    call   w_conf_set_sound
+    add    $4,%esp
+    call   w_conf_save
+    call   w_audio_sound_unmute
+    pop    %eax
+#endif
 		jmp    jump_20c01
 	jump_20e35:
 		mov    data_8ff24,%ebx
@@ -19257,6 +19339,8 @@ func_20bc8:
 		jl     jump_20e8e
 		cmp    $0xa5,%esi
 		jg     jump_20e8e
+
+    /* back */
 		mov    $0x21,%eax
 		mov    $0x97,%edx
 		mov    $data_7dfe4,%ebx
@@ -19278,6 +19362,8 @@ func_20bc8:
 		jl     jump_20f81
 		cmp    $0xa5,%ebx
 		jg     jump_20f81
+
+    /* title */
 		mov    $0xf8,%eax
 		mov    $0x97,%edx
 		mov    $data_7e5c0,%ebx
@@ -19330,6 +19416,8 @@ func_20bc8:
 		jl     jump_21002
 		cmp    $0xbe,%eax
 		jg     jump_21002
+
+    /* save */
 		mov    $0x5f,%eax
 		mov    $0xa2,%edx
 		mov    $data_7eb9c,%ebx
@@ -19360,6 +19448,8 @@ func_20bc8:
 		jl     jump_20cd5
 		cmp    $0xbe,%esi
 		jg     jump_20cd5
+
+    /* load */
 		mov    $0xbc,%eax
 		mov    $0xa2,%edx
 		mov    $data_7f178,%ebx
