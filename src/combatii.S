@@ -94258,6 +94258,14 @@ func_55ebc:
 		xor    %eax,%eax
 		sar    $0x10,%ecx
 		call   func_5fa2c
+#if 1
+    /* To exit from game, data_789a7 should be 1.
+     *
+     * PIR ISRs are incomplete in WarGS. Therefore, it is not 1.
+     * The game is never terminated.
+     */
+    movb   $1,data_789a7
+#endif
 		call   func_499e4
 		subw   $0x5,(%esp)
 	jump_55f2f:
