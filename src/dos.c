@@ -10,6 +10,7 @@
 #include <inttypes.h>
 #include <string.h>
 #include <time.h>
+#include <errno.h>
 
 #include "assert.h"
 #include "filepath.h"
@@ -360,7 +361,10 @@ dos_write (int fd, const void *buf, unsigned int len)
                                      len - total_written);
       if (0 > written)
         {
-          LOG_FATAL ("failed to write");
+          const int e = errno;
+          ASSERT (EFAULT == e);
+
+          break;
         }
 
       total_written += written;
@@ -406,4 +410,13 @@ int
 dos_getch ()
 {
   return keyboard_get_ascii ();
+}
+
+off_t
+dos_tell (int fd)
+{
+  const off_t offset = lseek (fd, 0, SEEK_CUR);
+  ASSERT ((off_t) -1 != offset);
+
+  return offset;
 }
