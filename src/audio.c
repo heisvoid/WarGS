@@ -52,6 +52,9 @@ audio_init (const char *music)
   ret = Mix_OpenAudio (22000, AUDIO_S16SYS, 2, 4096);
   ASSERT (0 == ret);
 
+  /* I think 16 is fully enough. */
+  Mix_AllocateChannels (16);
+
   Mix_ChannelFinished (&finish_channel);
 
   music_root = xmalloc (strlen (music) + 1);
