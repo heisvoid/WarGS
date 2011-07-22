@@ -10560,7 +10560,11 @@ func_1a094:
 		mov    $data_510fc,%eax
 		mov    $data_19c6c,%esi
 		mov    %dx,0x20(%esp)
+#if 1
+    mov    video_buffer,%edx
+#else
 		mov    $0xa0000,%edx
+#endif
 		rep movsl %ds:(%esi),%es:(%edi)
 		movsw  %ds:(%esi),%es:(%edi)
 		call   func_2e46b
@@ -10689,7 +10693,11 @@ func_1a094:
 		mov    %cx,0x20(%esp)
 		mov    %esp,%ebx
 		mov    0x1e(%esp),%eax
+#if 1
+    mov    video_buffer,%ecx
+#else
 		mov    $0xa0000,%ecx
+#endif
 		sar    $0x10,%eax
 		call   func_2b240
 	jump_1a2a1:
