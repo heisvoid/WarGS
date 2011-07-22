@@ -64,7 +64,7 @@ sym_to_char (SDLKey sym)
     case SDLK_ESCAPE: return 0x1b;
     case SDLK_RETURN: return 0x0d;
     case SDLK_SPACE: return 0x20;
-    default: return EOF;
+    default: return 0x00;
     }
 }
 
@@ -78,7 +78,7 @@ keyboard_getchar ()
 
   if (list_empty (&keyboard_buffer))
     {
-      return EOF;
+      return 0x00;
     }
 
   struct key *key = list_entry (list_pop_front (&keyboard_buffer),
