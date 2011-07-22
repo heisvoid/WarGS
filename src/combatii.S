@@ -100323,7 +100323,7 @@ func_5af1b:
 		push   %edx
 		cmpl   $0x0,data_112444
 		je     jump_5af40
-		call   func_5af42
+		call   cdrom_stop_audio
 		xor    %edx,%edx
 	jump_5af2c:
 		call   func_5af02
@@ -100338,11 +100338,15 @@ func_5af1b:
 
 
 /*----------------------------------------------------------------*/
-func_5af42:
+cdrom_stop_audio: /* 5af42 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %edx
 		sub    $0x8,%esp
+#if 1
+    call   w_audio_music_stop
+#endif
+#if 0
 		cmpl   $0x0,data_112444
 		je     jump_5afaf
 		cmpl   $0x1,data_70014
@@ -100352,11 +100356,13 @@ func_5af42:
 		mov    $0x2,%eax
 		call   allocate_dos_memory_block
 		mov    (%esp),%ebx
+#endif
 		xor    %edx,%edx
+#if 0
 		mov    %ebx,%gs
 		movb   $0xd,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x85,%gs:0x2(%edx)
+		movb   $0x85,%gs:0x2(%edx) /* stop audio */
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
 		call   cdrom_send_device_driver_request
@@ -100366,6 +100372,7 @@ func_5af42:
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
 		call   free_dos_memory_block
+#endif
 		mov    %edx,data_70014
 		mov    %edx,data_7000c
 	jump_5afaf:
