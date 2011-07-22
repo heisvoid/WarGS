@@ -463,7 +463,7 @@ func_11ace:
 		jl     jump_11b97
 		mov    0x22(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x28,%esp
 		jmp    jump_15f61
 
@@ -616,14 +616,14 @@ func_11c64:
 	jump_11e25:
 		mov    0x32(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 	jump_11e31:
 		call   func_19ba9
 		mov    %esp,%eax
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
@@ -690,7 +690,7 @@ func_11c64:
 		mov    0x36(%esp),%eax
 	jump_11f1d:
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x3c,%esp
 		jmp    jump_15f61
 
@@ -10521,7 +10521,7 @@ func_19f11:
 		inc    %dl
 		sar    $0x10,%eax
 		mov    %dl,data_f10a2
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x14,%esp
 		pop    %edi
 		pop    %esi
@@ -10691,7 +10691,7 @@ func_1a094:
 		inc    %dl
 		sar    $0x10,%eax
 		mov    %dl,data_f10a2
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x34,%esp
 		pop    %edi
 		pop    %esi
@@ -10842,7 +10842,7 @@ func_1a2d6:
 		mov    %ax,data_840a4(%edx)
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x14,%esp
 		jmp    jump_19f0b
 
@@ -11032,7 +11032,7 @@ func_1a712:
 		mov    $data_5113d,%eax
 		call   func_puts_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_51153,%eax
 		call   func_18fd0
 	jump_1a74e:
@@ -11053,7 +11053,7 @@ func_1a712:
 		cmp    $0x7c,%si
 		jl     jump_1a750
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		jmp    jump_1b07c
 
 
@@ -18178,7 +18178,7 @@ func_213a6:
 		call   func_printf_
 		add    $0x8,%esp
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x200
 		push   $data_51422
 		call   w_dos_open
@@ -18190,7 +18190,7 @@ func_213a6:
 		mov    $data_5142e,%eax
 		call   func_puts_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_getch_
 		call   func_19079
 	jump_2150a:
@@ -18201,7 +18201,7 @@ func_213a6:
 		call   w_dos_read
 		mov    %ecx,%eax
 		mov    $0xff,%ebx
-		call   func_j___close_
+		call   w_dos_close
 		xor    %edx,%edx
 		mov    $data_15b2b8,%eax
 		call   func_20118
@@ -18219,7 +18219,7 @@ func_213a6:
 		call   w_dos_read
 		mov    %ecx,%eax
 		lea    0x24(%esp),%edx
-		call   func_j___close_
+		call   w_dos_close
 		xor    %eax,%eax
 		mov    $0xa,%ebx
 		mov    data_15ba23,%al
@@ -18671,7 +18671,7 @@ func_213a6:
 		cmp    %edx,%eax
 		jl     jump_21b0b
 		movswl %di,%eax
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x200
 		push   $data_51422
 		call   w_dos_open
@@ -18683,7 +18683,7 @@ func_213a6:
 		mov    $data_5142e,%eax
 		call   func_puts_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_getch_
 		call   func_19079
 	jump_21b9e:
@@ -18693,7 +18693,7 @@ func_213a6:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		xor    %eax,%eax
 		mov    data_15ba23,%al
 		call   func_24017
@@ -20195,7 +20195,7 @@ func_23147:
 		mov    $data_514b4,%eax
 		mov    $0x180,%edx
 		call   func_creat_
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		push   $data_514b4
 		call   w_dos_open
@@ -20314,7 +20314,7 @@ func_23147:
 		jne    jump_232c6
 		mov    %esi,%eax
 	jump_232fe:
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x8,%esp
 		pop    %ebp
 		jmp    jump_23714
@@ -20341,7 +20341,7 @@ func_23369:
 		call   func_puts_
 		call   func_getch_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_5148e,%eax
 		call   func_18fd0
 	jump_233b0:
@@ -20453,7 +20453,7 @@ func_23369:
 		jl     jump_234c0
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_22fed
 		call   func_23053
 		mov    data_1a00ca,%eax
@@ -20491,7 +20491,7 @@ func_235a7:
 		call   w_dos_read
 	jump_235e1:
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -20508,7 +20508,7 @@ func_235ec:
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		push   $data_51534
 		call   w_dos_open
@@ -20784,7 +20784,7 @@ func_23997:
 		lea    0x24(%esp),%edx
 		mov    %ecx,%eax
 		mov    $0xa,%ebx
-		call   func_j___close_
+		call   w_dos_close
 		xor    %eax,%eax
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
@@ -20844,7 +20844,7 @@ func_23997:
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
@@ -20860,7 +20860,7 @@ func_23997:
 		call   func_printf_
 		add    $0x8,%esp
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19079
 	jump_23c0f:
 		mov    0x2a(%esp),%ecx
@@ -21163,7 +21163,7 @@ func_23997:
 		cmp    $0x28,%si
 		jl     jump_23fd5
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		add    $0x38,%esp
 	jump_24011:
 		pop    %ebp
@@ -21252,7 +21252,7 @@ func_24017:
 		call   func_printf_
 		add    $0x8,%esp
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_getch_
 		cmpb   $0x1,data_54040
 		jne    jump_240eb
@@ -21451,7 +21451,7 @@ func_24017:
 		cmp    $0x28,%si
 		jl     jump_2433a
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		xor    %eax,%eax
 		mov    0x30(%esp),%al
 		call   func_244df
@@ -21637,7 +21637,7 @@ func_244df:
 		add    $0x8,%esp
 		cmp    $0xffffffff,%eax
 		jne    jump_24607
-		call   func_j___close_
+		call   w_dos_close
 		cmpb   $0x1,data_54040
 		jne    jump_2463e
 		push   $0x200
@@ -21651,7 +21651,7 @@ func_244df:
 		mov    $data_51916,%eax
 		call   func_puts_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_getch_
 		call   func_19079
 	jump_245c4:
@@ -21662,7 +21662,7 @@ func_244df:
 		call   w_dos_read
 		mov    %ecx,%eax
 		mov    $0xff,%ebx
-		call   func_j___close_
+		call   w_dos_close
 		xor    %edx,%edx
 		mov    $data_15b2b8,%eax
 		call   func_20118
@@ -21693,7 +21693,7 @@ func_244df:
 		cmp    $0x28,%si
 		jl     jump_24609
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 	jump_2463e:
 		add    $0x24,%esp
 		jmp    jump_244d9
@@ -22111,7 +22111,7 @@ func_24ba4:
 		call   func_puts_
 		call   func_getch_
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19079
 	jump_24beb:
 		movswl %dx,%ecx
@@ -22152,7 +22152,7 @@ func_24ba4:
 		mov    %esi,%edx
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_2b206
 		add    $0x8,%esp
 		pop    %ebp
@@ -22182,7 +22182,7 @@ func_24c7f:
 		call   func_puts_
 		call   func_getch_
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19079
 	jump_24cc2:
 		movswl %dx,%ecx
@@ -22223,7 +22223,7 @@ func_24c7f:
 		mov    %esi,%edx
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_2b206
 		add    $0x8,%esp
 		pop    %esi
@@ -27975,12 +27975,12 @@ func_2976f:
 	jump_299b9:
 		mov    0x66(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		jmp    jump_29d5d
 	jump_299ca:
 		mov    0x66(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_3197d
 		push   $0x200
 		lea    0x24(%esp),%eax
@@ -28068,14 +28068,14 @@ func_2976f:
 	jump_29b1a:
 		mov    0x66(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 	jump_29b26:
 		call   func_19ba9
 		lea    0x20(%esp),%eax
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		lea    0x24(%esp),%eax
 		push   %eax
@@ -28091,7 +28091,7 @@ func_2976f:
 		call   func_printf_
 		add    $0x8,%esp
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19079
 	jump_29b79:
 		mov    $data_1a00ce,%edx
@@ -28233,7 +28233,7 @@ func_2976f:
 		cmp    $0x28,%di
 		jl     jump_29d1e
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19b67
 		call   func_3197d
 	jump_29d5d:
@@ -28420,12 +28420,12 @@ func_29d65:
 	jump_29f93:
 		mov    0x46(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		jmp    jump_2a190
 	jump_29fa4:
 		mov    0x46(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_3197d
 		push   $0x200
 		lea    0x4(%esp),%eax
@@ -28513,14 +28513,14 @@ func_29d65:
 	jump_2a0f4:
 		mov    0x46(%esp),%eax
 		sar    $0x10,%eax
-		call   func_j___close_
+		call   w_dos_close
 	jump_2a100:
 		call   func_19ba9
 		mov    %esp,%eax
 		mov    $0x180,%edx
 		call   func_creat_
 		cwtl
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
@@ -28536,7 +28536,7 @@ func_29d65:
 		call   func_printf_
 		add    $0x8,%esp
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19079
 	jump_2a14f:
 		xor    %esi,%esi
@@ -28558,7 +28558,7 @@ func_29d65:
 		cmp    $0x28,%si
 		jl     jump_2a151
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		call   func_19b67
 		call   func_3197d
 	jump_2a190:
@@ -30674,7 +30674,7 @@ func_2c107:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x200
 		push   %esi
 		mov    $data_1a303c,%edx
@@ -30685,7 +30685,7 @@ func_2c107:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		pop    %esi
 		pop    %ecx
 		pop    %ebx
@@ -31897,7 +31897,7 @@ func_2cfa9:
 		call   func_puts_
 		call   func_getch_
 		mov    %edx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_52042,%eax
 		call   func_18fd0
 	jump_2cfed:
@@ -31921,7 +31921,7 @@ func_2cfa9:
 		mov    %esi,%edx
 		call   w_dos_read
 		mov    %ecx,%eax
-		call   func_j___close_
+		call   w_dos_close
 		pop    %edi
 		pop    %esi
 		pop    %ecx
@@ -40952,7 +40952,7 @@ func_34b92:
 		mov    $0x180,%edx
 		call   func_creat_
 		mov    %eax,0xc(%esp)
-		call   func_j___close_
+		call   w_dos_close
 		push   $0x201
 		push   $data_52154
 		mov    $0x2,%ebx
@@ -40962,7 +40962,7 @@ func_34b92:
 		mov    %eax,0xc(%esp)
 		call   func_write_
 		mov    0xc(%esp),%eax
-		call   func_j___close_
+		call   w_dos_close
 		mov    $data_520ee,%eax
 		call   func_18fd0
 		jmp    jump_34bcb
