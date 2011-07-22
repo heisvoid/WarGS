@@ -203,7 +203,10 @@ audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
   Mix_VolumeChunk (sound, sound_is_muted ? 0 : MIX_MAX_VOLUME);
 
   const int ret = Mix_PlayChannel (-1, sound, (0 == loop) ? 0 : -1);
-  ASSERT (-1 != ret);
+  if (-1 == ret)
+    {
+      LOG_ERROR ("failed to play channel");
+    }
 }
 
 void
