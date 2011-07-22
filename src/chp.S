@@ -28656,6 +28656,10 @@ func_28cb8:
 		mov    %dx,(%esp)
 		mov    %esp,%edx
 #if 1
+    /* This is a dirty and wild solution to update game. */
+    call   w_game_update
+#endif
+#if 1
     call   w_mouse_get_state
 
     movw   mouse_state_button,%ax
