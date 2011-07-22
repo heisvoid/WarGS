@@ -379,12 +379,13 @@ dos_strstr (const char *haystack, const char *needle)
 }
 
 int
-dos_vsprintf (char *buf, const char *format, va_list ap)
+dos_vsprintf (char *buf, const char *format, va_list *ap)
 {
   ASSERT (NULL != buf);
   ASSERT (NULL != format);
+  ASSERT (NULL != ap);
 
-  const int ret = vsprintf (buf, format, ap);
+  const int ret = vsprintf (buf, format, *ap);
   ASSERT (0 <= ret);
 
   return ret;
