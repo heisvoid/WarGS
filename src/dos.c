@@ -437,3 +437,14 @@ dos_strrchr (const char *s, int c)
 
   return strrchr (s, c);
 }
+
+int
+dos_fclose (FILE *f)
+{
+  ASSERT (NULL != f);
+
+  const int ret = fclose (f);
+  ASSERT (0 == ret);
+
+  return ret;
+}
