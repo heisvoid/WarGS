@@ -8784,12 +8784,12 @@ func_188df:
 	jump_18947:
 		mov    0x1a(%esp),%eax
 		sar    $0x10,%eax
-		call   func_abs_
+		call   w_abs
 		mov    %eax,%esi
 		mov    %ax,0x1c(%esp)
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_abs_
+		call   w_abs
 		mov    %ax,(%esp)
 		cmp    %ax,%si
 		jg     jump_18971
