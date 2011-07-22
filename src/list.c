@@ -2,7 +2,7 @@
 
 #include "list.h"
 
-#include "assrt.h"
+#include "assert.h"
 
 static bool
 is_head (struct list_elem *elem)
@@ -25,7 +25,7 @@ is_interior (struct list_elem *elem)
 void
 list_init (struct list *list)
 {
-  ASSRT (NULL != list);
+  ASSERT (NULL != list);
 
   list->head.prev = NULL;
   list->head.next = &list->tail;
@@ -36,7 +36,7 @@ list_init (struct list *list)
 struct list_elem *
 list_begin (struct list *list)
 {
-  ASSRT (NULL != list);
+  ASSERT (NULL != list);
 
   return list->head.next;
 }
@@ -44,7 +44,7 @@ list_begin (struct list *list)
 struct list_elem *
 list_next (struct list_elem *elem)
 {
-  ASSRT (is_head (elem) == true || is_interior (elem) == true);
+  ASSERT (is_head (elem) == true || is_interior (elem) == true);
   
   return elem->next;
 }
@@ -52,7 +52,7 @@ list_next (struct list_elem *elem)
 struct list_elem *
 list_end (struct list *list)
 {
-  ASSRT (NULL != list);
+  ASSERT (NULL != list);
 
   return &list->tail;
 }
@@ -60,8 +60,8 @@ list_end (struct list *list)
 void
 list_insert (struct list_elem *before, struct list_elem *elem)
 {
-  ASSRT (is_interior (before) == true || is_tail (before) == true);
-  ASSRT (NULL != elem);
+  ASSERT (is_interior (before) == true || is_tail (before) == true);
+  ASSERT (NULL != elem);
 
   elem->prev = before->prev;
   elem->next = before;
@@ -78,7 +78,7 @@ list_push_back (struct list *list, struct list_elem *elem)
 struct list_elem *
 list_remove (struct list_elem *elem)
 {
-  ASSRT (is_interior (elem) == true);
+  ASSERT (is_interior (elem) == true);
 
   elem->prev->next = elem->next;
   elem->next->prev = elem->prev;
@@ -99,7 +99,7 @@ list_pop_front (struct list *list)
 struct list_elem *
 list_front (struct list *list)
 {
-  ASSRT (list_empty (list) == false);
+  ASSERT (list_empty (list) == false);
 
   return list->head.next;
 }
