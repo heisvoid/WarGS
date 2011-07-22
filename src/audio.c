@@ -142,6 +142,7 @@ audio_music_stop ()
   if (NULL != music)
     {
       Mix_FreeMusic (music);
+      music = NULL;
     }
 }
 
