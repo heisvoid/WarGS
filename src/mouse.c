@@ -23,7 +23,9 @@ mouse_init ()
       LOG_FATAL ("already initialized");
     }
 
+#ifdef NDEBUG
   SDL_ShowCursor (SDL_DISABLE);
+#endif
 
   initialized = true;
 }
