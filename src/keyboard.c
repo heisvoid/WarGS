@@ -12,7 +12,7 @@
 
 enum
 {
-  KEYBOARD_BUFFER_LEN = 32
+  KEYBOARD_BUFFER_LEN = 1
 };
 
 struct key
@@ -57,7 +57,7 @@ keyboard_quit ()
 }
 
 int
-sym_to_char (SDLKey sym)
+sym_to_ascii (SDLKey sym)
 {
   switch (sym)
     {
@@ -69,7 +69,7 @@ sym_to_char (SDLKey sym)
 }
 
 int
-keyboard_getchar ()
+keyboard_get_ascii ()
 {
   if (false == initialized)
     {
@@ -84,7 +84,7 @@ keyboard_getchar ()
   struct key *key = list_entry (list_pop_front (&keyboard_buffer),
                                 struct key, elem);
 
-  return sym_to_char (key->sym);
+  return sym_to_ascii (key->sym);
 }
 
 static uint8_t
@@ -124,15 +124,4 @@ keyboard_handle_event (const SDL_KeyboardEvent *event)
 #if defined CHP && defined COMBATII
   asm volatile ("call keyboard_isr" : : "a" (scan_code));
 #endif
-}
-
-int
-keyboard_buffer_is_empty ()
-{
-  if (false == initialized)
-    {
-      LOG_FATAL ("not initialized");
-    }
-
-  return list_empty (&keyboard_buffer);
 }

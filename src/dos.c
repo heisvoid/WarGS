@@ -404,5 +404,5 @@ dos_mktime (struct tm *tm)
 int
 dos_getch ()
 {
-  return keyboard_getchar ();
+  return keyboard_get_ascii ();
 }

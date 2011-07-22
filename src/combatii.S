@@ -103314,9 +103314,9 @@ func_5d839:
 #if 1
     call   w_game_update
 
-    call   w_keyboard_buffer_is_empty
+    call   w_keyboard_get_ascii
     test   %eax,%eax
-    sete   %al
+    setne  %al
 #else
 		push   %ecx
 		push   %edx
