@@ -83932,7 +83932,7 @@ func_4e4dd:
 		mov    %eax,%ebx
 		mov    data_fdf7a,%eax
 		sar    $0x10,%eax
-		call   func_tell_
+		call   w_dos_tell
 		sub    %eax,%ebx
 		mov    %ebx,%eax
 		call   w_dos_malloc
@@ -85303,7 +85303,7 @@ func_4f4ef:
 		mov    $0x2,%ebx
 		mov    %esi,%eax
 		lea    0x14(%esp),%edx
-		call   func_tell_
+		call   w_dos_tell
 		mov    %eax,%ebp
 		mov    %esi,%eax
 		call   w_dos_write
@@ -85387,7 +85387,7 @@ func_4f4ef:
 		mov    %eax,0x14(%esp)
 		mov    %ecx,%eax
 		mov    data_f041c,%esi
-		call   func_tell_
+		call   w_dos_tell
 		mov    %eax,%ebp
 		mov    %ecx,%eax
 		call   w_dos_write
@@ -90592,7 +90592,7 @@ func_5306a:
 		mov    %eax,%ecx
 		mov    %esi,%eax
 		xor    %ebp,%ebp
-		call   func_tell_
+		call   w_dos_tell
 		sub    %eax,%ecx
 	jump_530ad:
 		sub    $0x40,%ecx
@@ -108217,7 +108217,7 @@ func_eof_:	/* 0x61c5b */
 		cmp    $0xffffffff,%eax
 		je     jump_61c85
 		mov    %edx,%eax
-		call   func_tell_
+		call   w_dos_tell
 		cmp    $0xffffffff,%eax
 		je     jump_61c85
 		cmp    %ebx,%eax
@@ -109397,7 +109397,7 @@ func_ftell_:	/* 0x62594 */
 		push   %edx
 		mov    %eax,%edx
 		mov    0x10(%eax),%eax
-		call   func_tell_
+		call   w_dos_tell
 		mov    %eax,%ebx
 		cmp    $0xffffffff,%eax
 		je     jump_625c0
