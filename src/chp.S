@@ -4481,7 +4481,7 @@ func_13e0d:
 		mov    %ebp,%ebx
 		call   func_17fb2
 	jump_13fed:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_13eb5
 		lea    0x8(%esp),%esi
 		mov    %ebp,%edi
@@ -4501,7 +4501,7 @@ func_13e0d:
 		pop    %edi
 		call   func_28c49
 	jump_14023:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_14033
 		call   func_1d83a
 		jmp    jump_14023
@@ -5527,10 +5527,10 @@ func_14def:
 		cmpb   $0x0,data_5aab9
 		je     jump_14ed5
 	jump_14ecc:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_14ef0
 	jump_14ed5:
-		mov    data_9c51c,%ebx
+		mov    keyboard_esc_is_pressed,%ebx
 	jump_14edb:
 		test   %ebx,%ebx
 		jne    jump_14edb
@@ -5956,10 +5956,10 @@ func_15333:
 		cmpb   $0x0,data_5aab9
 		je     jump_15451
 	jump_15448:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_15474
 	jump_15451:
-		mov    data_9c51c,%edx
+		mov    keyboard_esc_is_pressed,%edx
 	jump_15457:
 		test   %edx,%edx
 		jne    jump_15457
@@ -10762,7 +10762,7 @@ func_190d3:
 		cmp    $0x2,%ecx
 		je     jump_19342
 		je     jump_19342
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_191db
 	jump_19342:
 		call   func_2841a
@@ -11939,7 +11939,7 @@ func_19b77:
 		cmp    $0x2,%esi
 		je     jump_19342
 		je     jump_19342
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_19d3b
 		jmp    jump_19342
 
@@ -12215,7 +12215,7 @@ func_1a510:
 		cmp    $0x2,%ecx
 		je     jump_19342
 		je     jump_19342
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_1a638
 		jmp    jump_19342
 
@@ -12590,7 +12590,7 @@ func_1a91a:
 		cmp    $0x2,%edi
 		je     jump_19342
 		je     jump_19342
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_1aa72
 		jmp    jump_19342
 
@@ -12965,7 +12965,7 @@ func_1ae9a:
 		cmp    $0x2,%edi
 		je     jump_19342
 		je     jump_19342
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_1aff2
 		jmp    jump_19342
 
@@ -13358,9 +13358,9 @@ func_1b6a7:
 		je     jump_1bb64
 		jmp    jump_1b6b5
 	jump_1bb8a:
-		cmp    data_9c51c,%ecx
+		cmp    keyboard_esc_is_pressed,%ecx
 		je     jump_1b86a
-		mov    data_9c51c,%ebp
+		mov    keyboard_esc_is_pressed,%ebp
 	jump_1bb9c:
 		test   %ebp,%ebp
 		jne    jump_1bb9c
@@ -14163,16 +14163,16 @@ GLOBAL (keyboard_isr) /* 1c509 */
 		and    $0xff,%eax
 		movl   $0x1,data_9c518(,%eax,4)
 	jump_1c549:
-		cli
 #if 0
+		cli
 		mov    data_5ae20,%eax
 		mov    data_5ae24,%edx
 		mov    (%eax),%ax
 		mov    %ax,(%edx)
 		pushf
 		lcall  *data_9c718
-#endif
 		sti
+#endif
 		cld
 		pop    %gs
 		pop    %fs
@@ -16854,7 +16854,7 @@ func_1ed53:
 		mov    %ecx,data_a436c
 		mov    %ax,data_a250d
 	jump_1ee86:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		jne    jump_1f0d2
 	jump_1ee93:
 		test   %bx,%bx
@@ -20464,9 +20464,9 @@ func_21c6c:
 	jump_2208f:
 		call   func_21c6c
 	jump_22094:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_21f76
-		mov    data_9c51c,%edi
+		mov    keyboard_esc_is_pressed,%edi
 	jump_220a7:
 		test   %edi,%edi
 		jne    jump_220a7
@@ -21805,7 +21805,7 @@ func_22c8e:
 		sar    $0x10,%eax
 		call   func_1d874
 	jump_23093:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_230d0
 		mov    data_80301,%bh
 		cmp    $0x3,%bh
@@ -21930,7 +21930,7 @@ func_22c8e:
 		call   func_1492e
 		mov    $data_50a1a,%eax
 		call   func_14700
-		mov    data_9c51c,%edx
+		mov    keyboard_esc_is_pressed,%edx
 	jump_23280:
 		test   %edx,%edx
 		jne    jump_23280
@@ -23969,9 +23969,9 @@ func_2440d:
 		incb   data_ac1c2(%eax)
 		jmp    jump_24b2d
 	jump_24b16:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_24677
-		mov    data_9c51c,%edx
+		mov    keyboard_esc_is_pressed,%edx
 	jump_24b29:
 		test   %edx,%edx
 		jne    jump_24b29
@@ -24859,9 +24859,9 @@ func_24e56:
 		je     jump_25636
 		jmp    jump_24b2d
 	jump_2565d:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_250c2
-		mov    data_9c51c,%edi
+		mov    keyboard_esc_is_pressed,%edi
 	jump_25670:
 		test   %edi,%edi
 		jne    jump_25670
@@ -25727,9 +25727,9 @@ func_25f56:
 		incb   data_ac1c4(%eax)
 		jmp    jump_262fe
 	jump_262dd:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_261b8
-		mov    data_9c51c,%esi
+		mov    keyboard_esc_is_pressed,%esi
 	jump_262f0:
 		test   %esi,%esi
 		jne    jump_262f0
@@ -26267,9 +26267,9 @@ func_2677d:
 		call   func_1bbcd
 		jmp    jump_26b0d
 	jump_26aec:
-		cmpl   $0x0,data_9c51c
+		cmpl   $0x0,keyboard_esc_is_pressed
 		je     jump_269e0
-		mov    data_9c51c,%edi
+		mov    keyboard_esc_is_pressed,%edi
 	jump_26aff:
 		test   %edi,%edi
 		jne    jump_26aff
@@ -27915,7 +27915,7 @@ func_27af5:
 		mov    $data_50cbc,%eax
 		call   func_204a7
 	jump_280e4:
-		cmp    data_9c51c,%ebx
+		cmp    keyboard_esc_is_pressed,%ebx
 		je     jump_280f6
 		mov    $data_50cbc,%eax
 		call   func_204a7
@@ -88096,7 +88096,7 @@ data_9c502:
 		.fill   0x16
 data_9c518:
 		.fill   0x4
-data_9c51c:
+keyboard_esc_is_pressed: /* 9c51c */
 		.fill   0x4
 data_9c520:
 		.fill   0x4
