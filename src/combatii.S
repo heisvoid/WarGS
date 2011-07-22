@@ -105857,7 +105857,11 @@ func_5fa2c:
 		mov    $0x3c8,%edx
 		mov    0x4(%esp),%ecx
 		mov    $0x64,%ebp
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		call   func_5e943
 		jmp    jump_5faa4
 	jump_5fa55:
@@ -105873,7 +105877,11 @@ func_5fa2c:
 		sar    $0x1f,%edx
 		idiv   %ebp
 		mov    $0x3c9,%edx
+#if 1
+    movb   %al,palette_r
+#else
 		out    %al,(%dx)
+#endif
 		xor    %edx,%edx
 		mov    0x1(%ebx),%dl
 		imul   %esi,%edx
@@ -105881,7 +105889,11 @@ func_5fa2c:
 		sar    $0x1f,%edx
 		idiv   %ebp
 		mov    $0x3c9,%edx
+#if 1
+    movb   %al,palette_g
+#else
 		out    %al,(%dx)
+#endif
 		xor    %edx,%edx
 		mov    0x2(%ebx),%dl
 		imul   %esi,%edx
@@ -105890,7 +105902,17 @@ func_5fa2c:
 		idiv   %ebp
 		mov    $0x3c9,%edx
 		inc    %ecx
+#if 1
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 	jump_5faa4:
 		cmp    (%esp),%cx
 		jl     jump_5fa55
