@@ -31155,7 +31155,7 @@ func_2c6ab:
 		lea    0x8c(%esp),%ebx
 		mov    %eax,0x8c(%esp)
 		mov    %esp,%eax
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		mov    0x9e(%esp),%edx
 		mov    0x9a(%esp),%eax
 		mov    %esp,%ebx
