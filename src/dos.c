@@ -448,3 +448,12 @@ dos_fclose (FILE *f)
 
   return ret;
 }
+
+void *
+dos_memmove (void *dst, const void *src, size_t len)
+{
+  ASSERT (NULL != dst);
+  ASSERT (NULL != src);
+
+  return memmove (dst, src, len);
+}
