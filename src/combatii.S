@@ -104030,6 +104030,9 @@ func_5e9e8:
 		add    %eax,%esi
 		dec    %bx
 		jne    jump_5ea0c
+#if 1
+    call   w_game_update
+#endif
 		pop    %edi
 		pop    %esi
 		pop    %ecx
