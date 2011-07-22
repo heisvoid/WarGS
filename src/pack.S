@@ -30432,7 +30432,7 @@ func_2b81d:
 		jg     jump_2b82a
 		mov    $0x1,%edx
 	jump_2b82a:
-		call   func_rand_
+		call   w_rand
 		mov    %edx,%ecx
 		mov    %eax,%edx
 		sub    %ebx,%ecx
