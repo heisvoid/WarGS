@@ -17,6 +17,7 @@
 static bool initialized = false;
 static char *music_root = NULL;
 static Mix_Music *music = NULL;
+static int32_t music_track = 0;
 static bool music_is_muted = false;
 static bool sound_is_muted = false;
 
@@ -61,6 +62,7 @@ audio_init (const char *music)
   strcpy (music_root, music);
 
   music = NULL;
+  music_track = 0;
 
   initialized = true;
 }
@@ -106,6 +108,11 @@ audio_music_play (uint32_t track)
 
   ASSERT (0 < track && 19 > track);
 
+  if (track == music_track)
+    {
+      return;
+    }
+
   audio_music_stop ();
 
   /* 1: FILEPATH_SEPARATOR
@@ -127,6 +134,8 @@ audio_music_play (uint32_t track)
 
   const int ret = Mix_PlayMusic (music, -1);
   ASSERT (0 == ret);
+
+  music_track = track;
 }
 
 void
@@ -144,6 +153,8 @@ audio_music_stop ()
       Mix_FreeMusic (music);
       music = NULL;
     }
+
+  music_track = 0;
 }
 
 void
