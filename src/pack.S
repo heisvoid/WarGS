@@ -29732,16 +29732,20 @@ func_2b170:
 /*----------------------------------------------------------------*/
 func_2b1f8:
 /*----------------------------------------------------------------*/
+#if 0
 		mov    $0x13,%ax
 		int    $0x10
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
 func_2b1ff:
 /*----------------------------------------------------------------*/
+#if 0
 		mov    $0x3,%ax
 		int    $0x10
+#endif
 		ret
 
 
@@ -30311,7 +30315,7 @@ func_2b5e2:
 
 
 /*----------------------------------------------------------------*/
-func_2b60f:
+GLOBAL (keyboard_isr) /* 2b60f */
 /*----------------------------------------------------------------*/
 		pusha
 		push   %ds
@@ -30358,16 +30362,24 @@ func_2b672:
 		push   %ebx
 		push   %ecx
 		push   %edx
+#if 0
 		cli
+#endif
 		mov    $0x9,%eax
-		mov    $func_2b60f,%ebx
+		mov    $keyboard_isr,%ebx
+#if 0
 		call   func__dos_getvect_
+#endif
 		mov    %cs,%ecx
 		mov    %eax,data_1a02f4
 		mov    $0x9,%eax
 		mov    %dx,data_1a02f8
+#if 1
+    call   w_game_install_keyboard_isr
+#else
 		call   func__dos_setvect_
 		sti
+#endif
 		cld
 		pop    %edx
 		pop    %ecx
