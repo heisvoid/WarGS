@@ -154,9 +154,9 @@ conf_get_fast ()
 }
 
 void
-conf_set_fast (bool val)
+conf_set_fast (int val)
 {
-  set_bool (option_fast, val);
+  set_bool (option_fast, 0 != val);
 }
 
 bool
@@ -166,9 +166,9 @@ conf_get_music ()
 }
 
 void
-conf_set_music (bool val)
+conf_set_music (int val)
 {
-  set_bool (option_music, val);
+  set_bool (option_music, 0 != val);
 }
 
 bool
@@ -178,9 +178,9 @@ conf_get_sound ()
 }
 
 void
-conf_set_sound (bool val)
+conf_set_sound (int val)
 {
-  set_bool (option_sound, val);
+  set_bool (option_sound, 0 != val);
 }
 
 uint8_t

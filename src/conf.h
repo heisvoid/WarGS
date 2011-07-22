@@ -13,13 +13,13 @@ extern void conf_save ();
 extern const char *conf_get_root ();
 
 extern bool conf_get_fast ();
-extern void conf_set_fast (bool val);
+extern void conf_set_fast (int val);
 
 extern bool conf_get_music ();
-extern void conf_set_music (bool val);
+extern void conf_set_music (int val);
 
 extern bool conf_get_sound ();
-extern void conf_set_sound (bool val);
+extern void conf_set_sound (int val);
 
 extern uint8_t conf_get_ratio ();
 
