@@ -10916,7 +10916,7 @@ func_1a5ca:
 		test   %edx,%edx
 		je     jump_1a5f3
 		mov    %edx,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 	jump_1a5f3:
 		movswl %si,%edx
 		imul   %ebp,%edx
@@ -10927,7 +10927,7 @@ func_1a5ca:
 		test   %ecx,%ecx
 		je     jump_1a612
 		mov    %ecx,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 	jump_1a612:
 		inc    %ebx
 	jump_1a613:
@@ -10959,7 +10959,7 @@ func_1a634:
 		test   %ebx,%ebx
 		je     jump_1a64f
 		mov    %ebx,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 	jump_1a64f:
 		movswl %dx,%eax
 		mov    data_8b12a(,%eax,4),%eax
@@ -10967,7 +10967,7 @@ func_1a634:
 		test   %ecx,%ecx
 		je     jump_1a667
 		mov    %ecx,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 	jump_1a667:
 		inc    %edx
 	jump_1a668:
@@ -17827,19 +17827,19 @@ func_20eb0:
 		push   %edx
 		mov    %al,%bl
 		mov    data_15b9b4,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9b0,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9c8,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9c4,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9c0,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9bc,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		mov    data_15b9b8,%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		xor    %eax,%eax
 		mov    data_15ba23,%al
 		add    %eax,%eax
@@ -17859,11 +17859,11 @@ func_20eb0:
 		xor    %eax,%eax
 		mov    data_8b128,%ax
 		mov    data_8b122(,%eax,4),%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		xor    %eax,%eax
 		mov    data_8b128,%ax
 		mov    data_8b126(,%eax,4),%eax
-		call   func_j__nfree_
+		call   w_dos_free
 		xor    %eax,%eax
 		mov    %bl,%al
 		subw   $0x2,data_8b128
