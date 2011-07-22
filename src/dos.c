@@ -429,3 +429,11 @@ dos_strcmp (const char *s1, const char *s2)
 
   return strcmp (s1, s2);
 }
+
+char *
+dos_strrchr (const char *s, int c)
+{
+  ASSERT (NULL != s);
+
+  return strrchr (s, c);
+}
