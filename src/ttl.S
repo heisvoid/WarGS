@@ -3075,6 +3075,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 	jump_13e1e:
 		call   func_175b7
 	jump_13e23:
+#if 1
+    call   w_game_install_keyboard_isr
+#endif
 		mov    data_22618,%cx
 		cmp    $0x3,%cx
 		je     jump_13e39
@@ -6027,9 +6030,11 @@ func_1882c:
 	jump_18947:
 		xor    %eax,%eax
 		call   func_1a46c
+#if 0
 		call   func_1b2e9
 		test   %eax,%eax
 		je     jump_188c2
+#endif
 		call   w_dos_getch
 		cmp    $0x1b,%eax
 		jne    jump_188c2
