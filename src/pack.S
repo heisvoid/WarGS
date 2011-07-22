@@ -386,7 +386,7 @@ func_11ace:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x24(%esp)
 		cwtl
@@ -532,7 +532,7 @@ func_11c64:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x34(%esp)
 		cwtl
@@ -627,7 +627,7 @@ func_11c64:
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x38(%esp)
 		cwtl
@@ -10426,7 +10426,7 @@ func_19f11:
 		mov    %dx,0x10(%esp)
 		push   $0x200
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x8(%esp)
 		cwtl
@@ -10552,7 +10552,7 @@ func_1a094:
 		call   func_2e46b
 		push   $0x200
 		push   %ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x30(%esp)
 		cwtl
@@ -10713,7 +10713,7 @@ func_1a2d6:
 		mov    %dx,0x8(%esp)
 		push   $0x200
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0xc(%esp)
 		cwtl
@@ -11023,7 +11023,7 @@ func_1a712:
 		push   %edi
 		push   $0x200
 		push   $data_51134
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -18166,7 +18166,7 @@ func_213a6:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -18181,7 +18181,7 @@ func_213a6:
 		call   func_j___close_
 		push   $0x200
 		push   $data_51422
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -18252,7 +18252,7 @@ func_213a6:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%edi
 		cwtl
 		add    $0x8,%esp
@@ -18674,7 +18674,7 @@ func_213a6:
 		call   func_j___close_
 		push   $0x200
 		push   $data_51422
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -20198,7 +20198,7 @@ func_23147:
 		call   func_j___close_
 		push   $0x201
 		push   $data_514b4
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%ecx
 		add    $0x8,%esp
 		mov    %eax,%esi
@@ -20331,7 +20331,7 @@ func_23369:
 		sub    $0x8,%esp
 		push   $0x200
 		push   $data_514b4
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %ax,0x4(%esp)
@@ -20476,7 +20476,7 @@ func_235a7:
 		push   %edx
 		push   $0x200
 		push   $data_51534
-		call   func_open_
+		call   w_dos_open
 		movswl %ax,%ecx
 		add    $0x8,%esp
 		cmp    $0xffffffff,%ecx
@@ -20511,7 +20511,7 @@ func_235ec:
 		call   func_j___close_
 		push   $0x201
 		push   $data_51534
-		call   func_open_
+		call   w_dos_open
 		movswl %ax,%ecx
 		add    $0x8,%esp
 		cmp    $0xffffffff,%ecx
@@ -20707,7 +20707,7 @@ func_23997:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%esi
 		cwtl
 		add    $0x8,%esp
@@ -20848,7 +20848,7 @@ func_23997:
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %ax,0x2c(%esp)
@@ -21240,7 +21240,7 @@ func_24017:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -21631,7 +21631,7 @@ func_244df:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		mov    %eax,%edi
 		cwtl
 		add    $0x8,%esp
@@ -21642,7 +21642,7 @@ func_244df:
 		jne    jump_2463e
 		push   $0x200
 		push   $data_5190a
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%ecx
@@ -22101,7 +22101,7 @@ func_24ba4:
 		mov    %ecx,%ebp
 		push   $0x200
 		push   $data_51933
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %eax,%edx
@@ -22172,7 +22172,7 @@ func_24c7f:
 		mov    %edx,%esi
 		push   $0x200
 		push   $data_5195a
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    %eax,%edx
@@ -27985,7 +27985,7 @@ func_2976f:
 		push   $0x200
 		lea    0x24(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x68(%esp)
 		cwtl
@@ -28079,7 +28079,7 @@ func_2976f:
 		push   $0x201
 		lea    0x24(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%esi
@@ -28430,7 +28430,7 @@ func_29d65:
 		push   $0x200
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		mov    %ax,0x48(%esp)
 		cwtl
@@ -28524,7 +28524,7 @@ func_29d65:
 		push   $0x201
 		lea    0x4(%esp),%eax
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%edi
@@ -30659,7 +30659,7 @@ func_2c107:
 		push   $0x200
 		push   %eax
 		mov    $data_1a033c,%edx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    $0x1400,%ebx
@@ -30678,7 +30678,7 @@ func_2c107:
 		push   $0x200
 		push   %esi
 		mov    $data_1a303c,%edx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
 		mov    $0x1000,%ebx
@@ -31887,7 +31887,7 @@ func_2cfa9:
 		mov    %edx,%edi
 		push   $0x200
 		push   $data_52020
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%edx
 		mov    %eax,%ecx
@@ -40956,7 +40956,7 @@ func_34b92:
 		push   $0x201
 		push   $data_52154
 		mov    $0x2,%ebx
-		call   func_open_
+		call   w_dos_open
 		add    $0x8,%esp
 		lea    0xc(%esp),%edx
 		mov    %eax,0xc(%esp)
@@ -47687,7 +47687,7 @@ func_creat_:	/* 0x3af5a */
 		push   %edx
 		push   $0x62
 		push   %eax
-		call   func_open_
+		call   w_dos_open
 		add    $0xc,%esp
 		ret
 
