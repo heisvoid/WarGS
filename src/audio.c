@@ -53,7 +53,7 @@ audio_init (const char *music)
   ASSERT (0 == ret);
 
   /* I think 16 is fully enough. */
-  Mix_AllocateChannels (16);
+  Mix_AllocateChannels (32);
 
   Mix_ChannelFinished (&finish_channel);
 
