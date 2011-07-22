@@ -47,8 +47,8 @@ extern struct list_elem *list_pop_front (struct list *list);
 extern struct list_elem *list_front (struct list *list);
 
 /* properties */
-extern size_t list_get_len (struct list *list);
-extern bool list_is_empty (struct list *list);
+extern size_t list_len (struct list *list);
+extern bool list_empty (struct list *list);
 
 #endif /* not LIST_H */
 

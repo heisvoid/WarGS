@@ -99,13 +99,13 @@ list_pop_front (struct list *list)
 struct list_elem *
 list_front (struct list *list)
 {
-  ASSRT (list_is_empty (list) == false);
+  ASSRT (list_empty (list) == false);
 
   return list->head.next;
 }
 
 size_t
-list_get_len (struct list *list)
+list_len (struct list *list)
 {
   size_t count = 0;
 
@@ -119,7 +119,7 @@ list_get_len (struct list *list)
 }
 
 bool
-list_is_empty (struct list *list)
+list_empty (struct list *list)
 {
   return list_begin (list) == list_end (list);
 }
