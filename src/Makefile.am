@@ -11,6 +11,7 @@ GAME_SRCS = asm.h \
 						dos.c \
 						game.c game.h \
 						keyboard.c keyboard.h \
+						list.c list.h \
 						mouse.c mouse.h \
 						video.c video.h \
 						wrappers.S
