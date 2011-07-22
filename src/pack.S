@@ -432,7 +432,7 @@ func_11ace:
 		cmpl   $0x0,data_7d028(%ecx)
 		jne    jump_11bfe
 		mov    $0x1388,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_7d028(%ecx)
 	jump_11bfe:
 		xor    %ebx,%ebx
@@ -4240,7 +4240,7 @@ func_14b43:
 		cmpl   $0x0,data_7d028(%edx)
 		jne    jump_14bb4
 		mov    $0x1388,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_7d028(%edx)
 	jump_14bb4:
 		movswl %bx,%edx
@@ -6486,7 +6486,7 @@ func_16c33:
 		cmpw   $0x0,(%edx,%eax,1)
 		je     jump_16d18
 		mov    $0x1388,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_7d794
 	jump_16d18:
 		mov    $0x1,%esi
@@ -10467,7 +10467,7 @@ func_19f11:
 		mov    $0xe,%eax
 		mov    0x6(%esp),%esi
 		mov    $0x4,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		sar    $0x10,%esi
 		mov    %eax,data_840a6(%ecx,%edx,4)
 		mov    %esp,%edx
@@ -10477,7 +10477,7 @@ func_19f11:
 		mov    (%esp),%eax
 		lea    0xc(%esp),%edx
 		mov    $0x2,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0xa(%ecx)
 		mov    %esi,%eax
 		call   w_dos_read
@@ -10600,7 +10600,7 @@ func_1a094:
 		sar    $0x10,%ecx
 		imul   $0x3842,%ecx,%ecx
 		mov    $0xe,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_840a6(%ecx,%esi,1)
 		mov    0x2e(%esp),%esi
 		lea    0x1c(%esp),%edx
@@ -10611,7 +10611,7 @@ func_1a094:
 		mov    0x1c(%esp),%eax
 		lea    0x28(%esp),%edx
 		mov    $0x2,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0xa(%ecx)
 		mov    %esi,%eax
 		call   w_dos_read
@@ -10778,7 +10778,7 @@ func_1a2d6:
 		sar    $0x10,%edx
 		imul   $0x3842,%edx,%edx
 		mov    $0xe,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		movswl %di,%ecx
 		inc    %edi
 		mov    %eax,data_840a6(%edx,%ecx,4)
@@ -10821,7 +10821,7 @@ func_1a2d6:
 		mov    %ebp,%edx
 		call   w_dos_lseek
 		mov    (%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0xa(%ecx)
 		mov    0x6(%ecx),%dx
 		mov    0x2(%ecx),%ax
@@ -18314,7 +18314,7 @@ func_213a6:
 		mov    $0xe,%eax
 		lea    0x20(%esp),%edx
 		mov    $0x4,%ebx
-		call   func__nmalloc_
+		call   w_dos_malloc
 		movswl %di,%ecx
 		mov    %eax,data_8b12a(,%esi,4)
 		mov    %eax,%esi
@@ -18329,7 +18329,7 @@ func_213a6:
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    0x20(%esp),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,0xa(%esi)
 		mov    %ecx,%eax
@@ -18346,13 +18346,13 @@ func_213a6:
 		cmp    %eax,%esi
 		jl     jump_2167e
 		mov    $0xe,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		xor    %eax,%eax
 		mov    data_8b128,%ax
 		mov    %edx,data_8b12a(,%eax,4)
 		mov    $0x1f4,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		xor    %eax,%eax
 		mov    data_8b128,%ax
@@ -18385,11 +18385,11 @@ func_213a6:
 		inc    %esi
 		mov    $0xe,%eax
 		mov    %si,data_8b128
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_8b128,%dx
 		mov    %eax,data_8b12a(,%edx,4)
 		mov    $0x2bc,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		xor    %eax,%eax
 		mov    data_8b128,%ax
@@ -18518,7 +18518,7 @@ func_213a6:
 		sar    $0x10,%eax
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_15b9b0
 		mov    data_15ba1c,%eax
 		mov    data_15ba1e,%edx
@@ -18527,14 +18527,14 @@ func_213a6:
 		add    $0x6,%eax
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_15ba1c,%edx
 		mov    %eax,data_15b9c8
 		mov    data_15ba1e,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
 		imul   %edx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_15ba1e,%ebx
 		mov    data_15ba1c,%edx
 		sar    $0x10,%ebx
@@ -20884,7 +20884,7 @@ func_23997:
 		sar    $0x10,%eax
 		sar    $0x10,%edx
 		imul   %edx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_15b9c4
 	jump_23c6e:
 		xor    %edi,%edi
@@ -20945,7 +20945,7 @@ func_23997:
 		jne    jump_23d2d
 		mov    0x26(%esp),%eax
 		sar    $0x10,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_15b9c0
 	jump_23d2d:
 		xor    %edi,%edi
@@ -20997,7 +20997,7 @@ func_23997:
 		sar    $0x10,%eax
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_15b9bc
 	jump_23dd2:
 		xor    %ebx,%ebx
@@ -21037,7 +21037,7 @@ func_23997:
 		sar    $0x10,%eax
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_15b9b8
 	jump_23e5e:
 		xor    %ebx,%ebx
@@ -21283,7 +21283,7 @@ func_24017:
 		sar    $0x10,%edx
 		sar    $0x10,%eax
 		imul   %edx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_15ba1e,%ebx
 		mov    %eax,%edx
 		mov    %eax,data_15b9c4
@@ -21325,7 +21325,7 @@ func_24017:
 		imul   data_15ba1e,%ax
 		movswl %ax,%ebx
 		mov    %ebx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		mov    %eax,data_15b9c0
 		mov    %ecx,%eax
@@ -21377,7 +21377,7 @@ func_24017:
 		sar    $0x10,%eax
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_15ba1e,%ebx
 		mov    %eax,%edx
 		mov    %eax,data_15b9bc
@@ -21402,7 +21402,7 @@ func_24017:
 		sar    $0x10,%edx
 		imul   %edx,%eax
 		add    %eax,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    data_15ba1e,%ebx
 		mov    %eax,%edx
 		mov    %eax,data_15b9b8
@@ -30408,7 +30408,7 @@ func_2b6a3:
 func_2b6c2:
 /*----------------------------------------------------------------*/
 		mov    $0x1f400,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_1a032c
 		test   %eax,%eax
 		jne    jump_2b6f1
@@ -46013,7 +46013,7 @@ func_39431:
 		call   func_3935d
 		shl    $0x3,%ecx
 		mov    %eax,data_1b5a50(%ecx)
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,data_1b5a54(%ecx)
 		test   %eax,%eax
 		je     jump_39445
@@ -51241,7 +51241,7 @@ func___allocfp_:	/* 0x3cfde */
 		testb  $0x3,0xc(%ecx)
 		jne    jump_3d02a
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%esi
 		test   %eax,%eax
 		je     jump_3d074
@@ -51254,7 +51254,7 @@ func___allocfp_:	/* 0x3cfde */
 		jb     jump_3d00d
 		mov    $0x22,%eax
 		mov    $0x4003,%edi
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ecx
 		mov    %eax,%esi
 		test   %eax,%eax
@@ -51614,7 +51614,7 @@ func___Init_Argv_:	/* 0x3d2c2 */
 		mov    %eax,0x4(%esp)
 		add    $0x4,%eax
 		add    %ecx,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%edx
 		test   %eax,%eax
 		je     jump_3d35b
@@ -51976,7 +51976,7 @@ func___ioalloc_:	/* 0x3d5af */
 		movl   $0x1000,0x14(%edx)
 	jump_3d5e4:
 		mov    0x14(%edx),%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,0x8(%edx)
 		test   %eax,%eax
 		jne    jump_3d613
@@ -53709,12 +53709,12 @@ func___InitFiles_:	/* 0x3e59c */
 		jmp    jump_3e603
 	jump_3e5c0:
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_3e5ef
 		mov    $0x8,%eax
-		call   func__nmalloc_
+		call   w_dos_malloc
 		mov    %eax,%ebx
 		test   %eax,%eax
 		jne    jump_3e5ef
