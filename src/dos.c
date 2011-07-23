@@ -482,3 +482,14 @@ dos_memmove (void *dst, const void *src, size_t len)
 
   return memmove (dst, src, len);
 }
+
+int
+dos_fputc (int c, FILE *f)
+{
+  ASSERT (NULL != f);
+
+  const int ret = fputc (c, f);
+  ASSERT (EOF != ret);
+
+  return ret;
+}
