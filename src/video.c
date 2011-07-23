@@ -15,9 +15,6 @@
 
 enum
 {
-  WIDTH = 320,
-  HEIGHT = 200,
-
   PALETTE_LEN = 256
 };
 
@@ -49,14 +46,15 @@ video_init (uint8_t r)
   int ret = SDL_Init (SDL_INIT_VIDEO);
   ASSERT (0 == ret);
 
-  surface = SDL_SetVideoMode (WIDTH * ratio, HEIGHT * ratio, 8, SDL_SWSURFACE);
+  surface = SDL_SetVideoMode (VIDEO_WIDTH * ratio, VIDEO_HEIGHT * ratio,
+                              8, SDL_SWSURFACE);
   ASSERT (NULL != surface);
 
   SDL_WM_SetCaption (PACKAGE_NAME, NULL);
 
   if (1 < ratio)
     {
-      video_buffer = xmalloc (WIDTH * HEIGHT);
+      video_buffer = xmalloc (VIDEO_WIDTH * VIDEO_HEIGHT);
     }
   else
     {
@@ -126,13 +124,13 @@ video_update ()
   if (1 < ratio)
     {
       int y = 0;
-      for (y = 0; HEIGHT > y; y++)
+      for (y = 0; VIDEO_HEIGHT > y; y++)
         {
           int x = 0;
-          for (x = 0; WIDTH > x; x++)
+          for (x = 0; VIDEO_WIDTH > x; x++)
             {
               const uint8_t color =
-                  ((uint8_t *) video_buffer)[WIDTH * y + x];
+                  ((uint8_t *) video_buffer)[VIDEO_WIDTH * y + x];
 
               int j = 0;
               for (j = 0; ratio > j; j++)
@@ -140,7 +138,7 @@ video_update ()
                   int i = 0;
                   for (i = 0; ratio > i; i++)
                     {
-                      const int offset = WIDTH * ratio
+                      const int offset = VIDEO_WIDTH * ratio
                         * (ratio * y + j) + ratio * x + i;
                       ((uint8_t *) surface->pixels)[offset] = color;
                     }
