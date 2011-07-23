@@ -44964,7 +44964,11 @@ func_38129:
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -45088,22 +45092,40 @@ GLOBAL (pit_isr) /* 38594 */
 		mov    %esp,%ebp
 		sub    $0x4,%esp
 		cld
+#if 1
+    /* I do not know %eax in PIT ISR.
+     * I just give 0 to %eax.
+     */
+    xor    %eax,%eax
+#endif
+#if 0
 		call   func___GETDS
+#endif
 		call   func_3c251
+#if 0
 		out    %al,$0xc
+#endif
 		mov    soundblaster_dma,%dl
 		xor    %dh,%dh
 		add    %dl,%dl
 		inc    %dl
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 	jump_385bf:
 		mov    %ax,%cx
+#if 0
 		in     (%dx),%al
+#endif
 		mov    %al,%ah
+#if 0
 		in     (%dx),%al
+#endif
 		xchg   %al,%ah
 		sub    %ax,%cx
 		cmp    $0x10,%cx
@@ -45744,12 +45766,16 @@ GLOBAL (pit_isr) /* 38594 */
 		jbe    jump_38e6a
 		xor    %ebx,%ebx
 		mov    %ebx,data_1b61b4
+#if 0
 		pushf
 		lcall  *data_1b61e0
+#endif
 	jump_38e6a:
 		mov    $0x20,%eax
 		mov    %eax,%edx
+#if 0
 		call   func_outp_
+#endif
 		call   func_3c253
 		mov    %ebp,%esp
 		jmp    jump_38165
