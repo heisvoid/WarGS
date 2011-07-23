@@ -9354,7 +9354,10 @@ func_18fd0:
 		call   w_dos_strcmp
 		call   func_18f19
 		call   func_23147
+#if 0
+    /* write game.cfg */
 		call   func_235ec
+#endif
 		call   func_392b4
 		cmpb   $0x1,data_82731
 		jne    jump_1900e
