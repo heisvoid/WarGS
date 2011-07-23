@@ -14597,7 +14597,7 @@ func_19f5d:
 		je     jump_19f9b
 		cmpb   $0x0,data_f042e
 		jne    jump_19f9b
-		mov    $0x39,%eax
+		mov    $0x39,%eax /* space key */
 		call   func_5d827
 		test   %al,%al
 		je     jump_19f9b
@@ -83190,14 +83190,27 @@ func_4dbde:
 		inc    %eax
 		cmp    $0x3,%ax
 		jl     jump_4dbe4
+#if 1
+    push   %eax
+#endif
+#if 1
+    call   w_conf_get_music
+    cmp    $0,%eax
+#else
 		cmpw   $0x0,game_cfg_music
-		jne    jump_4dc0b
+#endif
+		jne    jump_4dc0b /* jump if music is on */
 		movw   $0x3,data_fd8c8
 		jmp    jump_4dc14
 	jump_4dc0b:
 		movw   $0x5,data_fd8c8
 	jump_4dc14:
+#if 1
+    call   w_conf_get_sound
+    cmp    $0,%eax
+#else
 		cmpw   $0x0,game_cfg_sound
+#endif
 		jne    jump_4dc29
 		movw   $0x4,data_fd8ca
 		jmp    jump_4dc32
@@ -83207,6 +83220,9 @@ func_4dbde:
 		mov    $0x7,%edx
 		mov    game_cfg_speed,%bx
 		mov    %dx,data_fd8cc
+#if 1
+    pop    %eax
+#endif
 		test   %bx,%bx
 		setne  %al
 		mov    $0xa,%ecx
@@ -83543,15 +83559,16 @@ func_4de0a:
 		add    $0xc,%esp
 		jmp    jump_4d00f
 
+/* option handlers */
 vtable_4e0ca:
-		.long   func_4e2fa
+		.long   func_4e2fa /* mission */
 		.long   func_4e304
 		.long   func_4e326
-		.long   func_4e34d
-		.long   func_4e37a
+		.long   func_4e34d /* music */
+		.long   func_4e37a /* sound */
 		.long   func_4e3a1
-		.long   func_4e3a8
-		.long   func_4e3d3
+		.long   func_4e3a8 /* scroll */
+		.long   func_4e3d3 /* to the begin of battle */
 		.long   func_4e3f0
 
 
@@ -83742,32 +83759,90 @@ func_4e326:
 /*----------------------------------------------------------------*/
 func_4e34d:
 /*----------------------------------------------------------------*/
+#if 1
+    call   w_conf_get_music
+    push   %ebx
+    mov    %eax,%ebx
+    xor    %eax,%eax
+    test   %ebx,%ebx
+#else
 		cmpw   $0x0,game_cfg_music
+#endif
 		sete   %al
+#if 1
+    pop    %ebx
+#endif
 		xor    %ch,%ah
+#if 0
 		mov    %ax,game_cfg_music
+#endif
 		cmp    $0x1,%ax
-		jne    jump_4e370
+		jne    jump_4e370 /* jump music is off */
+#if 1
+    call   w_audio_music_unmute
+    pushl  $1
+    call   w_conf_set_music
+    add    $4,%esp
+    call   w_conf_save
+#else
 		call   func_4f369
+#endif
 		jmp    jump_4e3ff
 	jump_4e370:
+#if 1
+    call   w_audio_music_mute
+    pushl  $0
+    call   w_conf_set_music
+    add    $4,%esp
+    call   w_conf_save
+#else
 		call   func_4f3ae
+#endif
 		jmp    jump_4e3ff
 
 
 /*----------------------------------------------------------------*/
 func_4e37a:
 /*----------------------------------------------------------------*/
+#if 1
+    call   w_conf_get_sound
+    push   %ebx
+    mov    %eax,%ebx
+    xor    %eax,%eax
+    test   %ebx,%ebx
+#else
 		cmpw   $0x0,game_cfg_sound
+#endif
 		sete   %al
+#if 1
+    pop    %ebx
+#endif
 		xor    %ch,%ah
+#if 0
 		mov    %ax,game_cfg_sound
+#endif
 		cmp    $0x1,%ax
-		jne    jump_4e39a
+		jne    jump_4e39a /* jump sound is off */
+#if 1
+    call   w_audio_sound_unmute
+    pushl  $1
+    call   w_conf_set_sound
+    add    $4,%esp
+    call   w_conf_save
+#else
 		call   func_4f427
+#endif
 		jmp    jump_4e3ff
 	jump_4e39a:
+#if 1
+    call   w_audio_sound_mute
+    pushl  $0
+    call   w_conf_set_sound
+    add    $4,%esp
+    call   w_conf_save
+#else
 		call   func_4f450
+#endif
 		jmp    jump_4e3ff
 
 
@@ -103445,7 +103520,7 @@ func_5d839:
 #if 1
     call   w_game_update
 
-    call   w_keyboard_get_ascii
+    call   w_keyboard_has_input
     test   %eax,%eax
     setne  %al
 #else
@@ -108550,7 +108625,19 @@ func_61e7e:
 		ret
 	jump_61e8d:
 		mov    $0xb,%ah
+#if 1
+    call   w_game_update
+
+    call   w_keyboard_has_input
+    test   %eax,%eax
+    jne    jump_func_61e7e_1
+    jmp    jump_func_61e7e_2
+  jump_func_61e7e_1:
+    movb   $0xff,%al
+  jump_func_61e7e_2:
+#else
 		int    $0x21
+#endif
 		cbtw
 		cwtl
 		ret
