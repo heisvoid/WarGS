@@ -10166,7 +10166,9 @@ func_19924:
 GLOBAL (mouse_isr) /* 199ce */
 /*----------------------------------------------------------------*/
 		push   %ds
+#if 0
 		call   func___GETDS
+#endif
 		push   %esi
 		push   %edi
 		push   %ebp
@@ -10282,7 +10284,11 @@ GLOBAL (mouse_isr) /* 199ce */
 		pop    %edi
 		pop    %esi
 		pop    %ds
+#if 1
+    ret
+#else
 		lret
+#endif
 
 
 /*----------------------------------------------------------------*/
@@ -10352,6 +10358,7 @@ func_19bd6:
 		mov    %dx,(%esp)
 		mov    %esp,%edx
 #if 1
+    /* This update statement prevents high CPU usage */
     call   w_game_update
 
     call   w_mouse_get_state
@@ -30436,10 +30443,12 @@ GLOBAL (keyboard_isr) /* 2b60f */
 		push   %gs
 		mov    %esp,%ebp
 		cld
+#if 0
 		call   func___GETDS
 		mov    $0x60,%edx
 		sub    %eax,%eax
 		in     (%dx),%al
+#endif
 		mov    %al,data_1a02fa
 		cmp    $0x7f,%al
 		jb     jump_2b63f
@@ -30451,6 +30460,7 @@ GLOBAL (keyboard_isr) /* 2b60f */
 		and    $0xff,%eax
 		movl   $0x1,data_1a00f4(,%eax,4)
 	jump_2b64f:
+#if 0
 		cli
 		mov    data_5ec9c,%eax
 		mov    data_5eca0,%edx
@@ -30459,13 +30469,18 @@ GLOBAL (keyboard_isr) /* 2b60f */
 		pushf
 		lcall  *data_1a02f4
 		sti
+#endif
 		cld
 		pop    %gs
 		pop    %fs
 		pop    %es
 		pop    %ds
 		popa
+#if 1
+    ret
+#else
 		iret
+#endif
 
 
 /*----------------------------------------------------------------*/
