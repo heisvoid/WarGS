@@ -19673,7 +19673,12 @@ func_2278f:
 		mov    data_82936(%eax),%si
 		mov    data_840a6(%ebx,%esi,4),%ebx
 		mov    data_82938(%eax),%eax
+#if 1
+    /* Workaround for invalid %ebx */
+    xor    %ebx,%ebx
+#else
 		mov    0x6(%ebx),%ebx
+#endif
 		sar    $0x10,%eax
 		sar    $0x10,%ebx
 		lea    (%eax,%ebx,1),%edi
@@ -19690,7 +19695,12 @@ func_2278f:
 		mov    data_82936(%eax),%bx
 		mov    data_840a6(%esi,%ebx,4),%ebx
 		mov    data_82938(%eax),%eax
+#if 1
+    /* Workaround for invalid %ebx */
+    xor    %ebx,%ebx
+#else
 		mov    0x6(%ebx),%ebx
+#endif
 		sar    $0x10,%eax
 		sar    $0x10,%ebx
 		add    %ebx,%eax
