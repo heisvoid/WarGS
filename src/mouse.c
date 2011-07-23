@@ -153,3 +153,21 @@ mouse_get_state ()
       mouse_state_button |= 2;
     }
 }
+
+void
+mouse_set_position (uint32_t x, uint32_t y)
+{
+  x &= 0xffff;
+  y &= 0xffff;
+
+  ASSERT (VIDEO_WIDTH > x);
+  ASSERT (VIDEO_HEIGHT > y);
+
+  if (1 < video_get_ratio ())
+    {
+      x *= video_get_ratio ();
+      y *= video_get_ratio ();
+    }
+
+  SDL_WarpMouse (x, y);
+}
