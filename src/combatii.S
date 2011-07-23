@@ -83473,6 +83473,10 @@ func_4de0a:
 		mov    $0x9,%eax
 		call   func_1033b
 	jump_4df93:
+#if 1
+    /* For turn inverval control */
+    call   w_game_update
+#endif
 		call   func_10364
 		cmp    $0x1,%ax
 		jne    jump_4e090
