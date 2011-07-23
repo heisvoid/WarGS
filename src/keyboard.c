@@ -93,6 +93,8 @@ sym_to_scan_code (SDLKey sym)
   switch (sym)
     {
     case SDLK_ESCAPE: return 0x01;
+    case SDLK_RETURN: return 0x1c;
+    case SDLK_SPACE: return 0x39;
     default: return 0x00;
     }
 }
@@ -128,4 +130,10 @@ keyboard_handle_event (const SDL_KeyboardEvent *event)
 #if defined CHP || defined COMBATII || defined PACK
   asm volatile ("call keyboard_isr" : : "a" (scan_code));
 #endif
+}
+
+int
+keyboard_has_input ()
+{
+  return list_empty (&keyboard_buffer) ? 0 : 1;
 }
