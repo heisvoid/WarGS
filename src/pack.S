@@ -30558,7 +30558,7 @@ func_2b70e:
 /*----------------------------------------------------------------*/
 func_j__nfree_:	/* 0x2b713 */
 /*----------------------------------------------------------------*/
-		jmp    func__nfree_
+		jmp    w_dos_free
 
 
 /*----------------------------------------------------------------*/
@@ -46133,7 +46133,9 @@ func_392b4:
 		call   func_3c251
 		mov    pic_masks,%edx
 		mov    $0x21,%eax
+#if 0
 		call   func_outp_
+#endif
 		cmpl   $0x1,soundblaster_adr_is_not_zero
 		jne    jump_39307
 		call   func_38026
@@ -46143,21 +46145,33 @@ func_392b4:
 		mov    data_1b61ea,%cx
 		mov    data_1b61e6,%ebx
 		mov    soundblaster_interrupt_number,%eax
+#if 0
 		call   func__dos_setvect_
+#endif
 	jump_39307:
 		mov    data_1b61e4,%cx
 		mov    data_1b61e0,%ebx
 		mov    $0x8,%eax
+#if 1
+    call   w_game_uninstall_pit_isr
+#else
 		call   func__dos_setvect_
+#endif
 		mov    $0x43,%eax
 		mov    $0x36,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    $0x40,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		call   func_3c253
 		mov    data_1b61bc,%eax
 #if 1
@@ -46235,7 +46249,7 @@ func_39431:
 		test   %edx,%edx
 		je     jump_3947f
 		mov    %edx,%eax
-		call   func__nfree_
+		call   w_dos_free
 	jump_3947f:
 		mov    %esi,%eax
 		call   func_3935d
@@ -46357,7 +46371,7 @@ func_3970f:
 		test   %ecx,%ecx
 		je     jump_3974c
 		mov    %ecx,%eax
-		call   func__nfree_
+		call   w_dos_free
 		xor    %esi,%esi
 		mov    %esi,data_1b5a54(%ebx)
 	jump_3974c:
@@ -48785,7 +48799,7 @@ func___doclose_:	/* 0x3b658 */
 		testb  $0x8,0xc(%ecx)
 		je     jump_3b6be
 		mov    0x8(%ecx),%eax
-		call   func__nfree_
+		call   w_dos_free
 		movl   $0x0,0x8(%ecx)
 	jump_3b6be:
 		testb  $0x8,0xd(%ecx)
@@ -50816,7 +50830,7 @@ func___CreateNewNHeap_:	/* 0x3c77d */
 		inc    %edi
 		lea    0x4(%ebx),%eax
 		mov    %edi,0x18(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 		jmp    jump_3c774
 
@@ -50939,7 +50953,7 @@ func___ExpandDGROUP_:	/* 0x3c82c */
 		incl   0x18(%edx)
 		lea    0x4(%ebx),%eax
 		movl   $0xffffffff,0x14(%edx)
-		call   func__nfree_
+		call   w_dos_free
 		mov    $0x1,%eax
 	jump_3c967:
 		add    $0x4,%esp
@@ -51560,7 +51574,7 @@ func___purgefp_:	/* 0x3d0bf */
 		je     jump_3d0db
 		mov    %edx,%eax
 		mov    (%edx),%edx
-		call   func__nfree_
+		call   w_dos_free
 		mov    %edx,data_1b635c
 		jmp    jump_3d0c0
 	jump_3d0db:
