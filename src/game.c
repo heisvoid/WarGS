@@ -19,7 +19,7 @@
 
 enum
 {
-  DEFAULT_FPS = 30
+  DEFAULT_FPS = 40
 };
 
 static bool initialized = false;
@@ -123,6 +123,7 @@ game_update ()
           const uint32_t t = SDL_GetTicks ();
 
           update_pit_isr ();
+          handle_events ();
 
           SDL_Delay (DELAY_GRANULARITY);
 
