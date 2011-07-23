@@ -13782,6 +13782,13 @@ func_196d0:
 /*----------------------------------------------------------------*/
 		push   %edx
 		mov    %eax,%edx
+#if 1
+    /* Workaround for %eax is 0 on quick load.
+     * I do not know why %eax is 0.
+     */
+    test   %eax,%eax
+    je     jump_19716
+#endif
 		cmpb   $0x1,0xe(%eax)
 		jne    jump_19716
 		mov    $0x8,%eax
