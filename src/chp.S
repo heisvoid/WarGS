@@ -19236,7 +19236,6 @@ func_20bc8:
 
     /* music off */
 		xor    %cl,%cl
-		mov    %cl,game_cfg_music
 #if 1
     push   %eax
     pushl  $0
@@ -19246,6 +19245,7 @@ func_20bc8:
     call   w_audio_music_mute
     pop    %eax
 #else
+		mov    %cl,game_cfg_music
 		call   func_3615b
 #endif
 		jmp    jump_20c01
@@ -19264,7 +19264,6 @@ func_20bc8:
     /* music on */
 		mov    $0x1,%bh
 		mov    $0x1,%edx
-		mov    %bh,game_cfg_music
 #if 1
     push   %eax
     pushl  $1
@@ -19274,6 +19273,7 @@ func_20bc8:
     call   w_audio_music_unmute
     pop    %eax
 #else
+		mov    %bh,game_cfg_music
 		call   cdrom_setup_audio_info
 		mov    $0xb,%eax
 		call   func_360e2
@@ -19293,7 +19293,6 @@ func_20bc8:
 
     /* sound off */
 		xor    %bl,%bl
-		mov    %bl,game_cfg_sound
 #if 1
     push   %eax
     pushl  $0
@@ -19302,6 +19301,8 @@ func_20bc8:
     call   w_conf_save
     call   w_audio_sound_mute
     pop    %eax
+#else
+		mov    %bl,game_cfg_sound
 #endif
 		jmp    jump_20c01
 	jump_20e06:
@@ -19317,7 +19318,6 @@ func_20bc8:
 		jg     jump_20e35
 
     /* sound on */
-		movb   $0x1,game_cfg_sound
 #if 1
     push   %eax
     pushl  $1
@@ -19326,6 +19326,8 @@ func_20bc8:
     call   w_conf_save
     call   w_audio_sound_unmute
     pop    %eax
+#else
+		movb   $0x1,game_cfg_sound
 #endif
 		jmp    jump_20c01
 	jump_20e35:
