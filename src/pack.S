@@ -10302,7 +10302,9 @@ func_19b45:
 		mov    %esp,%ebx
 		mov    %dx,0x1c(%esp)
 		lea    0x1c(%esp),%edx
+#if 0
 		call   w_dos_int386
+#endif
 	jump_19b61:
 		add    $0x38,%esp
 		pop    %edx
@@ -17560,12 +17562,28 @@ func_20019:
 	jump_20023:
 		mov    $0x3c8,%edx
 		movswl %bx,%eax
+#if 1
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
+#endif
 		mov    $0x3c9,%edx
 		xor    %al,%al
+#if 1
+    movb   %al,palette_r
+    movb   %al,palette_g
+    movb   %al,palette_b
+
+    call   w_video_set_palette
+
+    movb   palette_index,%al
+    inc    %al
+    movb   %al,palette_index
+#else
 		out    %al,(%dx)
 		out    %al,(%dx)
 		out    %al,(%dx)
+#endif
 		inc    %ebx
 	jump_20037:
 		xor    %eax,%eax
@@ -30519,12 +30537,18 @@ func_2b6a3:
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
+#if 0
 		cli
+#endif
 		mov    $0x9,%eax
 		mov    data_1a02f8,%cx
 		mov    data_1a02f4,%ebx
+#if 1
+    call   w_game_uninstall_keyboard_isr
+#else
 		call   func__dos_setvect_
 		sti
+#endif
 		cld
 		pop    %ecx
 		pop    %ebx
