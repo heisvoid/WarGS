@@ -2578,14 +2578,14 @@ func_119b6:
 		mov    $0x3,%eax
 		call   func_5e940
 		push   $data_76dcd
-		call   func_printf_
+		call   w_printf
 		xor    %eax,%eax
 		add    $0x4,%esp
 		mov    data_e4fc8(%ebx),%al
 		push   %eax
 		push   %ebx
 		push   $data_76df8
-		call   func_printf_
+		call   w_printf
 		xor    %ebx,%ebx
 		add    $0xc,%esp
 		jmp    jump_11a32
@@ -2598,7 +2598,7 @@ func_119b6:
 		mov    $0xff,%ch
 		push   $data_76dff
 		mov    %ch,data_e502d(%eax)
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		jmp    jump_11a39
 	jump_11a31:
@@ -2618,7 +2618,7 @@ func_119b6:
 		mov    $0xff,%bl
 		push   $data_76e0a
 		mov    %bl,data_e510e(%eax)
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		jmp    jump_11a6c
 	jump_11a65:
@@ -2638,7 +2638,7 @@ func_119b6:
 		mov    $0xff,%bh
 		push   $data_76e12
 		mov    %bh,data_d65d8(%eax)
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		jmp    jump_11a9f
 	jump_11a98:
@@ -2918,7 +2918,7 @@ func_11ca9:
 		je     jump_11d8f
 		push   %ebx
 		push   $data_76e41
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		call   w_dos_getch
 	jump_11d8f:
@@ -8786,7 +8786,7 @@ func_15eb5:
 		jmp    jump_16085
 	jump_16113:
 		push   $data_76e5a
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		pop    %ecx
 		pop    %ebx
@@ -9139,6 +9139,12 @@ func_16357:
 		call   func_5d41e
 		call   func_5e9e8
 	jump_16535:
+#if 1
+    /* If this does not exist, game is frozen when character moves. */
+    push   %eax
+    call   w_game_update
+    pop    %eax
+#endif
 		call   func_10364
 		test   %ax,%ax
 		je     jump_16556
@@ -9852,7 +9858,7 @@ func_16aef:
 		jmp    jump_16b56
 	jump_16c80:
 		push   $data_76e5a
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 	jump_16c8d:
 		pop    %ebp
@@ -9910,7 +9916,7 @@ func_16c93:
 		ret
 	jump_16ce3:
 		push   $data_76e5a
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		pop    %edx
 		pop    %ecx
@@ -13836,6 +13842,13 @@ func_19718:
 		jmp    jump_19768
 	jump_19747:
 		mov    0x4(%edx),%eax
+#if 1
+    /* Workaround code when %eax is 0.
+     * I do not know why %eax is 0.
+     */
+    test   %eax,%eax
+    je     jump_19774
+#endif
 	jump_1974a:
 		cmp    (%eax),%ebx
 		je     jump_19759
@@ -13843,6 +13856,13 @@ func_19718:
 		je     jump_19774
 		mov    %eax,%edx
 		mov    0x4(%eax),%eax
+#if 1
+    /* Workaround code when %eax is 0.
+     * I do not know why %eax is 0.
+     */
+    test   %eax,%eax
+    je     jump_19774
+#endif
 		jmp    jump_1974a
 	jump_19759:
 		mov    0x4(%eax),%esi
@@ -76748,7 +76768,7 @@ func_496e0:
 		push   %edx
 		push   %eax
 		push   $data_77d8d
-		call   func_printf_
+		call   w_printf
 		add    $0xc,%esp
 		mov    $0x7,%eax
 		call   func_putch_
@@ -79729,7 +79749,14 @@ func_4b4ca:
 		sub    %edx,%eax
 		mov    %eax,%edx
 		shl    $0x2,%edx
+#if 1
+    /* Wordaround.
+     * %eax is invalid. I do not know why.
+     */
+    xor    %eax,%eax
+#else
 		mov    %edi,%eax
+#endif
 		mov    data_7423c(%edx,%eax,4),%ebx
 		mov    %esi,%eax
 		add    $0xe,%eax
@@ -101066,7 +101093,7 @@ func_5b846:
 /*----------------------------------------------------------------*/
 		push   $data_7866e
 	jump_5b84b:
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		ret
 
@@ -110899,7 +110926,7 @@ func_file_putc_:	/* 0x636e5 */
 		mov    %eax,%ebx
 		mov    %edx,%eax
 		mov    (%ebx),%edx
-		call   func_fputc_
+		call   w_dos_fputc
 		incl   0x10(%ebx)
 		pop    %ebx
 		ret
