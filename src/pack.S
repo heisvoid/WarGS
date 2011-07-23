@@ -30188,6 +30188,7 @@ func_2b470:
 		mov    %eax,%esi
 		mov    $0x0,%ecx
 		mov    $0x3da,%dx
+#if 0
 	jump_2b485:
 		inc    %ecx
 		cmp    data_82720,%ecx
@@ -30196,6 +30197,7 @@ func_2b470:
 		test   $0x8,%al
 		je     jump_2b485
 	jump_2b493:
+#endif
 		mov    $0xc8,%ebx
 	jump_2b498:
 		mov    $0x50,%ecx
