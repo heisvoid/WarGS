@@ -10351,7 +10351,19 @@ func_19bd6:
 		lea    0x1c(%esp),%ebx
 		mov    %dx,(%esp)
 		mov    %esp,%edx
+#if 1
+    call   w_game_update
+
+    call   w_mouse_get_state
+    movw   mouse_state_button,%bx
+    mov    %ebx,0x20(%esp)
+    movw   mouse_state_x,%bx
+    mov    %ebx,0x24(%esp)
+    movw   mouse_state_y,%bx
+    mov    %ebx,0x28(%esp)
+#else
 		call   w_dos_int386
+#endif
 		mov    0x20(%esp),%ebx
 		test   %bx,%bx
 		je     jump_19c07
