@@ -9375,7 +9375,7 @@ func_18fd0:
 		push   $data_510b1
 		push   %eax
 		mov    %eax,%edx
-		call   func_fprintf_
+		call   w_fprintf
 		add    $0xc,%esp
 		mov    %edx,%eax
 		call   w_dos_fclose
