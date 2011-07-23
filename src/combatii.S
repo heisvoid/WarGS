@@ -102749,11 +102749,20 @@ func_5cf3e:
 		mov    $data_123830,%ebx
 		add    %eax,%eax
 		mov    %dx,data_123810
-		mov    %ax,data_123818
+		mov    %ax,data_123818 /* column */
 		mov    $data_123810,%edx
 		mov    $0x33,%eax
-		mov    %cx,data_12381c
+		mov    %cx,data_12381c /* row */
+#if 1
+    pushl  data_12381c
+    sub    %esi,data_123818
+    pushl  data_123818
+    call   w_mouse_set_position
+    add    $8,%esp
+    add    %esi,data_123818
+#else
 		call   w_dos_int386
+#endif
 		cmpw   $0x0,data_123856
 		je     jump_5cfbc
 		call   func_5d570
