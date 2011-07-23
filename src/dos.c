@@ -16,6 +16,8 @@
 #include "filepath.h"
 #include "keyboard.h"
 
+static FILE *talk_file = NULL;
+
 int
 dos_open (const char *path, int flags)
 {
@@ -127,6 +129,13 @@ dos_fopen (const char *path, const char *mode)
   const char * const native_path = filepath_transform (path);
 
   FILE * const file = fopen (native_path, mode);
+
+  char * const tmp = strdup (native_path);
+  const char * const bn = basename (tmp);
+  if (0 == strcmp ("talk.tbl", bn))
+    {
+      talk_file = file;
+    }
 
   free ((void *) native_path);
 
@@ -307,7 +316,18 @@ dos_fgetc (FILE *f)
 {
   ASSERT (NULL != f);
 
-  return fgetc (f);
+  int c = fgetc (f);
+
+  if (NULL != talk_file && talk_file == f && 0x0d == c)
+    {
+      /* When talk.tbl is read, carriage return ('\r')
+       * followed by line feed ('\n') is skipped.
+       */
+      c = fgetc (f);
+      ASSERT (0x0a == c);
+    }
+
+  return c;
 }
 
 int
@@ -445,6 +465,11 @@ dos_fclose (FILE *f)
 
   const int ret = fclose (f);
   ASSERT (0 == ret);
+
+  if (talk_file == f)
+    {
+      talk_file = NULL;
+    }
 
   return ret;
 }
