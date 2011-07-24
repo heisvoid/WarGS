@@ -94177,7 +94177,7 @@ func_55b59:
 		xor    %eax,%eax
 		call   w_time
 		mov    %eax,data_1120e8
-		call   func_srand_
+		call   w_srand
 		call   func_103a8
 		mov    $0xa0,%eax
 		mov    $data_12824c,%edx
