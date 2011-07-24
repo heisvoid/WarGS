@@ -626,3 +626,13 @@ dos_findnext (int8_t *dta)
 
   return 0;
 }
+
+void *
+dos_memcpy (void *dst, const void *src, size_t len)
+{
+  ASSERT (NULL != dst);
+  ASSERT (NULL != src);
+  ASSERT (0 < len);
+
+  return memcpy (dst, src, len);
+}
