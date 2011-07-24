@@ -20345,7 +20345,7 @@ func_21c6c:
 		mov    $0x7c,%eax
 		mov    $0x4f,%edx
 		mov    $0x3a,%ebx
-		call   func_putchar_
+		call   w_putchar
 		mov    $0x7c,%eax
 		mov    $0x56,%edx
 		mov    $data_509ac,%ebx
@@ -20353,7 +20353,7 @@ func_21c6c:
 		mov    $0x7c,%eax
 		mov    $0x5d,%edx
 		mov    $0x3a,%ebx
-		call   func_putchar_
+		call   w_putchar
 		mov    $0x64,%eax
 		mov    data_c5ea4,%ecx
 		mov    $0x7c,%edx
