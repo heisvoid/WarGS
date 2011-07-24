@@ -76771,7 +76771,7 @@ func_496e0:
 		call   w_printf
 		add    $0xc,%esp
 		mov    $0x7,%eax
-		call   func_putch_
+		call   w_putchar
 		mov    $0x1,%eax
 		jmp    w_exit
 
