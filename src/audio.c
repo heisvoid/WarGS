@@ -54,7 +54,7 @@ audio_init (const char *music)
   ASSERT (0 == ret);
 
   /* I think 16 is fully enough. */
-  Mix_AllocateChannels (32);
+  Mix_AllocateChannels (16);
 
   Mix_ChannelFinished (&finish_channel);
 
@@ -133,7 +133,11 @@ audio_music_play (uint32_t track)
   Mix_VolumeMusic (music_is_muted ? 0 : MIX_MAX_VOLUME);
 
   const int ret = Mix_PlayMusic (music, -1);
-  ASSERT (0 == ret);
+  if (0 != ret)
+    {
+      Mix_FreeMusic (music);
+      music = NULL;
+    }
 
   music_track = track;
 }
@@ -208,16 +212,21 @@ audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
       converted[2 * i + 1] = converted[2 * i];
     }
 
-  Mix_Chunk * const sound = Mix_QuickLoad_RAW ((Uint8 *) converted,
+  Mix_Chunk * const chunk = Mix_QuickLoad_RAW ((Uint8 *) converted,
                                                2 * 2 * len);
-  ASSERT (NULL != sound);
+  ASSERT (NULL != chunk);
 
-  Mix_VolumeChunk (sound, sound_is_muted ? 0 : MIX_MAX_VOLUME);
+  Mix_VolumeChunk (chunk, sound_is_muted ? 0 : MIX_MAX_VOLUME);
 
-  const int ret = Mix_PlayChannel (-1, sound, (0 == loop) ? 0 : -1);
+  const int ret = Mix_PlayChannel (-1, chunk, (0 == loop) ? 0 : -1);
   if (-1 == ret)
     {
-      LOG_ERROR ("failed to play channel");
+      if (0 == chunk->allocated)
+        {
+          free (chunk->abuf);
+        }
+
+      Mix_FreeChunk (chunk);
     }
 }
 
