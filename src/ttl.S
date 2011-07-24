@@ -3219,10 +3219,16 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $data_2037b,%edx
 		mov    $0xa,%ebx
 #if 1
-    /* set FPS for softmax.fli play */
+    /* Set FPS for softmax.fli play.
+     *
+     * For sync with softmax.voc, FPS 13 is set.
+     * Below 13: fli playback is slower than voc playback.
+     * Above 13: fli playback is faster than voc playback.
+     */
+
     push   %eax
 
-    pushl  $14
+    pushl  $13
     call   w_game_set_fps
     add    $4,%esp
 
