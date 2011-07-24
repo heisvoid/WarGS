@@ -4426,7 +4426,7 @@ func_15134:
 		shl    $0x4,%edx
 		mov    $data_3e904,%eax
 		add    $data_3d900,%edx
-		call   func_memmove_
+		call   w_dos_memmove
 		mov    $data_3e900,%ebx
 		mov    data_3e94a,%edx
 		mov    data_3e948,%eax
