@@ -178,7 +178,7 @@ main ()
           break;
         }
 
-      bool end = true;
+      bool end = false;
 
       while (true)
         {
