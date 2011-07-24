@@ -9952,7 +9952,7 @@ func_1975d:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_2b3dc
-		mov    data_543c7,%ecx
+		mov    video_buffer,%ecx
 	jump_1978f:
 		mov    data_8291c,%ebx
 		mov    data_54055,%edx
@@ -9973,7 +9973,7 @@ func_197af:
 		push   %ecx
 		push   %edx
 		mov    $data_541cf,%ebx
-		mov    data_543c7,%ecx
+		mov    video_buffer,%ecx
 		mov    data_54051,%edx
 		mov    data_5404f,%eax
 		sar    $0x10,%edx
@@ -10333,7 +10333,11 @@ func_19b67:
 		push   $0x10
 		sar    $0x10,%edx
 		call   func_2b3dc
+#if 1
+    movl   video_buffer,%ecx
+#else
 		mov    $0xa0000,%ecx
+#endif
 		jmp    jump_1978f
 
 
@@ -17996,7 +18000,14 @@ func_nullsub_2:	/* 0x20f82 */
 /*----------------------------------------------------------------*/
 		ret
 	jump_20f83:
+#if 1
+    push   %eax
+    movl   video_buffer,%eax
+    mov    %eax,data_15b9cc
+    pop    %eax
+#else
 		movl   $0xa0000,data_15b9cc
+#endif
 		ret
 	jump_20f8e:
 		mov    data_1a032c,%eax
@@ -43202,7 +43213,11 @@ func_368d6:
 		mov    0x24(%esp),%edx
 		call   func_2b44f
 		mov    data_99232(,%ebp,4),%ebp
+#if 1
+    movl   video_buffer,%ecx
+#else
 		mov    $0xa0000,%ecx
+#endif
 		mov    0x20(%esp),%eax
 		mov    0xa(%ebp),%ebx
 		call   func_2b240
@@ -43230,7 +43245,11 @@ func_368d6:
 		mov    %eax,0x20(%esp)
 		mov    data_7cf28,%eax
 		sub    $0x8,%eax
+#if 1
+    movl   video_buffer,%ecx
+#else
 		mov    $0xa0000,%ecx
+#endif
 		mov    %eax,0x24(%esp)
 		mov    data_15b9cc,%eax
 		mov    0x24(%esp),%edx
