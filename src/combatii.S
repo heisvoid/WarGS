@@ -104154,7 +104154,7 @@ func_5dd5b:
 		shl    $0x4,%edx
 		mov    $data_12760c,%eax
 		add    $data_1265f8,%edx
-		call   func_memmove_
+		call   w_dos_memmove
 		mov    $data_127608,%ebx
 		mov    data_127646,%edx
 		mov    data_127644,%eax
