@@ -415,7 +415,7 @@ func_1088d:
 		add    $0x1c,%edx
 		mov    %ecx,%eax
 		add    %ebx,%edi
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		jne    jump_108ef
 		cmpw   $0x1,data_c5d99
@@ -18681,7 +18681,7 @@ func_204a7:
 		mov    %dx,0x4(%esp)
 		mov    $data_50835,%edx
 		mov    %bx,(%esp)
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_2062e
 		xor    %eax,%eax
