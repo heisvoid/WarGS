@@ -35884,7 +35884,7 @@ func_2ea3d:
 		lea    0xc(%esp),%eax
 		push   %eax
 		mov    $0x21,%edx
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		mov    %esp,%ebx
 		mov    $0xf8,%eax
@@ -35899,7 +35899,7 @@ func_2ea3d:
 		lea    0xc(%esp),%eax
 		push   %eax
 		mov    $0x2a,%edx
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		mov    %esp,%ebx
 		mov    $0xf8,%eax
@@ -35913,7 +35913,7 @@ func_2ea3d:
 		push   $data_51d32
 		lea    0xc(%esp),%eax
 		push   %eax
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		mov    $0xf3,%eax
 		mov    $0x33,%edx
@@ -37708,7 +37708,7 @@ func_3061c:
 		lea    0x10(%esp),%eax
 		push   %eax
 		mov    $0x21,%edx
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		lea    0x4(%esp),%ebx
 		mov    $0x5b,%eax
@@ -37723,7 +37723,7 @@ func_3061c:
 		lea    0x10(%esp),%eax
 		push   %eax
 		mov    $0x2a,%edx
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		lea    0x4(%esp),%ebx
 		mov    $0x5b,%eax
@@ -37737,7 +37737,7 @@ func_3061c:
 		push   $data_51d9d
 		lea    0x10(%esp),%eax
 		push   %eax
-		call   func_sprintf_
+		call   w_sprintf
 		add    $0x10,%esp
 		mov    $0x56,%eax
 		mov    $0x33,%edx
