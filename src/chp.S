@@ -14566,12 +14566,12 @@ func_1c995:
 	jump_1c9fd:
 		mov    0x1a(%esp),%eax
 		sar    $0x10,%eax
-		call   func_abs_
+		call   w_abs
 		mov    %eax,%esi
 		mov    %ax,0x1c(%esp)
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_abs_
+		call   w_abs
 		mov    %ax,(%esp)
 		cmp    %ax,%si
 		jg     jump_1ca27
@@ -25675,7 +25675,7 @@ func_25f56:
 		mov    data_ab896(%edx),%eax
 		sar    $0x10,%eax
 		sub    %esi,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jge    jump_26121
 		mov    data_8ff26,%eax
@@ -25687,7 +25687,7 @@ func_25f56:
 		add    %ecx,%eax
 		sub    %eax,%edx
 		mov    %edx,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jl     jump_2612a
 	jump_26121:
@@ -25770,7 +25770,7 @@ func_25f56:
 		mov    data_ab896(%edx),%eax
 		sar    $0x10,%eax
 		sub    %esi,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jge    jump_26249
 		mov    data_8ff26,%eax
@@ -25782,7 +25782,7 @@ func_25f56:
 		add    %edx,%eax
 		sub    %eax,%ecx
 		mov    %ecx,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jl     jump_26252
 	jump_26249:
@@ -26220,7 +26220,7 @@ func_2677d:
 		mov    data_ab896(%edx),%eax
 		sar    $0x10,%eax
 		sub    %esi,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jge    jump_26949
 		mov    data_8ff26,%eax
@@ -26232,7 +26232,7 @@ func_2677d:
 		add    %ecx,%eax
 		sub    %eax,%edx
 		mov    %edx,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jl     jump_26952
 	jump_26949:
@@ -26315,7 +26315,7 @@ func_2677d:
 		mov    data_ab896(%edx),%eax
 		sar    $0x10,%eax
 		sub    %esi,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jge    jump_26a6f
 		mov    data_a436a,%ecx
@@ -26326,7 +26326,7 @@ func_2677d:
 		sar    $0x10,%eax
 		add    %ecx,%edx
 		sub    %edx,%eax
-		call   func_abs_
+		call   w_abs
 		cmp    $0x4,%eax
 		jl     jump_26a78
 	jump_26a6f:
@@ -58586,7 +58586,7 @@ data_50129:
 data_50135:
 		.string ".CHP"
 data_5013a:
-		.ascii  "\x25\x73\x0a\x00"
+		.ascii  "\x25\x73\x0a\x00" /* "%s\n" */
 data_5013e:
 		.string "blackbox.dat"
 data_5014b:
