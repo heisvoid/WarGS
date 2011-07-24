@@ -4463,7 +4463,7 @@ func_15421:
 		mov    0xa4(%esp),%edx
 		mov    %eax,0x8c(%esp)
 		mov    %esp,%eax
-		call   func_vsprintf_
+		call   w_dos_vsprintf
 		mov    0x9e(%esp),%edx
 		mov    0x9a(%esp),%eax
 		mov    %esp,%ebx
