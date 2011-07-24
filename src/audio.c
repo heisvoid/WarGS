@@ -124,7 +124,7 @@ audio_music_play (uint32_t track)
   const size_t file_path_size = sizeof (char) * 
       (strlen (music_root) + 1 + 5 + 2 + 4 + 1);
   char * const file_path = xmalloc (file_path_size);
-  xsnprintf (file_path, file_path_size, "%s%cmusic%02"PRId8".ogg",
+  xsnprintf (file_path, file_path_size, "%s%ctrack%02"PRId8".ogg",
              music_root, FILEPATH_SEPARATOR, track);
 
   music = Mix_LoadMUS (file_path);
