@@ -645,3 +645,11 @@ dos_strcat (char *dst, const char *src)
 
   return strcat (dst, src);
 }
+
+size_t
+dos_strlen (const char *s)
+{
+  ASSERT (NULL != s);
+
+  return strlen (s);
+}
