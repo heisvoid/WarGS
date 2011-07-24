@@ -57451,7 +57451,7 @@ func_3aee8:
 		mov    0x418(%esp),%edx
 		call   func_499bd
 		mov    %ax,(%ecx,%edx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebp
@@ -57511,14 +57511,14 @@ func_3aee8:
 		xor    %ah,%ah
 		mov    %ah,0x320(%esp,%ebx,1)
 		mov    %ah,0x2d0(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x3,%ebp
 		sar    $0x1f,%edx
 		idiv   %ebp
 		inc    %edx
 		mov    %dl,0x280(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x5,%ebp
 		sar    $0x1f,%edx
@@ -77164,7 +77164,7 @@ func_499bd:
 		mov    %eax,%ebx
 		test   %ax,%ax
 		je     jump_499d7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		movswl %bx,%ebx
 		sar    $0x1f,%edx
@@ -94984,7 +94984,7 @@ func_5637d:
 		mov    %dx,0x2(%eax)
 		jmp    jump_5662f
 	jump_565cc:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xf,%ebx
 		sar    $0x1f,%edx
@@ -94992,7 +94992,7 @@ func_5637d:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x5
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x14,%ebx
 		sar    $0x1f,%edx
@@ -95002,7 +95002,7 @@ func_5637d:
 		sub    $0x32,%eax
 		add    %edx,%eax
 		movswl %ax,%ebx
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x1e,%ecx
 		sar    $0x1f,%edx
@@ -95095,7 +95095,7 @@ func_5666e:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_567b7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95108,12 +95108,12 @@ func_5666e:
 	jump_5674d:
 		push   $0x1
 		push   %ebp
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95128,12 +95128,12 @@ func_5666e:
 	jump_56786:
 		push   %edx
 		push   $0x8
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95274,7 +95274,7 @@ func_56896:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_569ec
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95287,12 +95287,12 @@ func_56896:
 	jump_56982:
 		push   $0x1
 		push   %ebp
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95307,12 +95307,12 @@ func_56896:
 	jump_569bb:
 		push   %edx
 		push   $0x8
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95364,7 +95364,7 @@ func_56896:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_56acf
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95373,12 +95373,12 @@ func_56896:
 		jne    jump_56b2b
 		push   $0x1
 		push   $0x7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95631,7 +95631,7 @@ func_56bd4:
 		mov    data_112160(%edi),%ecx
 		cmpw   $0x0,0x4(%ecx)
 		jne    jump_56e87
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95644,12 +95644,12 @@ func_56bd4:
 	jump_56e1d:
 		push   $0x1
 		push   %ebp
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95664,12 +95664,12 @@ func_56bd4:
 	jump_56e56:
 		push   %edx
 		push   $0x8
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95722,7 +95722,7 @@ func_56bd4:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_56f6d
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95731,12 +95731,12 @@ func_56bd4:
 		jne    jump_56fd1
 		push   %edx
 		push   $0x7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -95955,7 +95955,7 @@ func_570a1:
 		sar    $0x10,%eax
 		call   func_10aeb
 		call   func_12bee
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x3,%ebx
 		sar    $0x1f,%edx
@@ -95974,7 +95974,7 @@ func_570a1:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_572ee
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -95987,12 +95987,12 @@ func_570a1:
 	jump_57282:
 		push   $0x1
 		push   $0x5
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -96007,12 +96007,12 @@ func_570a1:
 	jump_572bf:
 		push   %edx
 		push   $0x8
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -96062,7 +96062,7 @@ func_570a1:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_57422
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc,%ebx
 		sar    $0x1f,%edx
@@ -96077,7 +96077,7 @@ func_5739c:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0x9
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
@@ -96095,7 +96095,7 @@ func_573bf:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0x9
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
@@ -96109,7 +96109,7 @@ func_573db:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0x9
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
@@ -96129,7 +96129,7 @@ func_57406:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0x9
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
@@ -96169,7 +96169,7 @@ func_57406:
 		mov    data_112160(%ecx),%eax
 		cmpw   $0x0,0x4(%eax)
 		jne    jump_5753b
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc,%ebx
 		sar    $0x1f,%edx
@@ -96185,7 +96185,7 @@ func_574b6:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0xa
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebp
@@ -96202,7 +96202,7 @@ func_574d7:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0xa
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebp
@@ -96218,7 +96218,7 @@ func_574f6:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0xa
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebp
@@ -96238,7 +96238,7 @@ func_5751f:
 /*----------------------------------------------------------------*/
 		push   $0x1
 		push   $0xa
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebp
@@ -96505,7 +96505,7 @@ func_57766:
 		je     jump_57974
 		cmpw   $0x1,0x28(%esp)
 		je     jump_57a49
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xa,%ebx
 		sar    $0x1f,%edx
@@ -96513,12 +96513,12 @@ func_57766:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x3
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -96528,7 +96528,7 @@ func_57766:
 		mov    %ebp,%eax
 		xor    %ecx,%ecx
 		call   func_56178
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x14,%ebx
 		sar    $0x1f,%edx
@@ -96536,14 +96536,14 @@ func_57766:
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x12(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebx
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x14(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -96555,7 +96555,7 @@ func_57766:
 		imul   $0xffffffff,%ecx,%edx
 		mov    %dx,0x12(%eax)
 	jump_57941:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -96783,7 +96783,7 @@ func_57ac4:
 		je     jump_57cdc
 		cmpw   $0x1,0x2c(%esp)
 		je     jump_57db0
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xa,%ebx
 		sar    $0x1f,%edx
@@ -96791,12 +96791,12 @@ func_57ac4:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x3
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -96806,7 +96806,7 @@ func_57ac4:
 		mov    %ebp,%eax
 		xor    %ecx,%ecx
 		call   func_56178
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x14,%ebx
 		sar    $0x1f,%edx
@@ -96814,14 +96814,14 @@ func_57ac4:
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x12(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebx
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x14(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -96833,7 +96833,7 @@ func_57ac4:
 		imul   $0xffffffff,%ecx,%edx
 		mov    %dx,0x12(%eax)
 	jump_57ca9:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -96922,7 +96922,7 @@ func_57ac4:
 		mov    data_112160(%esi),%eax
 		cmpw   $0x1,0x4(%eax)
 		je     jump_57e28
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -96930,12 +96930,12 @@ func_57ac4:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%esi
@@ -97101,7 +97101,7 @@ func_57f18:
 		sar    $0x10,%edx
 		sar    $0x10,%eax
 		call   func_454b3
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x3,%ebx
 		sar    $0x1f,%edx
@@ -97136,7 +97136,7 @@ func_57f18:
 		je     jump_58170
 		cmpw   $0x1,0x8(%esp)
 		je     jump_58206
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xa,%ebx
 		sar    $0x1f,%edx
@@ -97144,12 +97144,12 @@ func_57f18:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x3
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ecx
@@ -97159,7 +97159,7 @@ func_57f18:
 		mov    %ebp,%eax
 		xor    %ecx,%ecx
 		call   func_56178
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x14,%ebx
 		sar    $0x1f,%edx
@@ -97167,14 +97167,14 @@ func_57f18:
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x12(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		sar    $0x1f,%edx
 		idiv   %ebx
 		mov    data_112160(%esi),%eax
 		add    $0x5,%edx
 		mov    %dx,0x14(%eax)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -97186,7 +97186,7 @@ func_57f18:
 		imul   $0xffffffff,%ecx,%edx
 		mov    %dx,0x12(%eax)
 	jump_5813d:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x2,%ebx
 		sar    $0x1f,%edx
@@ -97261,7 +97261,7 @@ func_57f18:
 		je     jump_5828a
 		cmpw   $0x1,0x8(%esp)
 		je     jump_582de
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x4,%ebx
 		sar    $0x1f,%edx
@@ -97269,12 +97269,12 @@ func_57f18:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x7
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%esi
@@ -97326,7 +97326,7 @@ func_57f18:
 		je     jump_5843b
 		cmpw   $0x1,0x8(%esp)
 		je     jump_58503
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x3,%ebx
 		sar    $0x1f,%edx
@@ -97340,7 +97340,7 @@ func_57f18:
 	jump_58345:
 		test   %edx,%edx
 		jne    jump_58503
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x5,%ebx
 		sar    $0x1f,%edx
@@ -97348,13 +97348,13 @@ func_57f18:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x4
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x64,%ebx
 		sar    $0x1f,%edx
 		idiv   %ebx
 		neg    %edx
-		call   func_rand_
+		call   w_rand
 		movswl %dx,%ebx
 		mov    %eax,%edx
 		mov    $0x140,%ebp
@@ -97366,7 +97366,7 @@ func_57f18:
 		movswl %dx,%edx
 		jmp    jump_583e7
 	jump_5839a:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x5,%ebx
 		sar    $0x1f,%edx
@@ -97374,7 +97374,7 @@ func_57f18:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x4
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x64,%ebx
 		sar    $0x1f,%edx
@@ -97382,7 +97382,7 @@ func_57f18:
 		mov    %edx,%eax
 		neg    %eax
 		movswl %ax,%ebx
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x140,%ebp
 		sar    $0x1f,%edx
@@ -97396,7 +97396,7 @@ func_57f18:
 		call   func_56178
 		jmp    jump_58503
 	jump_583f1:
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x5,%ebx
 		sar    $0x1f,%edx
@@ -97404,7 +97404,7 @@ func_57f18:
 		movswl %dx,%eax
 		push   %eax
 		push   $0x4
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x64,%ebx
 		sar    $0x1f,%edx
@@ -97412,7 +97412,7 @@ func_57f18:
 		mov    %edx,%eax
 		neg    %eax
 		movswl %ax,%ebx
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x140,%ebp
 		sar    $0x1f,%edx
@@ -97764,14 +97764,14 @@ func_58619:
 		cmpb   $0x0,0x28(%esp,%ebx,1)
 		jne    jump_588c5
 		movb   $0x12,0x28(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x12c,%ecx
 		sar    $0x1f,%edx
 		idiv   %ecx
 		lea    0xa(%edx),%eax
 		mov    %ax,(%esp,%ebx,2)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x8c,%ecx
 		sar    $0x1f,%edx
@@ -98201,7 +98201,7 @@ func_58c87:
 		cmpb   $0x0,0x28(%esp,%ebx,1)
 		jne    jump_58df7
 		movb   $0x9,0x28(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x140,%ebp
 		sar    $0x1f,%edx
@@ -98210,7 +98210,7 @@ func_58c87:
 		sub    $0xa0,%eax
 		add    %edx,%eax
 		mov    %ax,(%esp,%ebx,2)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x96,%ebp
 		sar    $0x1f,%edx
@@ -98397,7 +98397,7 @@ func_58e95:
 		idiv   %ebx
 		cmp    $0x1,%edx
 		jne    jump_5903a
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xa0,%ebx
 		sar    $0x1f,%edx
@@ -98417,7 +98417,7 @@ func_58e95:
 		jne    jump_59077
 		mov    0x64(%esp),%eax
 		mov    %eax,0x50(%esp)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0xc8,%ebx
 		sar    $0x1f,%edx
@@ -98435,7 +98435,7 @@ func_58e95:
 		idiv   %ebx
 		cmp    $0xf,%edx
 		jne    jump_590b4
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x96,%ebx
 		sar    $0x1f,%edx
@@ -98457,7 +98457,7 @@ func_58e95:
 		cmpb   $0x0,0x34(%esp,%ebx,1)
 		jne    jump_59114
 		movb   $0x9,0x34(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x140,%esi
 		sar    $0x1f,%edx
@@ -98467,7 +98467,7 @@ func_58e95:
 		sub    $0xa0,%eax
 		add    %edx,%eax
 		mov    %ax,0x20(%esp,%ebx,2)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x96,%esi
 		sar    $0x1f,%edx
@@ -98704,7 +98704,7 @@ func_592b0:
 		jne    jump_59434
 		cmpw   $0xb4,0x48(%esp)
 		jge    jump_59434
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x1e,%ebx
 		sar    $0x1f,%edx
@@ -98712,7 +98712,7 @@ func_592b0:
 		movswl %si,%eax
 		sub    %edx,%eax
 		mov    %eax,0x44(%esp)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x46,%ebx
 		sar    $0x1f,%edx
@@ -98734,7 +98734,7 @@ func_592b0:
 		jne    jump_594e9
 		cmpw   $0xaa,0x48(%esp)
 		jge    jump_594e9
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		mov    $0x5,%ebx
 		sar    $0x1f,%edx
@@ -98750,7 +98750,7 @@ func_592b0:
 		cmpb   $0x0,0x28(%esp,%ebx,1)
 		jne    jump_594e2
 		movb   $0x9,0x28(%esp,%ebx,1)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		movl   $0x140,0x34(%esp)
 		sar    $0x1f,%edx
@@ -98759,7 +98759,7 @@ func_592b0:
 		sub    $0xa0,%eax
 		add    %edx,%eax
 		mov    %ax,0x14(%esp,%ebx,2)
-		call   func_rand_
+		call   w_rand
 		mov    %eax,%edx
 		movl   $0x96,0x34(%esp)
 		sar    $0x1f,%edx
