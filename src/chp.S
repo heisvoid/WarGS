@@ -4722,7 +4722,7 @@ func_14447:
 		call   func_13dd2
 		mov    %esp,%eax
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 	jump_14489:
 		test   %eax,%eax
 		jne    jump_14519
@@ -4759,7 +4759,7 @@ func_14447:
 		mov    %ax,data_9c4f8
 		lea    0x64(%esp),%eax
 		mov    %di,data_9c4f6
-		call   func_3a215
+		call   w_dos_findnext
 		mov    data_9c4f4,%ecx
 		sar    $0x10,%ecx
 		sub    $0xa,%ecx
@@ -4769,12 +4769,12 @@ func_14447:
 		mov    $data_500fa,%eax
 		lea    0x64(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 	jump_14529:
 		test   %eax,%eax
 		jne    jump_14608
 		cmpb   $0x10,0x79(%esp)
-		jne    jump_145fa
+		jne    jump_145fa /* jump if it is not a directory */
 		mov    data_9c4f2,%ecx
 		sar    $0x10,%ecx
 		mov    %ecx,%eax
@@ -4837,7 +4837,7 @@ func_14447:
 		je     jump_14608
 	jump_145fa:
 		lea    0x64(%esp),%eax
-		call   func_3a215
+		call   w_dos_findnext
 		jmp    jump_14529
 	jump_14608:
 		call   func_28c8b
@@ -6882,13 +6882,22 @@ func_1603e:
 /*----------------------------------------------------------------*/
 func_1607a:
 /*----------------------------------------------------------------*/
-		mov    $data_5017e,%eax
+		mov    $save_file_name_1,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
+
+    /* file date
+     * dword
+     * bits
+     * 15 ~ 9: year - 1980
+     * 8 ~ 5: month
+     * 4 ~ 0: day
+     */
 		mov    0x4c(%esp),%esi
+
 		lea    0x60(%esp),%edx
-		and    $0x1e0,%esi
+		and    $0x1e0,%esi /* get month */
 		xor    %eax,%eax
 		shr    $0x5,%si
 		mov    $0xa,%ebx
@@ -7108,10 +7117,10 @@ func_1607a:
 /*----------------------------------------------------------------*/
 func_16294:
 /*----------------------------------------------------------------*/
-		mov    $data_5019e,%eax
+		mov    $save_file_name_2,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -7333,10 +7342,10 @@ func_16294:
 /*----------------------------------------------------------------*/
 func_164aa:
 /*----------------------------------------------------------------*/
-		mov    $data_501ab,%eax
+		mov    $save_file_name_3,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -7545,10 +7554,10 @@ func_164aa:
 /*----------------------------------------------------------------*/
 func_166a5:
 /*----------------------------------------------------------------*/
-		mov    $data_501b8,%eax
+		mov    $save_file_name_4,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -7757,10 +7766,10 @@ func_166a5:
 /*----------------------------------------------------------------*/
 func_168a0:
 /*----------------------------------------------------------------*/
-		mov    $data_501c5,%eax
+		mov    $save_file_name_5,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3a1f8
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -8144,7 +8153,7 @@ func_16afa:
 		jne    jump_16d1e
 		call   func_15bd9
 		mov    $data_501f7,%eax
-		mov    $data_5017e,%edx
+		mov    $save_file_name_1,%edx
 		call   func_1492e
 		mov    $data_5013e,%eax
 		call   func_13c31
@@ -8180,7 +8189,7 @@ func_16afa:
 		jne    jump_16d9b
 		call   func_15bd9
 		mov    $data_501f7,%eax
-		mov    $data_5019e,%edx
+		mov    $save_file_name_2,%edx
 		call   func_1492e
 		mov    $data_5013e,%eax
 		call   func_13c31
@@ -8210,7 +8219,7 @@ func_16afa:
 		jne    jump_16e1c
 		call   func_15bd9
 		mov    $data_501f7,%eax
-		mov    $data_501ab,%edx
+		mov    $save_file_name_3,%edx
 		call   func_1492e
 		mov    $data_5013e,%eax
 		call   func_13c31
@@ -8240,7 +8249,7 @@ func_16afa:
 		jne    jump_16ea0
 		call   func_15bd9
 		mov    $data_501f7,%eax
-		mov    $data_501b8,%edx
+		mov    $save_file_name_4,%edx
 		call   func_1492e
 		mov    $data_5013e,%eax
 		call   func_13c31
@@ -8270,7 +8279,7 @@ func_16afa:
 		jne    jump_16f27
 		call   func_15bd9
 		mov    $data_501f7,%eax
-		mov    $data_501c5,%edx
+		mov    $save_file_name_5,%edx
 		call   func_1492e
 		mov    $data_5013e,%eax
 		call   func_13c31
@@ -46783,20 +46792,31 @@ func_3a149:
 		ret
 
 
+/**
+ * @param eax ASCIIZ file specification
+ * @param edx file attribute mask
+ * @param ecx disk transfer area (DTA)
+ *
+ * @return eax 0 if success
+ */
 /*----------------------------------------------------------------*/
-func_3a1f8:
+func_3a1f8: /* 3a1f8 */
 /*----------------------------------------------------------------*/
 		push   %ecx
 		push   %eax
 		push   %edx
 		mov    %ebx,%edx
 		mov    $0x1a,%ah
-		int    $0x21
+		int    $0x21 /* set DTA address */
 		pop    %ecx
 		pop    %edx
 		mov    $0x4e,%ah
+
+    /* find first matching file.
+     * DTA is filled with FindFirst data block
+     */
 		int    $0x21
-		call   func___doserror_
+    call   func___doserror_
 		mov    %ebx,%edx
 		call   func_3a234
 		pop    %ecx
@@ -46804,7 +46824,7 @@ func_3a1f8:
 
 
 /*----------------------------------------------------------------*/
-func_3a215:
+func_3a215: /* 3a215 */
 /*----------------------------------------------------------------*/
 		push   %edx
 		mov    %eax,%edx
@@ -46833,7 +46853,7 @@ func_3a234:
 		int    $0x21
 		mov    %ebx,%esi
 		mov    %edx,%edi
-		mov    $0x2b,%ecx
+		mov    $0x2b,%ecx /* 0x2b: size of FindFirst data block */
 		rep movsb %ds:(%esi),%es:(%edi)
 		pop    %edi
 		pop    %esi
@@ -51425,7 +51445,7 @@ func_3cb92:
 /*----------------------------------------------------------------*/
 func___doserror_:	/* 0x3cb9c */
 /*----------------------------------------------------------------*/
-		jae    jump_3cbac
+		jae    jump_3cbac /* jump if CF == 0 */
 		and    $0xffff,%eax
 		push   %eax
 		call   func___set_errno_dos_
@@ -58549,7 +58569,7 @@ data_500e4:
 data_500e9:
 		.string "%s write error!\n"
 data_500fa:
-		.ascii  "\x2a\x2e\x2a\x00"
+		.ascii  "\x2a\x2e\x2a\x00" /* "*.*" */
 data_500fe:
 		.string "contibak"
 data_50107:
@@ -58573,7 +58593,7 @@ data_5014b:
 		.string "blackbox.dat write error!"
 data_50165:
 		.string "blackbox.dat read error!"
-data_5017e:
+save_file_name_1: /* 5017e */
 		.string "blackbox.sv1"
 data_5018b:
 		.ascii  "\x20\xb6\xa9\x20\x00"
@@ -58583,13 +58603,13 @@ data_50195:
 		.ascii  "\x20\xaf\xa1\x20\x00"
 data_5019a:
 		.ascii  "\x20\xa6\x85\x00"
-data_5019e:
+save_file_name_2: /* 5019e */
 		.string "blackbox.sv2"
-data_501ab:
+save_file_name_3: /* 501ab */
 		.string "blackbox.sv3"
-data_501b8:
+save_file_name_4: /* 501b8 */
 		.string "blackbox.sv4"
-data_501c5:
+save_file_name_5: /* 501c5 */
 		.string "blackbox.sv5"
 data_501d2:
 		.ascii  "\x72\x62\x00"
