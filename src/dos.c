@@ -653,3 +653,12 @@ dos_strlen (const char *s)
 
   return strlen (s);
 }
+
+char *
+dos_strcpy (char *dst, const char *src)
+{
+  ASSERT (NULL != dst);
+  ASSERT (NULL != src);
+
+  return strcpy (dst, src);
+}
