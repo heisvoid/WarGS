@@ -32887,7 +32887,7 @@ func_2c00f:
 		lea    0x4(%esp),%edx
 		add    $0x1c,%eax
 		add    $0x19,%ebp
-		call   func_strcpy_
+		call   w_dos_strcpy
 		jmp    func_2bfcd
 
 
