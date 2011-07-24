@@ -723,7 +723,7 @@ func_123e3:
 		jne    jump_1243a
 		push   %ebx
 		push   $data_2002e
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		call   w_dos_getch
 		mov    %edx,%eax
@@ -753,7 +753,7 @@ func_123e3:
 		jne    jump_1249b
 		push   %esi
 		push   $data_2003e
-		call   func_printf_
+		call   w_printf
 		add    $0x8,%esp
 		call   w_dos_getch
 		mov    %edx,%eax
@@ -3439,7 +3439,7 @@ func_141b4:
 		jne    jump_14203
 #endif
 		push   $data_20388
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
 		call   w_exit
@@ -4891,7 +4891,7 @@ func_162f7:
 		jne    jump_16323
 		call   func_15d26
 		push   $data_203c0
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
 		jmp    w_exit
@@ -5750,7 +5750,7 @@ func_1852c:
 /*----------------------------------------------------------------*/
 		push   $data_20702
 	jump_18531:
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		ret
 
@@ -5957,7 +5957,7 @@ func_1882c:
 		test   %eax,%eax
 		jne    jump_1886a
 		push   $data_20897
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		mov    $0x1,%eax
 		call   w_exit
@@ -5972,7 +5972,7 @@ func_1882c:
 		mov    %edi,%eax
 		call   func_fclose_
 		push   $data_208ab
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		mov    $0x1,%eax
 		call   w_exit
@@ -5998,7 +5998,7 @@ func_1882c:
 		mov    %edi,%eax
 		call   func_fclose_
 		push   $data_208bc
-		call   func_printf_
+		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
 		call   w_exit
