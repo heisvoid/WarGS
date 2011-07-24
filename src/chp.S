@@ -1174,7 +1174,7 @@ func_112e0:
 		test   %eax,%eax
 		jne    jump_11323
 		mov    $data_50024,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -1240,7 +1240,7 @@ func_112e0:
 		test   %eax,%eax
 		jne    jump_113fd
 		mov    $data_50055,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -1304,7 +1304,7 @@ func_112e0:
 		test   %eax,%eax
 		jne    jump_114cd
 		mov    $data_50079,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %ebx,%eax
 		call   func_fclose_
@@ -3132,7 +3132,7 @@ func_128da:
 		test   %eax,%eax
 		jne    jump_12944
 		mov    $data_5009b,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    $data_500ae,%eax
 		call   func_204a7
@@ -3255,7 +3255,7 @@ func_128da:
 		test   %eax,%eax
 		jne    jump_12b2c
 		mov    $data_5009b,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    $data_500ae,%eax
 		call   func_204a7
@@ -6536,7 +6536,7 @@ func_15bd9:
 		cmp    $0xffffffff,%eax
 		jne    jump_15c3c
 		mov    $data_5014b,%eax
-		call   func_puts_
+		call   w_puts
 		mov    %ecx,%eax
 		jmp    jump_14920
 	jump_15c3c:
@@ -6672,7 +6672,7 @@ func_15db7:
 		cmp    $0xffff,%ax
 		jne    jump_15dff
 		mov    $data_50165,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		xor    %eax,%eax
 		mov    %dx,%ax
@@ -9035,7 +9035,7 @@ func_17728:
 		cmp    $0xffffffff,%ecx
 		jne    jump_17751
 		mov    $data_50302,%eax
-		call   func_puts_
+		call   w_puts
 		jmp    jump_17762
 	jump_17751:
 		mov    $game_cfg_speed,%edx
@@ -9070,7 +9070,7 @@ func_1776d:
 		cmp    $0xffffffff,%ecx
 		jne    jump_177ab
 		mov    $data_50317,%eax
-		call   func_puts_
+		call   w_puts
 		jmp    jump_17762
 	jump_177ab:
 		mov    $game_cfg_speed,%edx
@@ -17746,7 +17746,7 @@ func_1f930:
 		cmp    $0xffffffff,%ecx
 		jne    jump_1f97c
 		mov    $data_5064a,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %ecx,%eax
 		call   w_dos_close
@@ -17818,7 +17818,7 @@ func_1fa10:
 		cmp    $0xffffffff,%ecx
 		jne    jump_1fa58
 		mov    $data_50676,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %ecx,%eax
 		call   w_dos_close
@@ -25041,7 +25041,7 @@ func_25679:
 		cmp    $0x1e,%si
 		jl     jump_25742
 		mov    $data_50b73,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		jmp    jump_257a6
 	jump_25742:
@@ -31042,7 +31042,7 @@ func_2a965:
 		test   %eax,%eax
 		jne    jump_2a9b0
 		mov    $data_5123c,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %edx,%eax
 		call   func_fclose_
@@ -35146,7 +35146,7 @@ func_2e037:
 		cmp    $0xffffffff,%edx
 		jne    jump_2e07b
 		mov    $data_51c97,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    %edx,%eax
 		call   w_dos_close
@@ -35288,7 +35288,7 @@ func_2e4c0:
 		cmp    $0xffffffff,%edx
 		jne    jump_2e4fc
 		mov    $data_51cbd,%eax
-		call   func_puts_
+		call   w_puts
 		mov    %edx,%eax
 		call   w_dos_close
 		mov    $data_51cd3,%eax
@@ -36256,7 +36256,7 @@ func_2f09a:
 		test   %eax,%eax
 		jne    jump_2f16c
 		mov    $data_51d48,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    $data_51cd3,%eax
 		call   func_204a7
@@ -37970,7 +37970,7 @@ func_30afe:
 		test   %eax,%eax
 		jne    jump_30bb0
 		mov    $data_51db4,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    $data_51dcc,%eax
 		call   func_204a7
@@ -38032,7 +38032,7 @@ func_30afe:
 		test   %eax,%eax
 		jne    jump_30cba
 		mov    $data_51db4,%eax
-		call   func_puts_
+		call   w_puts
 		call   func_getch_
 		mov    $data_51dcc,%eax
 		call   func_204a7
