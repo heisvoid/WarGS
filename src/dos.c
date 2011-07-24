@@ -11,10 +11,12 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
+#include <glob.h>
 
 #include "assert.h"
 #include "filepath.h"
 #include "keyboard.h"
+#include "util.h"
 
 static FILE *talk_file = NULL;
 
@@ -493,4 +495,134 @@ dos_fputc (int c, FILE *f)
   ASSERT (EOF != ret);
 
   return ret;
+}
+
+static glob_t *glob_buf = NULL;
+static size_t glob_index = 0;
+
+static void
+fill_dta (const char *file_path, int8_t *dta)
+{
+  ASSERT (NULL != file_path);
+  ASSERT (NULL != dta);
+
+  struct stat fs;
+  const int ret = stat (file_path, &fs);
+  ASSERT (0 == ret);
+
+  /* dos file attribute
+   * bit 0: read only file
+   * bit 1: hidden file
+   * bit 2: system file
+   * bit 3: volume label
+   * bit 4: sub-directory
+   * bit 5: archive
+   * bit 6: reserved
+   * bit 7: reserved
+   *
+   * reference
+   * http://www.computerhope.com/attribhl.htm
+   * http://www.xxcopy.com/xxcopy06.htm
+   * http://www.pcguide.com/ref/hdd/file/fatAttributes-c.html
+   */
+
+  *(dta + 0x15) = 0;
+  if (0 == (S_IWUSR && fs.st_mode))
+    {
+      *(dta + 0x15) |= 0x01;
+    }
+  if (S_ISDIR (fs.st_mode))
+    {
+      *(dta + 0x15) |= 0x10;
+    }
+  
+  const struct tm * const t = localtime (&fs.st_mtime);
+
+  *(int16_t *)(dta + 0x16) = 0;
+  *(int16_t *)(dta + 0x16) |= ((t->tm_hour << 11)
+                               | (t->tm_min << 5)
+                               | (t->tm_sec / 2));
+
+  *(int16_t *)(dta + 0x18) = 0;
+  *(int16_t *)(dta + 0x18) |= (((80 + t->tm_year) << 9)
+                               | ((1 + t->tm_mon) << 5)
+                               | t->tm_mday);
+
+  *(int32_t *)(dta + 0x1a) = fs.st_size;
+
+  char * const tmp = strdup (file_path);
+  ASSERT (NULL != tmp);
+
+  const char * const bn = basename (tmp);
+  ASSERT (13 > strlen (bn));
+
+  strcpy ((char *) (dta + 0x1e), bn);
+
+  free (tmp);
+}
+
+int
+dos_findfirst (const char *file_spec, int attr_mask, int8_t *dta)
+{
+  ASSERT (NULL != file_spec);
+  ASSERT (NULL != dta);
+
+  const char *native_file_spec = NULL;
+  if (0 == strcmp ("*.*", file_spec))
+    {
+      native_file_spec = filepath_transform ("*");
+    }
+  else
+    {
+      native_file_spec = filepath_transform (file_spec);
+    }
+
+  if (NULL != glob_buf)
+    {
+      globfree (glob_buf);
+      free (glob_buf);
+    }
+  
+  glob_buf = xmalloc (sizeof (glob_t));
+  glob_index = 1;
+
+  const int ret = glob (native_file_spec, 0, NULL, glob_buf);
+  if (GLOB_NOMATCH == ret)
+    {
+      /* file not found.
+       * http://www.delorie.com/djgpp/doc/rbinter/it/80/16.html
+       */
+      return 2;
+    }
+
+  ASSERT (0 == ret);
+  ASSERT (0 <  glob_buf->gl_pathc);
+
+  fill_dta (glob_buf->gl_pathv[0], dta);
+
+  free ((void *) native_file_spec);
+
+  return 0;
+}
+
+int
+dos_findnext (int8_t *dta)
+{
+  ASSERT (NULL != dta);
+
+  if (NULL == glob_buf)
+    {
+      LOG_FATAL ("firdfirst should be called");
+    }
+
+  if (glob_buf->gl_pathc <= glob_index)
+    {
+      return 2;
+    }
+
+  fill_dta (glob_buf->gl_pathv[glob_index], dta);
+
+  glob_index++;
+
+  return 0;
 }
