@@ -27798,7 +27798,7 @@ func_27af5:
 		call   func_15333
 		lea    0x20(%esp),%eax
 		mov    $0x2e,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		jne    jump_27e66
 		lea    0x20(%esp),%edi
@@ -31940,7 +31940,7 @@ func_2b1bd:
 	jump_2b4e4:
 		lea    0x28(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2b503
 		movb   $0x1,0x9c(%esp)
@@ -32047,7 +32047,7 @@ func_2b1bd:
 		jl     jump_2b645
 		lea    0x28(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2b675
 		movb   $0x1,0x9c(%esp)
@@ -32155,7 +32155,7 @@ func_2b1bd:
 		jl     jump_2b7bf
 		lea    0x28(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2b7ef
 		movb   $0x1,0x9c(%esp)
@@ -32263,7 +32263,7 @@ func_2b1bd:
 		jl     jump_2b939
 		lea    0x28(%esp),%eax
 		mov    $0x40,%edx
-		call   func_strrchr_
+		call   w_dos_strrchr
 		test   %eax,%eax
 		je     jump_2b969
 		movb   $0x1,0x9c(%esp)
