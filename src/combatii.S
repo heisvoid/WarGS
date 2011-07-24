@@ -11024,7 +11024,7 @@ func_17823:
 		call   w_dos_strcat
 		mov    $data_fa784,%eax
 		mov    $data_fa784,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		add    %eax,%edx
 		movswl %bx,%eax
 		mov    $0xa,%ebx
@@ -11068,7 +11068,7 @@ func_17823:
 		call   w_dos_strcat
 		mov    $data_fa784,%eax
 		mov    $data_fa784,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		add    %eax,%edx
 		xor    %eax,%eax
 		mov    0x2e(%ebx),%al
@@ -12628,7 +12628,7 @@ func_1888d:
 		push   %eax
 		mov    %ebp,%eax
 		mov    $0x48,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		shl    $0x2,%eax
 		sub    %eax,%edx
 		movswl %dx,%eax
@@ -12848,7 +12848,7 @@ func_18b2e:
 		mov    %ebp,%eax
 		call   w_dos_strcat
 		mov    %ebp,%eax
-		call   func_strlen_
+		call   w_dos_strlen
 		lea    (%eax,%ebp,1),%edx
 		mov    data_f0381(%ebx),%eax
 		mov    $0xa,%ebx
@@ -12872,7 +12872,7 @@ func_18b2e:
 		je     jump_18caf
 		mov    %ebp,%eax
 		mov    $0xa,%ebx
-		call   func_strlen_
+		call   w_dos_strlen
 		lea    (%eax,%ebp,1),%esi
 		mov    data_f0385(%edx),%eax
 		mov    %esi,%edx
@@ -83645,14 +83645,14 @@ func_4e0ee:
 		movswl %cx,%esi
 		mov    data_7545c(,%esi,4),%eax
 		mov    $0xa0,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		mov    data_7545c(,%esi,4),%ebx
 		shl    $0x2,%eax
 		push   %ebx
 		jmp    jump_4e184
 	jump_4e16b:
 		mov    data_75480,%eax
-		call   func_strlen_
+		call   w_dos_strlen
 		mov    data_75480,%edx
 		shl    $0x2,%eax
 		push   %edx
@@ -83712,7 +83712,7 @@ func_4e0ee:
 		movswl %si,%esi
 		mov    data_7545c(,%esi,4),%eax
 		mov    $0xa0,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		mov    data_7545c(,%esi,4),%ebp
 		shl    $0x2,%eax
 		push   %ebp
@@ -83720,7 +83720,7 @@ func_4e0ee:
 	jump_4e263:
 		mov    data_75480,%eax
 		mov    $0xa0,%edx
-		call   func_strlen_
+		call   w_dos_strlen
 		mov    data_75480,%esi
 		shl    $0x2,%eax
 		push   %esi
