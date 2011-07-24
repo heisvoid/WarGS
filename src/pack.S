@@ -2279,7 +2279,7 @@ func_132dd:
 /*----------------------------------------------------------------*/
 func_132eb:
 /*----------------------------------------------------------------*/
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_12a2b
 		mov    0x2(%eax),%eax
 		mov    $0x1,%edx
@@ -2312,7 +2312,7 @@ func_1330d:
 		sar    $0x10,%eax
 		mov    0x1c(%ebp,%eax,2),%ebx
 		xor    %eax,%eax
-		mov    data_82732,%al
+		mov    game_cfg_sound,%al
 		imul   $0xa,%eax,%eax
 		mov    $0xa,%edx
 		sar    $0x10,%ebx
@@ -9359,7 +9359,7 @@ func_18fd0:
 		call   func_235ec
 #endif
 		call   func_392b4
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_1900e
 		call   func_39ed7
 	jump_1900e:
@@ -9897,14 +9897,14 @@ GLOBAL (pack)	/* 0x195cf */
 		call   func_2b56c
 		movb   $0x50,data_82949
 		call   func_1a712
-		mov    data_82734,%dx
-		mov    data_82734,%ecx
+		mov    game_cfg_soundblaster_adr,%dx
+		mov    game_cfg_soundblaster_adr,%ecx
 		test   %dx,%dx
 		setne  %al
 		xor    %edx,%edx
-		mov    data_82732,%ebx
+		mov    game_cfg_sound,%ebx
 		mov    %al,%dl
-		mov    data_82736,%eax
+		mov    game_cfg_soundblaster_irq,%eax
 		sar    $0x10,%ecx
 		sar    $0x10,%eax
 		sar    $0x10,%ebx
@@ -9918,12 +9918,12 @@ GLOBAL (pack)	/* 0x195cf */
 		xor    %edx,%edx
 		mov    data_15ba23,%al
 		call   func_213a6
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_19735
 		call   func_397dd
 	jump_19735:
 		call   func_2d038
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_19755
 		mov    data_82716,%eax
 		mov    $0x1,%edx
@@ -32290,7 +32290,7 @@ func_2d038:
 		call   func_2b206
 		jmp    jump_2d28f
 	jump_2d2b2:
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_2d2ca
 		mov    $0x1,%edx
 		mov    data_82718,%eax
@@ -32370,7 +32370,7 @@ vtable_2d2e8:
 func_2d3b8:
 /*----------------------------------------------------------------*/
 		push   %edx
-		cmpb   $0x0,data_82731
+		cmpb   $0x0,game_cfg_music
 		je     jump_2d4a1
 		sub    $0x10f,%eax
 		cmp    $0x33,%eax
@@ -35514,7 +35514,7 @@ func_2f789:
 		mov    data_15b9cc,%eax
 		call   func_2b433
 		xor    %edx,%edx
-		mov    data_82732,%dl
+		mov    game_cfg_sound,%dl
 		mov    %edx,%eax
 		shl    $0x2,%eax
 		mov    $0x13e,%edi
@@ -36179,7 +36179,7 @@ func_2f789:
 		cmp    $0x1,%eax
 		jne    jump_30420
 		xor    %eax,%eax
-		mov    data_82732,%al
+		mov    game_cfg_sound,%al
 		imul   $0xa,%eax,%eax
 		mov    $0x2,%edx
 		mov    $0x1,%ebx
@@ -39103,7 +39103,7 @@ func_329f7:
 		mov    data_15b9cc,%eax
 		call   func_2b433
 		xor    %eax,%eax
-		mov    data_82732,%al
+		mov    game_cfg_sound,%al
 		imul   $0xa,%eax,%eax
 		mov    $0x9e,%ebp
 		mov    %esi,%edi
@@ -39194,7 +39194,7 @@ func_329f7:
 		mov    data_15b9cc,%eax
 		call   func_2b433
 		xor    %eax,%eax
-		mov    data_82732,%al
+		mov    game_cfg_sound,%al
 		imul   $0xa,%eax,%eax
 		mov    $data_1722c4,%edi
 		mov    $0x1,%edx
@@ -40959,7 +40959,7 @@ func_34b92:
 	jump_34c13:
 		call   func_2b240
 	jump_34c18:
-		cmpb   $0x1,data_82731
+		cmpb   $0x1,game_cfg_music
 		jne    jump_34c35
 		mov    $0x51,%edx
 		mov    $data_7991c,%ebx
@@ -40973,7 +40973,7 @@ func_34b92:
 		mov    data_15b9cc,%ecx
 	jump_34c4a:
 		call   func_2b240
-		cmpb   $0x1,data_82732
+		cmpb   $0x1,game_cfg_sound
 		jne    jump_34c6c
 		mov    $0x71,%edx
 		mov    $data_7a4d4,%ebx
@@ -41054,7 +41054,7 @@ func_34b92:
 		cmp    $0x6c,%eax
 		jg     jump_34d8f
 		xor    %cl,%cl
-		mov    %cl,data_82731
+		mov    %cl,game_cfg_music
 		call   func_39ed7
 		jmp    jump_34bcb
 	jump_34d8f:
@@ -41070,7 +41070,7 @@ func_34b92:
 		jg     jump_34dd2
 		mov    $0x1,%bh
 		mov    $0x1,%edx
-		mov    %bh,data_82731
+		mov    %bh,game_cfg_music
 		call   func_397dd
 		mov    data_82718,%eax
 		call   func_39e5e
@@ -41087,7 +41087,7 @@ func_34b92:
 		cmp    $0x8e,%ebx
 		jg     jump_34e03
 		xor    %bl,%bl
-		mov    %bl,data_82732
+		mov    %bl,game_cfg_sound
 		jmp    jump_34bcb
 	jump_34e03:
 		mov    data_7cf24,%esi
@@ -41100,7 +41100,7 @@ func_34b92:
 		jl     jump_34e32
 		cmp    $0x8e,%eax
 		jg     jump_34e32
-		movb   $0x1,data_82732
+		movb   $0x1,game_cfg_sound
 		jmp    jump_34bcb
 	jump_34e32:
 		mov    data_7cf24,%ebx
@@ -41335,7 +41335,7 @@ func_35109:
 		mov    %edx,data_19ff44
 		xor    %edx,%edx
 		call   func_1199e
-		mov    data_82732,%dl
+		mov    game_cfg_sound,%dl
 		mov    %edx,%eax
 		shl    $0x2,%eax
 		mov    $0x1,%ebx
@@ -41851,7 +41851,7 @@ func_357c4:
 		mov    data_15b9cc,%eax
 		call   func_2b433
 		xor    %edx,%edx
-		mov    data_82732,%dl
+		mov    game_cfg_sound,%dl
 		mov    %edx,%eax
 		mov    $0x140,%esi
 		shl    $0x2,%eax
@@ -74309,14 +74309,16 @@ data_82720:
 		.fill   0x10
 GLOBAL (game_cfg_speed) /* 82730 */
 		.ascii  "\x00"
-data_82731:
-		.ascii  "\x00"
-data_82732:
-		.ascii  "\x00\x00"
-data_82734:
-		.ascii  "\x00\x00"
-data_82736:
-		.fill   0x36
+game_cfg_music: /* 82731 */
+		.ascii  "\x01"
+game_cfg_sound: /* 82732 */
+		.ascii  "\x01\x05"
+game_cfg_soundblaster_adr: /* 82734 */
+		.ascii  "\x20\x02"
+game_cfg_soundblaster_irq: /* 82736 */
+    .word   0x0007
+    .word   0x0001
+		.fill   0x32
 data_8276c:
 		.ascii  "\x00\x00"
 data_8276e:
