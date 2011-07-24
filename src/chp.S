@@ -33949,7 +33949,7 @@ func_2cfed:
 		mov    $0x10,%ebx
 		add    %eax,%edx
 		mov    $data_1164c8,%eax
-		call   func_memmove_
+		call   w_dos_memmove
 		mov    $data_1164c4,%ebx
 		mov    data_116502,%edx
 		mov    data_116500,%eax
