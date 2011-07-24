@@ -1,5 +1,7 @@
 bin_PROGRAMS = wargs wargs-ttl wargs-combatii wargs-chp wargs-pack
 
+dist_bin_SCRIPTS = $(top_srcdir)/tool/wargs-setup
+
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
 							filepath.c filepath.h \
