@@ -85970,7 +85970,7 @@ func_4fcd9:
   jump_func_4fcd9_1:
 #endif
 		mov    $data_fdf68,%eax
-		call   func_strcmp_
+		call   w_dos_strcmp
 		test   %eax,%eax
 		je     jump_4fd1e
 		call   func_4f4ef
