@@ -11793,7 +11793,7 @@ func_1808a:
 		mov    %dl,0x14(%esi)
 		mov    %esi,%edx
 		mov    %ecx,%eax
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    %esi,%eax
 		movb   $0x0,0x5c(%ecx)
 		call   func_1134a
@@ -69940,7 +69940,7 @@ func_4426d:
 		mov    %eax,%ecx
 		mov    %ebp,%edx
 		mov    %eax,(%esp)
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    0x10(%esp),%al
 		mov    $data_77bfa,%esi
 		mov    %al,(%ecx)
@@ -93068,7 +93068,7 @@ func_54a82:
 		mov    $0x88,%ebx
 		mov    data_111f04(,%ebp,4),%edx
 		mov    %eax,%ecx
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    data_111f04(,%ebp,4),%eax
 		movb   $0x80,0x56(%eax)
 		mov    0x5f(%ecx),%eax
@@ -93603,7 +93603,7 @@ func_551e5:
 		mov    $0x88,%ebx
 		mov    %edi,%edx
 		mov    %eax,%esi
-		call   func_memcpy_
+		call   w_dos_memcpy
 		cmpb   $0x0,0x5c(%edi)
 		jne    jump_55265
 		cmpb   $0x4,data_ba84e
@@ -93613,7 +93613,7 @@ func_551e5:
 		mov    $0x88,%ebx
 		mov    %esi,%edx
 		mov    %eax,%ecx
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    %ecx,0x77(%esi)
 		movb   $0x0,0x5c(%ecx)
 		movl   $0x0,0x7b(%ecx)
