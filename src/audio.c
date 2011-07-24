@@ -128,7 +128,10 @@ audio_music_play (uint32_t track)
              music_root, FILEPATH_SEPARATOR, track);
 
   music = Mix_LoadMUS (file_path);
-  ASSERT (NULL != music);
+  if (NULL == music)
+    {
+      return;
+    }
 
   Mix_VolumeMusic (music_is_muted ? 0 : MIX_MAX_VOLUME);
 
@@ -137,6 +140,8 @@ audio_music_play (uint32_t track)
     {
       Mix_FreeMusic (music);
       music = NULL;
+
+      return;
     }
 
   music_track = track;
