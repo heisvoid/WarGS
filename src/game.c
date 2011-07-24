@@ -75,6 +75,9 @@ handle_events ()
               mouse_handle_event (&event);
             }
           break;
+        case SDL_QUIT:
+          game_quit ();
+          exit (10);
         default:
           break;
         }
@@ -118,7 +121,7 @@ game_update ()
       };
 
       int32_t delay = 1000 / fps - (SDL_GetTicks () - last_frame_ticks);
-      while (DELAY_GRANULARITY < delay)
+      while (0 < delay)
         {
           const uint32_t t = SDL_GetTicks ();
 

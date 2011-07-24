@@ -168,11 +168,17 @@ main ()
   while (true)
     {
       SPAWN (SPAWN_TTL);
+      if (10 == child_exit_status)
+        {
+          break;
+        }
 
       if (false == does_file_exist (dollar_file_path))
         {
           break;
         }
+
+      bool end = true;
 
       while (true)
         {
@@ -182,7 +188,14 @@ main ()
 
               SPAWN (SPAWN_COMBATII);
             }
-          while (255 != child_exit_status);
+          while (255 != child_exit_status && 10 != child_exit_status);
+
+          if (10 == child_exit_status)
+            {
+              end = true;
+
+              break;
+            }
 
           read_dollar ();
           if (0 == strcmp ("EXIT", dollar))
@@ -193,6 +206,12 @@ main ()
           unlink (dollar_file_path);
 
           SPAWN (SPAWN_CHP, "p");
+          if (10 == child_exit_status)
+            {
+              end = true;
+
+              break;
+            }
 
           if (does_file_exist (load_file_path))
             {
@@ -211,6 +230,12 @@ main ()
           if (NULL != dot && 0 == strcasecmp (dot, ".sce"))
             {
               SPAWN (SPAWN_COMBATII, dollar);
+              if (10 == child_exit_status)
+                {
+                  end = true;
+
+                  break;
+                }
 
               if (255 == child_exit_status)
                 {
@@ -224,7 +249,18 @@ main ()
           else
             {
               SPAWN (SPAWN_PACK, "SM", dollar);
+              if (10 == child_exit_status)
+                {
+                  end = true;
+
+                  break;
+                }
             }
+        }
+
+      if (true == end)
+        {
+          break;
         }
     }
 
