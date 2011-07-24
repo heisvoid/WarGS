@@ -173,7 +173,7 @@ EOF
     fi
 
     local music_ogg="${TARGET_MUSIC}/track${music_num}.ogg"
-    "${OGGENC}" --resample 22000 -b 192 -o "${music_ogg}" "${music_wav}" || return 1
+    "${OGGENC}" --resample 22000 -q 7 -o "${music_ogg}" "${music_wav}" || return 1
 
     chmod 0444 "${music_ogg}" || return 1
 
