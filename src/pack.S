@@ -44863,39 +44863,55 @@ func_37f5d:
 		mov    %eax,%edx
 		sar    $0x10,%edx
 		mov    (%esp,%ebx,4),%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    $0xc,%eax
 		xor    %edx,%edx
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		and    $0xff,%edx
 		lea    (%ebx,%ebx,1),%ecx
 		mov    %ecx,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		sar    $0x8,%edx
 		and    $0xff,%edx
 		mov    %ecx,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    0x10(%esp),%ebp
 		dec    %ebp
 		mov    %ebp,%edx
 		and    $0xff,%edx
 		inc    %ecx
 		mov    %ecx,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebp,%edx
 		sar    $0x8,%edx
 		and    $0xff,%edx
 		mov    %ecx,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    %ebx,%edx
 		or     $0x58,%dl
 		mov    $0xb,%eax
+#if 0
 		call   func_outp_
+#endif
 		mov    $0xa,%eax
 		mov    %ebx,%edx
+#if 0
 		call   func_outp_
+#endif
 		add    $0x14,%esp
 		pop    %ebp
 		pop    %edi
@@ -44907,6 +44923,7 @@ func_37f5d:
 /*----------------------------------------------------------------*/
 func_38026:
 /*----------------------------------------------------------------*/
+#if 0
 		push   $0x8
 		call   func___CHK
 		push   %edx
@@ -44955,12 +44972,14 @@ func_38026:
 	jump_380ab:
 		mov    $0xffffffff,%eax
 		pop    %edx
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
 func_380e9:
 /*----------------------------------------------------------------*/
+#if 0
 		push   $0xc
 		call   func___CHK
 		push   %ebx
@@ -44988,6 +45007,7 @@ func_380e9:
 	jump_38126:
 		pop    %ecx
 		pop    %ebx
+#endif
 		ret
 
 
@@ -46475,15 +46495,15 @@ func_397dd:
 		xor    %esi,%esi
 		xor    %edx,%edx
 		mov    %esi,data_1b62f0
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    $0x32,%ebx
 		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x1500,data_1b6310
-		mov    %esi,data_1b6304
+		movl   $0x1500,dpmi_real_mode_call_structure_eax
+		mov    %esi,dpmi_real_mode_call_structure_ebx
 		movw   $0x300,(%esp)
 		movb   $0x2f,0x4(%esp)
 		xor    %dl,%dl
@@ -46491,48 +46511,54 @@ func_397dd:
 		xor    %ebx,%ebx
 		mov    %bx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_1b62f4,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
+#if 1
+    movw   $0x0001,dpmi_real_mode_call_structure_ebx
+    movw   $0x0000,dpmi_real_mode_call_structure_ecx
+#else
 		call   w_dos_int386x
-		mov    data_1b6304,%dx
+#endif
+		mov    dpmi_real_mode_call_structure_ebx,%dx
 		mov    %dx,data_8276c
-		mov    data_1b630c,%al
+		mov    dpmi_real_mode_call_structure_ecx,%al
 		mov    %al,data_8276e
 		and    $0xff,%eax
-		mov    %eax,data_5403c
+		mov    %eax,cdrom_starting_letter
 		test   %dx,%dx
 		jne    jump_39893
 	jump_3988c:
 		xor    %eax,%eax
 		jmp    jump_39955
 	jump_39893:
-		call   func_3a0a8
-		cmpl   $0x2,data_82708
+		call   cdrom_get_mscdex_version
+		cmpl   $0x2,cdrom_mscdex_major_version
 		jge    jump_398aa
-		cmpl   $0x1,data_8270c
+		cmpl   $0x1,cdrom_mscdex_minor_version
 		jl     jump_3988c
 	jump_398aa:
-		call   func_3a14f
+		call   cdrom_get_audio_disc_info
 		inc    %esi
-		cmpw   $0x8102,data_82790
+		cmpw   $0x8102,cdrom_device_driver_request_return_status
 		jne    jump_398c3
 		cmp    $0x1f4,%esi
 		jl     jump_398aa
 	jump_398c3:
 		cmp    $0x1f4,%esi
 		je     jump_3988c
-		cmpw   $0x8000,data_82790
+		cmpw   $0x8000,cdrom_device_driver_request_return_status
 		jae    jump_3988c
 		movl   $0x1,data_1b62f0
 		mov    $0x2,%eax
 		mov    $data_1b6354,%edx
 		mov    $data_1b6352,%ebx
-		call   func_3a995
+#if 0
+		call   allocate_dos_memory_block
 		xor    %eax,%eax
 		mov    data_1b6354,%gs
 		mov    %gs,data_82796
@@ -46545,7 +46571,8 @@ func_397dd:
 		movb   $0x2,%gs:0x5(%eax)
 		lgs    data_82792,%eax
 		movb   $0x3,%gs:0x7(%eax)
-		call   func_3a6bd
+#endif
+		call   cdrom_get_audio_channel_info
 		xor    %ecx,%ecx
 		mov    %ecx,data_54038
 		mov    %ebx,data_54030
@@ -46575,8 +46602,9 @@ func_3995d:
 
 
 /*----------------------------------------------------------------*/
-func_3997d:
+free_dos_memory_block: /* 3997d */
 /*----------------------------------------------------------------*/
+#if 0
 		push   $0x28
 		call   func___CHK
 		push   %ebx
@@ -46592,6 +46620,7 @@ func_3997d:
 		add    $0x1c,%esp
 		pop    %edx
 		pop    %ebx
+#endif
 		ret
 
 
@@ -46616,7 +46645,7 @@ func_399ac:
 		jne    jump_399f9
 		mov    data_5402a,%eax
 		sar    $0x10,%eax
-		call   func_3a3ae
+		call   cdrom_get_audio_track_info
 		pop    %edi
 		pop    %edx
 		pop    %ebx
@@ -46637,7 +46666,7 @@ func_399ac:
 		ret
 	jump_39a1f:
 		xor    %eax,%eax
-		mov    data_82790,%ax
+		mov    cdrom_device_driver_request_return_status,%ax
 		sar    $0x8,%eax
 		cmp    $0x1,%eax
 		jne    jump_39a3c
@@ -46664,32 +46693,36 @@ func_39dec:
 		jmp    jump_39e50
 	jump_39e08:
 		movswl %dx,%eax
-		call   func_3a3ae
-		cmpb   $0x40,data_82775
-		je     jump_39e4f
+		call   cdrom_get_audio_track_info
+#if 1
+    cmp    $0x1,%edx /* because track 1 is data track */
+#else
+		cmpb   $0x40,cdrom_track_control_information_related_var
+#endif
+		je     jump_39e4f /* jump if it is data track */
 		mov    %edx,%ebx
 		shl    $0x2,%ebx
-		mov    data_82771,%eax
+		mov    cdrom_something_related_with_starting_point_of_the_track,%eax
 		mov    %eax,data_1b61f0(%ebx)
 		xor    %eax,%eax
-		mov    data_82777,%al
+		mov    cdrom_highest_track_number,%al
 		cmp    %eax,%edx
 		jne    jump_39e3b
-		mov    data_8277b,%eax
+		mov    cdrom_something_related_with_starting_point_of_the_lead_out_track,%eax
 		jmp    jump_39e49
 	jump_39e3b:
 		mov    %edx,%eax
 		inc    %eax
 		cwtl
-		call   func_3a3ae
-		mov    data_82771,%eax
+		call   cdrom_get_audio_track_info
+		mov    cdrom_something_related_with_starting_point_of_the_track,%eax
 	jump_39e49:
 		mov    %eax,data_1b6268(%ebx)
 	jump_39e4f:
 		inc    %edx
 	jump_39e50:
 		xor    %eax,%eax
-		mov    data_82777,%al
+		mov    cdrom_highest_track_number,%al
 		cmp    %eax,%edx
 		jle    jump_39e08
 	jump_39e5b:
@@ -46724,7 +46757,7 @@ func_39e5e:
     add    $4,%esp
     pop    %ecx
 #else
-		call   func_3a50d
+		call   cdrom_play_audio
 #endif
 		mov    %ebx,data_54030
 		mov    %ebx,data_54034
@@ -46743,7 +46776,7 @@ func_39eb4:
 		call   func___CHK
 		call   func_3a581
 		xor    %eax,%eax
-		mov    data_82790,%ax
+		mov    cdrom_device_driver_request_return_status,%ax
 		sar    $0x8,%eax
 		cmp    $0x1,%eax
 		sete   %al
@@ -46759,7 +46792,7 @@ func_39ed7:
 		push   %edx
 		cmpl   $0x0,data_1b62f0
 		je     jump_39f06
-		call   func_39f08
+		call   cdrom_stop_audio
 		xor    %edx,%edx
 	jump_39ef2:
 		call   func_39eb4
@@ -46774,8 +46807,11 @@ func_39ed7:
 
 
 /*----------------------------------------------------------------*/
-func_39f08:
+cdrom_stop_audio: /* 39f08 */
 /*----------------------------------------------------------------*/
+#if 1
+    call   w_audio_music_stop
+#else
 		push   $0x14
 		call   func___CHK
 		push   %ebx
@@ -46788,22 +46824,22 @@ func_39f08:
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0x4(%esp),%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    (%esp),%ebx
 		mov    %ebx,%gs
 		movb   $0xd,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x85,%gs:0x2(%edx)
+		movb   $0x85,%gs:0x2(%edx) /* stop audio */
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		mov    %edx,data_54038
 		mov    %edx,data_54030
 		jmp    jump_3a00b
@@ -46811,11 +46847,12 @@ func_39f08:
 		add    $0x8,%esp
 		pop    %edx
 		pop    %ebx
+#endif
 		ret
 
 
 /*----------------------------------------------------------------*/
-func_3a011:
+cdrom_send_device_driver_request: /* 3a011 */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -46824,7 +46861,7 @@ func_3a011:
 		push   %edx
 		sub    $0x28,%esp
 		mov    %eax,%ecx
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
 		call   w_dos_memset
@@ -46832,20 +46869,20 @@ func_3a011:
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x1510,data_1b6310
-		mov    data_5403c,%eax
-		mov    %eax,data_1b630c
+		movl   $0x1510,dpmi_real_mode_call_structure_eax
+		mov    cdrom_starting_letter,%eax
+		mov    %eax,dpmi_real_mode_call_structure_ecx
 		xor    %ebx,%ebx
-		mov    %ebx,data_1b6304
-		mov    %cx,data_1b6316
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
+		mov    %cx,dpmi_real_mode_call_structure_es
 		movl   $0x300,(%esp)
 		mov    %ebx,0x4(%esp)
 		movb   $0x2f,0x4(%esp)
 		mov    %ebx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_1b62f4,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
@@ -46860,7 +46897,7 @@ func_3a011:
 
 
 /*----------------------------------------------------------------*/
-func_3a0a8:
+cdrom_get_mscdex_version: /* 3a0a8 */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -46868,7 +46905,7 @@ func_3a0a8:
 		push   %ecx
 		push   %edx
 		sub    $0x28,%esp
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
 		call   w_dos_memset
@@ -46876,9 +46913,9 @@ func_3a0a8:
 		xor    %edx,%edx
 		mov    $0xc,%ebx
 		call   w_dos_memset
-		movl   $0x150c,data_1b6310
+		movl   $0x150c,dpmi_real_mode_call_structure_eax
 		xor    %ebx,%ebx
-		mov    %ebx,data_1b6304
+		mov    %ebx,dpmi_real_mode_call_structure_ebx
 		movw   $0x300,(%esp)
 		movb   $0x2f,0x4(%esp)
 		xor    %dl,%dl
@@ -46886,26 +46923,30 @@ func_3a0a8:
 		xor    %ebx,%ebx
 		mov    %bx,0x8(%esp)
 		mov    %ds,%edx
-		mov    $data_1b62f4,%eax
+		mov    $dpmi_real_mode_call_structure,%eax
 		mov    %dx,0x1c(%esp)
-		movl   $data_1b62f4,0x14(%esp)
+		movl   $dpmi_real_mode_call_structure,0x14(%esp)
 		mov    $0x31,%eax
 		mov    %esp,%edx
 		mov    %esp,%ebx
 		lea    0x1c(%esp),%ecx
+#if 1
+    movw   $0x0102,dpmi_real_mode_call_structure_ebx
+#else
 		call   w_dos_int386x
-		mov    data_1b6304,%eax
+#endif
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		sar    $0x8,%eax
 		and    $0xff,%eax
-		mov    %eax,data_82708
-		mov    data_1b6304,%eax
+		mov    %eax,cdrom_mscdex_major_version
+		mov    dpmi_real_mode_call_structure_ebx,%eax
 		and    $0xff,%eax
-		mov    %eax,data_8270c
+		mov    %eax,cdrom_mscdex_minor_version
 		jmp    jump_3a0a1
 
 
 /*----------------------------------------------------------------*/
-func_3a14f:
+cdrom_get_audio_disc_info: /* 3a14f */
 /*----------------------------------------------------------------*/
 		push   $0x34
 		call   func___CHK
@@ -46918,11 +46959,15 @@ func_3a14f:
 		mov    $0x2,%eax
 		lea    0x10(%esp),%edx
 		lea    0x8(%esp),%ebx
-		call   func_3a995
+#if 1
+    movb   $19,cdrom_highest_track_number
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
+		call   allocate_dos_memory_block
 		mov    $0x1,%eax
 		lea    0xc(%esp),%edx
 		mov    %esp,%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		xor    %esi,%esi
 		mov    0x10(%esp),%eax
 		mov    %eax,0x4(%esp)
@@ -46942,10 +46987,10 @@ func_3a14f:
 		mov    %eax,%gs:0xe(%esi)
 		movw   $0x7,%gs:0x12(%esi)
 		mov    0x14(%esp),%gs
-		movb   $0xa,%gs:(%edi)
+		movb   $0xa,%gs:(%edi) /* audio disc info */
 		mov    0x6(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		push   $0x6
 		mov    %ds,%edx
 		mov    $data_82786,%eax
@@ -46954,9 +46999,9 @@ func_3a14f:
 		call   func__fmemcpy_
 		mov    0x14(%esp),%gs
 		mov    %gs:0x1(%edi),%al
-		mov    %al,data_82776
+		mov    %al,data_82776 /* lowest track number */
 		mov    %gs:0x2(%edi),%al
-		mov    %al,data_82777
+		mov    %al,cdrom_highest_track_number /* highest track number */
 		mov    %gs:0x3(%edi),%eax
 		mov    $data_82778,%edx
 		mov    $data_82779,%ebx
@@ -46965,16 +47010,17 @@ func_3a14f:
 		mov    0x14(%esp),%gs
 		mov    %gs:0x3(%edi),%eax
 		call   func_3a269
-		mov    %eax,data_8277b
+		mov    %eax,cdrom_something_related_with_starting_point_of_the_lead_out_track
 		mov    0x4(%esp),%gs
 		mov    %gs:0x3(%esi),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    0xe(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
+#endif
 		add    $0x18,%esp
 	jump_3a263:
 		pop    %edi
@@ -47052,7 +47098,7 @@ func_3a2d2:
 
 
 /*----------------------------------------------------------------*/
-func_3a3ae:
+cdrom_get_audio_track_info: /* 3a3ae */
 /*----------------------------------------------------------------*/
 		push   $0x2c
 		call   func___CHK
@@ -47066,11 +47112,12 @@ func_3a3ae:
 		mov    $0x2,%eax
 		lea    0x4(%esp),%edx
 		lea    0x10(%esp),%ebx
-		call   func_3a995
+#if 0
+		call   allocate_dos_memory_block
 		mov    $0x1,%eax
 		mov    %esp,%edx
 		lea    0xc(%esp),%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    0x4(%esp),%esi
 		xor    %ebx,%ebx
@@ -47091,34 +47138,35 @@ func_3a3ae:
 		mov    %eax,%gs:0xe(%edx)
 		movw   $0x7,%gs:0x12(%edx)
 		mov    %edi,%gs
-		movb   $0xb,%gs:(%ebx)
-		mov    %cl,%gs:0x1(%ebx)
+		movb   $0xb,%gs:(%ebx) /* audio track info */
+		mov    %cl,%gs:0x1(%ebx) /* track number */
 		mov    0xe(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    %edi,%gs
-		mov    %gs:0x2(%ebx),%eax
+		mov    %gs:0x2(%ebx),%eax /* starting point of the track */
 		call   func_3a269
-		mov    %eax,data_82771
+		mov    %eax,cdrom_something_related_with_starting_point_of_the_track
 		mov    %cx,data_8276f
 		mov    %edi,%gs
 		mov    %gs:0x6(%ebx),%al
 		and    $0xd0,%al
-		mov    %al,data_82775
+		mov    %al,cdrom_track_control_information_related_var
+#endif
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		add    $0x14,%esp
 		jmp    jump_3a263
 	jump_3a4fe:
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		add    $0x8,%esp
 		pop    %edx
 		pop    %ecx
@@ -47127,7 +47175,7 @@ func_3a3ae:
 
 
 /*----------------------------------------------------------------*/
-func_3a50d:
+cdrom_play_audio: /* 3a50d */
 /*----------------------------------------------------------------*/
 		push   $0x18
 		call   func___CHK
@@ -47140,7 +47188,7 @@ func_3a50d:
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0x4(%esp),%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    (%esp),%ebx
 		mov    %ebx,%gs
@@ -47153,13 +47201,13 @@ func_3a50d:
 		mov    %esi,%gs:0x12(%edx)
 		mov    0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		mov    %ebx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		add    $0x8,%esp
 		pop    %esi
 		pop    %ecx
@@ -47177,14 +47225,17 @@ func_3a581:
 		push   %edx
 		push   %esi
 		sub    $0x10,%esp
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
 		mov    $0x2,%eax
 		mov    %esp,%edx
 		lea    0xc(%esp),%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		mov    $0x1,%eax
 		lea    0x8(%esp),%edx
 		lea    0x4(%esp),%ebx
-		call   func_3a995
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    (%esp),%ecx
 		xor    %ebx,%ebx
@@ -47203,22 +47254,23 @@ func_3a581:
 		mov    %eax,%gs:0xe(%edx)
 		movw   $0x5,%gs:0x12(%edx)
 		mov    %esi,%gs
-		movb   $0x6,%gs:(%ebx)
+		movb   $0x6,%gs:(%ebx) /* device status */
 		mov    0xa(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		mov    %esi,%gs
 		mov    %gs:0x1(%ebx),%eax
 		mov    %eax,data_8278c
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
 		mov    0x6(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3997d
+		call   free_dos_memory_block
+#endif
 		add    $0x10,%esp
 		pop    %esi
 		pop    %edx
@@ -47228,7 +47280,7 @@ func_3a581:
 
 
 /*----------------------------------------------------------------*/
-func_3a6bd:
+cdrom_get_audio_channel_info: /* 3a6bd */
 /*----------------------------------------------------------------*/
 		push   $0x18
 		call   func___CHK
@@ -47239,7 +47291,10 @@ func_3a6bd:
 		mov    $0x2,%eax
 		lea    0x4(%esp),%edx
 		mov    %esp,%ebx
-		call   func_3a995
+#if 1
+    movw   $0x0100,cdrom_device_driver_request_return_status
+#else
+		call   allocate_dos_memory_block
 		xor    %edx,%edx
 		mov    0x4(%esp),%ecx
 		mov    %ecx,%gs
@@ -47259,10 +47314,11 @@ func_3a6bd:
 		movb   $0x4,%gs:(%ebx)
 		mov    -0x2(%esp),%eax
 		sar    $0x10,%eax
-		call   func_3a011
+		call   cdrom_send_device_driver_request
 		mov    %ecx,%gs
 		mov    %gs:0x3(%edx),%ax
-		mov    %ax,data_82790
+		mov    %ax,cdrom_device_driver_request_return_status
+#endif
 		mov    0x2(%esp),%eax
 		jmp    jump_3a4fe
 
@@ -47401,7 +47457,7 @@ func_3a942:
 
 
 /*----------------------------------------------------------------*/
-func_3a995:
+allocate_dos_memory_block: /* 3a995 */
 /*----------------------------------------------------------------*/
 		push   $0x38
 		call   func___CHK
@@ -62189,7 +62245,7 @@ data_54034:
 		.fill   0x4
 data_54038:
 		.fill   0x4
-data_5403c:
+cdrom_starting_letter: /* 5403c */
 		.fill   0x4
 data_54040:
 		.ascii  "\x00"
@@ -74295,9 +74351,9 @@ data_826f4:
 		.fill   0x4
 data_826f8:
 		.fill   0x10
-data_82708:
+cdrom_mscdex_major_version: /* 82708 */
 		.fill   0x4
-data_8270c:
+cdrom_mscdex_minor_version: /* 8207c */
 		.fill   0xa
 data_82716:
 		.ascii  "\x00\x00"
@@ -74325,13 +74381,13 @@ data_8276e:
 		.ascii  "\x00"
 data_8276f:
 		.ascii  "\x00\x00"
-data_82771:
+cdrom_something_related_with_starting_point_of_the_track: /* 82771 */
 		.fill   0x4
-data_82775:
+cdrom_track_control_information_related_var: /* 82775 */
 		.ascii  "\x00"
 data_82776:
 		.ascii  "\x00"
-data_82777:
+cdrom_highest_track_number: /* 82777 */
 		.ascii  "\x00"
 data_82778:
 		.ascii  "\x00"
@@ -74339,7 +74395,7 @@ data_82779:
 		.ascii  "\x00"
 data_8277a:
 		.ascii  "\x00"
-data_8277b:
+cdrom_something_related_with_starting_point_of_the_lead_out_track: /* 8277b */
 		.fill   0x4
 data_8277f:
 		.fill   0x7
@@ -74347,7 +74403,7 @@ data_82786:
 		.fill   0x6
 data_8278c:
 		.fill   0x4
-data_82790:
+cdrom_device_driver_request_return_status: /* 82790 */
 		.ascii  "\x00"
 data_82791:
 		.ascii  "\x00"
@@ -75151,15 +75207,15 @@ data_1b6268:
 		.fill   0x88
 data_1b62f0:
 		.fill   0x4
-data_1b62f4:
+dpmi_real_mode_call_structure: /* 1b62f4 */
 		.fill   0x10
-data_1b6304:
+dpmi_real_mode_call_structure_ebx: /* 1b6304 */
 		.fill   0x8
-data_1b630c:
+dpmi_real_mode_call_structure_ecx: /* 1b630c */
 		.fill   0x4
-data_1b6310:
+dpmi_real_mode_call_structure_eax: /* 1b6310 */
 		.fill   0x6
-data_1b6316:
+dpmi_real_mode_call_structure_es: /* 1b6316 */
 		.fill   0x3a
 data_1b6350:
 		.ascii  "\x00\x00"
