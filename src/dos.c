@@ -636,3 +636,12 @@ dos_memcpy (void *dst, const void *src, size_t len)
 
   return memcpy (dst, src, len);
 }
+
+char *
+dos_strcat (char *dst, const char *src)
+{
+  ASSERT (NULL != dst);
+  ASSERT (NULL != src);
+
+  return strcat (dst, src);
+}
