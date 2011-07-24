@@ -6933,7 +6933,7 @@ func_19267:
 		mov    data_43020,%edx
 		mov    %esp,%eax
 		mov    %ecx,%ebx
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    data_43020,%eax
 		add    %ecx,%eax
 		mov    %eax,data_43020
