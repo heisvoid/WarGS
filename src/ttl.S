@@ -815,7 +815,7 @@ func_125b7:
 		mov    $data_2004f,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_1b5e4
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -1041,7 +1041,7 @@ func_127d1:
 		mov    $data_2006f,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_1b5e4
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -1266,7 +1266,7 @@ func_129e7:
 		mov    $data_2007c,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_1b5e4
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -1478,7 +1478,7 @@ func_12be2:
 		mov    $data_20089,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_1b5e4
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -1690,7 +1690,7 @@ func_12ddd:
 		mov    $data_20096,%eax
 		lea    0x34(%esp),%ebx
 		xor    %edx,%edx
-		call   func_1b5e4
+		call   w_dos_findfirst
 		mov    0x4c(%esp),%esi
 		lea    0x60(%esp),%edx
 		and    $0x1e0,%esi
@@ -3161,7 +3161,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 #if 1
     /* stop audio */
     push   %eax
-    call   w_audio_stop
+    call   w_audio_sound_stop
     pop    %eax
 #endif
 	jump_13f01:
@@ -3238,7 +3238,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 #if 1
     /* stop audio */
     push   %eax
-    call   w_audio_stop
+    call   w_audio_sound_stop
     pop    %eax
 #endif
 		call   func_1a875
@@ -9703,7 +9703,7 @@ func_write_:	/* 0x1b412 */
 
 
 /*----------------------------------------------------------------*/
-func_1b5e4:
+func_1b5e4: /* 1b5e4 */
 /*----------------------------------------------------------------*/
 		push   %ecx
 		push   %eax

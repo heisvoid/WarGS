@@ -36652,7 +36652,7 @@ func_308b8:
 		mov    %esp,%eax
 		lea    0x64(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3c184
+		call   w_dos_findfirst
 	jump_30926:
 		test   %eax,%eax
 		jne    jump_309bb
@@ -36690,7 +36690,7 @@ func_308b8:
 		mov    %ax,data_1a4118
 		lea    0x64(%esp),%eax
 		mov    %dx,data_1a411a
-		call   func_3c1a1
+		call   w_dos_findnext
 		mov    data_1a4116,%ecx
 		sar    $0x10,%ecx
 		sub    $0xa,%ecx
@@ -36700,7 +36700,7 @@ func_308b8:
 		mov    $data_52094,%eax
 		lea    0x64(%esp),%ebx
 		xor    %edx,%edx
-		call   func_3c184
+		call   w_dos_findfirst
 		mov    $0x5b,%dl
 		mov    $0x5d,%dh
 	jump_309cf:
@@ -36773,7 +36773,7 @@ func_308b8:
 		je     jump_30ab5
 	jump_30aa7:
 		lea    0x64(%esp),%eax
-		call   func_3c1a1
+		call   w_dos_findnext
 		jmp    jump_309cf
 	jump_30ab5:
 		call   func_19ba9
@@ -46359,6 +46359,15 @@ func_394d1:
 		cmp    $0x50,%ecx
 		jge    jump_39556
 		mov    $0x2,%edx
+#if 1
+    push   %eax
+    pushl  $0
+    pushl  data_1b5a50(,%ecx,8)
+    pushl  data_1b5a54(,%ecx,8)
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 	jump_394f7:
 		mov    %edx,%eax
 		shl    $0x3,%eax
@@ -46376,15 +46385,6 @@ func_394d1:
 		mov    %edx,data_1b60e8(%eax)
 		mov    %esi,data_1b60dc(%eax)
 		movl   $0x1,data_1b60e0(%eax)
-#if 1
-    push   %eax
-    pushl  $0
-    pushl  data_1b60d4(%eax)
-    pushl  data_1b60e4(%eax)
-    call   w_audio_sound_play
-    add    $12,%esp
-    pop    %eax
-#endif
 		pop    %edi
 		pop    %esi
 		pop    %ecx
@@ -50182,7 +50182,7 @@ func_3c16c:
 
 
 /*----------------------------------------------------------------*/
-func_3c184:
+func_3c184: /* 3c184 */
 /*----------------------------------------------------------------*/
 		push   %ecx
 		push   %eax
@@ -50202,7 +50202,7 @@ func_3c184:
 
 
 /*----------------------------------------------------------------*/
-func_3c1a1:
+func_3c1a1: /* 3c1a1 */
 /*----------------------------------------------------------------*/
 		push   %edx
 		mov    %eax,%edx

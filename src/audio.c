@@ -40,6 +40,10 @@ finish_channel (int channel)
 void
 audio_init (const char *music)
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (true == initialized)
     {
       LOG_FATAL ("already initialized");
@@ -58,8 +62,8 @@ audio_init (const char *music)
 
   Mix_ChannelFinished (&finish_channel);
 
-  music_root = xmalloc (strlen (music) + 1);
-  strcpy (music_root, music);
+  music_root = strdup (music);
+  ASSERT (NULL != music_root);
 
   music = NULL;
   music_track = 0;
@@ -70,6 +74,10 @@ audio_init (const char *music)
 void
 audio_quit ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -77,7 +85,8 @@ audio_quit ()
 
   free (music_root);
 
-  audio_stop ();
+  audio_music_stop ();
+  audio_sound_stop ();
 
   Mix_CloseAudio ();
   SDL_QuitSubSystem (SDL_INIT_AUDIO);
@@ -86,21 +95,12 @@ audio_quit ()
 }
 
 void
-audio_stop ()
-{
-  if (false == initialized)
-    {
-      LOG_FATAL ("not initialized");
-    }
-
-  audio_music_stop ();
-
-  Mix_HaltChannel (-1);
-}
-
-void
 audio_music_play (uint32_t track)
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -150,15 +150,19 @@ audio_music_play (uint32_t track)
 void
 audio_music_stop ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
     }
 
-  Mix_HaltMusic ();
-
   if (NULL != music)
     {
+      Mix_HaltMusic ();
+
       Mix_FreeMusic (music);
       music = NULL;
     }
@@ -169,6 +173,10 @@ audio_music_stop ()
 void
 audio_music_mute ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -182,6 +190,10 @@ audio_music_mute ()
 void
 audio_music_unmute ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -195,6 +207,10 @@ audio_music_unmute ()
 void
 audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -236,8 +252,27 @@ audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
 }
 
 void
+audio_sound_stop ()
+{
+#ifdef  NOAUDIO
+  return;
+#endif
+
+  if (false == initialized)
+    {
+      LOG_FATAL ("not initialized");
+    }
+
+  Mix_HaltChannel (-1); 
+}
+
+void
 audio_sound_mute ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");
@@ -251,6 +286,10 @@ audio_sound_mute ()
 void
 audio_sound_unmute ()
 {
+#ifdef NOAUDIO
+  return;
+#endif
+
   if (false == initialized)
     {
       LOG_FATAL ("not initialized");

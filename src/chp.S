@@ -43410,6 +43410,15 @@ func_35755:
 		cmp    $0x50,%ecx
 		jge    jump_357da
 		mov    $0x2,%edx
+#if 1
+    push   %eax
+    pushl  $0
+    push   data_137d1c(,%ecx,8)
+    push   data_137d20(,%ecx,8)
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 	jump_3577b:
 		mov    %edx,%eax
 		shl    $0x3,%eax
@@ -43427,15 +43436,6 @@ func_35755:
 		mov    %edx,data_1383b4(%eax)
 		mov    %esi,data_1383a8(%eax)
 		movl   $0x1,data_1383ac(%eax)
-#if 1
-    push   %eax
-    pushl  $0
-    push   data_1383a0(%eax)
-    push   data_1383b0(%eax)
-    call   w_audio_sound_play
-    add    $12,%esp
-    pop    %eax
-#endif
 		pop    %edi
 		pop    %esi
 		pop    %ecx
@@ -43863,7 +43863,7 @@ cdrom_stop_audio: /* 3618c */
 		mov    %esp,%edx
 		lea    0x4(%esp),%ebx
 #if 1
-    call   w_audio_stop
+    call   w_audio_music_stop
 #endif
 #if 0
 		call   allocate_dos_memory_block
