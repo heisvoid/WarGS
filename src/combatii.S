@@ -988,7 +988,7 @@ func_105ad:
 		mov    $data_75aa3,%edx
 		mov    %cl,0x14(%esp,%eax,1)
 		lea    0x14(%esp),%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_8b3e8,%edx
 		lea    0x14(%esp),%eax
 		mov    $0x2,%ebx
@@ -11018,10 +11018,10 @@ func_17823:
 		lea    0x24(%esp),%edx
 		add    %eax,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_76e62,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_fa784,%eax
 		mov    $data_fa784,%edx
 		call   func_strlen_
@@ -11031,7 +11031,7 @@ func_17823:
 		call   func_itoa_
 		mov    $data_76e6f,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 	jump_1789e:
 		movb   $0x0,0x3f(%ebp)
 	jump_178a2:
@@ -11062,10 +11062,10 @@ func_17823:
 		mov    %esp,%edx
 		add    %eax,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_76e82,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_fa784,%eax
 		mov    $data_fa784,%edx
 		call   func_strlen_
@@ -11076,7 +11076,7 @@ func_17823:
 		call   func_itoa_
 		mov    $data_76e8d,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		xor    %ebx,%ebx
 		mov    $data_fa784,%edx
 		mov    %ebp,%eax
@@ -11094,7 +11094,7 @@ func_1793d:
 		mov    %edx,%esi
 		mov    %ebx,%edx
 		mov    %esi,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		cmp    $0x2,%cx
 		jne    jump_17965
 		mov    %esi,%edx
@@ -11257,22 +11257,22 @@ func_17a20:
 		call   func_itoa_
 		mov    %esp,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_76e9d,%edx
 		mov    $data_fa784,%eax
 		mov    $0xa,%ebx
-		call   func_strcat_
+		call   w_dos_strcat
 		xor    %eax,%eax
 		mov    %esp,%edx
 		mov    0x85(%ecx),%ax
 		call   func_ltoa_
 		mov    %esp,%edx
 		mov    $data_fa784,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_76ea5,%edx
 		mov    $data_fa784,%eax
 		xor    %ebx,%ebx
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_fa784,%edx
 		mov    %ebp,%eax
 		call   func_482a5
@@ -12826,11 +12826,11 @@ func_18b2e:
 		add    $data_edd88,%eax
 		lea    0x1(%eax),%edx
 		mov    %ebp,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_77082,%edx
 		mov    %ebp,%eax
 		mov    $0x1,%ebx
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    0x4(%esp),%eax
 		mov    %ebp,%edx
 		call   func_482a5
@@ -12846,7 +12846,7 @@ func_18b2e:
 		je     jump_18c5e
 		mov    $data_7708b,%edx
 		mov    %ebp,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    %ebp,%eax
 		call   func_strlen_
 		lea    (%eax,%ebp,1),%edx
@@ -12856,7 +12856,7 @@ func_18b2e:
 		call   func_itoa_
 		mov    $data_77093,%edx
 		mov    %ebp,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 	jump_18c5e:
 		mov    -0x2(%esp),%edx
 		sar    $0x10,%edx
@@ -12879,7 +12879,7 @@ func_18b2e:
 		call   func_ltoa_
 		mov    $data_7709e,%edx
 		mov    %ebp,%eax
-		call   func_strcat_
+		call   w_dos_strcat
 	jump_18caf:
 		cmpb   $0x0,0x0(%ebp)
 		je     jump_18cc5
@@ -23722,10 +23722,10 @@ func_204e8:
 		call   func_itoa_
 		lea    0x2c(%esp),%edx
 		lea    0xc(%esp),%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_7715c,%edx
 		lea    0xc(%esp),%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		lea    0xc(%esp),%eax
 		call   func_1fea4
 		mov    $0x32,%eax
@@ -26287,10 +26287,10 @@ func_2262c:
 		call   func_itoa_
 		lea    0x2c(%esp),%edx
 		lea    0xc(%esp),%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		mov    $data_7715c,%edx
 		lea    0xc(%esp),%eax
-		call   func_strcat_
+		call   w_dos_strcat
 		lea    0xc(%esp),%eax
 		call   func_1fea4
 		mov    $0x32,%eax
