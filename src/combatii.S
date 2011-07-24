@@ -100416,7 +100416,11 @@ cdrom_setup_track_related_arrays: /* 5ae4a */
 	jump_5ae61:
 		movswl %bx,%eax
 		call   cdrom_get_audio_track_info
+#if 1
+    cmp    $1,%ebx /* because track 1 is data track */
+#else
 		cmpb   $0x40,cdrom_track_control_info
+#endif
 		je     jump_5aea3 /* jump if it is data track */
 		mov    cdrom_track_number_related,%eax
 		mov    %eax,cdrom_track_related_array_1(%edx)
