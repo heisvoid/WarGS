@@ -15102,7 +15102,7 @@ func_1cfeb:
 		mov    %ebp,%eax
 		mov    %esi,%edx
 		mov    %edi,%ebx
-		call   func_memcpy_
+		call   w_dos_memcpy
 		inc    %ecx
 		add    %edi,%esi
 		add    %edi,%ebp
@@ -15124,7 +15124,7 @@ func_1cfeb:
 		mov    %ebp,0x18(%esp)
 		mov    %esi,%eax
 		inc    %edi
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    %esi,0x1c(%esp)
 	jump_1d0a4:
 		mov    0x14(%esp),%esi
@@ -15197,7 +15197,7 @@ func_1d0e8:
 		mov    %ebp,%eax
 		mov    %esi,%edx
 		mov    %edi,%ebx
-		call   func_memcpy_
+		call   w_dos_memcpy
 		inc    %ecx
 		add    %edi,%esi
 		add    %edi,%ebp
@@ -15224,7 +15224,7 @@ func_1d0e8:
 		mov    $0x140,%ebx
 		mov    %esi,%eax
 		inc    %edi
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    0x18(%esp),%edx
 		mov    %esi,0x1c(%esp)
 		mov    %edx,0x4(%esp)
@@ -32588,12 +32588,12 @@ func_2bba0:
 		add    $0xc,%esp
 		mov    $0x1900,%ebx
 		mov    data_c5ea4,%eax
-		call   func_memcpy_
+		call   w_dos_memcpy
 		mov    $data_e45f0,%edx
 		mov    data_c5ea4,%eax
 		mov    $0x1900,%ebx
 		add    $0xa280,%eax
-		call   func_memcpy_
+		call   w_dos_memcpy
 		call   func_1d83a
 		call   func_1d83a
 		call   func_1d83a
