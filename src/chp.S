@@ -17914,7 +17914,7 @@ func_1fb47:
 		mov    %edx,(%esp)
 		xor    %edx,%edx
 		lea    0x1c(%esp),%ecx
-		call   func_memset_
+		call   w_dos_memset
 		mov    $data_a4888,%eax
 		mov    %ds,%edx
 		mov    $data_a4888,%ebx
@@ -33777,7 +33777,7 @@ func_2cfed:
 		mov    $data_1164dc,%eax
 		mov    $0x20,%ebx
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x130,data_116502
 		jle    jump_2d073
 		cmpw   $0x0,data_88584
@@ -33930,7 +33930,7 @@ func_2cfed:
 		mov    $data_1164c8,%eax
 		mov    $0x10,%ebx
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		cmpw   $0x138,data_116502
 		jle    jump_2d26f
 		cmpw   $0x0,data_88584
@@ -43567,11 +43567,11 @@ cdrom_setup_audio_info: /* 35a61 */
 		mov    %esi,data_1385bc
 		mov    $dpmi_real_mode_call_structure,%eax
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1500,dpmi_real_mode_call_structure_eax
 		mov    %esi,dpmi_real_mode_call_structure_ebx
 		movw   $0x300,(%esp)
@@ -43912,11 +43912,11 @@ cdrom_send_device_driver_request: /* 36295 */
 		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x1510,dpmi_real_mode_call_structure_eax
 		mov    data_7bcb8,%eax
 		mov    %eax,dpmi_real_mode_call_structure_ecx
@@ -43956,11 +43956,11 @@ cdrom_get_mscdex_version: /* 3632c */
 		mov    $dpmi_real_mode_call_structure,%eax
 		xor    %edx,%edx
 		mov    $0x32,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x150c,dpmi_real_mode_call_structure_eax
 		xor    %ebx,%ebx
 		mov    %ebx,dpmi_real_mode_call_structure_ebx
@@ -44530,7 +44530,7 @@ allocate_dos_memory_block: /* 36c19 */
 		lea    0x1c(%esp),%eax
 		xor    %edx,%edx
 		mov    $0xc,%ebx
-		call   func_memset_
+		call   w_dos_memset
 		movl   $0x100,(%esp)
 		movswl %cx,%eax
 		mov    %eax,0x4(%esp)
@@ -48514,7 +48514,7 @@ func___allocfp_:	/* 0x3b105 */
 		mov    $0x1a,%ebx
 		mov    %ecx,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		mov    %edi,0xc(%ecx)
 		mov    data_139554,%eax
 		mov    %ecx,0x4(%esi)
@@ -49510,7 +49510,7 @@ func_3b99d:
 		mov    $0x20,%ebx
 		mov    %edx,%eax
 		xor    %edx,%edx
-		call   func_memset_
+		call   w_dos_memset
 		xor    %eax,%eax
 		mov    (%ecx),%al
 		inc    %ecx
