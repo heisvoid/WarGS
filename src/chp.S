@@ -43726,7 +43726,11 @@ func_36070:
 	jump_3608c:
 		movswl %dx,%eax
 		call   func_36632
+#if 1
+    cmp    $1,%edx /* because track 1 is data track */
+#else
 		cmpb   $0x40,data_c5cbb
+#endif
 		je     jump_360d3
 		mov    %edx,%ebx
 		shl    $0x2,%ebx
