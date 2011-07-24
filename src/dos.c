@@ -101,10 +101,11 @@ dos_read (int fd, void *buf, unsigned int len)
 int
 dos_close (int fd)
 {
-  ASSERT (2 < fd);
-
-  const int ret = close (fd);
-  ASSERT (0 == ret);
+  if (2 < fd)
+    {
+      const int ret = close (fd);
+      ASSERT (0 == ret);
+    }
 
   return 0;
 }
