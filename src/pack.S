@@ -46337,6 +46337,15 @@ func_394d1:
 		mov    %edx,data_1b60e8(%eax)
 		mov    %esi,data_1b60dc(%eax)
 		movl   $0x1,data_1b60e0(%eax)
+#if 1
+    push   %eax
+    pushl  $1
+    pushl  data_1860d4(%eax)
+    pushl  data_1860e4(%eax)
+    call   w_audio_sound_play
+    add    $12,%esp
+    pop    %eax
+#endif
 		pop    %edi
 		pop    %esi
 		pop    %ecx
@@ -46707,7 +46716,16 @@ func_39e5e:
 		movswl %ax,%ecx
 		mov    data_1b6268(,%ecx,4),%edx
 		mov    data_1b61f0(,%ecx,4),%eax
+#if 1
+    push   %ecx
+    dec    %ecx
+    push   %ecx
+    call   audio_music_play
+    add    $4,%esp
+    pop    %ecx
+#else
 		call   func_3a50d
+#endif
 		mov    %ebx,data_54030
 		mov    %ebx,data_54034
 		movl   $0x1,data_54038
@@ -47128,7 +47146,7 @@ func_3a50d:
 		mov    %ebx,%gs
 		movb   $0x16,%gs:(%edx)
 		movb   $0x0,%gs:0x1(%edx)
-		movb   $0x84,%gs:0x2(%edx)
+		movb   $0x84,%gs:0x2(%edx) /* play audio */
 		movb   $0x0,%gs:0xd(%edx)
 		mov    %ecx,%gs:0xe(%edx)
 		sub    %ecx,%esi
