@@ -46378,7 +46378,7 @@ func_394d1:
 		movl   $0x1,data_1b60e0(%eax)
 #if 1
     push   %eax
-    pushl  $1
+    pushl  $0
     pushl  data_1b60d4(%eax)
     pushl  data_1b60e4(%eax)
     call   w_audio_sound_play
