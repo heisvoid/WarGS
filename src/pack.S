@@ -46340,8 +46340,8 @@ func_394d1:
 #if 1
     push   %eax
     pushl  $1
-    pushl  data_1860d4(%eax)
-    pushl  data_1860e4(%eax)
+    pushl  data_1b60d4(%eax)
+    pushl  data_1b60e4(%eax)
     call   w_audio_sound_play
     add    $12,%esp
     pop    %eax
