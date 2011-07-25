@@ -136,7 +136,7 @@ game_update ()
     {
       enum
       {
-        DELAY_GRANULARITY = 10
+        DELAY_CHUNK = 5
       };
 
       int32_t delay = 1000 / fps - (SDL_GetTicks () - last_frame_ticks);
@@ -147,7 +147,7 @@ game_update ()
           update_pit_isr ();
           handle_events ();
 
-          SDL_Delay (DELAY_GRANULARITY);
+          SDL_Delay (DELAY_CHUNK);
 
           delay -= (SDL_GetTicks () - t);
         }
