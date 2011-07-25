@@ -329,7 +329,7 @@ game_copy_ff (int x, int y, const int8_t *src, int8_t *dst)
           if (0 <= dst_x && VIDEO_WIDTH > dst_x)
             {
               const int8_t data = *(src + src_x + src_width * src_y);
-              if (0xff == data)
+              if (0xff != data)
                 {
                   *(dst + dst_x + VIDEO_WIDTH * dst_y) = data;
                 }
