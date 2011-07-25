@@ -2748,7 +2748,7 @@ func_138a8:
 		dec    %eax
 		cmp    $0x3,%eax
 		ja     jump_13add
-		jmp    *%cs:vtable_13888(,%eax,4)
+		jmp    *vtable_13888(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -2796,7 +2796,7 @@ func_13aca:
 		dec    %eax
 		cmp    $0x3,%eax
 		ja     jump_13b35
-		jmp    *%cs:vtable_13898(,%eax,4)
+		jmp    *vtable_13898(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -3378,7 +3378,11 @@ func_1413a:
 		mov    data_20963,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
+#if 1
+    call   w_game_copy_ff
+#else
 		call   func_15dc0
+#endif
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -3401,7 +3405,11 @@ func_1418c:
 		mov    data_2095f,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
+#if 1
+    call   w_game_copy
+#else
 		call   func_15e93
+#endif
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -4055,7 +4063,7 @@ func_14f3f:
 		mov    %eax,data_3e914
 		cmp    $0x5,%eax
 		ja     jump_14f86
-		jmp    *%cs:vtable_14f27(,%eax,4)
+		jmp    *vtable_14f27(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -4113,7 +4121,7 @@ func_14f9f:
 		mov    data_3e918,%ebx
 		and    $0xff,%edi
 		sar    $0x8,%ebx
-		jmp    *%cs:vtable_14f87(,%ecx,4)
+		jmp    *vtable_14f87(,%ecx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -6133,7 +6141,7 @@ func_18a29:
 		and    $0xffff,%eax
 		mov    (%esp),%edx
 		sub    $0x6,%edx
-		jmp    *%cs:vtable_18a11(,%eax,4)
+		jmp    *vtable_18a11(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
