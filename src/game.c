@@ -272,3 +272,68 @@ game_install_mouse_isr ()
 
   mouse_isr_is_installed = true;
 }
+
+void
+game_copy (int x, int y, const int8_t *src, int8_t *dst)
+{
+  ASSERT (NULL != src);
+  ASSERT (NULL != dst);
+
+  const uint16_t src_width = *((uint16_t *) src);
+  const uint16_t src_height = *(((uint16_t *) src) + 1);
+
+  int src_y = 0;
+  for (src_y = 0; src_y < src_height; src_y++)
+    {
+      const int dst_y = y + src_y;
+      if (0 > dst_y || VIDEO_HEIGHT <= dst_y)
+        {
+          continue;
+        }
+
+      int src_x = 0;
+      for (src_x = 0; src_x < src_width; src_x++)
+        {
+          const int dst_x = x + src_x;
+          if (0 <= dst_x && VIDEO_WIDTH > dst_x)
+            {
+              const int8_t data = *(src + src_x + src_width * src_y);
+              *(dst + dst_x + VIDEO_WIDTH * dst_y) = data;
+            }
+        }
+    }
+}
+
+void
+game_copy_ff (int x, int y, const int8_t *src, int8_t *dst)
+{
+  ASSERT (NULL != src);
+  ASSERT (NULL != dst);
+
+  const uint16_t src_width = *((uint16_t *) src);
+  const uint16_t src_height = *(((uint16_t *) src) + 1);
+
+  int src_y = 0;
+  for (src_y = 0; src_y < src_height; src_y++)
+    {
+      const int dst_y = y + src_y;
+      if (0 > dst_y || VIDEO_HEIGHT <= dst_y)
+        {
+          continue;
+        }
+
+      int src_x = 0;
+      for (src_x = 0; src_x < src_width; src_x++)
+        {
+          const int dst_x = x + src_x;
+          if (0 <= dst_x && VIDEO_WIDTH > dst_x)
+            {
+              const int8_t data = *(src + src_x + src_width * src_y);
+              if (0xff == data)
+                {
+                  *(dst + dst_x + VIDEO_WIDTH * dst_y) = data;
+                }
+            }
+        }
+    }
+}
