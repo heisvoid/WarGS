@@ -282,6 +282,8 @@ game_copy (int x, int y, const int8_t *src, int8_t *dst)
   const uint16_t src_width = *((uint16_t *) src);
   const uint16_t src_height = *(((uint16_t *) src) + 1);
 
+  src += 4;
+
   int src_y = 0;
   for (src_y = 0; src_y < src_height; src_y++)
     {
@@ -313,6 +315,8 @@ game_copy_ff (int x, int y, const int8_t *src, int8_t *dst)
   const uint16_t src_width = *((uint16_t *) src);
   const uint16_t src_height = *(((uint16_t *) src) + 1);
 
+  src += 4;
+
   int src_y = 0;
   for (src_y = 0; src_y < src_height; src_y++)
     {
@@ -329,7 +333,7 @@ game_copy_ff (int x, int y, const int8_t *src, int8_t *dst)
           if (0 <= dst_x && VIDEO_WIDTH > dst_x)
             {
               const int8_t data = *(src + src_x + src_width * src_y);
-              if (0xff != data)
+              if (-1 != data)
                 {
                   *(dst + dst_x + VIDEO_WIDTH * dst_y) = data;
                 }
