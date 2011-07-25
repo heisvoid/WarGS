@@ -41,6 +41,8 @@ get_process_name (char *buf, size_t size)
 
   strcpy (buf, process_name);
 
+  free (process_path);
+
   return true;
 }
 
