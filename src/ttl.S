@@ -2988,7 +2988,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $0x1000,%edx
 		call   func_14f3f
 #if 1
+    push   %eax
     call   w_game_cfg_setup
+    pop    %eax
 #else
 		call   func_1239e
 #endif
@@ -3076,7 +3078,9 @@ GLOBAL (ttl)	/* 0x13cdc */
 		call   func_175b7
 	jump_13e23:
 #if 1
+    push   %eax
     call   w_game_install_keyboard_isr
+    pop    %eax
 #endif
 		mov    data_22618,%cx
 		cmp    $0x3,%cx
@@ -3253,23 +3257,17 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $0x55f0,%eax
 		call   func_1a55f
 	jump_13fd3:
-#if 0
 		call   func_15d1f
-#endif
 		call   func_162f7
 		mov    $0x1,%eax
 		mov    $0x266,%edx
 		call   func_1621e
 		call   func_141b4
 		mov    $0x10,%eax
-#if 0
 		call   func_145f5
-#endif
 		mov    $0x2,%eax
 		mov    $0xc2,%edx
-#if 0
 		call   func_14600
-#endif
 		cmpw   $0x3,data_22618
 		mov    $data_2011c,%ebx
 		mov    $data_200d5,%ecx
@@ -3848,7 +3846,9 @@ func_14600:
 		mov    $0x33,%eax
 		mov    %bx,0x1c(%esp)
 		mov    %esp,%ebx
+#if 0
 		call   w_dos_int386
+#endif
 		add    $0x38,%esp
 		pop    %ebx
 		ret
@@ -4491,7 +4491,9 @@ func_15d14:
 func_15d1f:
 /*----------------------------------------------------------------*/
 		mov    $0x13,%ax
+#if 0
 		int    $0x10
+#endif
 		ret
 
 
@@ -4799,7 +4801,9 @@ func_16101:
 #if 1
     movb   %dl,palette_b
 
+    push   %eax
     call   w_video_set_palette
+    pop    %eax
 #else
 		call   func_outp_
 #endif
@@ -4930,7 +4934,9 @@ func_165d7:
     movb   %al,palette_g
     movb   %al,palette_b
 
+    push   %eax
     call   w_video_set_palette
+    pop    %eax
 #else
 		out    %al,(%dx)
 		out    %al,(%dx)
@@ -6993,7 +6999,9 @@ vga_set_palette: /* 19356 */
     mov    (%ecx,%ebx,1),%dl
     movb   %dl,palette_b
 
+    push   %eax
     call   w_video_set_palette
+    pop    %eax
 
     mov    palette_index,%dl
     inc    %dl
