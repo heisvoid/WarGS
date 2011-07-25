@@ -22488,6 +22488,9 @@ GLOBAL (chp)	/* 0x2353e */
 		mov    %bh,data_ac1c3(%ebp)
 		add    %ebp,%eax
 		mov    %bh,data_ac1c5(%ebp)
+#if 1
+    movl   $0,0x8(%esp)
+#endif
 		cmpb   $0x0,data_ab895(%eax)
 		jne    jump_23867
 		cmpb   $0x0,data_ab8bf(%eax)
@@ -22512,7 +22515,14 @@ GLOBAL (chp)	/* 0x2353e */
 		mov    $data_50aa7,%eax
 		call   w_dos_unlink
 		mov    0x8(%esp),%eax
+#if 1
+    test   %eax,%eax
+    je     jump_chp_0
+#endif
 		call   w_dos_fclose
+#if 1
+  jump_chp_0:
+#endif
 		mov    $0x1,%eax
 		call   func_238eb
 		call   func_21c58
