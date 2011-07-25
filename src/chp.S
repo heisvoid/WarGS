@@ -921,7 +921,7 @@ func_10c6d:
 		mov    data_8ff22,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		add    $0x280,%ebp
 		call   func_1da88
@@ -979,7 +979,7 @@ func_10c6d:
 		mov    data_8ff22,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		sub    $0x280,%ebp
 		call   func_1da88
@@ -1110,7 +1110,7 @@ func_10c6d:
 		sar    $0x10,%edx
 		sar    $0x10,%eax
 		mov    0x5c0(%esp),%edi
-		call   func_1d8d5
+		call   w_game_copy_ff
 		test   %edi,%edi
 		je     jump_1126b
 		cmpl   $0xf,0x5c8(%esp)
@@ -15634,7 +15634,7 @@ func_1d874:
 
 
 /*----------------------------------------------------------------*/
-func_1d8d5:
+func_1d8d5: /* 1d8d5 */
 /*----------------------------------------------------------------*/
 		push   %ebp
 		mov    %esp,%ebp
@@ -15722,7 +15722,7 @@ func_1d8d5:
 
 
 /*----------------------------------------------------------------*/
-func_1d9a8:
+func_1d9a8: /* 1d9a8 */
 /*----------------------------------------------------------------*/
 		push   %ebp
 		mov    %esp,%ebp
@@ -21932,7 +21932,7 @@ func_22c8e:
 		mov    %ebp,%edx
 		mov    0x8(%eax),%ebx
 		xor    %eax,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0x1b,%eax
 		mov    data_c5d88,%ebx
 		mov    $0x1e,%edx
@@ -21946,7 +21946,7 @@ func_22c8e:
 		mov    data_c5ea4,%ecx
 		mov    %ebp,%edx
 		mov    0x8(%ebx),%ebx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0x10f,%eax
 		mov    data_c5d88,%ebx
 		mov    $0x1e,%edx
@@ -22015,7 +22015,7 @@ func_22c8e:
 		mov    data_8ff22,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		cmpb   $0x1,data_80320
 		jne    jump_23253
 		xor    %al,%al
@@ -22619,7 +22619,7 @@ func_2390f:
 		mov    %ebx,%edx
 		mov    %ecx,%ebx
 		mov    %esi,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 	jump_239a5:
 		incb   data_c5ea8
 	jump_239ab:
@@ -28363,7 +28363,7 @@ func_2883f:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -28382,7 +28382,7 @@ func_28891:
 		mov    data_80627,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d9a8
+		call   w_game_copy
 		pop    %edx
 		pop    %ecx
 		pop    %ebx
@@ -32390,7 +32390,7 @@ func_2b1bd:
 		mov    data_c5ea4,%ecx
 		xor    %eax,%eax
 		xor    %edx,%edx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		lea    0x80(%esp),%eax
 		mov    0x6(%esp),%edx
 		mov    0x80(%esp),%esi
@@ -32416,7 +32416,7 @@ func_2b1bd:
 		mov    data_c5ea4,%ecx
 		xor    %eax,%eax
 		xor    %edx,%edx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		jmp    jump_2b238
 	jump_2bb5f:
 		mov    $0x1,%bh
@@ -32427,7 +32427,7 @@ func_2b1bd:
 		mov    $data_da370,%ebx
 		mov    data_c5ea4,%ecx
 		xor    %eax,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		call   func_1da88
 		mov    0x94(%esp),%eax
@@ -36143,7 +36143,7 @@ func_2ee3f:
 		mov    $0x24,%eax
 		mov    $0x3b,%edx
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0x1e,%eax
 		mov    $0x32,%edx
 		mov    $data_82720,%ebx
@@ -36861,7 +36861,7 @@ func_2f797:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		call   func_28c8b
 	jump_2f947:
 		mov    data_c5ea4,%eax
@@ -36975,7 +36975,7 @@ func_2f797:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		jmp    jump_2f947
 	jump_2fb48:
 		mov    $0x10,%eax
@@ -38616,7 +38616,7 @@ func_30e58:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		call   func_28c8b
 		mov    data_c5ea4,%eax
 		call   func_1da67
@@ -38724,7 +38724,7 @@ func_30e58:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		call   func_1da67
 		jmp    jump_31480
@@ -40824,19 +40824,19 @@ func_32fcd:
 		xor    %eax,%eax
 		xor    %edx,%edx
 		mov    %esi,data_1271f0
-		call   func_1d9a8
+		call   w_game_copy
 		mov    $0x8,%edx
 		mov    %ebp,%eax
 		lea    0xac(%esp),%ebx
 		call   func_32d94
 		mov    $0xc4,%eax
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0xc4,%eax
 		mov    $0x8e,%edx
 		lea    0x150(%esp),%ebx
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%edi
 		push   %edi
 		mov    $0xc4,%eax
@@ -40980,7 +40980,7 @@ func_32fcd:
 		mov    data_8062b,%eax
 		sar    $0x10,%edx
 		sar    $0x10,%eax
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		call   func_1da67
 	jump_33324:
@@ -41041,19 +41041,19 @@ func_32fcd:
 		mov    %eax,data_1271f0
 		xor    %edx,%edx
 		xor    %eax,%eax
-		call   func_1d9a8
+		call   w_game_copy
 		mov    $0x8,%edx
 		mov    %ebp,%eax
 		lea    0xac(%esp),%ebx
 		call   func_32d94
 		mov    $0xc4,%eax
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0xc4,%eax
 		mov    $0x8e,%edx
 		lea    0x150(%esp),%ebx
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%ecx
 		mov    $0xc4,%eax
 		push   %ecx
@@ -41105,19 +41105,19 @@ func_32fcd:
 		mov    %eax,data_1271f0
 		xor    %edx,%edx
 		xor    %eax,%eax
-		call   func_1d9a8
+		call   w_game_copy
 		mov    $0x8,%edx
 		mov    %ebp,%eax
 		lea    0xac(%esp),%ebx
 		call   func_32d94
 		mov    $0xc4,%eax
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0xc4,%eax
 		mov    $0x8e,%edx
 		lea    0x150(%esp),%ebx
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%ebx
 		mov    $0xc4,%eax
 		push   %ebx
@@ -41240,19 +41240,19 @@ func_32fcd:
 		mov    data_c5ea4,%ecx
 		xor    %eax,%eax
 		xor    %edx,%edx
-		call   func_1d9a8
+		call   w_game_copy
 		mov    $0x8,%edx
 		mov    %ebp,%eax
 		lea    0xac(%esp),%ebx
 		call   func_32d94
 		mov    $0xc4,%eax
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    $0xc4,%eax
 		mov    $0x8e,%edx
 		lea    0x150(%esp),%ebx
 		mov    data_c5ea4,%ecx
-		call   func_1d8d5
+		call   w_game_copy_ff
 		mov    data_c5ea4,%eax
 		push   %eax
 		mov    $0x12,%edx
