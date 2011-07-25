@@ -6876,7 +6876,7 @@ func_1603e:
 		cmp    $0x4,%ax
 		ja     jump_16ac1
 		and    $0xffff,%eax
-		jmp    *%cs:vtable_1602a(,%eax,4)
+		jmp    *vtable_1602a(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -8323,7 +8323,7 @@ func_16afa:
 		ja     jump_1703d
 		xor    %eax,%eax
 		mov    %cx,%ax
-		jmp    *%cs:vtable_16aca(,%eax,4)
+		jmp    *vtable_16aca(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -8414,7 +8414,7 @@ func_17029:
 		ja     jump_170fe
 		xor    %eax,%eax
 		mov    %si,%ax
-		jmp    *%cs:vtable_16ae2(,%eax,4)
+		jmp    *vtable_16ae2(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -8837,7 +8837,7 @@ func_1716e:
 		ja     jump_1764c
 		xor    %eax,%eax
 		mov    %cx,%ax
-		jmp    *%cs:vtable_1713e(,%eax,4)
+		jmp    *vtable_1713e(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -8928,7 +8928,7 @@ func_17638:
 		ja     jump_1770d
 		xor    %eax,%eax
 		mov    %si,%ax
-		jmp    *%cs:vtable_17156(,%eax,4)
+		jmp    *vtable_17156(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -10384,7 +10384,7 @@ func_18b95:
 		cmp    $0x9,%ax
 		ja     jump_19030
 		and    $0xffff,%eax
-		jmp    *%cs:vtable_18b6d(,%eax,4)
+		jmp    *vtable_18b6d(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -13794,7 +13794,7 @@ func_1bbcd:
 		mov    %edi,%ecx
 		sub    $0x2,%edx
 		sub    $0x2,%ecx
-		jmp    *%cs:vtable_1bba9(,%eax,4)
+		jmp    *vtable_1bba9(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -17454,7 +17454,7 @@ func_1f5f6:
 		cmp    $0x8,%al
 		ja     func_1f70b
 		and    $0xff,%eax
-		jmp    *%cs:vtable_1f5ae(,%eax,4)
+		jmp    *vtable_1f5ae(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -17625,7 +17625,7 @@ func_1f70b:
 		cmp    $0x8,%al
 		ja     func_1f8b4
 		and    $0xff,%eax
-		jmp    *%cs:vtable_1f5d2(,%eax,4)
+		jmp    *vtable_1f5d2(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -20662,7 +20662,7 @@ func_2213e:
 		ja     jump_2224f
 		xor    %eax,%eax
 		mov    %dl,%al
-		jmp    *%cs:vtable_2212e(,%eax,4)
+		jmp    *vtable_2212e(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -20842,7 +20842,7 @@ func_2233e:
 		ja     jump_22538
 		xor    %eax,%eax
 		mov    %dl,%al
-		jmp    *%cs:vtable_2232e(,%eax,4)
+		jmp    *vtable_2232e(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -21023,7 +21023,7 @@ func_22562:
 		ja     jump_2287c
 		xor    %edx,%edx
 		mov    data_ab8a9(%eax),%dl
-		jmp    *%cs:vtable_2254a(,%edx,4)
+		jmp    *vtable_2254a(,%edx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -22831,7 +22831,7 @@ func_23ac9:
 		ja     jump_23c06
 		mov    %dl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_23ab9(,%eax,4)
+		jmp    *vtable_23ab9(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -23287,7 +23287,7 @@ func_23fdd:
 		ja     jump_24173
 		mov    %dl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_23fad(,%eax,4)
+		jmp    *vtable_23fad(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -23453,7 +23453,7 @@ func_24152:
 		ja     jump_2439c
 		mov    %dh,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_23fbd(,%eax,4)
+		jmp    *vtable_23fbd(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -23513,7 +23513,7 @@ func_2437b:
 		ja     jump_2442e
 		mov    %bl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_23fcd(,%eax,4)
+		jmp    *vtable_23fcd(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -24288,7 +24288,7 @@ func_24b96:
 		ja     jump_24de4
 		mov    %dh,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_24b45(,%eax,4)
+		jmp    *vtable_24b45(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -24348,7 +24348,7 @@ func_24dc3:
 		ja     jump_24e77
 		mov    %bl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_24b55(,%eax,4)
+		jmp    *vtable_24b55(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -24753,7 +24753,7 @@ func_24e56:
 		ja     jump_24bb7
 		mov    %dl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_24b35(,%eax,4)
+		jmp    *vtable_24b35(,%eax,4)
 	jump_253a7:
 		mov    data_8061a,%eax
 		mov    data_8ff24,%esi
@@ -25474,7 +25474,7 @@ func_25d4a:
 		ja     jump_25fc3
 		xor    %ecx,%ecx
 		mov    data_ac04a(%eax),%cl
-		jmp    *%cs:vtable_25aa5(,%ecx,4)
+		jmp    *vtable_25aa5(,%ecx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -26019,7 +26019,7 @@ func_2656d:
 		ja     jump_267e6
 		xor    %ecx,%ecx
 		mov    data_ac04a(%eax),%cl
-		jmp    *%cs:vtable_26319(,%ecx,4)
+		jmp    *vtable_26319(,%ecx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -26820,7 +26820,7 @@ func_270b9:
 		ja     jump_2716a
 		mov    %dl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_27089(,%eax,4)
+		jmp    *vtable_27089(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -27138,7 +27138,7 @@ func_27159:
 		ja     jump_275cd
 		mov    %dl,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_27099(,%eax,4)
+		jmp    *vtable_27099(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -27189,7 +27189,7 @@ func_275bc:
 		ja     jump_2763d
 		mov    %dh,%al
 		and    $0xff,%eax
-		jmp    *%cs:vtable_270a9(,%eax,4)
+		jmp    *vtable_270a9(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -29304,7 +29304,7 @@ func_2925c:
 		and    $0xffff,%eax
 		lea    0x3(%ebp),%ecx
 		lea    0x19(%edi),%ebp
-		jmp    *%cs:vtable_29220(,%eax,4)
+		jmp    *vtable_29220(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -29673,7 +29673,7 @@ func_29824:
 		shl    $0x5,%eax
 		shl    $0x2,%ecx
 		add    %eax,%edx
-		jmp    *%cs:vtable_297d4(%ecx)
+		jmp    *vtable_297d4(%ecx)
 
 
 /*----------------------------------------------------------------*/
@@ -30056,7 +30056,7 @@ func_29cf0:
 		shl    $0x2,%edx
 		add    %ebp,%ecx
 		add    %eax,%eax
-		jmp    *%cs:vtable_29ca0(%edx)
+		jmp    *vtable_29ca0(%edx)
 
 
 /*----------------------------------------------------------------*/
@@ -30763,7 +30763,7 @@ func_2a34c:
 		cmp    $0xa,%ax
 		ja     jump_2a83e
 		and    $0xffff,%eax
-		jmp    *%cs:vtable_2a320(,%eax,4)
+		jmp    *vtable_2a320(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -31622,7 +31622,7 @@ func_2aad3:
 		lea    -0x1(%esi),%eax
 		cmp    $0x3,%eax
 		ja     jump_2b11e
-		jmp    *%cs:vtable_2aab3(,%eax,4)
+		jmp    *vtable_2aab3(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -31683,7 +31683,7 @@ func_2b0fb:
 		sub    %edi,%esi
 		cmp    $0x3,%esi
 		ja     jump_2aefd
-		jmp    *%cs:vtable_2aac3(,%esi,4)
+		jmp    *vtable_2aac3(,%esi,4)
 
 
 /*----------------------------------------------------------------*/
@@ -32850,7 +32850,7 @@ func_2bfcd:
 		and    $0xffff,%ebx
 		lea    0x19(%ebp),%esi
 		mov    %edx,%edi
-		jmp    *%cs:vtable_2bdbf(,%ebx,4)
+		jmp    *vtable_2bdbf(,%ebx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -33560,7 +33560,7 @@ func_2cdd8:
 		mov    %eax,data_1164c0
 		cmp    $0x5,%eax
 		ja     jump_2ce23
-		jmp    *%cs:vtable_2cdc0(,%eax,4)
+		jmp    *vtable_2cdc0(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -33624,7 +33624,7 @@ func_2ce40:
 		mov    data_1164b8,%eax
 		and    $0xff,%ecx
 		sar    $0x8,%eax
-		jmp    *%cs:vtable_2ce28(,%edx,4)
+		jmp    *vtable_2ce28(,%edx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -36319,7 +36319,7 @@ func_2f09a:
 		add    %ebx,%eax
 		shl    $0x2,%edx
 		shl    $0x3,%eax
-		jmp    *%cs:vtable_2f086(%edx)
+		jmp    *vtable_2f086(%edx)
 
 
 /*----------------------------------------------------------------*/
@@ -38132,7 +38132,7 @@ func_30afe:
 		idiv   %ebx
 		cmp    $0x4,%eax
 		ja     jump_30e6e
-		jmp    *%cs:vtable_30ad6(,%eax,4)
+		jmp    *vtable_30ad6(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -38893,7 +38893,7 @@ func_30e58:
 		idiv   %ebx
 		cmp    $0x4,%eax
 		ja     jump_3199f
-		jmp    *%cs:vtable_30aea(,%eax,4)
+		jmp    *vtable_30aea(,%eax,4)
 
 
 /*----------------------------------------------------------------*/
@@ -39090,7 +39090,7 @@ func_31af2:
 		shl    $0x4,%eax
 		add    %edx,%eax
 		shl    $0x3,%eax
-		jmp    *%cs:vtable_31a46(,%esi,4)
+		jmp    *vtable_31a46(,%esi,4)
 
 
 /*----------------------------------------------------------------*/
@@ -39488,7 +39488,7 @@ func_31c18:
 		mov    $data_a48b8,%eax
 		shl    $0x3,%ebx
 		add    %ebx,%eax
-		jmp    *%cs:vtable_31a66(,%edx,4)
+		jmp    *vtable_31a66(,%edx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -39524,7 +39524,7 @@ func_3203f:
 		mov    $data_a48b8,%eax
 		shl    $0x3,%ebx
 		add    %ebx,%eax
-		jmp    *%cs:vtable_31ade(,%edx,4)
+		jmp    *vtable_31ade(,%edx,4)
 
 
 /*----------------------------------------------------------------*/
@@ -39575,7 +39575,7 @@ func_320d9:
 		mov    $data_a48b8,%eax
 		shl    $0x3,%ebx
 		add    %ebx,%eax
-		jmp    *%cs:vtable_31a7a(,%esi,4)
+		jmp    *vtable_31a7a(,%esi,4)
 
 
 /*----------------------------------------------------------------*/
@@ -39625,7 +39625,7 @@ func_32141:
 		shl    $0x3,%esi
 		shl    $0x2,%edx
 		add    %esi,%eax
-		jmp    *%cs:vtable_31a8e(%edi)
+		jmp    *vtable_31a8e(%edi)
 
 
 /*----------------------------------------------------------------*/
@@ -39788,7 +39788,7 @@ func_323b8:
 		mov    %cl,data_a4916(%esi)
 		cmp    $0x4,%ebx
 		ja     jump_32049
-		jmp    *%cs:vtable_31aa2(%edx)
+		jmp    *vtable_31aa2(%edx)
 
 
 /*----------------------------------------------------------------*/
@@ -39807,7 +39807,7 @@ func_323e7:
 		mov    %cl,data_a4917(%esi)
 		cmp    $0x4,%ebx
 		ja     jump_32049
-		jmp    *%cs:vtable_31ab6(%edx)
+		jmp    *vtable_31ab6(%edx)
 	jump_3240b:
 		cmp    $0x64,%ebp
 		jl     jump_32049
@@ -39877,7 +39877,7 @@ func_323e7:
 		shl    $0x3,%eax
 		inc    %cl
 		add    %eax,%ebx
-		jmp    *%cs:vtable_31aca(%edi)
+		jmp    *vtable_31aca(%edi)
 
 
 /*----------------------------------------------------------------*/
@@ -53502,7 +53502,7 @@ func_3e280:
 		and    $0x1807,%ebx
 		or     %bh,%bl
 		mov    $0x0,%bh
-		call   *%cs:vtable_3df2c(,%ebx,4)
+		call   *vtable_3df2c(,%ebx,4)
 		mov    %cx,%es
 		mov    %esi,0x38(%ebp)
 		mov    %ebx,%esi
@@ -53516,7 +53516,7 @@ func_3e280:
 		shr    $0xb,%edi
 		lea    (%edi,%edi,4),%edi
 		add    %edi,%edi
-		jmp    *%cs:vtable_3dfec(,%ebx,4)
+		jmp    *vtable_3dfec(,%ebx,4)
 	jump_3e306:
 		mov    (%esi),%al
 		cmp    $0x9b,%al
@@ -53595,7 +53595,7 @@ func_3e280:
 		add    %edi,%edi
 		lea    (%esi,%esi,4),%esi
 		add    %esi,%esi
-		jmp    *%cs:vtable_3e0ec(,%edx,4)
+		jmp    *vtable_3e0ec(,%edx,4)
 	jump_3e3b3:
 		ret
 
@@ -53932,7 +53932,7 @@ func_3e5a0:
 		and    $0x18,%bh
 		or     %bh,%bl
 		mov    $0x0,%bh
-		call   *%cs:vtable_3df8c(,%ebx,4)
+		call   *vtable_3df8c(,%ebx,4)
 		pop    %edx
 		push   %ecx
 		mov    %edx,%ecx
@@ -54758,7 +54758,7 @@ func_3edb4:
 /*----------------------------------------------------------------*/
 func_3edb9:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3edc1(,%ebx,4)
+		jmp    *vtable_3edc1(,%ebx,4)
 
 vtable_3edc1:
 		.long   func_3ede1
@@ -54893,7 +54893,7 @@ func_3eed0:
 /*----------------------------------------------------------------*/
 func_3eef8:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3ef00(,%ebx,4)
+		jmp    *vtable_3ef00(,%ebx,4)
 
 vtable_3ef00:
 		.long   func_3ef20
@@ -54948,7 +54948,7 @@ func_3ef6b:
 /*----------------------------------------------------------------*/
 func_3ef79:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3ef81(,%ebx,4)
+		jmp    *vtable_3ef81(,%ebx,4)
 
 vtable_3ef81:
 		.long   func_3efa1
@@ -55082,7 +55082,7 @@ func_3f13d:
 /*----------------------------------------------------------------*/
 func_3f194:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f19c(,%ebx,4)
+		jmp    *vtable_3f19c(,%ebx,4)
 
 vtable_3f19c:
 		.long   func_3f1bc
@@ -55162,7 +55162,7 @@ func_3f27d:
 /*----------------------------------------------------------------*/
 func_3f29e:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f2a6(,%ebx,4)
+		jmp    *vtable_3f2a6(,%ebx,4)
 
 vtable_3f2a6:
 		.long   func_3f2c6
@@ -55257,7 +55257,7 @@ func_3f3a9:
 /*----------------------------------------------------------------*/
 func_3f3b6:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f3be(,%ebx,4)
+		jmp    *vtable_3f3be(,%ebx,4)
 
 vtable_3f3be:
 		.long   func_3edb4
@@ -55296,7 +55296,7 @@ func_3f3de:
 /*----------------------------------------------------------------*/
 func_3f43f:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f447(,%ebx,4)
+		jmp    *vtable_3f447(,%ebx,4)
 
 vtable_3f447:
 		.long   func_3edb4
@@ -55483,7 +55483,7 @@ func_3f5fd:
 /*----------------------------------------------------------------*/
 func_3f648:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f650(,%ebx,4)
+		jmp    *vtable_3f650(,%ebx,4)
 
 vtable_3f650:
 		.long   func_3edb4
@@ -55594,7 +55594,7 @@ func_3f7b2:
 /*----------------------------------------------------------------*/
 func_3f7fd:
 /*----------------------------------------------------------------*/
-		jmp    *%cs:vtable_3f805(,%ebx,4)
+		jmp    *vtable_3f805(,%ebx,4)
 
 vtable_3f805:
 		.long   func_3f986
