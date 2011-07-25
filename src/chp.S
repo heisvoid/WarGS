@@ -19201,6 +19201,7 @@ func_20bc8:
     call   w_conf_set_fast
     add    $4,%esp
     call   w_conf_save
+    call   w_game_set_fps_low
     pop    %eax
 #endif
 		mov    %ebx,data_c5c58
@@ -19227,6 +19228,7 @@ func_20bc8:
     call   w_conf_set_fast
     add    $4,%esp
     call   w_conf_save
+    call   w_game_set_fps_high
     pop    %eax
 #endif
 		mov    %edx,data_c5c58

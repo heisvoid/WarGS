@@ -3154,11 +3154,7 @@ GLOBAL (ttl)	/* 0x13cdc */
 #if 1
     /* set FPS for hicom.fli play */
     push   %eax
-
-    pushl  $23
-    call   w_game_set_fps
-    add    $4,%esp
-
+    call   w_game_set_fps_hicom
     pop    %eax
 #endif
 		call   func_1948b
@@ -3223,26 +3219,22 @@ GLOBAL (ttl)	/* 0x13cdc */
 		mov    $data_2037b,%edx
 		mov    $0xa,%ebx
 #if 1
-    /* Set FPS for softmax.fli play.
-     *
-     * For sync with softmax.voc, FPS 13 is set.
-     * Below 13: fli playback is slower than voc playback.
-     * Above 13: fli playback is faster than voc playback.
-     */
-
     push   %eax
-
-    pushl  $13
-    call   w_game_set_fps
-    add    $4,%esp
-
+    call   w_game_set_fps_softmax
     pop    %eax
 #endif
 		call   func_1948b
 #if 1
-    /* stop audio */
     push   %eax
     call   w_audio_sound_stop
+    call   w_conf_get_fast
+    test   %eax,%eax
+    je     jump_fps_slow
+    call   w_game_set_fps_high
+    jmp    jump_end_of_post_softmax_fli
+  jump_fps_slow:
+    call   w_game_set_fps_low
+  jump_end_of_post_softmax_fli:
     pop    %eax
 #endif
 		call   func_1a875

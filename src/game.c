@@ -19,11 +19,12 @@
 
 enum
 {
-  DEFAULT_FPS = 40
+  FPS_LOW = 40,
+  FPS_HIGH = 3 * FPS_LOW
 };
 
 static bool initialized = false;
-static uint32_t fps = DEFAULT_FPS;
+static uint32_t fps = FPS_LOW;
 static bool pit_isr_is_installed = false;
 static bool pit_isr_0_is_installed = false;
 static bool keyboard_isr_is_installed = false;
@@ -37,7 +38,7 @@ game_cfg_setup ()
   game_cfg_speed = (true == conf_get_fast () ? 1 : 0);
 }
 
-void
+static void
 game_set_fps (uint32_t n)
 {
   ASSERT (0 < n);
@@ -46,9 +47,27 @@ game_set_fps (uint32_t n)
 }
 
 void
-game_set_fps_default ()
+game_set_fps_low ()
 {
-  game_set_fps (DEFAULT_FPS);
+  game_set_fps (FPS_LOW);
+}
+
+void
+game_set_fps_high ()
+{
+  game_set_fps (FPS_HIGH);
+}
+
+void
+game_set_fps_hicom ()
+{
+  game_set_fps (23);
+}
+
+void
+game_set_fps_softmax ()
+{
+  game_set_fps (13);
 }
 
 static void
