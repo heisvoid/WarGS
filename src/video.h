@@ -4,6 +4,7 @@
 #define VIDEO_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 enum
 {
@@ -11,7 +12,7 @@ enum
   VIDEO_HEIGHT = 200
 };
 
-extern void video_init (uint8_t r);
+extern void video_init (uint8_t r, bool center);
 extern void video_quit ();
 extern void video_update ();
 

@@ -19,6 +19,7 @@ static const char * const option_fast = "fast";
 static const char * const option_music = "music";
 static const char * const option_sound = "sound";
 static const char * const option_ratio = "ratio";
+static const char * const option_center = "center";
 static const char * const option_ttl = "ttl";
 static const char * const option_combatii = "combatii";
 static const char * const option_chp = "chp";
@@ -204,6 +205,12 @@ conf_get_ratio ()
     }
 
   return val;
+}
+
+bool
+conf_get_center ()
+{
+  return get_bool (option_center);
 }
 
 const char *

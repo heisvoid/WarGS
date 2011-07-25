@@ -6,8 +6,6 @@
 
 #include "video.h"
 
-#include <stdbool.h>
-
 #include <SDL.h>
 
 #include "assert.h"
@@ -32,7 +30,7 @@ uint8_t palette_g = 0;
 uint8_t palette_b = 0;
 
 void
-video_init (uint8_t r)
+video_init (uint8_t r, bool center)
 {
   if (true == initialized)
     {
@@ -42,6 +40,11 @@ video_init (uint8_t r)
     }
 
   ratio = (2 > r) ? 1 : r;
+
+  if (true == center)
+    {
+      putenv ("SDL_VIDEO_CENTERED=1");
+    }
 
   int ret = SDL_Init (SDL_INIT_VIDEO);
   ASSERT (0 == ret);

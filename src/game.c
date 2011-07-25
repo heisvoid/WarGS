@@ -149,7 +149,7 @@ game_init ()
 
   conf_init ();
   filepath_init (conf_get_root ());
-  video_init (conf_get_ratio ());
+  video_init (conf_get_ratio (), conf_get_center ());
   keyboard_init ();
 
   char * const music_root = xmalloc (PATH_MAX);
