@@ -9779,7 +9779,7 @@ func_utoa_:	/* 0x1b68b */
 		xor    %edx,%edx
 		divl   (%ebx)
 		mov    %eax,(%ebx)
-		mov    %cs:data_1b666(%edx),%al
+		mov    data_1b666(%edx),%al
 		mov    %al,(%ecx)
 		mov    0x24(%esp),%eax
 		inc    %ecx
@@ -10447,7 +10447,7 @@ func___do_exit_with_msg__:	/* 0x1bd13 */
 /*----------------------------------------------------------------*/
 func___GETDS:	/* 0x1bd4c */
 /*----------------------------------------------------------------*/
-		data16 		mov    %cs:data_1baf4,%ds
+		data16 		mov    data_1baf4,%ds
 		ret
 
 
@@ -14124,10 +14124,10 @@ func___int386x_:	/* 0x1dbba */
 func_1dbf2:
 /*----------------------------------------------------------------*/
 		lea    (%esi,%esi,2),%esi
-#if 1
+#if 0
 		lea    data_1dc98(%esi),%eax
 #else
-		lea    %cs:data_1dc98(%esi),%eax
+		lea    data_1dc98(%esi),%eax
 #endif
 		push   %eax
 		mov    (%ebx),%es
@@ -14603,7 +14603,7 @@ func_ultoa_:	/* 0x1e30f */
 		divl   (%ebx)
 		mov    %edx,(%ebx)
 		mov    0x28(%esp),%edx
-		mov    %cs:data_1e2ea(%edx),%dl
+		mov    data_1e2ea(%edx),%dl
 		mov    %dl,(%ecx)
 		inc    %ecx
 		test   %eax,%eax

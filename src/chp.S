@@ -47074,7 +47074,7 @@ func_utoa_:	/* 0x3a3a2 */
 		xor    %edx,%edx
 		divl   (%ebx)
 		mov    %eax,(%ebx)
-		mov    %cs:data_3a37d(%edx),%al
+		mov    data_3a37d(%edx),%al
 		mov    %al,(%ecx)
 		mov    0x24(%esp),%eax
 		inc    %ecx
@@ -47396,7 +47396,7 @@ func___do_exit_with_msg__:	/* 0x3a6db */
 /*----------------------------------------------------------------*/
 func___GETDS:	/* 0x3a714 */
 /*----------------------------------------------------------------*/
-		data16 		mov    %cs:data_3a4bc,%ds
+		data16 		mov    data_3a4bc,%ds
 		ret
 
 
@@ -51680,7 +51680,7 @@ func_3cd3a:
 #if 1
 		lea    data_3cde0(%esi),%eax
 #else
-		lea    %cs:data_3cde0(%esi),%eax
+		lea    data_3cde0(%esi),%eax
 #endif
 		push   %eax
 		mov    (%ebx),%es
@@ -53648,15 +53648,15 @@ func_3e3f0:
 		inc    %eax
 		mov    %ds:0x4(%ebp),%dx
 		and    $0xb8ff,%dx
-		or     %cs:data_3df1e(%eax),%dh
+		or     data_3df1e(%eax),%dh
 		mov    %dx,%ds:0x4(%ebp)
 	jump_3e439:
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    func_3e280
@@ -53664,7 +53664,7 @@ func_3e3f0:
 		inc    %eax
 		mov    %ds:0x4(%ebp),%dx
 		and    $0xb8ff,%dx
-		or     %cs:data_3df1e(%eax),%dh
+		or     data_3df1e(%eax),%dh
 		mov    %dx,%ds:0x4(%ebp)
 		jmp    func_3e280
 
@@ -54063,11 +54063,11 @@ func_3e6b0:
 /*----------------------------------------------------------------*/
 func_3e6cf:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%eax
 		lea    0x1c(%edi,%ebp,1),%edx
@@ -54259,11 +54259,11 @@ func_3e87e:
 /*----------------------------------------------------------------*/
 func_3e89d:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%eax
 		lea    0x1c(%edi,%ebp,1),%edx
@@ -54418,11 +54418,11 @@ func_3ea26:
 /*----------------------------------------------------------------*/
 func_3ea49:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%eax
 		mov    %eax,0x1c(%edi,%ebp,1)
@@ -54436,11 +54436,11 @@ func_3ea49:
 /*----------------------------------------------------------------*/
 func_3ea90:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%eax
 		mov    %es:0x4(%esi),%edx
@@ -54504,7 +54504,7 @@ func_3eb16:
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsw  %ds:(%esi),%es:(%edi)
-		movzwl %cs:data_3de7e(%ebx),%ebx
+		movzwl data_3de7e(%ebx),%ebx
 		loop   jump_3eb44
 		pop    %es
 		pop    %ds
@@ -54525,7 +54525,7 @@ func_3eb5d:
 		movsl  %ds:(%esi),%es:(%edi)
 		movsl  %ds:(%esi),%es:(%edi)
 		movsw  %ds:(%esi),%es:(%edi)
-		movzwl %cs:data_3de7e(%ebx),%ebx
+		movzwl data_3de7e(%ebx),%ebx
 		loop   jump_3eb6f
 		mov    %ebx,%edi
 		jmp    func_3f473
@@ -54652,11 +54652,11 @@ func_3ec77:
 /*----------------------------------------------------------------*/
 func_3ec98:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%ax
 		cwtl
@@ -54720,11 +54720,11 @@ func_3ed4c:
 /*----------------------------------------------------------------*/
 func_3ed51:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    %es:(%esi),%eax
 		lea    0x1c(%edi,%ebp,1),%edx
@@ -54860,11 +54860,11 @@ func_3ee73:
 /*----------------------------------------------------------------*/
 func_3ee88:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		mov    0x1c(%esi,%ebp,1),%eax
 		mov    %eax,0x1c(%edi,%ebp,1)
@@ -54927,11 +54927,11 @@ func_3ef2d:
 /*----------------------------------------------------------------*/
 func_3ef3a:
 /*----------------------------------------------------------------*/
-		mov    %cs:data_3de74,%eax
+		mov    data_3de74,%eax
 		mov    %eax,%ds:0x6c(%ebp)
-		mov    %cs:data_3de78,%eax
+		mov    data_3de78,%eax
 		mov    %eax,%ds:0x70(%ebp)
-		mov    %cs:data_3de7c,%ax
+		mov    data_3de7c,%ax
 		mov    %ax,%ds:0x74(%ebp)
 		lea    0x1c(%edi,%ebp,1),%eax
 		lea    0x6c(%ebp),%edx
@@ -54966,11 +54966,11 @@ vtable_3ef81:
 /*----------------------------------------------------------------*/
 func_3efa1:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		sub    %eax,%eax
@@ -54983,11 +54983,11 @@ func_3efa1:
 /*----------------------------------------------------------------*/
 func_3efe4:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		movl   $0xcd1b8afe,(%esi)
@@ -54999,11 +54999,11 @@ func_3efe4:
 /*----------------------------------------------------------------*/
 func_3f029:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		movl   $0x5c17f0bc,(%esi)
@@ -55015,11 +55015,11 @@ func_3f029:
 /*----------------------------------------------------------------*/
 func_3f06e:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		movl   $0x2168c235,(%esi)
@@ -55031,11 +55031,11 @@ func_3f06e:
 /*----------------------------------------------------------------*/
 func_3f0b3:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		movl   $0xfbcff799,(%esi)
@@ -55047,11 +55047,11 @@ func_3f0b3:
 /*----------------------------------------------------------------*/
 func_3f0f8:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		movl   $0xd1cf79ac,(%esi)
@@ -55063,20 +55063,20 @@ func_3f0f8:
 /*----------------------------------------------------------------*/
 func_3f13d:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		sub    %eax,%eax
 		mov    %eax,(%esi)
 		mov    %eax,0x4(%esi)
 		mov    %ax,0x8(%esi)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded0(%edi),%bx
+		mov    data_3ded0(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
 		jmp    func_3e280
 
@@ -55109,12 +55109,12 @@ func_3f1bc:
 func_3f1c9:
 /*----------------------------------------------------------------*/
 		lea    0x1c(%edi,%ebp,1),%eax
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		lea    0x1c(%edi,%ebp,1),%edx
@@ -55127,11 +55127,11 @@ func_3f210:
 /*----------------------------------------------------------------*/
 		lea    0x1c(%edi,%ebp,1),%eax
 		call   func_40d0a
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%esi
 		sub    %eax,%eax
@@ -55144,8 +55144,8 @@ func_3f210:
 /*----------------------------------------------------------------*/
 func_3f25c:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    func_3e280
@@ -55154,8 +55154,8 @@ func_3f25c:
 /*----------------------------------------------------------------*/
 func_3f27d:
 /*----------------------------------------------------------------*/
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    func_3e280
@@ -55186,7 +55186,7 @@ func_3f2c6:
 		and    $0x7,%eax
 		mov    %ds:0x4(%ebp),%dx
 		and    $0xb8ff,%dx
-		or     %cs:data_3df22(%eax),%dh
+		or     data_3df22(%eax),%dh
 		mov    %dx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
 
@@ -55195,12 +55195,12 @@ func_3f2c6:
 func_3f2f0:
 /*----------------------------------------------------------------*/
 		lea    0x1c(%edi,%ebp,1),%eax
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		lea    0x1c(%edi,%ebp,1),%edx
@@ -55225,11 +55225,11 @@ func_3f344:
 		pushl  0x6(%ebx)
 		lea    0x1c(%edi,%ebp,1),%eax
 		call   func_40cf3
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%ebx
 		popl   0x6(%ebx)
@@ -55281,12 +55281,12 @@ func_3f3de:
 		mov    %eax,%ds:0x70(%ebp)
 		mov    0x24(%edi,%ebp,1),%ax
 		mov    %ax,%ds:0x74(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		lea    0x6c(%ebp),%eax
@@ -55393,9 +55393,9 @@ func_3f502:
 /*----------------------------------------------------------------*/
 func_3f517:
 /*----------------------------------------------------------------*/
-		mov    %cs:data_3dece(%esi),%bx
+		mov    data_3dece(%esi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%esi),%bx
+		mov    data_3ded6(%esi),%bx
 		or     %bx,%ds:0x8(%ebp)
 		jmp    func_3e280
 
@@ -55409,7 +55409,7 @@ func_3f536:
 		mov    %eax,0x20(%esi,%ebp,1)
 		mov    0x24(%edi,%ebp,1),%ax
 		mov    %ax,0x24(%esi,%ebp,1)
-		mov    %cs:data_3dece(%esi),%bx
+		mov    data_3dece(%esi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		jmp    func_3e280
 
@@ -55441,7 +55441,7 @@ func_3f586:
 		mov    %eax,0x20(%esi,%ebp,1)
 		mov    0x24(%edi,%ebp,1),%ax
 		mov    %ax,0x24(%esi,%ebp,1)
-		mov    %cs:data_3dece(%esi),%bx
+		mov    data_3dece(%esi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		jmp    jump_3e439
 
@@ -55453,12 +55453,12 @@ func_3f5b2:
 		lea    0x1c(%edi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3f9a4
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55471,12 +55471,12 @@ func_3f5fd:
 		lea    0x1c(%edi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3fdd8
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55507,12 +55507,12 @@ func_3f670:
 		mov    %eax,%ds:0x70(%ebp)
 		mov    0x24(%edi,%ebp,1),%ax
 		mov    %ax,%ds:0x74(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		lea    0x6c(%ebp),%eax
@@ -55528,12 +55528,12 @@ func_3f6d1:
 		lea    0x1c(%esi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3f996
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55546,12 +55546,12 @@ func_3f71c:
 		lea    0x1c(%edi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3f996
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55564,12 +55564,12 @@ func_3f767:
 		lea    0x1c(%esi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3fc03
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55582,12 +55582,12 @@ func_3f7b2:
 		lea    0x1c(%edi,%ebp,1),%edx
 		lea    0x1c(%esi,%ebp,1),%ebx
 		call   func_3fc03
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
@@ -55613,12 +55613,12 @@ vtable_3f805:
 func_3f825:
 /*----------------------------------------------------------------*/
 		lea    0x1c(%edi,%ebp,1),%edx
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
-		mov    %cs:data_3ded6(%edi),%bx
+		mov    data_3ded6(%edi),%bx
 		or     %bx,%ds:0x8(%ebp)
-		movzwl %cs:data_3de7e(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de7e(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
 		lea    0x1c(%edi,%ebp,1),%eax
@@ -55631,11 +55631,11 @@ func_3f825:
 func_3f86e:
 /*----------------------------------------------------------------*/
 		lea    0x1c(%edi,%ebp,1),%esi
-		movzwl %cs:data_3de80(%edi),%edi
-		mov    %cs:data_3de82(%edi),%bx
+		movzwl data_3de80(%edi),%edi
+		mov    data_3de82(%edi),%bx
 		andw   $0xc7ff,%ds:0x4(%ebp)
 		or     %bx,%ds:0x4(%ebp)
-		mov    %cs:data_3dece(%edi),%bx
+		mov    data_3dece(%edi),%bx
 		and    %bx,%ds:0x8(%ebp)
 		lea    0x1c(%edi,%ebp,1),%ebx
 		mov    (%esi),%eax
@@ -55664,7 +55664,7 @@ func_3f8d3:
 		and    $0x7,%eax
 		mov    %ds:0x4(%ebp),%dx
 		and    $0xb8ff,%dx
-		or     %cs:data_3df22(%eax),%dh
+		or     data_3df22(%eax),%dh
 		mov    %dx,%ds:0x4(%ebp)
 		jmp    *%ds:0x76(%ebp)
 
@@ -55683,7 +55683,7 @@ func_3f8fd:
 func_3f915:
 /*----------------------------------------------------------------*/
 		mov    %edi,%esi
-		movzwl %cs:data_3de7e(%edi),%edi
+		movzwl data_3de7e(%edi),%edi
 		lea    0x1c(%edi,%ebp,1),%eax
 		mov    0x8(%eax),%cx
 		call   func_3ff53
@@ -56818,7 +56818,7 @@ func_40293:
 		mov    (%edi),%ecx
 		add    $0x20,%bx
 		jl     jump_40322
-		mov    %cs:data_40213(,%ebx,4),%eax
+		mov    data_40213(,%ebx,4),%eax
 		and    %eax,%ecx
 		xor    %ecx,(%edi)
 		inc    %eax
@@ -56856,7 +56856,7 @@ func_40293:
 		mov    0x4(%edi),%esi
 		add    $0x20,%bx
 		jl     jump_40385
-		mov    %cs:data_40213(,%ebx,4),%eax
+		mov    data_40213(,%ebx,4),%eax
 		and    %eax,%esi
 		xor    %esi,0x4(%edi)
 		inc    %eax
@@ -57253,7 +57253,7 @@ func_4071a:
 		push   %ebx
 		push   %edx
 		mov    %eax,%ebx
-		mov    %cs:data_3ded6(%edi),%ax
+		mov    data_3ded6(%edi),%ax
 		mov    %eax,%edx
 		and    %ds:0x8(%ebp),%ax
 		cmp    %dx,%ax
@@ -57275,7 +57275,7 @@ func_4071a:
 		or     (%ebx),%eax
 		mov    $0x44,%al
 		jne    jump_4076a
-		mov    %cs:data_3ded0(%edi),%ax
+		mov    data_3ded0(%edi),%ax
 		or     %ax,%ds:0x8(%ebp)
 		mov    $0x40,%al
 	jump_4076a:
@@ -57283,7 +57283,7 @@ func_4071a:
 	jump_4076c:
 		cmp    $0x7fff,%ax
 		jne    jump_40794
-		mov    %cs:data_3ded4(%edi),%ax
+		mov    data_3ded4(%edi),%ax
 		or     %ax,%ds:0x8(%ebp)
 		cmpl   $0x0,(%ebx)
 		jne    jump_4078c
@@ -57299,7 +57299,7 @@ func_4071a:
 		testb  $0x80,0x7(%ebx)
 		mov    $0x4,%al
 		jne    jump_407ab
-		mov    %cs:data_3ded4(%edi),%ax
+		mov    data_3ded4(%edi),%ax
 		or     %ax,%ds:0x8(%ebp)
 		mov    $0x44,%al
 	jump_407ab:
@@ -57662,7 +57662,7 @@ func_40afc:
 		jle    jump_40bd9
 		mov    $0x8,%cx
 	jump_40bd9:
-		mov    %cs:data_40aea(,%ecx,2),%cx
+		mov    data_40aea(,%ecx,2),%cx
 		push   %ecx
 		mov    -0x14(%ebp),%eax
 		inc    %al
@@ -58484,7 +58484,7 @@ func_ultoa_:	/* 0x413cc */
 		divl   (%ebx)
 		mov    %edx,(%ebx)
 		mov    0x28(%esp),%edx
-		mov    %cs:data_413a7(%edx),%dl
+		mov    data_413a7(%edx),%dl
 		mov    %dl,(%ecx)
 		inc    %ecx
 		test   %eax,%eax
