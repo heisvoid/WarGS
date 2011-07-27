@@ -1,3 +1,5 @@
+Introduction:
+
 WarGS is a port of the 1996 DOS game War of Genesis II by Softmax to modern
 operating systems. In particular, it runs on GNU/Linux, but it should also
 work on any system supported by the SDL library on the i386 architecture.
@@ -23,7 +25,7 @@ they have the rights to will be taken down.
 
 
 Installation:
-autoreconf -i
+
 ./configure
 make
-sudo make install
+make install
