@@ -14,6 +14,9 @@ The port is not fully complete.
 I got inpiration for creating this project from Syndicate Wars Port
 <http://swars.vexillium.org/>.
 
+
+License:
+
 All source code except the code in src/list.c, src/list.h, src/ttl.S,
 src/chp.S, src/combatii.S and src/pack.S is licensed under
 the GNU General Public License version 3 or any later version.
