@@ -7,43 +7,33 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <unistd.h>
 
 #include "util.h"
 #include "filepath.h"
 
-static bool
-get_process_name (char *buf, size_t size)
+static const char *name = NULL;
+static bool verbose = false;
+
+void
+log_set_name (const char *n)
 {
-  if (!__linux__)
+  if (NULL != name)
     {
-      return false;
+      free ((void *) name);
+      name = NULL;
     }
 
-  if (NULL == buf)
+  if (NULL != n)
     {
-      return false;
+      name = strdup (n);
     }
+}
 
-  char * const process_path = xcalloc (PATH_MAX, 1);
-  const ssize_t ret = readlink ("/proc/self/exe", process_path, PATH_MAX);
-  if (1 > ret)
-    {
-      return false;
-    }
-
-  const char * const process_name = basename (process_path);
-  if (strlen (process_name) >= size)
-    {
-      return false;
-    }
-
-  strcpy (buf, process_name);
-
-  free (process_path);
-
-  return true;
+void
+log_set_verbose (bool v)
+{
+  verbose = v;
 }
 
 #define LOG_COMMON()                                          \
@@ -67,12 +57,10 @@ get_process_name (char *buf, size_t size)
           return;                                             \
         }                                                     \
                                                               \
-      char * const process_name = xmalloc (PATH_MAX);         \
-      if (true == get_process_name (process_name, PATH_MAX))  \
+      if (NULL != name)                                       \
         {                                                     \
-          fprintf (stderr, "%s: ", process_name);             \
+          fprintf (stderr, "%s: ", name);                     \
         }                                                     \
-      free (process_name);                                    \
                                                               \
       fprintf (stderr, "%s: %d: ", file_name, line);          \
                                                               \
@@ -98,4 +86,25 @@ log_fatal (const char *file, int line, const char *format, ...)
   LOG_COMMON ();
 
   abort ();
+}
+
+void
+log_wrapper (const char *format, ...)
+{
+  if (NULL == format || false == verbose)
+    {
+      return;
+    }
+
+  if (NULL != name)
+    {
+      printf("%s: ", name);
+    }
+
+  va_list ap;
+  va_start (ap, format);
+  vprintf (format, ap);
+  va_end (ap);
+
+  fflush (stdout);
 }

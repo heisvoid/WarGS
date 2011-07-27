@@ -3,6 +3,11 @@
 #ifndef LOG_H
 #define LOG_H
 
+#include <stdbool.h>
+
+extern void log_set_name (const char *n);
+extern void log_set_verbose (bool v);
+
 extern void log_error (const char *file, int line, const char *format, ...);
 extern void log_fatal (const char *file, int line, const char *format, ...);
 

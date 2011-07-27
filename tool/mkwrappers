@@ -136,7 +136,7 @@ Options:
 	    self.wrln ()
 	    self.generate_push_arguments (type, len (args))
 	self.wrln ('\t\tpush\t$0f')
-	self.generate_call ('printf', len (args) + 1)
+	self.generate_call ('log_wrapper', len (args) + 1)
 	self.generate_align_pop (1)
 
     def generate_ret (self):

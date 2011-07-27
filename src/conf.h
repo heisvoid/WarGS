@@ -23,6 +23,7 @@ extern void conf_set_sound (int val);
 
 extern uint8_t conf_get_ratio ();
 extern bool conf_get_center ();
+extern bool conf_get_verbose ();
 
 extern const char *conf_get_ttl ();
 extern const char *conf_get_combatii ();
