@@ -16,6 +16,7 @@
 #include "keyboard.h"
 #include "util.h"
 #include "audio.h"
+#include "exit.h"
 
 enum
 {
@@ -95,8 +96,17 @@ handle_events ()
             }
           break;
         case SDL_QUIT:
-          game_quit ();
-          exit (10);
+          {
+            enum
+            {
+              EXIT_STATUS = 10
+            };
+
+            exit_write (EXIT_STATUS);
+            game_quit ();
+
+            exit (EXIT_STATUS);
+          }
         default:
           break;
         }
@@ -159,7 +169,7 @@ game_update ()
 }
 
 void
-game_init ()
+game_init (const char *name)
 {
   if (true == initialized)
     {
@@ -167,6 +177,10 @@ game_init ()
     }
 
   conf_init ();
+
+  log_set_name (name);
+  log_set_verbose (conf_get_verbose ());
+
   filepath_init (conf_get_root ());
   video_init (conf_get_ratio (), conf_get_center ());
   keyboard_init ();
@@ -189,6 +203,17 @@ game_init ()
   mouse_init ();
 
   pit_isr_is_installed = false;
+
+  if (conf_get_fast ())
+    {
+      game_set_fps_high ();
+    }
+  else
+    {
+      game_set_fps_low ();
+    }
+
+  exit_clean ();
 
   initialized = true;
 }

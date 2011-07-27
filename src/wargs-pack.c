@@ -1,21 +1,25 @@
 /* vim: set sw=2 ts=2 expandtab: */
 
+
+#include <string.h>
+#include <stdlib.h>
+
 #include "game.h"
-#include "conf.h"
 
 int
 main (int argc, char *argv[])
 {
-  game_init ();
+  char *process_name = NULL;
 
-  if (conf_get_fast ())
+  const char * const argv0 = strdup (argv[0]);
+  if (NULL != argv0)
     {
-      game_set_fps_high ();
+      process_name = basename (argv0);
     }
-  else
-    {
-      game_set_fps_low ();
-    }
+
+  game_init (process_name);
+
+  free ((void *) argv0);
 
   int ret = 0;
   asm volatile ("call pack" : "=a" (ret) : "a" (argc), "d" (argv));

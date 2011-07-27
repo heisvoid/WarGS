@@ -3,10 +3,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-extern void game_init ();
+extern void game_init (const char *name);
 extern void game_quit ();
-
-extern void game_set_fps_high ();
-extern void game_set_fps_low ();
 
 #endif
