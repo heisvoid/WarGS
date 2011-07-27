@@ -14,10 +14,12 @@ The port is not fully complete.
 I got inpiration for creating this project from Syndicate Wars Port
 <http://swars.vexillium.org/>.
 
-All source code except the code in src/ttl.S, src/chp.S, src/combatii.S
-and src/pack.S is licensed under the GNU General Public License version 3
-or any later version. The four .S files are modified disassembled version of
-the original game's each .exe. The project is distributed without charge and
+All source code except the code in src/list.c, src/list.h, src/ttl.S,
+src/chp.S, src/combatii.S and src/pack.S is licensed under
+the GNU General Public License version 3 or any later version.
+src/list.c and src/list.h are derived from Pintos project. 
+The four .S files are modified disassembled version of the original
+game's each .exe. The project is distributed without charge and
 in good faith that it will be useful to those who purchased the original game
 but cannot play it anymore because they do not have access to an old DOS
 system. However, if the original copyright holders complain, the code 
