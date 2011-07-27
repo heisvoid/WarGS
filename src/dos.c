@@ -17,6 +17,7 @@
 #include "filepath.h"
 #include "keyboard.h"
 #include "util.h"
+#include "exit.h"
 
 static FILE *talk_file = NULL;
 
@@ -464,14 +465,17 @@ dos_strrchr (const char *s, int c)
 int
 dos_fclose (FILE *f)
 {
-  ASSERT (NULL != f);
+  int ret = 0;
 
-  const int ret = fclose (f);
-  ASSERT (0 == ret);
-
-  if (talk_file == f)
+  if (NULL != f)
     {
-      talk_file = NULL;
+      ret = fclose (f);
+      ASSERT (0 == ret);
+
+      if (talk_file == f)
+        {
+          talk_file = NULL;
+        }
     }
 
   return ret;
@@ -661,4 +665,12 @@ dos_strcpy (char *dst, const char *src)
   ASSERT (NULL != src);
 
   return strcpy (dst, src);
+}
+
+void
+dos_exit (int status)
+{
+  exit_write (status);
+
+  exit (status);
 }

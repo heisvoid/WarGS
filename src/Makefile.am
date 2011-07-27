@@ -1,7 +1,5 @@
 bin_PROGRAMS = wargs wargs-ttl wargs-combatii wargs-chp wargs-pack
 
-dist_bin_SCRIPTS = $(top_srcdir)/tool/wargs-setup
-
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
 							filepath.c filepath.h \
@@ -11,6 +9,7 @@ COMMON_SRCS = assert.h \
 GAME_SRCS = asm.h \
 						audio.c audio.h \
 						dos.c \
+						exit.c exit.h \
 						game.c game.h \
 						keyboard.c keyboard.h \
 						list.c list.h \
