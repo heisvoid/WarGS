@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([WarGS], [0.1], [wargs@googlegroups.com])
+AC_INIT([WarGS], [0.2], [wargs@googlegroups.com])
 AC_CONFIG_SRCDIR([src/wargs.c])
 AC_CONFIG_HEADERS([src/config.h])
 
