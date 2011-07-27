@@ -1179,7 +1179,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   w_dos_fclose
 		mov    $0xffffffff,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_11323:
 		mov    $0x2,%edi
 		mov    $0x4,%ecx
@@ -1245,7 +1245,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   w_dos_fclose
 		mov    $0xffffffff,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_113fd:
 		mov    $0x2,%edi
 		mov    $0x4,%ecx
@@ -1309,7 +1309,7 @@ func_112e0:
 		mov    %ebx,%eax
 		call   w_dos_fclose
 		mov    $0xffffffff,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_114cd:
 		mov    $0x2,%esi
 		mov    $0x4,%edi
@@ -4925,7 +4925,7 @@ func_14700:
 		call   w_dos_close
 		call   w_dos_getch
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_14744:
 		mov    $0x40,%edx
 		mov    $0x1,%ebx
@@ -5210,7 +5210,7 @@ func_1492e:
 		call   w_printf
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_14af1:
 		mov    0xe(%esp),%eax
 		mov    $0x40,%edx
@@ -15328,7 +15328,7 @@ func_1d26c:
 		call   w_printf
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_1d2a8:
 		mov    0x6(%esp),%ecx
 		mov    $0x42,%edx
@@ -16121,7 +16121,7 @@ func_1dc3b:
 		call   w_printf
 		add    $0x8,%esp
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_1dc66:
 		mov    $data_a3d4c,%eax
 		mov    $0x300,%edx
@@ -18818,7 +18818,7 @@ func_204a7:
 		call   func_1dc11
 	jump_206cf:
 		mov    $0x1,%eax
-		call   w_exit
+		call   w_dos_exit
 		add    $0x8,%esp
 		jmp    jump_21bbf
 
@@ -22244,7 +22244,7 @@ GLOBAL (chp)	/* 0x2353e */
 		cmp    $0x2,%ax
 		je     jump_2355d
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_2355d:
 		cmp    $0x3,%bx
 		jne    jump_23579
@@ -22255,7 +22255,7 @@ GLOBAL (chp)	/* 0x2353e */
 		cmp    $0x53,%dl
 		je     jump_23579
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_23579:
 		mov    $data_80302,%edi
 		mov    $data_509fd,%esi
@@ -28421,7 +28421,7 @@ func_288b9:
 		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_28908:
 		mov    $0xc,%ebx
 		mov    $0x7f,%ecx
@@ -28841,7 +28841,7 @@ func_28d4e:
 		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
-		jmp    w_exit
+		jmp    w_dos_exit
 	jump_28d7a:
 		ret
 
@@ -31059,7 +31059,7 @@ func_2a965:
 		mov    %edx,%eax
 		call   w_dos_fclose
 		mov    $0xffffffff,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_2a9b0:
 		xor    %edx,%edx
 		jmp    jump_2a9df
@@ -35349,7 +35349,7 @@ func_2e533:
 		call   w_printf
 		add    $0x4,%esp
 		xor    %eax,%eax
-		call   w_exit
+		call   w_dos_exit
 	jump_2e56a:
 		mov    $0x42,%edx
 		movswl %di,%ecx
@@ -51495,7 +51495,7 @@ func___CMain:	/* 0x3cbaf */
 		mov    data_1395f0,%edx
 		mov    data_1395ec,%eax
 		call   chp
-		call   w_exit
+		call   w_dos_exit
 		mov    %ebp,%esp
 		pop    %ebp
 		pop    %edx
