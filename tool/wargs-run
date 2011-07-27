@@ -27,7 +27,7 @@ Options:
   -g, --with-gdb
       Run with gdb
   -v, --verbose
-      Print wrapper logs
+      Do not suppress wrapper logs
   -h, --help
       Show this help
 """ % os.path.basename(sys.argv[0])
