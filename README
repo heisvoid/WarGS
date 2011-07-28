@@ -31,6 +31,69 @@ they have the rights to will be taken down.
 
 Installation:
 
-./configure
-make
-make install
+GNU/Linux
+To install WarGS on GNU/Linux, you need the followings.
+- GCC
+- Python (>= 2.4)
+- SDL
+- SDL_mixer
+- cdparanoia
+- vorbis-tools
+- p7zip-full
+
+Once you've made sure you have the above, proceed with the following steps.
+1. Download and unpack the source tarball.
+2. Go into the newly created directory.
+3. Run ./configure && make && make install
+4. Add installed directory to PATH environment variable.
+5. Insert the War of Genesis II CD and make sure it is mounted.
+   (e.g. in /media/cdrom)
+6. Run wargs-setup -c CDROM -p PATCH, where
+   - CDROM is the game CD path, like /media/cdrom
+   - PATCH is the patch file released by Softmax, like pat12.exe
+
+If you need more information about wargs-setup, run wargs-setup --help
+
+
+Configuration:
+
+All of configurations of WarGS is done in ~/.wargs.conf. It is libconfig
+accessible file. It has INI like format. You can change what you want. 
+The following options are supported.
+- root
+  Set the game data directory.
+  NOTICE: This is required option.
+  This has double quoted string value. (e.g. "/home/foo/.wargs")
+- fast
+  Set the game speed fast.
+  This has true/false boolean value.
+- music
+  Set the game music on. 
+  This has true/false boolean value.
+- sound
+  Set the game sound on.
+  This has true/false boolean value.
+- ratio
+  Set the window size ratio.
+  Window width will be 320 * ratio. And window height will be 200 * ratio.
+  This has natural number.
+- center
+  Set the window position center always.
+  This has true/false boolean value.
+- verbose
+  Set log messages printed or not.
+  This has true/false boolean value.
+- ttl
+  Set the ttl program. If this option is omitted, the ttl is searched in PATH.
+  This has double quoted string value. (e.g. "/usr/games/wargs-ttl")
+- combatii
+  Set the combatii program. If this option is omitted, the combatii is
+  searched in PATH.
+  This has double quoted string value. (e.g. "/usr/games/wargs-combatii")
+- chp
+  Set the chp program. If this option is omitted, the chp is searched in PATH.
+  This has double quoted string value. (e.g. "/usr/games/wargs-chp")
+- pack
+  Set the pack program. If this option is omitted. the pack is searched in PATH.
+  This has double quoted string value. (e.g. "/usr/games/wargs-pack")
+
