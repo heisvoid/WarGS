@@ -167,9 +167,9 @@ EOF
 
     local music_wav="${music_temp_dir}/track${music_num}.wav"
     if [ -z "${CD_DEV}" ]; then
-      "${CDPARANOIA}" "${disc_track_num}" "${music_wav}" || return 1
+      "${CDPARANOIA}" -v "${disc_track_num}" "${music_wav}" || return 1
     else
-      "${CDPARANOIA}" -d "${CD_DEV}" "${disc_track_num}" "${music_wav}" || return 1
+      "${CDPARANOIA}" -v -d "${CD_DEV}" "${disc_track_num}" "${music_wav}" || return 1
     fi
 
     local music_ogg="${TARGET_MUSIC}/track${music_num}.ogg"
