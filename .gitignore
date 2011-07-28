@@ -1,6 +1,6 @@
 *.bak
-*.in
 *~
 .*.swo
 .*.swp
 autom4te.cache/
+config.h.in
