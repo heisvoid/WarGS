@@ -14841,6 +14841,16 @@ func___EnterWVIDEO_:	/* 0x1e4e3 */
 	jump_1e506:
 		xor    %eax,%eax
 		ret
+
+
+GLOBAL (pit_isr_0)
+    ret
+
+
+GLOBAL (keyboard_isr)
+    ret
+
+
 .data
 data_20000:
 		.ascii  "\x01\x01\x01\x00"

@@ -59408,6 +59408,12 @@ func___init_80x87:	/* 0x41a8e */
 		xchg   %ax,(%esp)
 		pop    %ax
 		ret
+
+
+GLOBAL (pit_isr_0)
+    ret
+
+
 .data
 data_50000:
 		.ascii  "\x01\x01\x01\x00"

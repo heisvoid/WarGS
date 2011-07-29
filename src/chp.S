@@ -58533,6 +58533,12 @@ func_toupper_:	/* 0x41430 */
 		sub    $0x20,%eax
 	jump_4143d:
 		ret
+
+
+GLOBAL (pit_isr_0)
+    ret
+
+
 .data
 data_50000:
 		.ascii  "\x01\x01\x01\x00"
