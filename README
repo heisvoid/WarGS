@@ -38,6 +38,7 @@ To install WarGS on GNU/Linux, you need the followings.
 - Python (>= 2.4)
 - SDL
 - SDL_mixer
+- libconfig
 - cdparanoia
 - vorbis-tools
 - p7zip-full
@@ -70,22 +71,25 @@ Once you've made sure you have the above, proceed with the following steps.
 4. Run make -f Makefile.windows
 5. Copy wargs.exe, wargs-ttl.exe, wargs-combatii.exe, wargs-chp.exe
    and wargs-pack.exe to the location of your desire, says WarGSLocation.
-6. Add the WarGSLocation to PATH environment variable.
-7. Copy tool\wargs-run to the WarGSLocation.
-8. Copy GENESIS2\* in the game CD to the location of your desire,
+6. Copy lib\SDL-1.2.14\lib\*.dll, lib\SDL_mixer-1.2.11\lib\*.dll and
+   lib\libconfig-1.4.7\lib\*.dll to WarGSLocation.
+7. Add the WarGSLocation to PATH environment variable.
+8. Copy tool\wargs-run to the WarGSLocation.
+9. Copy GENESIS2\* in the game CD to the location of your desire,
    says WarGSDataLocation.
-9. Unpack DOSINST.ARJ in the game CD to the WarGSDataLocation.
-10. Unpack the patch file to the WarGSDataLocation.
-11. Rip the game CD audio tracks to trackNN.ogg (track01, track02, ...).
-12. Creat a WarGSDataLocation\music directory and copy the previously encoded
+10. Unpack DOSINST.ARJ in the game CD to the WarGSDataLocation.
+11. Unpack the patch file to the WarGSDataLocation.
+12. Rip the game CD audio tracks to trackNN.ogg (track01, track02, ...).
+13. Creat a WarGSDataLocation\music directory and copy the previously encoded
     ogg vorbis files there.
-13. Make configuration file, %HOMEDRIVE%\%HOMEPATH%\Local Settings\WarGS\wargs.conf
+14. Make configuration file,
+    %HOMEDRIVE%\%HOMEPATH%\Local Settings\Application Data\WarGS\wargs.conf
 
 
 Configuration:
 
 GNU/Linux: ~/.WarGS/wargs.conf
-WIN32: %HOMEDRIVE%\%HOMEPATH%\Local Settings\WarGS\wargs.conf
+WIN32: %HOMEDRIVE%\%HOMEPATH%\Local Settings\Application Data\WarGS\wargs.conf
 
 It is libconfig accessible file. And it has INI similar format.
 The following options are supported.
