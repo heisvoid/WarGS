@@ -47,14 +47,14 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_1 = conf.$(OBJEXT) filepath.$(OBJEXT) log.$(OBJEXT) \
-	util.$(OBJEXT)
+am__objects_1 = conf.$(OBJEXT) exit.$(OBJEXT) filepath.$(OBJEXT) \
+	log.$(OBJEXT) util.$(OBJEXT)
 am_wargs_OBJECTS = $(am__objects_1) wargs.$(OBJEXT)
 wargs_OBJECTS = $(am_wargs_OBJECTS)
 wargs_LDADD = $(LDADD)
-am__objects_2 = audio.$(OBJEXT) dos.$(OBJEXT) exit.$(OBJEXT) \
-	game.$(OBJEXT) keyboard.$(OBJEXT) list.$(OBJEXT) \
-	mouse.$(OBJEXT) video.$(OBJEXT) wrappers.$(OBJEXT)
+am__objects_2 = audio.$(OBJEXT) dos.$(OBJEXT) game.$(OBJEXT) \
+	keyboard.$(OBJEXT) list.$(OBJEXT) mouse.$(OBJEXT) \
+	video.$(OBJEXT) wrappers.$(OBJEXT)
 am_wargs_chp_OBJECTS = $(am__objects_1) $(am__objects_2) chp.$(OBJEXT) \
 	wargs-chp.$(OBJEXT)
 wargs_chp_OBJECTS = $(am_wargs_chp_OBJECTS)
@@ -198,6 +198,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 COMMON_SRCS = assert.h \
 					 	  conf.c conf.h \
+							exit.c exit.h \
 							filepath.c filepath.h \
 							log.c log.h \
 							util.c util.h
@@ -205,7 +206,6 @@ COMMON_SRCS = assert.h \
 GAME_SRCS = asm.h \
 						audio.c audio.h \
 						dos.c \
-						exit.c exit.h \
 						game.c game.h \
 						keyboard.c keyboard.h \
 						list.c list.h \
