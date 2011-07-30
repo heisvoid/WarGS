@@ -23,9 +23,8 @@ CHP = wargs-chp.exe
 COMBATII = wargs-combatii.exe
 PACK = wargs-pack.exe
 
-OBJ_COMMON = conf.o filepath.o log.o util.o
-OBJ_GAME = audio.o dos.o exit.o game.o keyboard.o list.o mouse.o video.o \
-					 wrappers.o
+OBJ_COMMON = conf.o exit.o filepath.o log.o util.o
+OBJ_GAME = audio.o dos.o game.o keyboard.o list.o mouse.o video.o wrappers.o
 OBJ_WARGS = $(OBJ_COMMON) wargs.o
 OBJ_TTL = $(OBJ_COMMON) $(OBJ_GAME) ttl.o wargs-ttl.o
 OBJ_CHP = $(OBJ_COMMON) $(OBJ_GAME) chp.o wargs-chp.o
