@@ -18,6 +18,7 @@
 #include "filepath.h"
 #include "assert.h"
 #include "util.h"
+#include "exit.h"
 
 static const char * const default_ttl = PACKAGE"-ttl";
 static const char * const default_chp = PACKAGE"-chp";
@@ -84,7 +85,7 @@ static int child_exit_status = 0;
       const pid_t pid_ = wait (&status_);                               \
       ASSERT (pid_ == child_pid_);                                      \
                                                                         \
-      if (!WIFEXITED (status_))                                         \
+      if (!WIFEXITED (status_) || false == exit_exists ())              \
         {                                                               \
           LOG_FATAL ("failed to run: %s",                               \
                      (NULL != exe_path_) ? exe_path_ : exe_);           \
@@ -130,7 +131,7 @@ static int child_exit_status = 0;
           ret_ = _spawnlp (_P_WAIT, exe_, exe_, ##__VA_ARGS__, NULL);         \
         }                                                                     \
                                                                               \
-      if (-1 == ret_)                                                         \
+      if (-1 == ret_ || false == exit_exists ())                              \
         {                                                                     \
           LOG_FATAL ("failed to run: %s",                                     \
                      (NULL != exe_path_) ? exe_path_ : exe_);                 \
