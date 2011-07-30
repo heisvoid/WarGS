@@ -586,11 +586,9 @@ void fill_dta (const WIN32_FIND_DATA *find_data, int8_t *dta)
       *(dta + 0x15) |= 0x10;
     }
 
-  SYSTEMTIME t;
-  BOOL ret = FileTimeToSystemTime (&find_data->ftLastWriteTime, &t);
-  ASSERT (FALSE != ret);
-
-  ret = FileTimeToDosDateTime (&t, dta + 0x18, dta + 0x16);
+  const BOOL ret = FileTimeToDosDateTime (&find_data->ftLastWriteTime,
+                                          (LPWORD) (dta + 0x18),
+                                          (LPWORD) (dta + 0x16));
   ASSERT (FALSE != ret);
 
   *((int16_t *) (dta + 0x1a)) = find_data->nFileSizeHigh * (MAXDWORD + 1)
