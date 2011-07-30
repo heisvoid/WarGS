@@ -32,8 +32,7 @@ void
 exit_clear ()
 {
   const char * const native_path = filepath_transform ("exit");
-  const int ret = unlink (native_path);
-  ASSERT (0 == ret);
+  unlink (native_path);
   free ((void *) native_path);
 }
 
