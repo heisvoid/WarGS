@@ -392,9 +392,6 @@ dos_write (int fd, const void *buf, unsigned int len)
                                      len - total_written);
       if (0 > written)
         {
-          const int e = errno;
-          ASSERT (EFAULT == e);
-
           break;
         }
 
