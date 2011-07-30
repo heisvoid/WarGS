@@ -61,10 +61,11 @@ conf_init ()
   ASSERT (NULL != home_path);
 
   conf_file_path = xmalloc (PATH_MAX);
-  xsnprintf (conf_file_path, PATH_MAX, "%s%c%s%c%s%c%s%c%s.conf",
+  xsnprintf (conf_file_path, PATH_MAX, "%s%c%s%c%s%c%s%c%s%c%s.conf",
              home_drive, FILEPATH_SEPARATOR, home_path, FILEPATH_SEPARATOR,
-             "Local Settings", FILEPATH_SEPARATOR, PACKAGE_NAME,
-             FILEPATH_SEPARATOR, PACKAGE);
+             "Local Settings", FILEPATH_SEPARATOR,
+             "Application Data", FILEPATH_SEPARATOR,
+             PACKAGE_NAME, FILEPATH_SEPARATOR, PACKAGE);
 #else /* not __unix__ and not_WIN32 */
 #error "unsupported platform"
 #endif /* not __unix__ and not _WIN32 */
