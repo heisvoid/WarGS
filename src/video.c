@@ -106,7 +106,7 @@ video_set_palette ()
   color->g = palette_g << 2;
   color->b = palette_b << 2;
 
-  const int ret = SDL_SetPalette (surface, SDL_LOGPAL,
+  const int ret = SDL_SetPalette (surface, SDL_LOGPAL | SDL_PHYSPAL,
                                   color, palette_index, 1);
   ASSERT (1 == ret);
 
