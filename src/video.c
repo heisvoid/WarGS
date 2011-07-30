@@ -50,7 +50,7 @@ video_init (uint8_t r, bool center)
   ASSERT (0 == ret);
 
   surface = SDL_SetVideoMode (VIDEO_WIDTH * ratio, VIDEO_HEIGHT * ratio,
-                              8, SDL_SWSURFACE);
+                              8, SDL_SWSURFACE | SDL_HWPALETTE);
   ASSERT (NULL != surface);
 
   SDL_WM_SetCaption (PACKAGE_NAME, NULL);
@@ -106,7 +106,8 @@ video_set_palette ()
   color->g = palette_g << 2;
   color->b = palette_b << 2;
 
-  const int ret = SDL_SetPalette (surface, SDL_LOGPAL, color, palette_index, 1);
+  const int ret = SDL_SetPalette (surface, SDL_LOGPAL | SDL_PHYSPAL,
+                                  color, palette_index, 1);
   ASSERT (1 == ret);
 
   palette[palette_index].r = color->r;
