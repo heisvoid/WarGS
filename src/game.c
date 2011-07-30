@@ -211,7 +211,7 @@ game_init (const char *name)
       game_set_fps_low ();
     }
 
-  exit_clean ();
+  exit_clear ();
 
   initialized = true;
 }
