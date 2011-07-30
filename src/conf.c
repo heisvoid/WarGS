@@ -13,9 +13,7 @@
 
 #include "assert.h"
 #include "util.h"
-#ifdef _WIN32
 #include "filepath.h"
-#endif /* _WIN32 */
 
 static const char * const option_root = "root";
 static const char * const option_fast = "fast";
@@ -43,14 +41,13 @@ conf_init ()
       return;
     }
 
+  conf_file_path = xmalloc (PATH_MAX);
+
 #ifdef __unix__
   const char *home = getenv ("HOME");
   ASSERT (NULL != home);
 
-  const size_t conf_file_path_size = sizeof (char)
-      * (strlen (home) + 1 + 1 + strlen (PACKAGE) + 5 + 1);
-  conf_file_path = xmalloc (conf_file_path_size);
-  xsnprintf (conf_file_path, conf_file_path_size, "%s%c.%s%c%s.conf",
+  xsnprintf (conf_file_path, PATH_MAX, "%s%c.%s%c%s.conf",
              home, FILEPATH_SEPARATOR, PACKAGE_NAME, FILEPATH_SEPARATOR,
              PACKAGE);
 #elif defined _WIN32
@@ -60,7 +57,6 @@ conf_init ()
   const char * const home_path = getenv ("HOMEPATH");
   ASSERT (NULL != home_path);
 
-  conf_file_path = xmalloc (PATH_MAX);
   xsnprintf (conf_file_path, PATH_MAX, "%s%c%s%c%s%c%s%c%s%c%s.conf",
              home_drive, FILEPATH_SEPARATOR, home_path, FILEPATH_SEPARATOR,
              "Local Settings", FILEPATH_SEPARATOR,
