@@ -3954,7 +3954,7 @@ func_14e41:
 /*----------------------------------------------------------------*/
 		push   %ecx
 		push   %edi
-		call   func_14e81
+		call   read_font_file
 		mov    $0xf,%edx
 		mov    $0x7,%ecx
 		xor    %edi,%edi
@@ -3969,8 +3969,12 @@ func_14e41:
 		ret
 
 
+/**
+ * @param eax hangul font file name
+ * @param edx ascii font file name
+ */
 /*----------------------------------------------------------------*/
-func_14e81:
+read_font_file: /* 14e81 */
 /*----------------------------------------------------------------*/
 		push   %ebx
 		push   %ecx
@@ -3982,15 +3986,15 @@ func_14e81:
 		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
-		mov    $data_3ac00,%edx
+		mov    $font_hangul_initial,%edx
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    $0xb00,%ebx
-		mov    $data_3c000,%edx
+		mov    $font_hangul_vowel,%edx
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    $0xe00,%ebx
-		mov    $data_3cb00,%edx
+		mov    $font_hangul_final,%edx
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
@@ -4001,7 +4005,7 @@ func_14e81:
 		call   w_dos_open
 		add    $0x8,%esp
 		movswl %ax,%ecx
-		mov    $data_3d900,%edx
+		mov    $font_ascii,%edx
 		mov    %ecx,%eax
 		call   w_dos_read
 		mov    %ecx,%eax
@@ -4051,7 +4055,7 @@ vtable_14f27:
 /*----------------------------------------------------------------*/
 func_14f3f:
 /*----------------------------------------------------------------*/
-		cwtl
+		cwtl /* converts a signed word in ax to a signed dword in eax */
 		mov    %eax,data_3e914
 		cmp    $0x5,%eax
 		ja     jump_14f86
@@ -4348,7 +4352,7 @@ func_15134:
 		xor    %edx,%edx
 		mov    0x8(%esp),%dx
 		imul   $0x280,%edx,%edx
-		add    $data_3ac00,%edx
+		add    $font_hangul_initial,%edx
 		and    $0xff,%eax
 		shl    $0x5,%eax
 		mov    $0x20,%ebx
@@ -4365,7 +4369,7 @@ func_15134:
 		xor    %edx,%edx
 		mov    %bh,%dl
 		shl    $0x5,%edx
-		add    $data_3c000,%eax
+		add    $font_hangul_vowel,%eax
 		mov    $0x20,%ebx
 		add    %edx,%eax
 		mov    $data_3e928,%edx
@@ -4379,7 +4383,7 @@ func_15134:
 		xor    %eax,%eax
 		mov    0xc(%esp),%al
 		shl    $0x5,%eax
-		add    $data_3cb00,%edx
+		add    $font_hangul_final,%edx
 		mov    $0x20,%ebx
 		add    %edx,%eax
 		mov    $data_3e928,%edx
@@ -4425,7 +4429,7 @@ func_15134:
 		mov    $0x10,%ebx
 		shl    $0x4,%edx
 		mov    $data_3e904,%eax
-		add    $data_3d900,%edx
+		add    $font_ascii,%edx
 		call   w_dos_memmove
 		mov    $data_3e900,%ebx
 		mov    data_3e94a,%edx
@@ -15540,13 +15544,13 @@ data_2342e:
 		.fill   0x177c6
 data_3abf4:
 		.fill   0xc
-data_3ac00:
+font_hangul_initial: /* 3ac00 */
 		.fill   0x1400
-data_3c000:
+font_hangul_vowel: /* 3c000 */
 		.fill   0xb00
-data_3cb00:
+font_hangul_final: /* 3cb00 */
 		.fill   0xe00
-data_3d900:
+font_ascii: /* 3d900 */
 		.fill   0x1000
 data_3e900:
 		.ascii  "\x00\x00"
