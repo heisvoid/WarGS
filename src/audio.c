@@ -224,6 +224,7 @@ audio_sound_play (const uint8_t *raw, uint32_t len, int32_t loop)
    *
    * reference
    * http://www.dsprelated.com/showmessage/52896/1.php
+   * https://archive.md/RvraE
    */
   int16_t * const converted = xmalloc (2 * 2 * len);
   size_t i = 0;
